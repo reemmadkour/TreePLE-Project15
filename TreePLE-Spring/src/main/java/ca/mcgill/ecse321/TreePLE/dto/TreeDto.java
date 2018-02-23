@@ -16,7 +16,7 @@ public class TreeDto {
 		  
 	  }
 	  
-	  public TreeSpecies(TreeSpecies treeSpecies,double height, double diameter, double longitude, double latitude, LandType landtype) {
+	  public void TreeDto(TreeSpecies treeSpecies,double height, double diameter, double longitude, double latitude, LandType landtype) {
 			this.treeSpecies = treeSpecies;
 			this.height = height;
 			this.diameter = diameter;
@@ -48,7 +48,8 @@ public class TreeDto {
 		public LandType getLandType() {
 			return landType;
 		}
-
+		
+		 
 }
 
 
