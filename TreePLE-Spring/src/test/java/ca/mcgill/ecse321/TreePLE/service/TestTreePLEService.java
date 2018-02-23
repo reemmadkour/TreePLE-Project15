@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert.*;
 
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
@@ -63,19 +64,17 @@ public class TestTreePLEService {
 		double diameter = 12;
 		double longitude = 23;
 		double latitude = 24;
-		
 		TreeSpecies species = TreeSpecies.Willow;
 		LandType landtype = LandType.Institutional;
-		//TreePLETreeService t = new TreePLETreeService(tm);
+		TreePLETreeService tree = new TreePLETreeService(tm);
+		tree.plantTree(landtype, species, height, diameter, longitude, latitude, municipality, status)
 		
-		//NOT WORKING PLEASE FIND DE WAY -- 
-	
-			//t.plantTree(landtype, species, height, diameter, longitude,latitude,municipality);
-		
-		
-		
-	  
-		
-	}
+		//check model in memory
+		assertEquals(1, tm.getTrees().size());
+		assertEquals("Planted", tm.getTree(0).getCurrentStatus());
+		assertEquals(12, tm.getTree(0).getDiameter(), 0);
+		assertEquals(10, tm.getTree(0).getHeight(), 0);
+		assertEquals("", tm.getTree(0).getLandType(), 0);
+	};
 
 }

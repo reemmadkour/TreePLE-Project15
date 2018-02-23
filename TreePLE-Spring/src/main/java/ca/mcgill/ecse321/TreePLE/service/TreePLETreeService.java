@@ -32,7 +32,7 @@ public class TreePLETreeService {
 		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
 		    throw new InvalidInputException("Missing information");
 		  }
-		  Tree t = new Tree(height, diameter, longitude, latitude, municipality, status);
+		  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
 		  Status s = new Status(t);
 		  s.setTreeState(TreeState.Planted);
 		  t.setTreeSpecies(species);
