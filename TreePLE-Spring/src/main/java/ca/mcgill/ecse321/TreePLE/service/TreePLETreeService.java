@@ -1,12 +1,8 @@
 package ca.mcgill.ecse321.TreePLE.service;
 
-//import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
