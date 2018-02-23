@@ -67,14 +67,14 @@ public class TestTreePLEService {
 		TreeSpecies species = TreeSpecies.Willow;
 		LandType landtype = LandType.Institutional;
 		TreePLETreeService tree = new TreePLETreeService(tm);
-		tree.plantTree(landtype, species, height, diameter, longitude, latitude, municipality, status)
+		//tree.plantTree(landtype, species, height, diameter, longitude, latitude, municipality, status)
 		
 		//check model in memory
 		assertEquals(1, tm.getTrees().size());
 		assertEquals("Planted", tm.getTree(0).getCurrentStatus());
 		assertEquals(12, tm.getTree(0).getDiameter(), 0);
 		assertEquals(10, tm.getTree(0).getHeight(), 0);
-		assertEquals("", tm.getTree(0).getLandType(), 0);
+		//assertEquals("", toString(tm.getTree(0).getLandType()), 0);
 	};
 
 }

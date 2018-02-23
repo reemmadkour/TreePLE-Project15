@@ -30,7 +30,7 @@ public class TreePLETreeRestController {
 		  return treeDto;
 		}
 	
-	@PostMapping(value = { "/PlantTree/{landType}/{species}/{height}/{diameter}/{longitude}/{latidude}/{municipality}/"})
+	/**@PostMapping(value = { "/PlantTree/{landType}/{species}/{height}/{diameter}/{longitude}/{latidude}/{municipality}/"})
 	public EventDto createEvent(
 			@PathVariable ("landType") String name,
 			@RequestParam Date date,
@@ -43,6 +43,6 @@ public class TreePLETreeRestController {
 		Time endTimeSql = new Time(endTime.getHour(),endTime.getMinute(), 0);
 		Event event = service.createEvent(name, date, startTimeSql, endTimeSql);
 		return convertToDto(event);
-}
+}*/
 	
 }
