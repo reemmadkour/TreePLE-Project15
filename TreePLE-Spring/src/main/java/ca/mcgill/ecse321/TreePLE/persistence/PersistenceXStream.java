@@ -20,7 +20,7 @@ import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Survey;
 import ca.mcgill.ecse321.TreePLE.model.SystemDate;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
-import ca.mcgill.ecse321.TreePLE.model.TreePLE;
+import ca.mcgill.ecse321.TreePLE.model.TreeManager;
 
 // The first type parameter is the domain type for wich we are creating the repository.
 // The second is the key type that is used to look it up. This example will not use it.
@@ -31,9 +31,9 @@ public class PersistenceXStream {
 	private static String filename = "data.xml";
 
 	// TODO create the TreePLEManager instance here (replace the void return value as well)
-	public static TreePLE initializeModelManager(String fileName) {
+	public static TreeManager initializeModelManager(String fileName) {
 
-	TreePLE tm;
+	TreeManager tm;
 	
 	setFilename(fileName);
 	setAlias("forecast", Forecast.class);
@@ -47,12 +47,12 @@ public class PersistenceXStream {
 	setAlias("survey", Survey.class);
 	setAlias("systemDate", SystemDate.class);
 	setAlias("Tree", Tree.class);
-	setAlias("TreePLE", TreePLE.class);
+	setAlias("TreePLE", TreeManager.class);
 	
 	// load model if exists, create otherwise
     File file = new File(fileName);
     if (file.exists()) {
-        tm = (TreePLE) loadFromXMLwithXStream();
+        tm = (TreeManager) loadFromXMLwithXStream();
     } else {
         try {
             file.createNewFile();
@@ -60,7 +60,7 @@ public class PersistenceXStream {
             e.printStackTrace();
             System.exit(1);
         }
-        tm = new TreePLE();
+        tm = new TreeManager();
         saveToXMLwithXStream(tm);
     }
     return tm;
