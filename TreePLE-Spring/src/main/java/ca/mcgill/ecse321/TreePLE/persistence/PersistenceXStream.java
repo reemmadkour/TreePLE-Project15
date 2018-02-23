@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.springframework.stereotype.Repository;
-
+import org.springframework.stereotype.Repository;
 import com.thoughtworks.xstream.XStream;
 
 import ca.mcgill.ecse321.TreePLE.model.Forecast;
