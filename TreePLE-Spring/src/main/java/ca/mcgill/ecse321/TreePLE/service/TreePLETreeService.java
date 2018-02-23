@@ -1,17 +1,23 @@
 package ca.mcgill.ecse321.TreePLE.service;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
+import ca.mcgill.ecse321.TreePLE.model.SystemDate;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
-import ca.mcgill.ecse321.TreePLE.model.TreePLE;
+import ca.mcgill.ecse321.TreePLE.model.TreeManager;
 import ca.mcgill.ecse321.TreePLE.persistence.PersistenceXStream;
 
 @Service
@@ -19,23 +25,25 @@ public class TreePLETreeService {
 	
 public class TreePLEService {
 		
-		private TreePLE tm;
+		private TreeManager tm;
 
-		public TreePLEService(TreePLE tm)
+		public TreePLEService(TreeManager tm)
 		{
 		  this.tm = tm;
 		}
 		
 		//plant a tree method
-		public Tree plantTree(LandType landtype, TreeSpecies species, double height, int diameter, int longitude, int latitude, Municipality municipality, TreePLE treeple, Status status) throws InvalidInputException
+		public Tree plantTree(LandType landtype, TreeSpecies species, double height, int diameter, int longitude, int latitude, Municipality municipality) throws InvalidInputException
 		{
-		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null || status == null || municipality == null) {
+		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
 		    throw new InvalidInputException("Missing information");
 		  }
-		  Tree t = new Tree(height, diameter, longitude, latitude, municipality, treeple);
+		  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
+		  Status s = new Status(t);
+		  s.setTreeState(TreeState.Planted);
 		  t.setTreeSpecies(species);
 		  t.setLandType(landtype);
-		  t.addStatus(status);
+		  t.addStatus(s);
 		  t.setMunicipality(municipality);
 		  tm.addTree(t);
 		  PersistenceXStream.saveToXMLwithXStream(tm);
@@ -78,13 +86,20 @@ public class TreePLEService {
 		}
 		
 		//cut down tree
-		public Tree cutDownTree(Tree t, Date plantDate, Date cutDate) throws InvalidInputException {
-			if((t==null)||(plantDate==null) ||(cutDate==null)) {
+		public Tree cutDownTree(Tree t) throws InvalidInputException {
+			if((t==null)) {
 				throw new InvalidInputException("Oops! Please fill in all missing information!")	;
 			}
 			
-			Status s = new Status(plantDate, cutDate, t);
+			Status s = new Status(t);
+			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			LocalDate localDate = LocalDate.now();
+			
+			SystemDate systemDate = new SystemDate(localDate);
+		
 			s.setTreeState(TreeState.Cut);
+			s.addSystemDate(systemDate);
 			t.addStatus(s);
 			
 			
