@@ -29,9 +29,9 @@ public class Tree
   //Tree Attributes
   private TreeSpecies treeSpecies;
   private double height;
-  private int diameter;
-  private int longitude;
-  private int latitude;
+  private double diameter;
+  private double longitude;
+  private double latitude;
   private LandType landType;
 
   //Autounique Attributes
@@ -47,7 +47,7 @@ public class Tree
   // CONSTRUCTOR
   //------------------------
 
-  public Tree(double aHeight, int aDiameter, int aLongitude, int aLatitude, Municipality aMunicipality)
+  public Tree(double aHeight, double aDiameter, double aLongitude, double aLatitude, Municipality aMunicipality)
   {
     height = aHeight;
     diameter = aDiameter;
@@ -84,7 +84,7 @@ public class Tree
     return wasSet;
   }
 
-  public boolean setDiameter(int aDiameter)
+  public boolean setDiameter(double aDiameter)
   {
     boolean wasSet = false;
     diameter = aDiameter;
@@ -92,7 +92,7 @@ public class Tree
     return wasSet;
   }
 
-  public boolean setLongitude(int aLongitude)
+  public boolean setLongitude(double aLongitude)
   {
     boolean wasSet = false;
     longitude = aLongitude;
@@ -100,7 +100,7 @@ public class Tree
     return wasSet;
   }
 
-  public boolean setLatitude(int aLatitude)
+  public boolean setLatitude(double aLatitude)
   {
     boolean wasSet = false;
     latitude = aLatitude;
@@ -126,17 +126,17 @@ public class Tree
     return height;
   }
 
-  public int getDiameter()
+  public double getDiameter()
   {
     return diameter;
   }
 
-  public int getLongitude()
+  public double getLongitude()
   {
     return longitude;
   }
 
-  public int getLatitude()
+  public double getLatitude()
   {
     return latitude;
   }

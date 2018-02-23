@@ -63,18 +63,18 @@ public class TestPersistence {
 	        fail("Could not load file.");
 
 	    // check event
-	    /**assertEquals(1, tm.getEvents().size());
-	    assertEquals("Concert", tm.getEvent(0).getName());
-	    Calendar c = Calendar.getInstance();
-	    c.set(2015,Calendar.SEPTEMBER,15,8,30,0);
-	    Date eventDate = new Date(c.getTimeInMillis());
-	    Time startTime = new Time(c.getTimeInMillis());
-	    c.set(2015,Calendar.SEPTEMBER,15,10,0,0);
-	    Time endTime = new Time(c.getTimeInMillis());
-	    assertEquals(eventDate.toString(), tm.getEvent(0).getEventDate().toString());
-	    assertEquals(startTime.toString(), tm.getEvent(0).getStartTime().toString());
-	    assertEquals(endTime.toString(), tm.getEvent(0).getEndTime().toString());
-	    */
+	    assertEquals(2, tm.getTrees().size());
+	    assertEquals(12, tm.getTree(0).getHeight(), 0);
+	    assertEquals(23, tm.getTree(0).getDiameter(), 0);
+	    assertEquals(34, tm.getTree(0).getLongitude(), 0);
+	    assertEquals(34, tm.getTree(0).getLatitude(), 0);
+	    assertEquals("Westmount", tm.getTree(0).getMunicipality().getName());
+	    assertEquals(34, tm.getTree(1).getHeight(), 0);
+	    assertEquals(24, tm.getTree(1).getDiameter(), 0);
+	    assertEquals(26, tm.getTree(1).getLongitude(), 0);
+	    assertEquals(34, tm.getTree(1).getLatitude(), 0);
+	    assertEquals("Outremont", tm.getTree(1).getMunicipality().getName());
+	    
 	}
 }
 

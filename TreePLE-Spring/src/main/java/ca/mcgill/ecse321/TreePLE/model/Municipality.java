@@ -80,7 +80,7 @@ public class Municipality
     return 0;
   }
 
-  public Tree addTree(double aHeight, int aDiameter, int aLongitude, int aLatitude)
+  public Tree addTree(double aHeight, double aDiameter, double aLongitude, double aLatitude)
   {
     return new Tree(aHeight, aDiameter, aLongitude, aLatitude, this);
   }

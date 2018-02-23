@@ -22,18 +22,16 @@ import ca.mcgill.ecse321.TreePLE.persistence.PersistenceXStream;
 
 @Service
 public class TreePLETreeService {
+	private TreeManager tm;
 	
-public class TreePLEService {
-		
-		private TreeManager tm;
 
-		public TreePLEService(TreeManager tm)
+		public TreePLETreeService(TreeManager tm)
 		{
 		  this.tm = tm;
 		}
 		
 		//plant a tree method
-		public Tree plantTree(LandType landtype, TreeSpecies species, double height, int diameter, int longitude, int latitude, Municipality municipality) throws InvalidInputException
+		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException
 		{
 		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
 		    throw new InvalidInputException("Missing information");
@@ -108,6 +106,6 @@ public class TreePLEService {
 		}
 		
 			
-		}
+		
 
 }

@@ -17,9 +17,9 @@ enum TreeSpecies {Willow}
 lazy TreeSpecies treeSpecies;
   
 double height;
-int diameter;
-int longitude;
-int latitude;
+double diameter;
+double longitude;
+double latitude;
   
 enum LandType{residential,institutional, park, municipal}
   
