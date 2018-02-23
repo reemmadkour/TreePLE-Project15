@@ -1,6 +1,9 @@
 package ca.mcgill.ecse321.TreePLE.persistence;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import java.io.File;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,13 +12,6 @@ import org.junit.Test;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.TreeManager;
-
-import java.sql.Date;
-import java.sql.Time;
-import java.util.Calendar;
-import java.io.File;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 
 
