@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 11 "../../../../../TreePLE.ump"
+// line 13 "../../../../../TreePLE.ump"
 public class Tree
 {
 
@@ -40,7 +40,6 @@ public class Tree
   //Tree Associations
   private List<Status> status;
   private Municipality municipality;
-  private TreePLE treePLE;
   private List<Forecast> forecasts;
   private List<Survey> surveies;
 
@@ -48,7 +47,7 @@ public class Tree
   // CONSTRUCTOR
   //------------------------
 
-  public Tree(double aHeight, int aDiameter, int aLongitude, int aLatitude, Municipality aMunicipality, TreePLE aTreePLE)
+  public Tree(double aHeight, int aDiameter, int aLongitude, int aLatitude, Municipality aMunicipality)
   {
     height = aHeight;
     diameter = aDiameter;
@@ -60,11 +59,6 @@ public class Tree
     if (!didAddMunicipality)
     {
       throw new RuntimeException("Unable to create tree due to municipality");
-    }
-    boolean didAddTreePLE = setTreePLE(aTreePLE);
-    if (!didAddTreePLE)
-    {
-      throw new RuntimeException("Unable to create tree due to treePLE");
     }
     forecasts = new ArrayList<Forecast>();
     surveies = new ArrayList<Survey>();
@@ -192,11 +186,6 @@ public class Tree
     return municipality;
   }
 
-  public TreePLE getTreePLE()
-  {
-    return treePLE;
-  }
-
   public Forecast getForecast(int index)
   {
     Forecast aForecast = forecasts.get(index);
@@ -262,9 +251,9 @@ public class Tree
     return 0;
   }
 
-  public Status addStatus(Date aPlantingDate, Date aCuttingDate)
+  public Status addStatus()
   {
-    return new Status(aPlantingDate, aCuttingDate, this);
+    return new Status(this);
   }
 
   public boolean addStatus(Status aStatus)
@@ -344,25 +333,6 @@ public class Tree
       existingMunicipality.removeTree(this);
     }
     municipality.addTree(this);
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setTreePLE(TreePLE aTreePLE)
-  {
-    boolean wasSet = false;
-    if (aTreePLE == null)
-    {
-      return wasSet;
-    }
-
-    TreePLE existingTreePLE = treePLE;
-    treePLE = aTreePLE;
-    if (existingTreePLE != null && !existingTreePLE.equals(aTreePLE))
-    {
-      existingTreePLE.removeTree(this);
-    }
-    treePLE.addTree(this);
     wasSet = true;
     return wasSet;
   }
@@ -523,17 +493,16 @@ public class Tree
 
   public void delete()
   {
-    for(int i=status.size(); i > 0; i--)
+    while (status.size() > 0)
     {
-      Status aStatus = status.get(i - 1);
+      Status aStatus = status.get(status.size() - 1);
       aStatus.delete();
+      status.remove(aStatus);
     }
+    
     Municipality placeholderMunicipality = municipality;
     this.municipality = null;
     placeholderMunicipality.removeTree(this);
-    TreePLE placeholderTreePLE = treePLE;
-    this.treePLE = null;
-    placeholderTreePLE.removeTree(this);
     ArrayList<Forecast> copyOfForecasts = new ArrayList<Forecast>(forecasts);
     forecasts.clear();
     for(Forecast aForecast : copyOfForecasts)
@@ -558,7 +527,6 @@ public class Tree
             "latitude" + ":" + getLatitude()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "treeSpecies" + "=" + (getTreeSpecies() != null ? !getTreeSpecies().equals(this)  ? getTreeSpecies().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "landType" + "=" + (getLandType() != null ? !getLandType().equals(this)  ? getLandType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "municipality = "+(getMunicipality()!=null?Integer.toHexString(System.identityHashCode(getMunicipality())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "treePLE = "+(getTreePLE()!=null?Integer.toHexString(System.identityHashCode(getTreePLE())):"null");
+            "  " + "municipality = "+(getMunicipality()!=null?Integer.toHexString(System.identityHashCode(getMunicipality())):"null");
   }
 }

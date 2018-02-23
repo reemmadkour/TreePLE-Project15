@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 59 "../../../../../TreePLE.ump"
+// line 60 "../../../../../TreePLE.ump"
 public class Report
 {
 
@@ -18,23 +18,17 @@ public class Report
   private double bioDiversityIndex;
 
   //Report Associations
-  private TreePLE treePLE;
   private List<Forecast> forecasts;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Report(int aCanopy, int aCarbonSequestration, double aBioDiversityIndex, TreePLE aTreePLE)
+  public Report(int aCanopy, int aCarbonSequestration, double aBioDiversityIndex)
   {
     canopy = aCanopy;
     carbonSequestration = aCarbonSequestration;
     bioDiversityIndex = aBioDiversityIndex;
-    boolean didAddTreePLE = setTreePLE(aTreePLE);
-    if (!didAddTreePLE)
-    {
-      throw new RuntimeException("Unable to create report due to treePLE");
-    }
     forecasts = new ArrayList<Forecast>();
   }
 
@@ -81,11 +75,6 @@ public class Report
     return bioDiversityIndex;
   }
 
-  public TreePLE getTreePLE()
-  {
-    return treePLE;
-  }
-
   public Forecast getForecast(int index)
   {
     Forecast aForecast = forecasts.get(index);
@@ -114,25 +103,6 @@ public class Report
   {
     int index = forecasts.indexOf(aForecast);
     return index;
-  }
-
-  public boolean setTreePLE(TreePLE aTreePLE)
-  {
-    boolean wasSet = false;
-    if (aTreePLE == null)
-    {
-      return wasSet;
-    }
-
-    TreePLE existingTreePLE = treePLE;
-    treePLE = aTreePLE;
-    if (existingTreePLE != null && !existingTreePLE.equals(aTreePLE))
-    {
-      existingTreePLE.removeReport(this);
-    }
-    treePLE.addReport(this);
-    wasSet = true;
-    return wasSet;
   }
 
   public static int minimumNumberOfForecasts()
@@ -219,9 +189,6 @@ public class Report
 
   public void delete()
   {
-    TreePLE placeholderTreePLE = treePLE;
-    this.treePLE = null;
-    placeholderTreePLE.removeReport(this);
     ArrayList<Forecast> copyOfForecasts = new ArrayList<Forecast>(forecasts);
     forecasts.clear();
     for(Forecast aForecast : copyOfForecasts)
@@ -236,7 +203,6 @@ public class Report
     return super.toString() + "["+
             "canopy" + ":" + getCanopy()+ "," +
             "carbonSequestration" + ":" + getCarbonSequestration()+ "," +
-            "bioDiversityIndex" + ":" + getBioDiversityIndex()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "treePLE = "+(getTreePLE()!=null?Integer.toHexString(System.identityHashCode(getTreePLE())):"null");
+            "bioDiversityIndex" + ":" + getBioDiversityIndex()+ "]";
   }
 }

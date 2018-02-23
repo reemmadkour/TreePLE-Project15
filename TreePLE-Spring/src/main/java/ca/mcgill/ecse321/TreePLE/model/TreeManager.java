@@ -3,33 +3,38 @@
 
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
+import java.sql.Date;
 
 // line 3 "../../../../../TreePLE.ump"
-public class TreePLE
+public class TreeManager
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //TreePLE Associations
+  //TreeManager Associations
   private List<Tree> trees;
   private List<Person> person;
   private List<Report> reports;
   private List<Municipality> municipality;
   private List<Forecast> forecast;
+  private List<SystemDate> systemDate;
+  private List<Survey> surveys;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TreePLE()
+  public TreeManager()
   {
     trees = new ArrayList<Tree>();
     person = new ArrayList<Person>();
     reports = new ArrayList<Report>();
     municipality = new ArrayList<Municipality>();
     forecast = new ArrayList<Forecast>();
+    systemDate = new ArrayList<SystemDate>();
+    surveys = new ArrayList<Survey>();
   }
 
   //------------------------
@@ -186,30 +191,76 @@ public class TreePLE
     return index;
   }
 
+  public SystemDate getSystemDate(int index)
+  {
+    SystemDate aSystemDate = systemDate.get(index);
+    return aSystemDate;
+  }
+
+  public List<SystemDate> getSystemDate()
+  {
+    List<SystemDate> newSystemDate = Collections.unmodifiableList(systemDate);
+    return newSystemDate;
+  }
+
+  public int numberOfSystemDate()
+  {
+    int number = systemDate.size();
+    return number;
+  }
+
+  public boolean hasSystemDate()
+  {
+    boolean has = systemDate.size() > 0;
+    return has;
+  }
+
+  public int indexOfSystemDate(SystemDate aSystemDate)
+  {
+    int index = systemDate.indexOf(aSystemDate);
+    return index;
+  }
+
+  public Survey getSurvey(int index)
+  {
+    Survey aSurvey = surveys.get(index);
+    return aSurvey;
+  }
+
+  public List<Survey> getSurveys()
+  {
+    List<Survey> newSurveys = Collections.unmodifiableList(surveys);
+    return newSurveys;
+  }
+
+  public int numberOfSurveys()
+  {
+    int number = surveys.size();
+    return number;
+  }
+
+  public boolean hasSurveys()
+  {
+    boolean has = surveys.size() > 0;
+    return has;
+  }
+
+  public int indexOfSurvey(Survey aSurvey)
+  {
+    int index = surveys.indexOf(aSurvey);
+    return index;
+  }
+
   public static int minimumNumberOfTrees()
   {
     return 0;
-  }
-
-  public Tree addTree(double aHeight, int aDiameter, int aLongitude, int aLatitude, Municipality aMunicipality)
-  {
-    return new Tree(aHeight, aDiameter, aLongitude, aLatitude, aMunicipality, this);
   }
 
   public boolean addTree(Tree aTree)
   {
     boolean wasAdded = false;
     if (trees.contains(aTree)) { return false; }
-    TreePLE existingTreePLE = aTree.getTreePLE();
-    boolean isNewTreePLE = existingTreePLE != null && !this.equals(existingTreePLE);
-    if (isNewTreePLE)
-    {
-      aTree.setTreePLE(this);
-    }
-    else
-    {
-      trees.add(aTree);
-    }
+    trees.add(aTree);
     wasAdded = true;
     return wasAdded;
   }
@@ -217,8 +268,7 @@ public class TreePLE
   public boolean removeTree(Tree aTree)
   {
     boolean wasRemoved = false;
-    //Unable to remove aTree, as it must always have a treePLE
-    if (!this.equals(aTree.getTreePLE()))
+    if (trees.contains(aTree))
     {
       trees.remove(aTree);
       wasRemoved = true;
@@ -263,25 +313,11 @@ public class TreePLE
     return 0;
   }
 
-  public Person addPerson(String aName)
-  {
-    return new Person(aName, this);
-  }
-
   public boolean addPerson(Person aPerson)
   {
     boolean wasAdded = false;
     if (person.contains(aPerson)) { return false; }
-    TreePLE existingTreePLE = aPerson.getTreePLE();
-    boolean isNewTreePLE = existingTreePLE != null && !this.equals(existingTreePLE);
-    if (isNewTreePLE)
-    {
-      aPerson.setTreePLE(this);
-    }
-    else
-    {
-      person.add(aPerson);
-    }
+    person.add(aPerson);
     wasAdded = true;
     return wasAdded;
   }
@@ -289,8 +325,7 @@ public class TreePLE
   public boolean removePerson(Person aPerson)
   {
     boolean wasRemoved = false;
-    //Unable to remove aPerson, as it must always have a treePLE
-    if (!this.equals(aPerson.getTreePLE()))
+    if (person.contains(aPerson))
     {
       person.remove(aPerson);
       wasRemoved = true;
@@ -335,25 +370,11 @@ public class TreePLE
     return 0;
   }
 
-  public Report addReport(int aCanopy, int aCarbonSequestration, double aBioDiversityIndex)
-  {
-    return new Report(aCanopy, aCarbonSequestration, aBioDiversityIndex, this);
-  }
-
   public boolean addReport(Report aReport)
   {
     boolean wasAdded = false;
     if (reports.contains(aReport)) { return false; }
-    TreePLE existingTreePLE = aReport.getTreePLE();
-    boolean isNewTreePLE = existingTreePLE != null && !this.equals(existingTreePLE);
-    if (isNewTreePLE)
-    {
-      aReport.setTreePLE(this);
-    }
-    else
-    {
-      reports.add(aReport);
-    }
+    reports.add(aReport);
     wasAdded = true;
     return wasAdded;
   }
@@ -361,8 +382,7 @@ public class TreePLE
   public boolean removeReport(Report aReport)
   {
     boolean wasRemoved = false;
-    //Unable to remove aReport, as it must always have a treePLE
-    if (!this.equals(aReport.getTreePLE()))
+    if (reports.contains(aReport))
     {
       reports.remove(aReport);
       wasRemoved = true;
@@ -407,25 +427,11 @@ public class TreePLE
     return 0;
   }
 
-  public Municipality addMunicipality(String aName)
-  {
-    return new Municipality(aName, this);
-  }
-
   public boolean addMunicipality(Municipality aMunicipality)
   {
     boolean wasAdded = false;
     if (municipality.contains(aMunicipality)) { return false; }
-    TreePLE existingTreePLE = aMunicipality.getTreePLE();
-    boolean isNewTreePLE = existingTreePLE != null && !this.equals(existingTreePLE);
-    if (isNewTreePLE)
-    {
-      aMunicipality.setTreePLE(this);
-    }
-    else
-    {
-      municipality.add(aMunicipality);
-    }
+    municipality.add(aMunicipality);
     wasAdded = true;
     return wasAdded;
   }
@@ -433,8 +439,7 @@ public class TreePLE
   public boolean removeMunicipality(Municipality aMunicipality)
   {
     boolean wasRemoved = false;
-    //Unable to remove aMunicipality, as it must always have a treePLE
-    if (!this.equals(aMunicipality.getTreePLE()))
+    if (municipality.contains(aMunicipality))
     {
       municipality.remove(aMunicipality);
       wasRemoved = true;
@@ -479,25 +484,11 @@ public class TreePLE
     return 0;
   }
 
-  public Forecast addForecast(SystemDate aSystemDate)
-  {
-    return new Forecast(this, aSystemDate);
-  }
-
   public boolean addForecast(Forecast aForecast)
   {
     boolean wasAdded = false;
     if (forecast.contains(aForecast)) { return false; }
-    TreePLE existingTreePLE = aForecast.getTreePLE();
-    boolean isNewTreePLE = existingTreePLE != null && !this.equals(existingTreePLE);
-    if (isNewTreePLE)
-    {
-      aForecast.setTreePLE(this);
-    }
-    else
-    {
-      forecast.add(aForecast);
-    }
+    forecast.add(aForecast);
     wasAdded = true;
     return wasAdded;
   }
@@ -505,8 +496,7 @@ public class TreePLE
   public boolean removeForecast(Forecast aForecast)
   {
     boolean wasRemoved = false;
-    //Unable to remove aForecast, as it must always have a treePLE
-    if (!this.equals(aForecast.getTreePLE()))
+    if (forecast.contains(aForecast))
     {
       forecast.remove(aForecast);
       wasRemoved = true;
@@ -546,43 +536,129 @@ public class TreePLE
     return wasAdded;
   }
 
+  public static int minimumNumberOfSystemDate()
+  {
+    return 0;
+  }
+
+  public boolean addSystemDate(SystemDate aSystemDate)
+  {
+    boolean wasAdded = false;
+    if (systemDate.contains(aSystemDate)) { return false; }
+    systemDate.add(aSystemDate);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeSystemDate(SystemDate aSystemDate)
+  {
+    boolean wasRemoved = false;
+    if (systemDate.contains(aSystemDate))
+    {
+      systemDate.remove(aSystemDate);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addSystemDateAt(SystemDate aSystemDate, int index)
+  {  
+    boolean wasAdded = false;
+    if(addSystemDate(aSystemDate))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfSystemDate()) { index = numberOfSystemDate() - 1; }
+      systemDate.remove(aSystemDate);
+      systemDate.add(index, aSystemDate);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveSystemDateAt(SystemDate aSystemDate, int index)
+  {
+    boolean wasAdded = false;
+    if(systemDate.contains(aSystemDate))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfSystemDate()) { index = numberOfSystemDate() - 1; }
+      systemDate.remove(aSystemDate);
+      systemDate.add(index, aSystemDate);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addSystemDateAt(aSystemDate, index);
+    }
+    return wasAdded;
+  }
+
+  public static int minimumNumberOfSurveys()
+  {
+    return 0;
+  }
+
+  public boolean addSurvey(Survey aSurvey)
+  {
+    boolean wasAdded = false;
+    if (surveys.contains(aSurvey)) { return false; }
+    surveys.add(aSurvey);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeSurvey(Survey aSurvey)
+  {
+    boolean wasRemoved = false;
+    if (surveys.contains(aSurvey))
+    {
+      surveys.remove(aSurvey);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addSurveyAt(Survey aSurvey, int index)
+  {  
+    boolean wasAdded = false;
+    if(addSurvey(aSurvey))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfSurveys()) { index = numberOfSurveys() - 1; }
+      surveys.remove(aSurvey);
+      surveys.add(index, aSurvey);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveSurveyAt(Survey aSurvey, int index)
+  {
+    boolean wasAdded = false;
+    if(surveys.contains(aSurvey))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfSurveys()) { index = numberOfSurveys() - 1; }
+      surveys.remove(aSurvey);
+      surveys.add(index, aSurvey);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addSurveyAt(aSurvey, index);
+    }
+    return wasAdded;
+  }
+
   public void delete()
   {
-    while (trees.size() > 0)
-    {
-      Tree aTree = trees.get(trees.size() - 1);
-      aTree.delete();
-      trees.remove(aTree);
-    }
-    
-    while (person.size() > 0)
-    {
-      Person aPerson = person.get(person.size() - 1);
-      aPerson.delete();
-      person.remove(aPerson);
-    }
-    
-    while (reports.size() > 0)
-    {
-      Report aReport = reports.get(reports.size() - 1);
-      aReport.delete();
-      reports.remove(aReport);
-    }
-    
-    while (municipality.size() > 0)
-    {
-      Municipality aMunicipality = municipality.get(municipality.size() - 1);
-      aMunicipality.delete();
-      municipality.remove(aMunicipality);
-    }
-    
-    while (forecast.size() > 0)
-    {
-      Forecast aForecast = forecast.get(forecast.size() - 1);
-      aForecast.delete();
-      forecast.remove(aForecast);
-    }
-    
+    trees.clear();
+    person.clear();
+    reports.clear();
+    municipality.clear();
+    forecast.clear();
+    systemDate.clear();
+    surveys.clear();
   }
 
 }

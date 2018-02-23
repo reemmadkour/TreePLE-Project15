@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 73 "../../../../../TreePLE.ump"
+// line 74 "../../../../../TreePLE.ump"
 public class Forecast
 {
 
@@ -16,23 +16,17 @@ public class Forecast
   private List<Report> report;
   private List<Survey> survey;
   private List<Tree> tree;
-  private TreePLE treePLE;
   private SystemDate systemDate;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Forecast(TreePLE aTreePLE, SystemDate aSystemDate)
+  public Forecast(SystemDate aSystemDate)
   {
     report = new ArrayList<Report>();
     survey = new ArrayList<Survey>();
     tree = new ArrayList<Tree>();
-    boolean didAddTreePLE = setTreePLE(aTreePLE);
-    if (!didAddTreePLE)
-    {
-      throw new RuntimeException("Unable to create forecast due to treePLE");
-    }
     boolean didAddSystemDate = setSystemDate(aSystemDate);
     if (!didAddSystemDate)
     {
@@ -132,11 +126,6 @@ public class Forecast
   {
     int index = tree.indexOf(aTree);
     return index;
-  }
-
-  public TreePLE getTreePLE()
-  {
-    return treePLE;
   }
 
   public SystemDate getSystemDate()
@@ -390,25 +379,6 @@ public class Forecast
     return wasAdded;
   }
 
-  public boolean setTreePLE(TreePLE aTreePLE)
-  {
-    boolean wasSet = false;
-    if (aTreePLE == null)
-    {
-      return wasSet;
-    }
-
-    TreePLE existingTreePLE = treePLE;
-    treePLE = aTreePLE;
-    if (existingTreePLE != null && !existingTreePLE.equals(aTreePLE))
-    {
-      existingTreePLE.removeForecast(this);
-    }
-    treePLE.addForecast(this);
-    wasSet = true;
-    return wasSet;
-  }
-
   public boolean setSystemDate(SystemDate aSystemDate)
   {
     boolean wasSet = false;
@@ -448,9 +418,6 @@ public class Forecast
     {
       aTree.removeForecast(this);
     }
-    TreePLE placeholderTreePLE = treePLE;
-    this.treePLE = null;
-    placeholderTreePLE.removeForecast(this);
     SystemDate placeholderSystemDate = systemDate;
     this.systemDate = null;
     placeholderSystemDate.removeForecast(this);

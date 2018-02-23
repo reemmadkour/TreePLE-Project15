@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.TreePLE.model;
 import java.sql.Date;
 import java.util.*;
 
-// line 67 "../../../../../TreePLE.ump"
+// line 68 "../../../../../TreePLE.ump"
 public class SystemDate
 {
 
@@ -195,9 +195,9 @@ public class SystemDate
     return 0;
   }
 
-  public Forecast addForecast(TreePLE aTreePLE)
+  public Forecast addForecast()
   {
-    return new Forecast(aTreePLE, this);
+    return new Forecast(this);
   }
 
   public boolean addForecast(Forecast aForecast)

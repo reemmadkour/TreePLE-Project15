@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 42 "../../../../../TreePLE.ump"
+// line 43 "../../../../../TreePLE.ump"
 public class Person
 {
 
@@ -18,22 +18,16 @@ public class Person
 
   //Person Associations
   private List<Role> roles;
-  private TreePLE treePLE;
   private List<Survey> surveies;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Person(String aName, TreePLE aTreePLE)
+  public Person(String aName)
   {
     name = aName;
     roles = new ArrayList<Role>();
-    boolean didAddTreePLE = setTreePLE(aTreePLE);
-    if (!didAddTreePLE)
-    {
-      throw new RuntimeException("Unable to create person due to treePLE");
-    }
     surveies = new ArrayList<Survey>();
   }
 
@@ -82,11 +76,6 @@ public class Person
   {
     int index = roles.indexOf(aRole);
     return index;
-  }
-
-  public TreePLE getTreePLE()
-  {
-    return treePLE;
   }
 
   public Survey getSurvey(int index)
@@ -201,25 +190,6 @@ public class Person
     return wasAdded;
   }
 
-  public boolean setTreePLE(TreePLE aTreePLE)
-  {
-    boolean wasSet = false;
-    if (aTreePLE == null)
-    {
-      return wasSet;
-    }
-
-    TreePLE existingTreePLE = treePLE;
-    treePLE = aTreePLE;
-    if (existingTreePLE != null && !existingTreePLE.equals(aTreePLE))
-    {
-      existingTreePLE.removePerson(this);
-    }
-    treePLE.addPerson(this);
-    wasSet = true;
-    return wasSet;
-  }
-
   public static int minimumNumberOfSurveies()
   {
     return 0;
@@ -300,9 +270,6 @@ public class Person
     {
       aRole.removePerson(this);
     }
-    TreePLE placeholderTreePLE = treePLE;
-    this.treePLE = null;
-    placeholderTreePLE.removePerson(this);
     for(int i=surveies.size(); i > 0; i--)
     {
       Survey aSurvey = surveies.get(i - 1);
@@ -314,7 +281,6 @@ public class Person
   public String toString()
   {
     return super.toString() + "["+
-            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "treePLE = "+(getTreePLE()!=null?Integer.toHexString(System.identityHashCode(getTreePLE())):"null");
+            "name" + ":" + getName()+ "]";
   }
 }

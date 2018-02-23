@@ -2,11 +2,10 @@
 /*This code was generated using the UMPLE 1.26.1-f40f105-3613 modeling language!*/
 
 package ca.mcgill.ecse321.TreePLE.model;
-import java.sql.Date;
 import java.util.*;
 
-// line 34 "../../../../../TreePLE.ump"
-public  class Status
+// line 36 "../../../../../TreePLE.ump"
+public class Status
 {
 
   //------------------------
@@ -21,8 +20,6 @@ public  class Status
 
   //Status Attributes
   private TreeState treeState;
-  private Date plantingDate;
-  private Date cuttingDate;
 
   //Status Associations
   private Tree tree;
@@ -32,10 +29,8 @@ public  class Status
   // CONSTRUCTOR
   //------------------------
 
-  public Status(Date aPlantingDate, Date aCuttingDate, Tree aTree)
+  public Status(Tree aTree)
   {
-    plantingDate = aPlantingDate;
-    cuttingDate = aCuttingDate;
     boolean didAddTree = setTree(aTree);
     if (!didAddTree)
     {
@@ -56,35 +51,9 @@ public  class Status
     return wasSet;
   }
 
-  public boolean setPlantingDate(Date aPlantingDate)
-  {
-    boolean wasSet = false;
-    plantingDate = aPlantingDate;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setCuttingDate(Date aCuttingDate)
-  {
-    boolean wasSet = false;
-    cuttingDate = aCuttingDate;
-    wasSet = true;
-    return wasSet;
-  }
-
   public TreeState getTreeState()
   {
     return treeState;
-  }
-
-  public Date getPlantingDate()
-  {
-    return plantingDate;
-  }
-
-  public Date getCuttingDate()
-  {
-    return cuttingDate;
   }
 
   public Tree getTree()
@@ -241,8 +210,6 @@ public  class Status
   {
     return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "treeState" + "=" + (getTreeState() != null ? !getTreeState().equals(this)  ? getTreeState().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "plantingDate" + "=" + (getPlantingDate() != null ? !getPlantingDate().equals(this)  ? getPlantingDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "cuttingDate" + "=" + (getCuttingDate() != null ? !getCuttingDate().equals(this)  ? getCuttingDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "tree = "+(getTree()!=null?Integer.toHexString(System.identityHashCode(getTree())):"null");
   }
 }

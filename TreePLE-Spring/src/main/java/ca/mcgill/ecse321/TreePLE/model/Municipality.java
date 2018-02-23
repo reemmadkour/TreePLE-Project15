@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 29 "../../../../../TreePLE.ump"
+// line 31 "../../../../../TreePLE.ump"
 public class Municipality
 {
 
@@ -16,21 +16,15 @@ public class Municipality
   private String name;
 
   //Municipality Associations
-  private TreePLE treePLE;
   private List<Tree> trees;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Municipality(String aName, TreePLE aTreePLE)
+  public Municipality(String aName)
   {
     name = aName;
-    boolean didAddTreePLE = setTreePLE(aTreePLE);
-    if (!didAddTreePLE)
-    {
-      throw new RuntimeException("Unable to create municipality due to treePLE");
-    }
     trees = new ArrayList<Tree>();
   }
 
@@ -49,11 +43,6 @@ public class Municipality
   public String getName()
   {
     return name;
-  }
-
-  public TreePLE getTreePLE()
-  {
-    return treePLE;
   }
 
   public Tree getTree(int index)
@@ -86,33 +75,14 @@ public class Municipality
     return index;
   }
 
-  public boolean setTreePLE(TreePLE aTreePLE)
-  {
-    boolean wasSet = false;
-    if (aTreePLE == null)
-    {
-      return wasSet;
-    }
-
-    TreePLE existingTreePLE = treePLE;
-    treePLE = aTreePLE;
-    if (existingTreePLE != null && !existingTreePLE.equals(aTreePLE))
-    {
-      existingTreePLE.removeMunicipality(this);
-    }
-    treePLE.addMunicipality(this);
-    wasSet = true;
-    return wasSet;
-  }
-
   public static int minimumNumberOfTrees()
   {
     return 0;
   }
 
-  public Tree addTree(double aHeight, int aDiameter, int aLongitude, int aLatitude, TreePLE aTreePLE)
+  public Tree addTree(double aHeight, int aDiameter, int aLongitude, int aLatitude)
   {
-    return new Tree(aHeight, aDiameter, aLongitude, aLatitude, this, aTreePLE);
+    return new Tree(aHeight, aDiameter, aLongitude, aLatitude, this);
   }
 
   public boolean addTree(Tree aTree)
@@ -179,9 +149,6 @@ public class Municipality
 
   public void delete()
   {
-    TreePLE placeholderTreePLE = treePLE;
-    this.treePLE = null;
-    placeholderTreePLE.removeMunicipality(this);
     for(int i=trees.size(); i > 0; i--)
     {
       Tree aTree = trees.get(i - 1);
@@ -193,7 +160,6 @@ public class Municipality
   public String toString()
   {
     return super.toString() + "["+
-            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "treePLE = "+(getTreePLE()!=null?Integer.toHexString(System.identityHashCode(getTreePLE())):"null");
+            "name" + ":" + getName()+ "]";
   }
 }
