@@ -38,8 +38,9 @@ public class Tree
   private int treeID;
 
   //Tree Associations
-  private List<Status> status;
+  private List<Status> statuses;
   private Municipality municipality;
+  private Status currentStatus;
   private List<Forecast> forecasts;
   private List<Survey> surveies;
 
@@ -54,7 +55,7 @@ public class Tree
     longitude = aLongitude;
     latitude = aLatitude;
     treeID = nextTreeID++;
-    status = new ArrayList<Status>();
+    statuses = new ArrayList<Status>();
     boolean didAddMunicipality = setMunicipality(aMunicipality);
     if (!didAddMunicipality)
     {
@@ -153,37 +154,48 @@ public class Tree
 
   public Status getStatus(int index)
   {
-    Status aStatus = status.get(index);
+    Status aStatus = statuses.get(index);
     return aStatus;
   }
 
-  public List<Status> getStatus()
+  public List<Status> getStatuses()
   {
-    List<Status> newStatus = Collections.unmodifiableList(status);
-    return newStatus;
+    List<Status> newStatuses = Collections.unmodifiableList(statuses);
+    return newStatuses;
   }
 
-  public int numberOfStatus()
+  public int numberOfStatuses()
   {
-    int number = status.size();
+    int number = statuses.size();
     return number;
   }
 
-  public boolean hasStatus()
+  public boolean hasStatuses()
   {
-    boolean has = status.size() > 0;
+    boolean has = statuses.size() > 0;
     return has;
   }
 
   public int indexOfStatus(Status aStatus)
   {
-    int index = status.indexOf(aStatus);
+    int index = statuses.indexOf(aStatus);
     return index;
   }
 
   public Municipality getMunicipality()
   {
     return municipality;
+  }
+
+  public Status getCurrentStatus()
+  {
+    return currentStatus;
+  }
+
+  public boolean hasCurrentStatus()
+  {
+    boolean has = currentStatus != null;
+    return has;
   }
 
   public Forecast getForecast(int index)
@@ -246,7 +258,7 @@ public class Tree
     return index;
   }
 
-  public static int minimumNumberOfStatus()
+  public static int minimumNumberOfStatuses()
   {
     return 0;
   }
@@ -259,7 +271,7 @@ public class Tree
   public boolean addStatus(Status aStatus)
   {
     boolean wasAdded = false;
-    if (status.contains(aStatus)) { return false; }
+    if (statuses.contains(aStatus)) { return false; }
     Tree existingTree = aStatus.getTree();
     boolean isNewTree = existingTree != null && !this.equals(existingTree);
     if (isNewTree)
@@ -268,7 +280,7 @@ public class Tree
     }
     else
     {
-      status.add(aStatus);
+      statuses.add(aStatus);
     }
     wasAdded = true;
     return wasAdded;
@@ -280,7 +292,7 @@ public class Tree
     //Unable to remove aStatus, as it must always have a tree
     if (!this.equals(aStatus.getTree()))
     {
-      status.remove(aStatus);
+      statuses.remove(aStatus);
       wasRemoved = true;
     }
     return wasRemoved;
@@ -292,9 +304,9 @@ public class Tree
     if(addStatus(aStatus))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfStatus()) { index = numberOfStatus() - 1; }
-      status.remove(aStatus);
-      status.add(index, aStatus);
+      if(index > numberOfStatuses()) { index = numberOfStatuses() - 1; }
+      statuses.remove(aStatus);
+      statuses.add(index, aStatus);
       wasAdded = true;
     }
     return wasAdded;
@@ -303,12 +315,12 @@ public class Tree
   public boolean addOrMoveStatusAt(Status aStatus, int index)
   {
     boolean wasAdded = false;
-    if(status.contains(aStatus))
+    if(statuses.contains(aStatus))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfStatus()) { index = numberOfStatus() - 1; }
-      status.remove(aStatus);
-      status.add(index, aStatus);
+      if(index > numberOfStatuses()) { index = numberOfStatuses() - 1; }
+      statuses.remove(aStatus);
+      statuses.add(index, aStatus);
       wasAdded = true;
     } 
     else 
@@ -333,6 +345,14 @@ public class Tree
       existingMunicipality.removeTree(this);
     }
     municipality.addTree(this);
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean setCurrentStatus(Status aNewCurrentStatus)
+  {
+    boolean wasSet = false;
+    currentStatus = aNewCurrentStatus;
     wasSet = true;
     return wasSet;
   }
@@ -493,16 +513,15 @@ public class Tree
 
   public void delete()
   {
-    while (status.size() > 0)
+    for(int i=statuses.size(); i > 0; i--)
     {
-      Status aStatus = status.get(status.size() - 1);
+      Status aStatus = statuses.get(i - 1);
       aStatus.delete();
-      status.remove(aStatus);
     }
-    
     Municipality placeholderMunicipality = municipality;
     this.municipality = null;
     placeholderMunicipality.removeTree(this);
+    currentStatus = null;
     ArrayList<Forecast> copyOfForecasts = new ArrayList<Forecast>(forecasts);
     forecasts.clear();
     for(Forecast aForecast : copyOfForecasts)
@@ -527,6 +546,7 @@ public class Tree
             "latitude" + ":" + getLatitude()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "treeSpecies" + "=" + (getTreeSpecies() != null ? !getTreeSpecies().equals(this)  ? getTreeSpecies().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "landType" + "=" + (getLandType() != null ? !getLandType().equals(this)  ? getLandType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "municipality = "+(getMunicipality()!=null?Integer.toHexString(System.identityHashCode(getMunicipality())):"null");
+            "  " + "municipality = "+(getMunicipality()!=null?Integer.toHexString(System.identityHashCode(getMunicipality())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "currentStatus = "+(getCurrentStatus()!=null?Integer.toHexString(System.identityHashCode(getCurrentStatus())):"null");
   }
 }

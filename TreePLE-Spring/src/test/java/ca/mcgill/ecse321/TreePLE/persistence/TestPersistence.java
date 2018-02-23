@@ -10,9 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
+import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.TreeManager;
-
+import ca.mcgill.ecse321.TreePLE.model.Status;
 
 
 public class TestPersistence {
@@ -23,13 +24,17 @@ public class TestPersistence {
 	public void setUp() throws Exception {
 		tm = new TreeManager();
 		
-		// create trees
-		Municipality municipality1 = new Municipality("Westmount");
-		Municipality municipality2 = new Municipality("Outremont");
 		
+		// create tree
+	Municipality municipality1 = new Municipality();
+	municipality1.setMunicipalityName(MunicipalityName.Montreal);
+	Municipality municipality2 = new Municipality();
+	municipality1.setMunicipalityName(MunicipalityName.Laval);
 		
 		Tree tree1 = new Tree(12, 23, 34, 34, municipality1);
 		Tree tree2 = new Tree(34, 24, 26, 34, municipality2);
+		
+	
 		
 		// manage trees
 		tm.addTree(tree1);
@@ -64,12 +69,12 @@ public class TestPersistence {
 	    assertEquals(23, tm.getTree(0).getDiameter(), 0);
 	    assertEquals(34, tm.getTree(0).getLongitude(), 0);
 	    assertEquals(34, tm.getTree(0).getLatitude(), 0);
-	    assertEquals("Westmount", tm.getTree(0).getMunicipality().getName());
+	    assertEquals("Montreal", tm.getTree(0).getMunicipality().getMunicipalityName());
 	    assertEquals(34, tm.getTree(1).getHeight(), 0);
 	    assertEquals(24, tm.getTree(1).getDiameter(), 0);
 	    assertEquals(26, tm.getTree(1).getLongitude(), 0);
 	    assertEquals(34, tm.getTree(1).getLatitude(), 0);
-	    assertEquals("Outremont", tm.getTree(1).getMunicipality().getName());
+	    assertEquals("Laval", tm.getTree(1).getMunicipality().getMunicipalityName());
 	    
 	}
 }

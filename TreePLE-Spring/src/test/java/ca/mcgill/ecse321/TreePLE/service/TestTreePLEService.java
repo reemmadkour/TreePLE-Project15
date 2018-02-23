@@ -64,7 +64,6 @@ public class TestTreePLEService {
 		double longitude = 23;
 		double latitude = 24;
 		
-		Municipality municipality = new Municipality("Montreal");
 		TreeSpecies species = TreeSpecies.Willow;
 		LandType landtype = LandType.Institutional;
 		//TreePLETreeService t = new TreePLETreeService(tm);

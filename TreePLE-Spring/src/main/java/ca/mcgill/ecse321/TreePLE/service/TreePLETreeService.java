@@ -3,7 +3,7 @@ package ca.mcgill.ecse321.TreePLE.service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
+import java.util.Date;
 import org.springframework.stereotype.Service;
 
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
@@ -27,12 +27,12 @@ public class TreePLETreeService {
 		}
 		
 		//plant a tree method
-		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException
+		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality, Status status ) throws InvalidInputException
 		{
 		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
 		    throw new InvalidInputException("Missing information");
 		  }
-		  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
+		  Tree t = new Tree(height, diameter, longitude, latitude, municipality, status);
 		  Status s = new Status(t);
 		  s.setTreeState(TreeState.Planted);
 		  t.setTreeSpecies(species);
@@ -88,9 +88,9 @@ public class TreePLETreeService {
 			Status s = new Status(t);
 			
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-			LocalDate localDate = LocalDate.now();
-			
-			SystemDate systemDate = new SystemDate(localDate);
+			//LocalDate localDate = LocalDate.now();
+			Date date = new Date();
+			SystemDate systemDate = new SystemDate(date);
 		
 			s.setTreeState(TreeState.Cut);
 			s.addSystemDate(systemDate);

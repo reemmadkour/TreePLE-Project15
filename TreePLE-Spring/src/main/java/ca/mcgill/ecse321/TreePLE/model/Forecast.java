@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 74 "../../../../../TreePLE.ump"
+// line 75 "../../../../../TreePLE.ump"
 public class Forecast
 {
 

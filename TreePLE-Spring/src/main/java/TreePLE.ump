@@ -24,19 +24,20 @@ double latitude;
 enum LandType{residential,institutional, park, municipal}
   
 lazy LandType landType;
-1 <@>- * Status status;
+1 -- * Status statuses;
  *--1 Municipality municipality;
+  0..1  -> 0..1 Status currentStatus;
 }
 
 class Municipality{
-String name;
-
+  enum MunicipalityName {Montreal, Laval}
+  lazy MunicipalityName municipalityName;
 }
 
 class Status{
  enum TreeState {Planted,   Diseased, ToBeCut, Cut}
  lazy TreeState treeState;
- 
+
  
 }
 

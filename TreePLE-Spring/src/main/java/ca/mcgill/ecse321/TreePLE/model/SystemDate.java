@@ -3,12 +3,9 @@
 
 package ca.mcgill.ecse321.TreePLE.model;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.time.LocalDate;
+import java.util.*;
 
-// line 68 "../../../../../TreePLE.ump"
+// line 69 "../../../../../TreePLE.ump"
 public class SystemDate
 {
 
@@ -17,7 +14,7 @@ public class SystemDate
   //------------------------
 
   //SystemDate Attributes
-  private LocalDate date;
+  private Date date;
 
   //SystemDate Associations
   private List<Status> status;
@@ -27,9 +24,9 @@ public class SystemDate
   // CONSTRUCTOR
   //------------------------
 
-  public SystemDate(LocalDate LocalDate)
+  public SystemDate(Date aDate)
   {
-    date = LocalDate;
+    date = aDate;
     status = new ArrayList<Status>();
     forecast = new ArrayList<Forecast>();
   }
@@ -38,15 +35,15 @@ public class SystemDate
   // INTERFACE
   //------------------------
 
-  public boolean setDate(LocalDate LocalDate)
+  public boolean setDate(Date aDate)
   {
     boolean wasSet = false;
-    date = LocalDate;
+    date = aDate;
     wasSet = true;
     return wasSet;
   }
 
-  public LocalDate getDate()
+  public Date getDate()
   {
     return date;
   }

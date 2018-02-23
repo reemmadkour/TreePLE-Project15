@@ -4,16 +4,22 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 31 "../../../../../TreePLE.ump"
+// line 32 "../../../../../TreePLE.ump"
 public class Municipality
 {
+
+  //------------------------
+  // ENUMERATIONS
+  //------------------------
+
+  public enum MunicipalityName { Montreal, Laval }
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
   //Municipality Attributes
-  private String name;
+  private MunicipalityName municipalityName;
 
   //Municipality Associations
   private List<Tree> trees;
@@ -22,9 +28,8 @@ public class Municipality
   // CONSTRUCTOR
   //------------------------
 
-  public Municipality(String aName)
+  public Municipality()
   {
-    name = aName;
     trees = new ArrayList<Tree>();
   }
 
@@ -32,17 +37,17 @@ public class Municipality
   // INTERFACE
   //------------------------
 
-  public boolean setName(String aName)
+  public boolean setMunicipalityName(MunicipalityName aMunicipalityName)
   {
     boolean wasSet = false;
-    name = aName;
+    municipalityName = aMunicipalityName;
     wasSet = true;
     return wasSet;
   }
 
-  public String getName()
+  public MunicipalityName getMunicipalityName()
   {
-    return name;
+    return municipalityName;
   }
 
   public Tree getTree(int index)
@@ -159,7 +164,7 @@ public class Municipality
 
   public String toString()
   {
-    return super.toString() + "["+
-            "name" + ":" + getName()+ "]";
+    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "municipalityName" + "=" + (getMunicipalityName() != null ? !getMunicipalityName().equals(this)  ? getMunicipalityName().toString().replaceAll("  ","    ") : "this" : "null");
   }
 }
