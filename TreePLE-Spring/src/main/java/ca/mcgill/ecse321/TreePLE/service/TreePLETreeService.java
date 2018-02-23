@@ -35,15 +35,29 @@ public class TreePLETreeService {
 		  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
 		  Status s = new Status(t);
 		 
+		  //change tree status to planted
 		  s.setTreeState(TreeState.Planted);
 		  t.setCurrentStatus(s);
+		  
+		  t.addStatus(s);
+		  
+		  //add a date to the new status to keep track of tree history
 		  Date date1= new Date();
 		  SystemDate systemDate1= new SystemDate(date1);
 		  s.addSystemDate(systemDate1);
+		  
+		  //set tree species
 		  t.setTreeSpecies(species);
+		  
+		  //set Landtype
 		  t.setLandType(landtype);
-		  t.addStatus(s);
+		  
+		 
+		  
+		  //set municipality
 		  t.setMunicipality(municipality);
+		  
+		  //add tree to the list
 		  tm.addTree(t);
 		  PersistenceXStream.saveToXMLwithXStream(tm);
 		  return t;
@@ -70,19 +84,30 @@ public class TreePLETreeService {
 			else{return tree;}
 		}
 		
-		//get tree by municipality
-		public Tree getTreeByMunicipality(String municipality) throws InvalidInputException {
+		
+		/*public Tree getTreeByMunicipality(Municipality municipality) throws InvalidInputException {
 			List<Tree> alltrees= findAllTrees();
 			Tree tree= null;
 			for (Tree tr : alltrees) {
-				if(tr.getMunicipality().equals(municipality)) {
+				if(tr.getMunicipality().getMunicipalityName().equals(municipality.getMunicipalityName())) {
 					tree=tr;
 					break;
 				}
 			}
 			if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
 			else{return tree;}
+		}*/
+		
+		//get tree by municipality
+		public List<Tree> getTreeByMunicipality(Municipality municipality) throws InvalidInputException{
+			if (municipality.getTrees() == null) { 
+				throw new InvalidInputException("Tree doesn't exist");}
+			else{
+				return municipality.getTrees();
+			}
+			
 		}
+		
 		
 		//cut down tree
 		public Tree cutDownTree(Tree t) throws InvalidInputException {
