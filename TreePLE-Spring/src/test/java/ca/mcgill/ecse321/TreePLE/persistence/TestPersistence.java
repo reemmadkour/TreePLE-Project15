@@ -29,7 +29,7 @@ public class TestPersistence {
 	Municipality municipality1 = new Municipality();
 	municipality1.setMunicipalityName(MunicipalityName.Montreal);
 	Municipality municipality2 = new Municipality();
-	municipality1.setMunicipalityName(MunicipalityName.Laval);
+	municipality2.setMunicipalityName(MunicipalityName.Laval);
 		
 		Tree tree1 = new Tree(12, 23, 34, 34, municipality1);
 		Tree tree2 = new Tree(34, 24, 26, 34, municipality2);
@@ -69,12 +69,12 @@ public class TestPersistence {
 	    assertEquals(23, tm.getTree(0).getDiameter(), 0);
 	    assertEquals(34, tm.getTree(0).getLongitude(), 0);
 	    assertEquals(34, tm.getTree(0).getLatitude(), 0);
-	    assertEquals("Montreal", tm.getTree(0).getMunicipality().getMunicipalityName());
+	    assertEquals(MunicipalityName.Montreal, tm.getTree(0).getMunicipality().getMunicipalityName());
 	    assertEquals(34, tm.getTree(1).getHeight(), 0);
 	    assertEquals(24, tm.getTree(1).getDiameter(), 0);
 	    assertEquals(26, tm.getTree(1).getLongitude(), 0);
 	    assertEquals(34, tm.getTree(1).getLatitude(), 0);
-	    assertEquals("Laval", tm.getTree(1).getMunicipality().getMunicipalityName());
+	    assertEquals(MunicipalityName.Laval, tm.getTree(1).getMunicipality().getMunicipalityName());
 	    
 	}
 }
