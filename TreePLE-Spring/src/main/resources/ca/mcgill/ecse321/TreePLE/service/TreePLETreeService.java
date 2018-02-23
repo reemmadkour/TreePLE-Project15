@@ -27,14 +27,19 @@ public class TreePLETreeService {
 		}
 		
 		//plant a tree method
-		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality, Status status ) throws InvalidInputException
+		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException
 		{
 		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
 		    throw new InvalidInputException("Missing information");
 		  }
 		  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
 		  Status s = new Status(t);
+		 
 		  s.setTreeState(TreeState.Planted);
+		  t.setCurrentStatus(s);
+		  Date date1= new Date();
+		  SystemDate systemDate1= new SystemDate(date1);
+		  s.addSystemDate(systemDate1);
 		  t.setTreeSpecies(species);
 		  t.setLandType(landtype);
 		  t.addStatus(s);
@@ -87,7 +92,7 @@ public class TreePLETreeService {
 			
 			Status s = new Status(t);
 			
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 			//LocalDate localDate = LocalDate.now();
 			Date date = new Date();
 			SystemDate systemDate = new SystemDate(date);
@@ -95,6 +100,7 @@ public class TreePLETreeService {
 			s.setTreeState(TreeState.Cut);
 			s.addSystemDate(systemDate);
 			t.addStatus(s);
+			t.setCurrentStatus(s);
 			
 			
 			return t;
