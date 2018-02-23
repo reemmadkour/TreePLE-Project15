@@ -58,6 +58,8 @@ public class TreePLETreeService {
 		  t.setMunicipality(municipality);
 		  
 		  //add tree to the list
+		  tm.addSystemDate(systemDate1);
+		  tm.addStatus(s);
 		  tm.addTree(t);
 		  PersistenceXStream.saveToXMLwithXStream(tm);
 		  return t;
@@ -126,8 +128,10 @@ public class TreePLETreeService {
 			s.addSystemDate(systemDate);
 			t.addStatus(s);
 			t.setCurrentStatus(s);
-			
-			
+			tm.addSystemDate(systemDate);
+			tm.addStatus(s);
+			PersistenceXStream.saveToXMLwithXStream(tm);
+			  
 			return t;
 			
 		}
