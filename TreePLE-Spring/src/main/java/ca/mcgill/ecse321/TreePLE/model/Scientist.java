@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 53 "../../../../../TreePLE.ump"
+// line 55 "../../../../../TreePLE.ump"
 public class Scientist extends Role
 {
 

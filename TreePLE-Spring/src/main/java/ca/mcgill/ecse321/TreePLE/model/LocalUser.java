@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 57 "../../../../../TreePLE.ump"
+// line 59 "../../../../../TreePLE.ump"
 public class LocalUser extends Role
 {
 

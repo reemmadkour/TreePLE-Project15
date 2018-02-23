@@ -21,6 +21,7 @@ public class TreeManager
   private List<Forecast> forecast;
   private List<SystemDate> systemDate;
   private List<Survey> surveys;
+  private List<Status> statuses;
 
   //------------------------
   // CONSTRUCTOR
@@ -35,6 +36,7 @@ public class TreeManager
     forecast = new ArrayList<Forecast>();
     systemDate = new ArrayList<SystemDate>();
     surveys = new ArrayList<Survey>();
+    statuses = new ArrayList<Status>();
   }
 
   //------------------------
@@ -248,6 +250,36 @@ public class TreeManager
   public int indexOfSurvey(Survey aSurvey)
   {
     int index = surveys.indexOf(aSurvey);
+    return index;
+  }
+
+  public Status getStatus(int index)
+  {
+    Status aStatus = statuses.get(index);
+    return aStatus;
+  }
+
+  public List<Status> getStatuses()
+  {
+    List<Status> newStatuses = Collections.unmodifiableList(statuses);
+    return newStatuses;
+  }
+
+  public int numberOfStatuses()
+  {
+    int number = statuses.size();
+    return number;
+  }
+
+  public boolean hasStatuses()
+  {
+    boolean has = statuses.size() > 0;
+    return has;
+  }
+
+  public int indexOfStatus(Status aStatus)
+  {
+    int index = statuses.indexOf(aStatus);
     return index;
   }
 
@@ -650,6 +682,63 @@ public class TreeManager
     return wasAdded;
   }
 
+  public static int minimumNumberOfStatuses()
+  {
+    return 0;
+  }
+
+  public boolean addStatus(Status aStatus)
+  {
+    boolean wasAdded = false;
+    if (statuses.contains(aStatus)) { return false; }
+    statuses.add(aStatus);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeStatus(Status aStatus)
+  {
+    boolean wasRemoved = false;
+    if (statuses.contains(aStatus))
+    {
+      statuses.remove(aStatus);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addStatusAt(Status aStatus, int index)
+  {  
+    boolean wasAdded = false;
+    if(addStatus(aStatus))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfStatuses()) { index = numberOfStatuses() - 1; }
+      statuses.remove(aStatus);
+      statuses.add(index, aStatus);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveStatusAt(Status aStatus, int index)
+  {
+    boolean wasAdded = false;
+    if(statuses.contains(aStatus))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfStatuses()) { index = numberOfStatuses() - 1; }
+      statuses.remove(aStatus);
+      statuses.add(index, aStatus);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addStatusAt(aStatus, index);
+    }
+    return wasAdded;
+  }
+
   public void delete()
   {
     trees.clear();
@@ -659,6 +748,7 @@ public class TreeManager
     forecast.clear();
     systemDate.clear();
     surveys.clear();
+    statuses.clear();
   }
 
 }

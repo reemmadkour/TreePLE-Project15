@@ -8,6 +8,7 @@ class TreeManager{
 1 -> * Forecast forecast;
 1 -> * SystemDate systemDate;
 1 -> * Survey surveys;
+ 1 -> * Status statuses;
 }
 
 class Tree{
@@ -37,6 +38,7 @@ class Municipality{
 class Status{
  enum TreeState {Planted,   Diseased, ToBeCut, Cut}
  lazy TreeState treeState;
+
 
  
 }
@@ -82,4 +84,4 @@ associationClass  Survey {
  Date date;
   * Person person;
  * Tree trees;
-}
+}}
