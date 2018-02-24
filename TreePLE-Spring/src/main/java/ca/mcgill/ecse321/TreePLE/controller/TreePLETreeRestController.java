@@ -1,12 +1,22 @@
 package ca.mcgill.ecse321.TreePLE.controller;
 
+import java.util.ArrayList;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.TreePLE.dto.TreeDto;
+import ca.mcgill.ecse321.TreePLE.model.Municipality;
+import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
+import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
+import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
+import ca.mcgill.ecse321.TreePLE.service.InvalidInputException;
 import ca.mcgill.ecse321.TreePLE.service.TreePLETreeService;
 
 @RestController
@@ -30,19 +40,44 @@ public class TreePLETreeRestController {
 		  return treeDto;
 		}
 	
-	/**@PostMapping(value = { "/PlantTree/{landType}/{species}/{height}/{diameter}/{longitude}/{latidude}/{municipality}/"})
-	public EventDto createEvent(
-			@PathVariable ("landType") String name,
-			@RequestParam Date date,
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern="HH:mm") LocalTime startTime,
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern="HH:mm") LocalTime endTime
+	@PostMapping(value = { "/PlantTree/"})
+	public TreeDto plantTree(
+			@RequestParam (name="landType") LandType landtype,
+			@RequestParam  (name="species") TreeSpecies species,
+			@RequestParam  (name="height") double height,
+			@RequestParam (name="diameter") double diameter,
+			@RequestParam (name="longitude") double longitude,
+			@RequestParam  (name="latitude") double latitude,
+			
+			 
+			@RequestParam ("municipality") MunicipalityName municipality
+			
 			) throws InvalidInputException {
-		@SuppressWarnings("deprecation")
-		Time startTimeSql = new Time(startTime.getHour(),startTime.getMinute(), 0);
-		@SuppressWarnings("deprecation")
-		Time endTimeSql = new Time(endTime.getHour(),endTime.getMinute(), 0);
-		Event event = service.createEvent(name, date, startTimeSql, endTimeSql);
-		return convertToDto(event);
-}*/
+
+	;
+	Municipality mun= new Municipality();
+	mun.setMunicipalityName(municipality);
+		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, mun);
+		
+		return convertToDto(tree);
+}
+	
+	@PostMapping(value = { "/cutDownTree/" })
+	public TreeDto cutDownTree(
+			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(tree.getID());
+	service.cutDownTree(t);
+		return convertToDto(t);
+	}
+	
+	@GetMapping(value = { "/trees", "/trees/" })
+	public ArrayList<TreeDto> listAllTrees() {
+		ArrayList<TreeDto> trees = new ArrayList<TreeDto>();
+		for (Tree tree : service.listAllTrees()) {
+			trees.add(convertToDto(tree));
+		}
+		return trees;
+	}
 	
 }
