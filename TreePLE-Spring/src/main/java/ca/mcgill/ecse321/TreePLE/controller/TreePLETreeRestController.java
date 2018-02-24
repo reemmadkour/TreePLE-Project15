@@ -66,7 +66,7 @@ public class TreePLETreeRestController {
 	public TreeDto cutDownTree(
 			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
 		
-	Tree t = service.getTreeByID(tree.getID());
+	Tree t = service.getTreeByID(tree.getTreeID());
 	service.cutDownTree(t);
 		return convertToDto(t);
 	}
