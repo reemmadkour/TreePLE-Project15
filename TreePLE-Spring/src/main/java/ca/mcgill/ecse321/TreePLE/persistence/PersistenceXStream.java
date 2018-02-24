@@ -22,7 +22,7 @@ import ca.mcgill.ecse321.TreePLE.model.SystemDate;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.TreeManager;
 
-// The first type parameter is the domain type for wich we are creating the repository.
+// The first type parameter is the domain type for which we are creating the repository.
 // The second is the key type that is used to look it up. This example will not use it.
 @Repository
 public class PersistenceXStream {

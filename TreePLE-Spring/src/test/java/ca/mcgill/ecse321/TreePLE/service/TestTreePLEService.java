@@ -45,6 +45,48 @@ public class TestTreePLEService {
 		tm.delete();
 	}
 
+	
+	@Test
+	public void testcutDownTree() {
+		double height = 10;
+		double diameter = 12;
+		double longitude = 23;
+		double latitude = 24;
+		TreeSpecies species = TreeSpecies.Willow;
+		LandType landtype = LandType.Institutional;
+		Municipality mun = new Municipality();
+		mun.setMunicipalityName(MunicipalityName.Montreal);
+		TreePLETreeService tree = new TreePLETreeService(tm);
+		try {
+			tree.plantTree(landtype, species, height, diameter, longitude, latitude, mun);
+			tree.cutDownTree(tm.getTree(0));
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//check model in memory
+		assertEquals(TreeState.Cut, tm.getTree(0).getCurrentStatus().getTreeState());
+	}
+	
+	@Test
+	public void testcutDownTreeNull() {
+		TreePLETreeService tree = new TreePLETreeService(tm);
+		String error = null;
+		try {
+			//tree.plantTree(landtype, species, height, diameter, longitude, latitude, mun);
+			tree.cutDownTree(null);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+			}
+		
+		//check error
+		assertEquals("Please fill in all missing information!", error);
+		
+		//check no change in memory
+		assertEquals(0, tm.getTrees().size());
+	}
+	
 	@Test
 	public void testPlantTree() {
 		assertEquals(0,tm.getTrees().size());
