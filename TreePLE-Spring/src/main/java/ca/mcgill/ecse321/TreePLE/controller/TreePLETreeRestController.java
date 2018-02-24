@@ -1,6 +1,6 @@
 package ca.mcgill.ecse321.TreePLE.controller;
 
-import java.util.ArrayList;
+//import java.awt.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.Lists;
+import java.util.List;
 import ca.mcgill.ecse321.TreePLE.dto.TreeDto;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
@@ -70,8 +72,8 @@ public class TreePLETreeRestController {
 	}
 	
 	@GetMapping(value = { "/trees", "/trees/" })
-	public ArrayList<TreeDto> listAllTrees() {
-		ArrayList<TreeDto> trees = new ArrayList<TreeDto>();
+	public List<TreeDto> listAllTrees() {
+		List <TreeDto> trees =  Lists.newArrayList();
 		for (Tree tree : service.listAllTrees()) {
 			trees.add(convertToDto(tree));
 		}
