@@ -48,6 +48,7 @@ public class PersistenceXStream {
 	setAlias("systemDate", SystemDate.class);
 	setAlias("Tree", Tree.class);
 	setAlias("TreePLE", TreeManager.class);
+
 	
 	// load model if exists, create otherwise
     File file = new File(fileName);
