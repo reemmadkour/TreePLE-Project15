@@ -89,17 +89,17 @@ public class TreePLETreeService {
 		}
 		
 		//get tree by species
-		public Tree getTreeBySpecies(TreeSpecies species) throws InvalidInputException {
+		public List <Tree> getTreeBySpecies(TreeSpecies species) throws InvalidInputException {
 			List<Tree> alltrees= listAllTrees();
-			Tree tree= null;
+			List<Tree> treesBySpecies = null;
+			
 			for (Tree tr : alltrees) {
 				if(tr.getTreeSpecies().equals(species)) {
-					tree=tr;
-					break;
+					treesBySpecies.add(tr);
 				}
 			}
-			if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
-			else{return tree;}
+			if (treesBySpecies == null || treesBySpecies.size() ==0) { throw new InvalidInputException("Tree of this species doesn't exist");}
+			else{return treesBySpecies;}
 		}
 		
 		
