@@ -48,8 +48,6 @@ public class TreePLETreeRestController {
 			@RequestParam (name="diameter") double diameter,
 			@RequestParam (name="longitude") double longitude,
 			@RequestParam  (name="latitude") double latitude,
-			
-			 
 			@RequestParam ("municipality") MunicipalityName municipality
 			
 			) throws InvalidInputException {
