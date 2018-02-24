@@ -1,10 +1,13 @@
 package ca.mcgill.ecse321.TreePLE.controller;
 
+import java.util.ArrayList;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.TreePLE.dto.TreeDto;
@@ -37,15 +40,17 @@ public class TreePLETreeRestController {
 		  return treeDto;
 		}
 	
-	@PostMapping(value = { "/PlantTree/{landType}/{species}/{height}/{diameter}/{longitude}/{latitude}/{municipality}/"})
+	@PostMapping(value = { "/PlantTree/"})
 	public TreeDto plantTree(
-			@PathVariable ("landType") LandType landtype,
-			@PathVariable  ("species") TreeSpecies species,
-			@PathVariable  ("height") double height,
-			@PathVariable  ("longitude") double longitude,
-			@PathVariable  ("latitude") double latitude,
-			@PathVariable  ("diameter") double diameter,
-			@PathVariable  ("municipality") MunicipalityName municipality
+			@RequestParam (name="landType") LandType landtype,
+			@RequestParam  (name="species") TreeSpecies species,
+			@RequestParam  (name="height") double height,
+			@RequestParam (name="diameter") double diameter,
+			@RequestParam (name="longitude") double longitude,
+			@RequestParam  (name="latitude") double latitude,
+			
+			 
+			@RequestParam ("municipality") MunicipalityName municipality
 			
 			) throws InvalidInputException {
 
@@ -56,5 +61,23 @@ public class TreePLETreeRestController {
 		
 		return convertToDto(tree);
 }
+	
+	@PostMapping(value = { "/cutDownTree/" })
+	public TreeDto cutDownTree(
+			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(tree.getID());
+	service.cutDownTree(t);
+		return convertToDto(t);
+	}
+	
+	@GetMapping(value = { "/trees", "/trees/" })
+	public ArrayList<TreeDto> listAllTrees() {
+		ArrayList<TreeDto> trees = new ArrayList<TreeDto>();
+		for (Tree tree : service.listAllTrees()) {
+			trees.add(convertToDto(tree));
+		}
+		return trees;
+	}
 	
 }

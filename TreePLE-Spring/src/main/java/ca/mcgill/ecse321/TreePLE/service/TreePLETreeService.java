@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Date;
 import org.springframework.stereotype.Service;
 
+//import ca.mcgill.ecse321.TreePLE.controller.RequestParam;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
@@ -25,6 +26,21 @@ public class TreePLETreeService {
 		{
 		  this.tm = tm;
 		}
+		public Tree getTreeByID  (int id) throws InvalidInputException  {
+			List<Tree> alltrees= listAllTrees();
+		Tree tree= null;
+		for (Tree tr : alltrees) {
+			if(tr.getTreeID()==id) {
+				tree=tr;
+				break;
+			}
+		}
+		if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
+		else{return tree;}
+	}
+		
+			
+		
 		
 		//plant a tree method
 		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException
@@ -66,7 +82,7 @@ public class TreePLETreeService {
 		}
 		
 		//list all trees
-		public List<Tree> findAllTrees()
+		public List<Tree> listAllTrees()
 		{
 		 
 			return tm.getTrees();
@@ -74,7 +90,7 @@ public class TreePLETreeService {
 		
 		//get tree by species
 		public Tree getTreeBySpecies(TreeSpecies species) throws InvalidInputException {
-			List<Tree> alltrees= findAllTrees();
+			List<Tree> alltrees= listAllTrees();
 			Tree tree= null;
 			for (Tree tr : alltrees) {
 				if(tr.getTreeSpecies().equals(species)) {
