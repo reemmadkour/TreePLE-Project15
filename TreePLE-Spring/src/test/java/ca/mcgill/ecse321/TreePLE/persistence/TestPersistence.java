@@ -35,7 +35,6 @@ public class TestPersistence {
 		Tree tree2 = new Tree(34, 24, 26, 34, municipality2);
 		
 	
-		
 		// manage trees
 		tm.addTree(tree1);
 		tm.addTree(tree2);

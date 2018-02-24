@@ -68,7 +68,7 @@ public class TreePLETreeService {
 		  //set Landtype
 		  t.setLandType(landtype);
 		  
-		 
+		
 		  
 		  //set municipality
 		  t.setMunicipality(municipality);
