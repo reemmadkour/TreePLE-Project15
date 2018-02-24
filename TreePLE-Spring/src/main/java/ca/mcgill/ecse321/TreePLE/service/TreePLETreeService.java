@@ -130,7 +130,7 @@ public class TreePLETreeService {
 		//cut down tree
 		public Tree cutDownTree(Tree t) throws InvalidInputException {
 			if((t==null)) {
-				throw new InvalidInputException("Oops! Please fill in all missing information!")	;
+				throw new InvalidInputException("Please fill in all missing information!")	;
 			}
 			
 			Status s = new Status(t);
