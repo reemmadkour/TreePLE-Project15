@@ -1,5 +1,8 @@
 package ca.mcgill.ecse321.TreePLE.dto;
 
+import java.util.List;
+
+import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
 
@@ -11,18 +14,25 @@ public class TreeDto {
 	  private double longitude;
 	  private double latitude;
 	  private LandType landType;
+	  private List<StatusDto> currentStatus;
+	  private int treeID;
+	  private Municipality municipality;
 	  
 	  public TreeDto() {
 		  
 	  }
 	  
-	  public void TreeDto(TreeSpecies treeSpecies,double height, double diameter, double longitude, double latitude, LandType landtype) {
+	  public TreeDto(TreeSpecies treeSpecies,double height, double diameter, double longitude, double latitude, LandType landtype, int treeID, Municipality municipality) {
 			this.treeSpecies = treeSpecies;
 			this.height = height;
 			this.diameter = diameter;
 			this.longitude = longitude;
 			this.latitude=latitude;
 			this.landType=landtype;
+			this.treeID=treeID;
+			this.municipality=municipality;
+		
+			
 		}
 	  
 	  public TreeSpecies getTreeSpecies() {
@@ -49,6 +59,17 @@ public class TreeDto {
 			return landType;
 		}
 		
+		public List<StatusDto> getcurrentStatus(){
+			return currentStatus;
+		}
+		
+		public int getTreeID() {
+			return treeID;
+		}
+		
+		public Municipality getMunicipality() {
+			return municipality;
+		}
 		 
 }
 

@@ -34,6 +34,7 @@ public class Tree
   private double latitude;
   private LandType landType;
 
+  
   //Autounique Attributes
   private int treeID;
 
