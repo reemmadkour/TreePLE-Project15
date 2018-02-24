@@ -104,7 +104,7 @@ public class TestTreePLEService {
 	}
 	
 	@Test
-	public void testFindAllParticipants()
+	public void testFindAllTrees()
 	{
 	    assertEquals(0, tm.getTrees().size());
 
@@ -138,7 +138,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 	        }
 	    
 
-	    List<Tree> registeredTrees = tree.findAllTrees();
+	    List<Tree> registeredTrees = tree.listAllTrees();
 
 	    // check number of registered participants
 	    assertEquals(2, registeredTrees.size());
@@ -159,6 +159,8 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		assertEquals(TreeSpecies.Willow, registeredTrees.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 	}
+	
+	
 
 	private void checkResultTree() {
 		assertEquals(1, tm.getTrees().size());
