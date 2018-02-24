@@ -11,6 +11,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import ca.mcgill.ecse321.TreePLE.model.TreeManager;
+import ca.mcgill.ecse321.TreePLE.persistence.PersistenceXStream;
+
 @SpringBootApplication
 public class TreePLESpringApplication extends SpringBootServletInitializer {
 
@@ -28,8 +31,12 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 				.setDestinationNamingConvention(NamingConventions.NONE);
 		return modelMapper;
 	}
+	@Bean
+	public TreeManager treeMan() {
+		return PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
+	}
 
-	// TODO add a Bean to provide a registration manager
+	//TODO add a Bean to provide a registration manager
 //	@Bean
 //	public RegistrationManager regMan() {
 //		return PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
