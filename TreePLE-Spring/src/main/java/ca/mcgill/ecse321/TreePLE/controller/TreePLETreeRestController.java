@@ -124,12 +124,10 @@ public class TreePLETreeRestController {
 	
 	
 
-<<<<<<< HEAD
+
 	@PostMapping(value = { "/cutDownTree/{tree}" })
 
-=======
-	@PostMapping(value = { "/cutDownTree/ID" })
->>>>>>> 3c900962777bd554afd10821c236b746406fb1bb
+
 	public TreeDto cutDownTree(
 			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
 		
@@ -138,13 +136,9 @@ public class TreePLETreeRestController {
 		return convertToDto(t);
 	}
 	
-	
-<<<<<<< HEAD
-}
-=======
-	
+}	
+
+
 	
 	
-	}
-	
->>>>>>> 3c900962777bd554afd10821c236b746406fb1bb
+

@@ -54,10 +54,7 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 	
 	
 	// Enable CORS globally
-<<<<<<< HEAD
 
-=======
->>>>>>> 3c900962777bd554afd10821c236b746406fb1bb
 	@Bean
 	  public WebMvcConfigurer corsConfigurer() {
 	    return new WebMvcConfigurerAdapter() {
@@ -69,15 +66,8 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 		registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://localhost:8087", "http://127.0.0.1:8087");
 	      }
 	    };
-<<<<<<< HEAD
-	}}
 
 
-=======
 	  }
 }
-<<<<<<< HEAD
->>>>>>> 3c900962777bd554afd10821c236b746406fb1bb
-=======
-	
->>>>>>> 84b4148f32cca0d287db06bace47fad8e963e01b
+
