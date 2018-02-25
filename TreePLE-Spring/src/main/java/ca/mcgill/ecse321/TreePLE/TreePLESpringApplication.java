@@ -42,7 +42,8 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 	@Bean
 	public TreeManager treeMan() {
 		return PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
-	}
+		
+	}	
 
 	//TODO add a Bean to provide a registration manager
 //	@Bean
@@ -53,6 +54,7 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 	
 	
 	// Enable CORS globally
+<<<<<<< HEAD
 	@Bean
 	  public WebMvcConfigurer corsConfigurer() {
 	    return new WebMvcConfigurerAdapter() {
@@ -65,4 +67,20 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 	      }
 	    };
 	  }
+=======
+
+@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				// Allow web client
+				String frontendUrl = "http://" + webFrontEndProperties.getIp() + ":" + webFrontEndProperties.getPort();
+				// Allow android client
+				String androidUrl = "http://" + androidProperties.getIp() + ":" + androidProperties.getPort();
+				// For debug purposes, allow connecting  from localhost as well
+				registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://localhost:8087", "http://127.0.0.1:8087");
+			}
+		};
+>>>>>>> 02822bec05b1ee43460ffbb2191ff38adc21249a
 	}
