@@ -13,12 +13,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import ca.mcgill.ecse321.TreePLE.controller.configuration.AndroidProperties;
-import ca.mcgill.ecse321.TreePLE.controller.configuration.WebFrontEndProperties;
+import ca.mcgill.ecse321.TreePLE.controller.configuration.WebFrontendProperties;
 import ca.mcgill.ecse321.TreePLE.model.TreeManager;
 import ca.mcgill.ecse321.TreePLE.persistence.PersistenceXStream;
 
 @SpringBootApplication
 public class TreePLESpringApplication extends SpringBootServletInitializer {
+	@Autowired
+	private AndroidProperties androidProperties;
+
+	@Autowired
+	private WebFrontendProperties webFrontendProperties;
 
 
 	public static void main(String[] args) {
@@ -37,7 +42,8 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 	@Bean
 	public TreeManager treeMan() {
 		return PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
-	}
+		
+	}	
 
 	//TODO add a Bean to provide a registration manager
 //	@Bean
@@ -45,23 +51,25 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 //		return PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
 //		return null;
 //	}
-	@Autowired
-	private AndroidProperties androidProperties;
-
-	@Autowired
-	private WebFrontEndProperties webFrontEndProperties;
-
-
-	// TODO add client configuration
-//	@Autowired
-//	private AndroidProperties androidProperties;
-//
-//	@Autowired
-//	private WebFrontendProperties webFrontendProperties;
+	
 	
 	// Enable CORS globally
+<<<<<<< HEAD
+	@Bean
+	  public WebMvcConfigurer corsConfigurer() {
+	    return new WebMvcConfigurerAdapter() {
+	      @Override
+	      public void addCorsMappings(CorsRegistry registry) {
+	        String frontendUrl = "http://" + webFrontendProperties.getIp() + ":" + webFrontendProperties.getPort();
+		String androidUrl = "http://" + androidProperties.getIp() + ":" + androidProperties.getPort();
+		// For debug purposes, allow connecting  from localhost as well
+		registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://localhost:8087", "http://127.0.0.1:8087");
+	      }
+	    };
+	  }
+=======
 
-/*@Bean
+@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
 			@Override
@@ -74,6 +82,5 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 				registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://localhost:8087", "http://127.0.0.1:8087");
 			}
 		};
-	}*/
-
-}
+>>>>>>> 02822bec05b1ee43460ffbb2191ff38adc21249a
+	}

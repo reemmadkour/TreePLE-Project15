@@ -104,6 +104,7 @@ public class TreePLETreeRestController {
 	@GetMapping(value = { "/trees", "/trees/" })
 	public List<TreeDto> findAllTrees() {
 		List<TreeDto> trees = new ArrayList<TreeDto>();
+		
 		for (Tree tree : service.listAllTrees()) {
 			trees.add(convertToDto(tree));
 		}
@@ -136,7 +137,11 @@ public class TreePLETreeRestController {
 	
 	
 	
+<<<<<<< HEAD
 	@PostMapping(value = { "/cutDownTree/{ID}" })
+=======
+	@PostMapping(value = { "/cutDownTree/ID" })
+>>>>>>> 53cbc792f4ece8aa74f58cf922c90b154143bfca
 	public TreeDto cutDownTree(
 			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
 		
@@ -145,7 +150,10 @@ public class TreePLETreeRestController {
 		return convertToDto(t);
 	}
 	
-	@GetMapping(value = { "/trees", "/trees/" })
+	
+	
+	
+	/*@GetMapping(value = { "/trees", "/trees/" })
 	public List<TreeDto> listAllTrees() {
 		List <TreeDto> trees =  Lists.newArrayList();
 		for (Tree tree : service.listAllTrees()) {
