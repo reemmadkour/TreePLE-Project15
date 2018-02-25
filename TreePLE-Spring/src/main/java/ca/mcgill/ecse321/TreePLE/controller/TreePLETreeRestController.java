@@ -84,21 +84,7 @@ public class TreePLETreeRestController {
 		}
 		return trees;
 	}
-	
-	//plantTree(LandType landtype, TreeSpecies species,double height,double diam,double long,double lat, Municipalit
-	
-	@PostMapping(value = { "/trees/{landtype}/{species}/{height}/{diameter}/{longitude}/{latitude}/{municipality}/", "/trees/{landtype}/{species}/{height}/{diameter}/{longitude}/{latitude}/{municipality}"})
-	public TreeDto createTree(
-			@PathVariable("landtype") LandType landtype,
-			@PathVariable("species") TreeSpecies s,
-			@PathVariable("height") Double h,
-			@PathVariable("diameter") Double d,
-			@PathVariable("longitude") Double l,
-			@PathVariable("latitude") Double lat,
-			@PathVariable("municipality") Municipality m) throws InvalidInputException{
-		Tree t = service.plantTree(landtype, s, h, d, l, lat,m);
-		return convertToDto(t);
-	}
+
 	
 	
 	@GetMapping(value = { "/trees", "/trees/" })
@@ -137,11 +123,9 @@ public class TreePLETreeRestController {
 	
 	
 	
-<<<<<<< HEAD
-	@PostMapping(value = { "/cutDownTree/{ID}" })
-=======
-	@PostMapping(value = { "/cutDownTree/ID" })
->>>>>>> 53cbc792f4ece8aa74f58cf922c90b154143bfca
+
+	@PostMapping(value = { "/cutDownTree/{tree}" })
+
 	public TreeDto cutDownTree(
 			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
 		
@@ -150,16 +134,5 @@ public class TreePLETreeRestController {
 		return convertToDto(t);
 	}
 	
-	
-	
-	
-	/*@GetMapping(value = { "/trees", "/trees/" })
-	public List<TreeDto> listAllTrees() {
-		List <TreeDto> trees =  Lists.newArrayList();
-		for (Tree tree : service.listAllTrees()) {
-			trees.add(convertToDto(tree));
-		}
-		return trees;
-	}
 	
 }
