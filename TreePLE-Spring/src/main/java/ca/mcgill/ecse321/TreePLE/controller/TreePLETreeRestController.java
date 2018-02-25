@@ -115,7 +115,7 @@ public class TreePLETreeRestController {
 	
 	
 	
-	/*@PostMapping(value = { "/PlantTree/"})
+	@PostMapping(value = { "/PlantTree/"})
 	public TreeDto plantTree(
 			@RequestParam (name="landType") LandType landtype,
 			@RequestParam  (name="species") TreeSpecies species,
@@ -123,23 +123,22 @@ public class TreePLETreeRestController {
 			@RequestParam (name="diameter") double diameter,
 			@RequestParam (name="longitude") double longitude,
 			@RequestParam  (name="latitude") double latitude,
-			@RequestParam ("municipality") MunicipalityName municipality
+			@RequestParam ("municipality") MunicipalityName municipalityName
 			
 			) throws InvalidInputException {
 
 	;
-	Municipality mun= new Municipality();
-	mun.setMunicipalityName(municipality);
+	Municipality mun= service.getMunicipalityByName(municipalityName);
 		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, mun);
 		
 		return convertToDto(tree);
-}*/
+}
 	
 	
 	
-	/*@PostMapping(value = { "/cutDownTree/{ID}" })
+	@PostMapping(value = { "/cutDownTree/{ID}" })
 	public TreeDto cutDownTree(
-			@RequestParam(name="ID") TreeDto tree) throws InvalidInputException {
+			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
 		
 	Tree t = service.getTreeByID(tree.getTreeID());
 	service.cutDownTree(t);
@@ -153,6 +152,6 @@ public class TreePLETreeRestController {
 			trees.add(convertToDto(tree));
 		}
 		return trees;
-	}*/
+	}
 	
 }

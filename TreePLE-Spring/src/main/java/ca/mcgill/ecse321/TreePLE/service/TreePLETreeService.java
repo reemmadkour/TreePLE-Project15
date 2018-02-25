@@ -41,7 +41,18 @@ public class TreePLETreeService {
 	}
 		
 			
-		
+		public Municipality getMunicipalityByName  (MunicipalityName munName) throws InvalidInputException  {
+			List<Municipality>allMunicipalities= tm.getMunicipality();
+		Municipality mun= null;
+		for (Municipality n : allMunicipalities) {
+			if(n.getMunicipalityName()== munName) {
+				mun=n;
+				break;
+			}
+		}
+		if (mun == null) { throw new InvalidInputException("municipality doesn't exist");}
+		else{return mun;}
+	}
 		
 		//plant a tree method
 		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException
