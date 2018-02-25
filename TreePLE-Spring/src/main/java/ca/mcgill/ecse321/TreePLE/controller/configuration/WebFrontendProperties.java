@@ -5,8 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "client.web")
-public class WebFrontEndProperties {
-
+public class WebFrontendProperties {
 	/**
 	 * The IP adress of the web frontend client
 	 */
@@ -32,3 +31,4 @@ public class WebFrontEndProperties {
 		this.port = port;
 	}
 }
+
