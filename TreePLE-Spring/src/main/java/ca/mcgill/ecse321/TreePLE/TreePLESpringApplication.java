@@ -76,4 +76,8 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 =======
 	  }
 }
+<<<<<<< HEAD
 >>>>>>> 3c900962777bd554afd10821c236b746406fb1bb
+=======
+	
+>>>>>>> 84b4148f32cca0d287db06bace47fad8e963e01b
