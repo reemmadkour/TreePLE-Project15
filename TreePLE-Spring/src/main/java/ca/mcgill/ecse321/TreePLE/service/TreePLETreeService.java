@@ -26,6 +26,13 @@ public class TreePLETreeService {
 		public TreePLETreeService(TreeManager tm)
 		{
 		  this.tm = tm;
+		  Municipality m1= new Municipality();
+		  m1.setMunicipalityName(MunicipalityName.Montreal);
+		  Municipality m2= new Municipality();
+		  m2.setMunicipalityName(MunicipalityName.Laval);
+		  tm.addMunicipality(m1);
+		  tm.addMunicipality(m2);
+		  
 		}
 		public Tree getTreeByID  (int id) throws InvalidInputException  {
 			List<Tree> alltrees= listAllTrees();
