@@ -16,13 +16,13 @@ public class TreeDto {
 	  private LandType landType;
 	  private List<StatusDto> currentStatus;
 	  private int treeID;
-	  private Municipality municipality;
+	  private MunicipalityDto municipality;
 	  
 	  public TreeDto() {
 		  
 	  }
 	  
-	  public TreeDto(TreeSpecies treeSpecies,double height, double diameter, double longitude, double latitude, LandType landtype, int treeID, Municipality municipality) {
+	  public TreeDto(TreeSpecies treeSpecies,double height, double diameter, double longitude, double latitude, LandType landtype, int treeID, MunicipalityDto municipality) {
 			this.treeSpecies = treeSpecies;
 			this.height = height;
 			this.diameter = diameter;
@@ -67,7 +67,7 @@ public class TreeDto {
 			return treeID;
 		}
 		
-		public Municipality getMunicipality() {
+		public MunicipalityDto getMunicipality() {
 			return municipality;
 		}
 		 
