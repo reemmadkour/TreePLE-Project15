@@ -50,7 +50,11 @@ public class TreePLETreeService {
 				break;
 			}
 		}
-		if (mun == null) { throw new InvalidInputException("municipality doesn't exist");}
+		//if (mun == null) { throw new InvalidInputException("municipality doesn't exist");}
+		if (mun==null) { Municipality mun2= new Municipality();
+			mun2.setMunicipalityName(munName);
+		return mun2;}
+		
 		else{return mun;}
 	}
 		
