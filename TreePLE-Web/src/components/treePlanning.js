@@ -14,7 +14,7 @@ function TreeDto (treeSpecies, height, diameter, longitude, latitude, landtype, 
   this.diameter = diameter
   this.longitude = longitude
   this.latitude = latitude
-  this.landType = landtype
+  this.landtype = landtype
   this.treeID = treeID
   this.municipality = municipality
 }
