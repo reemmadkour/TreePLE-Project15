@@ -70,7 +70,10 @@ public class TreeDto {
 		public MunicipalityDto getMunicipality() {
 			return municipality;
 		}
-		 
+		
+		public void setMunicipality (MunicipalityDto municipality) {
+			this.municipality=municipality;
+		}
 }
 
 
