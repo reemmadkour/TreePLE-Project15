@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
+import ca.mcgill.ecse321.TreePLE.model.Tree;
+
 
 public class TreeDto {
 

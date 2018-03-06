@@ -61,6 +61,16 @@ public class TreePLETreeService {
 		else{return mun;}
 	}
 		
+		//create new municipality
+		public Municipality createMunicipality(MunicipalityName name) {
+			Municipality m = new Municipality();
+			m.setMunicipalityName(name);
+			tm.addMunicipality(m);
+			 PersistenceXStream.saveToXMLwithXStream(tm);
+			return m;
+		}
+		
+		
 		//plant a tree method
 		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException
 		{

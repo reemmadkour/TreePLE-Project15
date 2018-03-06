@@ -103,7 +103,13 @@ public class TreePLETreeRestController {
 		return trees;
 	}
 	
-	
+	//create municipality
+	@PostMapping(value = {"/Municipality/{name}", "/Municipality/{name}/"})
+	public MunicipalityDto NewMunicipality(@PathVariable("name") MunicipalityName munName) throws InvalidInputException {
+		Municipality m = service.createMunicipality(munName);
+		
+		return convertToDto(m);
+	}
 	
 	// Create a new tree
 	
