@@ -14,7 +14,6 @@ public class MunicipalityDto {
 	
 	
 	public MunicipalityDto() {
-		
 	}
 	
 	public MunicipalityDto(MunicipalityName name) {

@@ -5,22 +5,22 @@ import java.util.*;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState; 
 
 public class StatusDto {
-	private TreeDto tree;
+//	private TreeDto tree;
 
 	private TreeState treeState;
 	public  StatusDto() {
 	
 	}
 	
-	public  StatusDto(TreeState treeState, TreeDto tree) {
+	public  StatusDto(TreeState treeState) {
 		this.treeState=treeState;
-		this.tree=tree;
+		//this.tree=tree;
 	}
 	
 	public TreeState getTreeState() {
 		return treeState;
 	}
-	public TreeDto getTree() {
+	/*public TreeDto getTree() {
 		return this.tree;
-	}
+	}*/
 }

@@ -23,13 +23,13 @@ public class TreeDto {
 	  private StatusDto currentStatus;
 	  private int treeID;
 	 // private List<Forecast> forecasts;
-	  private MunicipalityDto municipality;
+	 // private MunicipalityDto municipality;
 	 // private int id;
 	  
 	  public TreeDto() {
 		  
 	  }
-	  
+	/*  
 	  public TreeDto(TreeSpecies treeSpecies,double height, double diameter, double longitude, double latitude, LandType landtype, int treeID, MunicipalityDto municipality) {
 			this.treeSpecies = treeSpecies;
 			this.height = height;
@@ -42,7 +42,7 @@ public class TreeDto {
 		
 			
 		}
-	 
+	 */
 	  
 	 /* public int getId()
 		{
@@ -81,16 +81,16 @@ public class TreeDto {
 			return treeID;
 		}
 		
-		public MunicipalityDto getMunicipality() {
+	/*	public MunicipalityDto getMunicipality() {
 			return municipality;
-		}
+		}*/
 		public StatusDto getCurrentStatus() {
 			return currentStatus;
 		}
 		
-		public void setMunicipality (MunicipalityDto mun) {
+	/*	public void setMunicipality (MunicipalityDto mun) {
 			this.municipality=mun;
-		}
+		}*/
 		
 }
 
