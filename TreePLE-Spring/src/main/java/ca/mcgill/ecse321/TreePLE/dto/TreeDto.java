@@ -24,7 +24,7 @@ public class TreeDto {
 	  private int treeID;
 	 // private List<Forecast> forecasts;
 	  private MunicipalityDto municipality;
-	  private int id;
+	 // private int id;
 	  
 	  public TreeDto() {
 		  
@@ -42,12 +42,13 @@ public class TreeDto {
 		
 			
 		}
+	 
 	  
-	  public int getId()
+	 /* public int getId()
 		{
 			return id;
 		}
-	  
+	  */
 	  public TreeSpecies getTreeSpecies() {
 			return treeSpecies;
 		}
