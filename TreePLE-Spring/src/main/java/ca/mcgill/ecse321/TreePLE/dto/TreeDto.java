@@ -19,7 +19,7 @@ public class TreeDto {
 	  private double longitude;
 	  private double latitude;
 	  private LandType landType;
-	  private List<StatusDto> Statuses;
+	  private List<StatusDto> statuses;
 	  private StatusDto currentStatus;
 	  private int treeID;
 	 // private List<Forecast> forecasts;
@@ -72,8 +72,8 @@ public class TreeDto {
 			return landType;
 		}
 		
-		public List<StatusDto> getcurrentStatus(){
-			return Statuses;
+		public List<StatusDto> getStatuses(){
+			return statuses;
 		}
 		
 		public int getTreeID() {
@@ -83,7 +83,7 @@ public class TreeDto {
 		public MunicipalityDto getMunicipality() {
 			return municipality;
 		}
-		public StatusDto getStatus() {
+		public StatusDto getCurrentStatus() {
 			return currentStatus;
 		}
 		
