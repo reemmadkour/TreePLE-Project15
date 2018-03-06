@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
+import ca.mcgill.ecse321.TreePLE.model.Forecast;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
@@ -18,8 +19,10 @@ public class TreeDto {
 	  private double longitude;
 	  private double latitude;
 	  private LandType landType;
-	  private List<StatusDto> currentStatus;
+	  private List<StatusDto> Statuses;
+	  private StatusDto currentStatus;
 	  private int treeID;
+	 // private List<Forecast> forecasts;
 	  private MunicipalityDto municipality;
 	  private int id;
 	  
@@ -70,7 +73,7 @@ public class TreeDto {
 		}
 		
 		public List<StatusDto> getcurrentStatus(){
-			return currentStatus;
+			return Statuses;
 		}
 		
 		public int getTreeID() {
@@ -79,6 +82,9 @@ public class TreeDto {
 		
 		public MunicipalityDto getMunicipality() {
 			return municipality;
+		}
+		public StatusDto getStatus() {
+			return currentStatus;
 		}
 		
 		public void setMunicipality (MunicipalityDto mun) {

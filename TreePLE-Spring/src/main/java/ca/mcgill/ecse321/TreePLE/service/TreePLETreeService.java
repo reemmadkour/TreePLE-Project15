@@ -59,7 +59,7 @@ public class TreePLETreeService {
 		}
 		//if (mun == null) { throw new InvalidInputException("municipality doesn't exist");}
 		if (mun==null) { Municipality mun2= new Municipality();
-			mun2.setMunicipalityName(munName);
+			mun2.setMunicipalityName(municipalityName);
 		return mun2;}
 		
 		else{return mun;}

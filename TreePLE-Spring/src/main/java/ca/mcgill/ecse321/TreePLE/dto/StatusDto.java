@@ -8,7 +8,7 @@ public class StatusDto {
 
 	private TreeState treeState;
 	
-	public void StatusDto(TreeState treeState) {
+	public  StatusDto(TreeState treeState) {
 		this.treeState=treeState;
 	}
 	

@@ -9,7 +9,7 @@ import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 public class MunicipalityDto {
 
 	private MunicipalityName name;
-	private List<MunicipalityDto> municipalities;
+	//private List<MunicipalityDto> municipalities;
 	private List<TreeDto> trees;
 	
 	
@@ -31,9 +31,9 @@ public class MunicipalityDto {
 		return name;
 	}
 	
-	public List<MunicipalityDto> getMunicipalities(){
+/*	public List<MunicipalityDto> getMunicipalities(){
 		return municipalities;
-	}
+	}*/
 	
 	public List<TreeDto> getTrees(){
 		return trees;

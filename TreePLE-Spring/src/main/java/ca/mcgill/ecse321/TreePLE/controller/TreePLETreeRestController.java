@@ -46,7 +46,7 @@ public class TreePLETreeRestController {
 	private TreeDto convertToDto(Tree t) {
 		 //mapper service
 		  TreeDto treeDto = modelMapper.map(t,  TreeDto.class);
-		  treeDto.setMunicipality(createMunicipalityDtoForTree(t));
+		 // treeDto.setMunicipality(createMunicipalityDtoForTree(t));
 		  return treeDto;
 		}
 
@@ -113,26 +113,25 @@ public class TreePLETreeRestController {
 	
 	// Create a new tree
 	
-	@PostMapping(value = { "/PlantTree/", "/PlantTree"})
+	@PostMapping(value = { "/PlantTree/"})
 	public TreeDto plantTree(
-			@RequestParam (name="landType") Tree.LandType landtype,
-			@RequestParam  (name="species") Tree.TreeSpecies species,
+			@RequestParam (name="landType") LandType landtype,
+			@RequestParam  (name="species") TreeSpecies species,
 			@RequestParam  (name="height") double height,
 			@RequestParam (name="diameter") double diameter,
 			@RequestParam (name="longitude") double longitude,
 			@RequestParam  (name="latitude") double latitude,
-			@RequestParam ("municipality") MunicipalityDto mDto
+			@RequestParam (name="municipality") MunicipalityName municipalityName
 			
 			) throws InvalidInputException {
 
 	;
-	Municipality m= service.getMunicipalityByName(mDto.getName());
-		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, m);
-		//convertToDto(m);
-		return convertToDto(tree);
+	Municipality mun= service.getMunicipalityByName(municipalityName);
+		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, mun);
 		
-
+		return convertToDto(tree);
 }
+	
 	
 	
 	
