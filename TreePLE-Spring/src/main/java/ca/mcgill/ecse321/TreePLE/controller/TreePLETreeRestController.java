@@ -44,9 +44,8 @@ public class TreePLETreeRestController {
 }
 	//conversion tree method
 	private TreeDto convertToDto(Tree t) {
-		  TreeDto treeDto = modelMapper.map(t, TreeDto.class);
-		 
-		  return treeDto;
+		 //mapper service
+		  return modelMapper.map(t,  TreeDto.class);
 		}
 	
 	//conversion municipality method
@@ -84,7 +83,17 @@ public class TreePLETreeRestController {
 		}
 		return trees;
 	}
-
+	
+	
+	/*private List<TreeDto> convertListToDto (List<Tree> trees){
+		List<TreeDto> treeDto = new ArrayList<TreeDto>();
+		for (Tree tree : trees) {
+			treeDto.add(convertToDto(tree));
+		}
+		
+		return treeDto;
+		
+	}*/
 	
 	
 	@GetMapping(value = { "/trees", "/trees/" })
@@ -93,11 +102,22 @@ public class TreePLETreeRestController {
 		
 		for (Tree tree : service.listAllTrees()) {
 			trees.add(convertToDto(tree));
+			System.out.println(tree.toString());
+			System.out.println("--------");
+			System.out.println(convertToDto(tree).getMunicipality());
 		}
 		return trees;
 	}
 	
-	
+	/*@GetMapping(value = { "/trees", "/trees/" })
+	public List<TreeDto> findAllTrees() {
+		List<Tree> trees = service.listAllTrees();
+		List<TreeDto> treedto = convertListToDto(trees);
+		
+		System.out.println(tree.toString());
+		
+		return treedto;
+	}*/
 	
 	
 	
@@ -110,14 +130,14 @@ public class TreePLETreeRestController {
 			@RequestParam (name="diameter") double diameter,
 			@RequestParam (name="longitude") double longitude,
 			@RequestParam  (name="latitude") double latitude,
-			@RequestParam ("municipality") MunicipalityName municipalityName
+			@RequestParam ("municipality") MunicipalityDto mDto
 			
 			) throws InvalidInputException {
 
 	;
-	Municipality mun= service.getMunicipalityByName(municipalityName);
-		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, mun);
-		
+	Municipality m= service.getMunicipalityByName(mDto.getName());
+		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, m);
+		convertToDto(m);
 		return convertToDto(tree);
 }
 	
