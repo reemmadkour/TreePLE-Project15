@@ -19,7 +19,6 @@ public class MunicipalityDto {
 	
 	public MunicipalityDto(MunicipalityName name) {
 		this.name=name;
-		this.trees = new ArrayList<TreeDto>();
 	}
 	
 	
@@ -43,4 +42,6 @@ public class MunicipalityDto {
 	public void setTrees (List<TreeDto> trees) {
 		this.trees = trees;
 	}
+	
+	
 }

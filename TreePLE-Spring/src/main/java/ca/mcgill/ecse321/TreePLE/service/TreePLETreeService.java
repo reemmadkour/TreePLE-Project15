@@ -48,11 +48,11 @@ public class TreePLETreeService {
 	}
 		
 			
-		public Municipality getMunicipalityByName  (MunicipalityName munName) throws InvalidInputException  {
-			List<Municipality>allMunicipalities= tm.getMunicipality();
+		public Municipality getMunicipalityByName  (MunicipalityName municipalityName) throws InvalidInputException  {
+			List<Municipality>allMunicipalities= findAllMunicipalities();
 		Municipality mun= null;
 		for (Municipality n : allMunicipalities) {
-			if(n.getMunicipalityName()== munName) {
+			if(n.getMunicipalityName().equals(municipalityName)) {
 				mun=n;
 				break;
 			}
@@ -91,6 +91,9 @@ public class TreePLETreeService {
 		  
 		  //set municipality
 		  t.setMunicipality(municipality);
+		  //MunicipalityName name = municipality.getMunicipalityName();
+		  //municipality.setMunicipalityName(name);
+		  municipality.addTree(t);
 		  
 		  //add tree to the list
 		  tm.addSystemDate(systemDate1);
@@ -136,13 +139,16 @@ public class TreePLETreeService {
 		}*/
 		
 		//get tree by municipality
-		public List<Tree> getTreeByMunicipality(Municipality municipality) throws InvalidInputException{
-			if (municipality.getTrees() == null) { 
-				throw new InvalidInputException("Tree doesn't exist");}
-			else{
-				return municipality.getTrees();
-			}
+		public List<Tree> getTreeByMunicipality(Municipality municipality){
 			
+			
+		return municipality.getTrees();
+			
+			
+		}
+		
+		public Municipality getMunicipalityForTree(Tree t) {
+			return t.getMunicipality();
 		}
 		public List<Municipality> findAllMunicipalities()
 		{

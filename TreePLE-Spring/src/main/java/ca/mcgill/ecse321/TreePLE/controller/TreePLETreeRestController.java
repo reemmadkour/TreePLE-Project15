@@ -45,15 +45,16 @@ public class TreePLETreeRestController {
 	//conversion tree method
 	private TreeDto convertToDto(Tree t) {
 		 //mapper service
-		  return modelMapper.map(t,  TreeDto.class);
+		  TreeDto treeDto = modelMapper.map(t,  TreeDto.class);
+		  treeDto.setMunicipality(createMunicipalityDtoForTree(t));
+		  return treeDto;
 		}
+
 	
 	//conversion municipality method
-	private MunicipalityDto convertToDto(Municipality m) throws InvalidInputException {
-			 MunicipalityDto mDto = modelMapper.map(m, MunicipalityDto.class);
-			 mDto.setTrees(createTreesDtosForMunicipality(m));
+	private MunicipalityDto convertToDto(Municipality m)  {
 			 
-			 return mDto;
+			 return modelMapper.map(m, MunicipalityDto.class);
 		}
 	
 	//conversion status method
@@ -62,8 +63,14 @@ public class TreePLETreeRestController {
 			 
 			 return sDto;
 		}
+	
+	private MunicipalityDto createMunicipalityDtoForTree(Tree t){
+		Municipality m = service.getMunicipalityForTree(t);
+		return convertToDto(m);
+	}
+	
 		
-	private Municipality convertToDomainObject(MunicipalityDto mDto) {
+	/*private Municipality convertToDomainObject(MunicipalityDto mDto) {
 		// Mapping DTO to the domain object without using the mapper
 		List<Municipality> allMunicipalities = service.findAllMunicipalities();
 		for (Municipality m: allMunicipalities) {
@@ -72,9 +79,9 @@ public class TreePLETreeRestController {
 			}
 		}
 			return null;
-		}
+		}*/
 	
-	private List<TreeDto> createTreesDtosForMunicipality(Municipality m) throws InvalidInputException {
+	private List<TreeDto> createTreesDtosForMunicipality(Municipality m){
 		
 		List<Tree> treesForMunicipality = service.getTreeByMunicipality(m);
 		List<TreeDto> trees = new ArrayList<TreeDto>();
@@ -87,7 +94,7 @@ public class TreePLETreeRestController {
 	// get all trees
 	
 	@GetMapping(value = { "/trees", "/trees/" })
-	public List<TreeDto> findAllTrees() {
+	public List<TreeDto> findAllTrees() throws InvalidInputException {
 		List<TreeDto> trees = new ArrayList<TreeDto>();
 		
 		for (Tree tree : service.listAllTrees()) {
@@ -115,16 +122,23 @@ public class TreePLETreeRestController {
 	;
 	Municipality m= service.getMunicipalityByName(mDto.getName());
 		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, m);
-		convertToDto(m);
+		//convertToDto(m);
 		return convertToDto(tree);
+		
+
 }
-	//Get Tree by municipality
 	
-	@GetMapping(value = { "/trees/municipality/{name}", "/trees/municipality/{name}/" })
-	public List<TreeDto> getTreeOfMunicipality(@PathVariable("name") MunicipalityDto mDto) throws InvalidInputException {
-		Municipality m = convertToDomainObject(mDto);
-		return createTreesDtosForMunicipality(m);
+	
+	
+	@GetMapping(value = { "/municipalities/", "/municipalities" })
+	public List<MunicipalityDto> findAllMunicipalities() {
+		List<MunicipalityDto> municipalities = new ArrayList<MunicipalityDto>();
+		for(Municipality m: service.findAllMunicipalities()) {
+			municipalities.add(convertToDto(m));
+		}
+		return municipalities;
 	}
+
 	
 	
 	//Delete / Cut Tree
