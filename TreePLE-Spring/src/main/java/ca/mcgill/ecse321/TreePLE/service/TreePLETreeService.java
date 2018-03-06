@@ -144,6 +144,11 @@ public class TreePLETreeService {
 			}
 			
 		}
+		public List<Municipality> findAllMunicipalities()
+		{
+		  // service stub
+			return tm.getMunicipality();
+		}
 		
 		
 		//cut down tree

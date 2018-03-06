@@ -63,12 +63,12 @@ public class TreePLETreeRestController {
 			 return sDto;
 		}
 		
-	private Tree convertToDomainObject(Tree tDto) {
+	private Municipality convertToDomainObject(MunicipalityDto mDto) {
 		// Mapping DTO to the domain object without using the mapper
-		List<Tree> allTrees = service.listAllTrees();
-		for (Tree tree: allTrees) {
-			if (tree.getTreeID() == tDto.getTreeID()) {
-				return tree;
+		List<Municipality> allMunicipalities = service.findAllMunicipalities();
+		for (Municipality m: allMunicipalities) {
+			if (m.getMunicipalityName().equals(mDto.getName())) {
+				return m;
 			}
 		}
 			return null;
@@ -84,17 +84,7 @@ public class TreePLETreeRestController {
 		return trees;
 	}
 	
-	
-	/*private List<TreeDto> convertListToDto (List<Tree> trees){
-		List<TreeDto> treeDto = new ArrayList<TreeDto>();
-		for (Tree tree : trees) {
-			treeDto.add(convertToDto(tree));
-		}
-		
-		return treeDto;
-		
-	}*/
-	
+	// get all trees
 	
 	@GetMapping(value = { "/trees", "/trees/" })
 	public List<TreeDto> findAllTrees() {
@@ -102,30 +92,18 @@ public class TreePLETreeRestController {
 		
 		for (Tree tree : service.listAllTrees()) {
 			trees.add(convertToDto(tree));
-			System.out.println(tree.toString());
-			System.out.println("--------");
-			System.out.println(convertToDto(tree).getMunicipality());
 		}
 		return trees;
 	}
 	
-	/*@GetMapping(value = { "/trees", "/trees/" })
-	public List<TreeDto> findAllTrees() {
-		List<Tree> trees = service.listAllTrees();
-		List<TreeDto> treedto = convertListToDto(trees);
-		
-		System.out.println(tree.toString());
-		
-		return treedto;
-	}*/
 	
 	
+	// Create a new tree
 	
-	
-	@PostMapping(value = { "/PlantTree/"})
+	@PostMapping(value = { "/PlantTree/", "/PlantTree"})
 	public TreeDto plantTree(
-			@RequestParam (name="landType") LandType landtype,
-			@RequestParam  (name="species") TreeSpecies species,
+			@RequestParam (name="landType") Tree.LandType landtype,
+			@RequestParam  (name="species") Tree.TreeSpecies species,
 			@RequestParam  (name="height") double height,
 			@RequestParam (name="diameter") double diameter,
 			@RequestParam (name="longitude") double longitude,
@@ -140,10 +118,16 @@ public class TreePLETreeRestController {
 		convertToDto(m);
 		return convertToDto(tree);
 }
+	//Get Tree by municipality
+	
+	@GetMapping(value = { "/trees/municipality/{name}", "/trees/municipality/{name}/" })
+	public List<TreeDto> getTreeOfMunicipality(@PathVariable("name") MunicipalityDto mDto) throws InvalidInputException {
+		Municipality m = convertToDomainObject(mDto);
+		return createTreesDtosForMunicipality(m);
+	}
 	
 	
-	
-
+	//Delete / Cut Tree
 
 	@PostMapping(value = { "/cutDownTree/{tree}" })
 
