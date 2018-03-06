@@ -5,4 +5,55 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.mcgill.ecse321.treeple.MapsActivity" />
+   tools:context="ca.mcgill.ecse321.treeple.MapsActivity" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:background="#202020">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:padding="10dp"
+            android:text="Location"
+            android:src="@android:drawable/ic_menu_mylocation"
+            android:visibility="visible" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:padding="10dp"
+            android:text="+"
+            android:visibility="visible" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="Login"
+            android:visibility="visible" />
+
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="Search"
+            android:src="@android:drawable/ic_menu_search"
+            android:visibility="visible" />
+
+</LinearLayout>
+
+
+
+</fragment>
