@@ -19,7 +19,9 @@ public class MunicipalityDto {
 	
 	public MunicipalityDto(MunicipalityName name) {
 		this.name=name;
+		this.trees = new ArrayList<TreeDto>();
 	}
+	
 	
 	public MunicipalityDto(MunicipalityName name, ArrayList<TreeDto> arrayList) {
 		this.name = name;
