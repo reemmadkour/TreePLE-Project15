@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">TreePLE</string>
     <string name="title_activity_maps">Map</string>
+    <string name="Location_button">Location</string>
+    <string name = "AddTree">Add Tree</string>
+    <string name = "ListTree">List Trees</string>
+   <string name = "newmun_button">Add Municipality</string>
+    <string name="munspinner_label">Municipality?</string>
+    <string name="newMun_hint">Where?</string>
+    <string name="refresh_list">Refresh</string>
 </resources>
