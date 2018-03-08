@@ -10,12 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -33,36 +28,9 @@ import cz.msebera.android.httpclient.Header;
  */
 
 
-import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
-
-//import cz.msebera.android.httpclient.entity.mime.Header;
 
     public class MainActivity  extends AppCompatActivity{
 
@@ -74,7 +42,7 @@ import cz.msebera.android.httpclient.Header;
 
 
 
-
+        // When click on button1 (View Maps) it takes you to google maps
         public void addListenerOnButton() {
 
             final Context context = this;
@@ -112,6 +80,49 @@ import cz.msebera.android.httpclient.Header;
             munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, municipalities);
             munAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             munSpinner.setAdapter(munAdapter);
+
+            //height and diameter population
+            List numbers = new ArrayList<Integer>();
+            for (int i = 0; i <= 100; i++) {
+                numbers.add(Integer.toString(i));
+            }
+
+            ArrayAdapter<Integer> spinnerArrayAdapter = new ArrayAdapter<Integer>(
+                    this, android.R.layout.simple_spinner_item, numbers);
+            spinnerArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+            //height spinner
+            final Spinner heightSpinner = (Spinner)findViewById(R.id.heightspinner);
+            heightSpinner.setAdapter(spinnerArrayAdapter);
+            //diameter spinner
+            final Spinner diameterSpinner = (Spinner) findViewById(R.id.diameterspinner);
+            diameterSpinner.setAdapter(spinnerArrayAdapter);
+
+            //species Spinner
+            List species = new ArrayList<String>();
+            species.add("Willow");
+            //species.add("Cedar");
+            ArrayAdapter<String> speciesArrayAdapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_spinner_item, species);
+            speciesArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+
+            final Spinner speciesSpinner = (Spinner)findViewById(R.id.speciesspinner);
+            speciesSpinner.setAdapter(speciesArrayAdapter);
+
+
+            //landtype spinner
+            List landType = new ArrayList<String>();
+            landType.add("Institutional");
+
+            ArrayAdapter<String> landArrayAdapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_spinner_item, landType);
+            landArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+
+            final Spinner landSpinner = (Spinner)findViewById(R.id.landspinner);
+            landSpinner.setAdapter(landArrayAdapter);
+
 
             // Get initial
             refreshLists(this.getCurrentFocus());
@@ -171,19 +182,37 @@ import cz.msebera.android.httpclient.Header;
 
         //addTrees
         public void addTree(View v) {
+            //municipality spinner
             final Spinner munSpinner = (Spinner) findViewById(R.id.munspinner);
             error = "";
             RequestParams rp = new RequestParams();
             rp.add("municipality", munSpinner.getSelectedItem().toString());
 
-            final TextView tv = (TextView) findViewById(R.id.AddTree);
-            HttpUtils.post("plantTree/" + tv.getText().toString(), rp, new JsonHttpResponseHandler() {
+            //height spinner
+            final Spinner heightSpinner = (Spinner)findViewById(R.id.heightspinner);
+
+            //diameter spinner
+            final Spinner diameterSpinner = (Spinner) findViewById(R.id.diameterspinner);
+
+            final Spinner speciesSpinner = (Spinner)findViewById(R.id.speciesspinner);
+
+            final Spinner landSpinner = (Spinner)findViewById(R.id.landspinner);
+
+
+            //adding to request parameters
+            rp.add("height", heightSpinner.getSelectedItem().toString());
+            rp.add("diameter", diameterSpinner.getSelectedItem().toString());
+            rp.add("species", speciesSpinner.getSelectedItem().toString());
+            rp.add("landType", landSpinner.getSelectedItem().toString());
+
+            HttpUtils.post("PlantTree/" , rp, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     refreshErrorMessage();
-                    tv.setText("");
                     ((Spinner) findViewById(R.id.munspinner)).getSelectedItem();
-
+                    ((Spinner) findViewById(R.id.diameterspinner)).getSelectedItem();
+                    ((Spinner) findViewById(R.id.heightspinner)).getSelectedItem();
+                    ((Spinner) findViewById(R.id.speciesspinner)).getSelectedItem();
                 }
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
@@ -192,10 +221,18 @@ import cz.msebera.android.httpclient.Header;
                     } catch (JSONException e) {
                         error += e.getMessage();
                     }
-                    munSpinner.setSelection(0);
+
                     refreshErrorMessage();
+
                 }
             });
+
+            munSpinner.setSelection(0);
+            heightSpinner.setSelection(0);
+            diameterSpinner.setSelection(0);
+            speciesSpinner.setSelection(0);
+
+            refreshErrorMessage();
         }
 
 
@@ -203,15 +240,15 @@ import cz.msebera.android.httpclient.Header;
 
         //add trees
         public void addMunicipality(View v){
-            TextView tv = (TextView) findViewById(R.id.newMun_name);
-            String name = tv.getText().toString();
-            RequestParams rp = new RequestParams();
 
-            HttpUtils.post("municipalities/" + name, rp, new JsonHttpResponseHandler() {
+            error="";
+            final TextView tv = (TextView) findViewById(R.id.newMun_name);
+
+            HttpUtils.post("municipality/" + tv.getText().toString(), new RequestParams(), new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     refreshErrorMessage();
-                    ((TextView) findViewById(R.id.newMun_name)).setText("");
+                    tv.setText("");
                 }
 
                 @Override
