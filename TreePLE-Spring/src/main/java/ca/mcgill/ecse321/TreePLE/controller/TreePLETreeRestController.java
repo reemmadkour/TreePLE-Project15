@@ -104,13 +104,13 @@ public class TreePLETreeRestController {
 	}
 	
 	//create municipality
-	@PostMapping(value = {"/Municipality/{name}", "/Municipality/{name}/"})
+/*	@PostMapping(value = {"/Municipality/{name}", "/Municipality/{name}/"})
 	public MunicipalityDto NewMunicipality(@PathVariable("name") MunicipalityName munName) throws InvalidInputException {
 		Municipality m = service.createMunicipality(munName);
 		
 		return convertToDto(m);
 	}
-	
+	*/
 	// Create a new tree
 	
 	@PostMapping(value = { "/PlantTree/"})
@@ -148,13 +148,13 @@ public class TreePLETreeRestController {
 	
 	//Delete / Cut Tree
 
-	@PostMapping(value = { "/cutDownTree/{tree}" })
+	@PostMapping(value = { "/cutDownTree/{treeID}" })
 
 
 	public TreeDto cutDownTree(
-			@RequestParam(name="tree") TreeDto tree) throws InvalidInputException {
+			@PathVariable("treeID") int treeID) throws InvalidInputException {
 		
-	Tree t = service.getTreeByID(tree.getTreeID());
+	Tree t = service.getTreeByID(treeID);
 	service.cutDownTree(t);
 		return convertToDto(t);
 	}

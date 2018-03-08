@@ -8,16 +8,7 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function TreeDto (treeSpecies, height, diameter, longitude, latitude, landtype, treeID, municipality) {
-  this.treeSpecies = treeSpecies
-  this.height = height
-  this.diameter = diameter
-  this.longitude = longitude
-  this.latitude = latitude
-  this.landtype = landtype
-  this.treeID = treeID
-  this.municipality = municipality
-}
+
 
 export default {
   name: 'TreePLE',
@@ -25,23 +16,14 @@ export default {
     return {
       Trees: [],
       response: [],
-      newTree: {
-        treeSpecies: '',
-        height: '',
-        diameter: '',
-        longitude: '',
-        latitude: '',
-        landtype: '',
-        treeID: '',
-        municipality: '' },
-      errorTree: ''
+   
     }
-  },
+   },
   // ...
 
   created: function () {
 // Initializing trees from backend
-    AXIOS.get(`/trees`)
+    AXIOS.get('/trees')
     .then(response => {
       // JSON responses are automatically parsed.
       this.trees = response.data

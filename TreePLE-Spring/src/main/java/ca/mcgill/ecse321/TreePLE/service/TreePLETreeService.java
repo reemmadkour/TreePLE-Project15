@@ -1,9 +1,9 @@
 package ca.mcgill.ecse321.TreePLE.service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 //import ca.mcgill.ecse321.TreePLE.controller.RequestParam;
@@ -65,15 +65,7 @@ public class TreePLETreeService {
 		else{return mun;}
 	}
 		
-		//create new municipality
-		public Municipality createMunicipality(MunicipalityName name) {
-			Municipality m = new Municipality();
-			m.setMunicipalityName(name);
-			tm.addMunicipality(m);
-			 PersistenceXStream.saveToXMLwithXStream(tm);
-			return m;
-		}
-		
+	
 		
 		//plant a tree method
 		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException
@@ -123,11 +115,32 @@ public class TreePLETreeService {
 		 
 			return tm.getTrees();
 		}
+		public int CalculateBioDiversityIndexForTrees(List<Tree> treeList) {
+			
+			List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
+			for (Tree tree: treeList) {
+				TreeSpecies n= tree.getTreeSpecies();
+				if( Species.contains(n)){}
+				else { Species.add(n);}
+				}
+			int numerator= Species.size();
+			int denominator=treeList.size();
+			int index= numerator/denominator;
+			return index;
+				
+			}
+			
+public int CalculateCarbonSeqPerYear(List<Tree> treeList) {
+	
+	return (treeList.size()*48);
+			
+}
+				
 		
 		//get tree by species
 		public List <Tree> getTreeBySpecies(TreeSpecies species) throws InvalidInputException {
 			List<Tree> alltrees= listAllTrees();
-			List<Tree> treesBySpecies = null;
+			List<Tree> treesBySpecies = new ArrayList<Tree>();
 			
 			for (Tree tr : alltrees) {
 				if(tr.getTreeSpecies().equals(species)) {
@@ -135,22 +148,24 @@ public class TreePLETreeService {
 				}
 			}
 			if (treesBySpecies == null || treesBySpecies.size() ==0) { throw new InvalidInputException("Tree of this species doesn't exist");}
+			
+			
 			else{return treesBySpecies;}
 		}
 		
-		
-		/*public Tree getTreeByMunicipality(Municipality municipality) throws InvalidInputException {
-			List<Tree> alltrees= findAllTrees();
-			Tree tree= null;
+		public List <Tree> getTreeByState(TreeState ts) throws InvalidInputException {
+			List<Tree> alltrees= listAllTrees();
+			List<Tree> treesByState =new ArrayList<Tree>();
+			
 			for (Tree tr : alltrees) {
-				if(tr.getMunicipality().getMunicipalityName().equals(municipality.getMunicipalityName())) {
-					tree=tr;
-					break;
+				if(tr.getCurrentStatus().getTreeState().equals(ts)) {
+					treesByState.add(tr);
 				}
 			}
-			if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
-			else{return tree;}
-		}*/
+			if (treesByState == null || treesByState.size() == 0) { throw new InvalidInputException("Tree of this species doesn't exist");}
+			else{return treesByState;}
+		}
+	
 		
 		//get tree by municipality
 		public List<Tree> getTreeByMunicipality(Municipality municipality){
@@ -195,9 +210,55 @@ public class TreePLETreeService {
 			return t;
 			
 		}
+		//mark as diseased
 		
-		
+		public Tree MarkTreeAsDiseased(Tree t) throws InvalidInputException {
+			if((t==null)) {
+				throw new InvalidInputException("Please fill in all missing information!")	;
+			}
 			
+			Status s = new Status(t);
+			
+			//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			//LocalDate localDate = LocalDate.now();
+			Date date = new Date();
+			SystemDate systemDate = new SystemDate(date);
+		
+			s.setTreeState(TreeState.Diseased);
+			s.addSystemDate(systemDate);
+			t.addStatus(s);
+			t.setCurrentStatus(s);
+			tm.addSystemDate(systemDate);
+			tm.addStatus(s);
+			PersistenceXStream.saveToXMLwithXStream(tm);
+			  
+			return t;
+			
+		}	
+		
+		public Tree MarkTreeToBeCutDown(Tree t) throws InvalidInputException {
+			if((t==null)) {
+				throw new InvalidInputException("Please fill in all missing information!")	;
+			}
+			
+			Status s = new Status(t);
+			
+			//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			//LocalDate localDate = LocalDate.now();
+			Date date = new Date();
+			SystemDate systemDate = new SystemDate(date);
+		
+			s.setTreeState(TreeState.ToBeCut);
+			s.addSystemDate(systemDate);
+			t.addStatus(s);
+			t.setCurrentStatus(s);
+			tm.addSystemDate(systemDate);
+			tm.addStatus(s);
+			PersistenceXStream.saveToXMLwithXStream(tm);
+			  
+			return t;
+			
+		}	
 		
 
 }

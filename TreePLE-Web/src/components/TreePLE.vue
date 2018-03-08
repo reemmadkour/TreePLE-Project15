@@ -19,9 +19,9 @@
        <td>{{ tree.diameter }}</td>
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
-           <td>{{ tree.landtype }}</td>
+          
             <td>{{ tree.treeID }}</td>
-             <td>{{ tree.municipality }}</td>
+            
   </tr>
       <tr>
           <td>Red Maple</td>
