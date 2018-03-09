@@ -1,3 +1,8 @@
+dependencies {
+  // Add this line if it does not exist
+  compile('com.thoughtworks.xstream:xstream:1.4.7')
+}
+
 buildscript {
 	ext {
 		springBootVersion = '1.5.9.RELEASE'
