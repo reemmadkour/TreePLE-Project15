@@ -201,6 +201,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		assertEquals(TreeSpecies.Willow, registeredTrees.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 	}
+	/*
 	@Test
 	public void testGetTreeByMunicipality() {
 		assertEquals(0, tm.getTrees().size());
@@ -245,7 +246,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 	            fail();
 	        }
 
-    List<Tree> allTrees = tree.listAllTrees();
+   List<Tree> allTrees = tree.listAllTrees();
     
     // check number of registered participants
     assertEquals(3, registeredTrees.size());
@@ -351,7 +352,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		
 	}
 	
-	
+	*/
 	
 	
 
