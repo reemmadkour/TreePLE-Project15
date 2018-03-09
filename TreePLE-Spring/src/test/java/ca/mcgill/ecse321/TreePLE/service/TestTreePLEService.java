@@ -182,7 +182,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 
 	    List<Tree> registeredTrees = tree.listAllTrees();
 
-	    // check number of registered participants
+	    // check number of registered trees
 	    assertEquals(2, registeredTrees.size());
 
 	    // check each Tree
