@@ -155,6 +155,7 @@ public class TreePLETreeRestController {
 			@PathVariable("treeID") int treeID) throws InvalidInputException {
 		
 	Tree t = service.getTreeByID(treeID);
+
 	service.cutDownTree(t);
 		return convertToDto(t);
 	}
