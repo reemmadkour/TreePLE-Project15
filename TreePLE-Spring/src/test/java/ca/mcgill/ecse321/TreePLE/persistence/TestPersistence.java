@@ -23,21 +23,45 @@ public class TestPersistence {
 	@Before
 	public void setUp() throws Exception {
 		tm = new TreeManager();
+	
+		private TreeManager tm;
+		
+		@Before
+		public void setUp() throws Exception {
+			tm = new TreeManager();
+			
+			//create Tree
+			Tree tree1 = new Tree(12, 23, 34, 34, municipality1);
+			Tree tree2 = new Tree(34, 24, 26, 34, municipality2);
+			
+
+			// create Municipality	
+		Municipality municipality1 = new Municipality();
+		municipality1.setMunicipalityName(MunicipalityName.Montreal);
+		Municipality municipality2 = new Municipality();
+		municipality2.setMunicipalityName(MunicipalityName.Laval);
+			
+			
+			//register tree to munipalities
+		Register re = new Registration (tree1, municipality1);
+		Register re2 = new Registration (tree2, municipality2);
 		
 		
-		// create tree
-	Municipality municipality1 = new Municipality();
-	municipality1.setMunicipalityName(MunicipalityName.Montreal);
-	Municipality municipality2 = new Municipality();
-	municipality2.setMunicipalityName(MunicipalityName.Laval);
-		
-		Tree tree1 = new Tree(12, 23, 34, 34, municipality1);
-		Tree tree2 = new Tree(34, 24, 26, 34, municipality2);
+			// manage trees
+			tm.addTree(tree1);
+			tm.addTree(tree2);
+			tm.addMunicipality(municipality1);
+			tm.addMunicipality(municipality2);
+			tm.addRegister(re);
+			tm.addRegister(re2);
+
+		//create survey
 		
 	
-		// manage trees
-		tm.addTree(tree1);
-		tm.addTree(tree2);
+		//create Forecast
+
+		//create SystemDate
+	
 	}
 
 	@After
