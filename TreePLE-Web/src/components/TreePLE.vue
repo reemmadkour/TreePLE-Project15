@@ -13,15 +13,16 @@
       <th> Landtype </th>
        <th> TreeID </th>
         <th> Municipality </th>
-<tr v-for="tree in trees" >
+<tr v-for="tree in Trees" >
       <td>{{ tree.treeSpecies }}</td>
        <td>{{ tree.height }}</td>
        <td>{{ tree.diameter }}</td>
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
+           <td>{{ tree.landType }}</td>
+		<td>{{ tree.treeID }}</td>
+                
           
-            <td>{{ tree.treeID }}</td>
-            
   </tr>
       <tr>
           <td>Red Maple</td>
