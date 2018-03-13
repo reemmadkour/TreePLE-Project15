@@ -281,6 +281,8 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 	assertEquals(MunicipalityName.Montreal, registeredTreesByMunicipality3.get(0).getMunicipality().getMunicipalityName());
 	
 }
+	//test updated and tsted
+	
 	
 	@Test
 	public void testGetTreeBySpecies() throws InvalidInputException {
