@@ -282,7 +282,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 	
 }
 	
-/*	@Test
+	@Test
 	public void testGetTreeBySpecies() throws InvalidInputException {
 		
 		assertEquals(0, tm.getTrees().size());
@@ -296,7 +296,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 			Municipality mun1 = new Municipality() ;
 			mun1.setMunicipalityName(MunicipalityName.Laval);
 			
-			double height2 = 12;
+			double height2 = 15;
 			double diameter2 = 19;
 			double longitude2 = 76;
 			double latitude2 = 54;
@@ -305,7 +305,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 			Municipality mun2 = new Municipality() ;
 			mun2.setMunicipalityName(MunicipalityName.Montreal);
 			
-			double height3 = 16;
+			double height3 = 22;
 			double diameter3 = 12;
 			double longitude3 = 70;
 			double latitude3 = 54;
@@ -328,7 +328,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		        }
 		 
 	    
-	    List<Tree> registeredTreesBySpecies = null;
+	   // List<Tree> registeredTreesBySpecies = null;
 	    
 	    // Check that initially treesBySpecies is null
 	    
@@ -339,6 +339,8 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 	    assertEquals(3, allTrees.size());
 	    
 	    List<Tree> registeredTreesBySpecie = tree.getTreeBySpecies(species1);
+	    //List<Tree> registeredTreesBySpecie2 = tree.getTreeBySpecies(species2);
+	    //List<Tree> registeredTreesBySpecie3 = tree.getTreeBySpecies(species3);
 	 
 	
 		//tree 1
@@ -350,7 +352,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		assertEquals(TreeSpecies.Willow, registeredTreesBySpecie.get(0).getTreeSpecies());
 		assertEquals(MunicipalityName.Laval, registeredTreesBySpecie.get(0).getMunicipality().getMunicipalityName());
 		//tree 2
-		assertEquals(12, registeredTreesBySpecie.get(1).getHeight(), 0);
+		assertEquals(15, registeredTreesBySpecie.get(1).getHeight(), 0);
 		assertEquals(19, registeredTreesBySpecie.get(1).getDiameter(), 0);
 		assertEquals(76, registeredTreesBySpecie.get(1).getLongitude(), 0);
 		assertEquals(54, registeredTreesBySpecie.get(1).getLatitude(), 0);
@@ -358,7 +360,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		assertEquals(TreeSpecies.Willow, registeredTreesBySpecie.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal, registeredTreesBySpecie.get(1).getMunicipality().getMunicipalityName());
 		//tree 3
-		assertEquals(16, registeredTreesBySpecie.get(2).getHeight(), 0);
+		assertEquals(22, registeredTreesBySpecie.get(2).getHeight(), 0);
 		assertEquals(12, registeredTreesBySpecie.get(2).getDiameter(), 0);
 		assertEquals(70, registeredTreesBySpecie.get(2).getLongitude(), 0);
 		assertEquals(54, registeredTreesBySpecie.get(2).getLatitude(), 0);
@@ -368,7 +370,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		
 	}
 	
-	*/
+	
 	
 	
 
