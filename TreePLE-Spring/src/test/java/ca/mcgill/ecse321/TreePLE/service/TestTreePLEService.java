@@ -206,6 +206,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 	public void testGetTreeByMunicipality() {
 		assertEquals(0, tm.getTrees().size());
 		
+		
 	    double height1 = 15;
 		double diameter1 = 19;
 		double longitude1 = 75;
