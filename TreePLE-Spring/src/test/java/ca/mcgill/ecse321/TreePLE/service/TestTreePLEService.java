@@ -202,6 +202,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 	}
 	
+	// code was updated and works
 	@Test
 	public void testGetTreeByMunicipality() {
 		assertEquals(0, tm.getTrees().size());
@@ -282,8 +283,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 	
 }
 	//test updated and tested 
-	//but having issues with pushing
-	
+	//testGetTreeBySpecies() works!!
 	@Test
 	public void testGetTreeBySpecies() throws InvalidInputException {
 		
