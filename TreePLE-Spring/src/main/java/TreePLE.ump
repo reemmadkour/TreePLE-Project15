@@ -6,8 +6,8 @@ class TreeManager{
 1 -> * Report reports;
 1 -> * Municipality municipality;
 1 -> * Forecast forecast;
-1 -> * SystemDate systemDate;
-1 -> * Survey surveys;
+
+
  1 -> * Status statuses;
 }
 
@@ -38,13 +38,14 @@ class Municipality{
 class Status{
  enum TreeState {Planted,   Diseased, ToBeCut, Cut}
  lazy TreeState treeState;
-
+Date date;
 
  
 }
 
 class Person {
 name;
+  1--* Status status;
  * -- * Role roles;
 }
 
@@ -68,20 +69,12 @@ double bioDiversityIndex;
 
 }
 
-class SystemDate {
-Date date;
- * -- * Status status;
-  1 -- * Forecast forecast;
-}
+
 
 class Forecast {
 * -- * Report report;
- * -- * Survey survey;
- * -- * Tree tree;
+* -> 0..* Tree treesToBePlanted;
+  * -> 0..* Tree treesToBeCut;
+ * -- 0..* Tree currentTrees;
 }
-
-associationClass  Survey {
- Date date;
-  * Person person;
- * Tree trees;
-}}
+}

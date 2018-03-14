@@ -17,8 +17,6 @@ import ca.mcgill.ecse321.TreePLE.model.Report;
 import ca.mcgill.ecse321.TreePLE.model.Role;
 import ca.mcgill.ecse321.TreePLE.model.Scientist;
 import ca.mcgill.ecse321.TreePLE.model.Status;
-import ca.mcgill.ecse321.TreePLE.model.Survey;
-import ca.mcgill.ecse321.TreePLE.model.SystemDate;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.TreeManager;
 
@@ -44,8 +42,6 @@ public class PersistenceXStream {
 	setAlias("role", Role.class);
 	setAlias("scientist", Scientist.class);
 	setAlias("status", Status.class);
-	setAlias("survey", Survey.class);
-	setAlias("systemDate", SystemDate.class);
 	setAlias("Tree", Tree.class);
 	setAlias("TreePLE", TreeManager.class);
 

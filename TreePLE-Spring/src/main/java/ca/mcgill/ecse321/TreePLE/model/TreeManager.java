@@ -19,8 +19,6 @@ public class TreeManager
   private List<Report> reports;
   private List<Municipality> municipality;
   private List<Forecast> forecast;
-  private List<SystemDate> systemDate;
-  private List<Survey> surveys;
   private List<Status> statuses;
 
   //------------------------
@@ -34,8 +32,6 @@ public class TreeManager
     reports = new ArrayList<Report>();
     municipality = new ArrayList<Municipality>();
     forecast = new ArrayList<Forecast>();
-    systemDate = new ArrayList<SystemDate>();
-    surveys = new ArrayList<Survey>();
     statuses = new ArrayList<Status>();
   }
 
@@ -190,66 +186,6 @@ public class TreeManager
   public int indexOfForecast(Forecast aForecast)
   {
     int index = forecast.indexOf(aForecast);
-    return index;
-  }
-
-  public SystemDate getSystemDate(int index)
-  {
-    SystemDate aSystemDate = systemDate.get(index);
-    return aSystemDate;
-  }
-
-  public List<SystemDate> getSystemDate()
-  {
-    List<SystemDate> newSystemDate = Collections.unmodifiableList(systemDate);
-    return newSystemDate;
-  }
-
-  public int numberOfSystemDate()
-  {
-    int number = systemDate.size();
-    return number;
-  }
-
-  public boolean hasSystemDate()
-  {
-    boolean has = systemDate.size() > 0;
-    return has;
-  }
-
-  public int indexOfSystemDate(SystemDate aSystemDate)
-  {
-    int index = systemDate.indexOf(aSystemDate);
-    return index;
-  }
-
-  public Survey getSurvey(int index)
-  {
-    Survey aSurvey = surveys.get(index);
-    return aSurvey;
-  }
-
-  public List<Survey> getSurveys()
-  {
-    List<Survey> newSurveys = Collections.unmodifiableList(surveys);
-    return newSurveys;
-  }
-
-  public int numberOfSurveys()
-  {
-    int number = surveys.size();
-    return number;
-  }
-
-  public boolean hasSurveys()
-  {
-    boolean has = surveys.size() > 0;
-    return has;
-  }
-
-  public int indexOfSurvey(Survey aSurvey)
-  {
-    int index = surveys.indexOf(aSurvey);
     return index;
   }
 
@@ -568,120 +504,6 @@ public class TreeManager
     return wasAdded;
   }
 
-  public static int minimumNumberOfSystemDate()
-  {
-    return 0;
-  }
-
-  public boolean addSystemDate(SystemDate aSystemDate)
-  {
-    boolean wasAdded = false;
-    if (systemDate.contains(aSystemDate)) { return false; }
-    systemDate.add(aSystemDate);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeSystemDate(SystemDate aSystemDate)
-  {
-    boolean wasRemoved = false;
-    if (systemDate.contains(aSystemDate))
-    {
-      systemDate.remove(aSystemDate);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-
-  public boolean addSystemDateAt(SystemDate aSystemDate, int index)
-  {  
-    boolean wasAdded = false;
-    if(addSystemDate(aSystemDate))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSystemDate()) { index = numberOfSystemDate() - 1; }
-      systemDate.remove(aSystemDate);
-      systemDate.add(index, aSystemDate);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveSystemDateAt(SystemDate aSystemDate, int index)
-  {
-    boolean wasAdded = false;
-    if(systemDate.contains(aSystemDate))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSystemDate()) { index = numberOfSystemDate() - 1; }
-      systemDate.remove(aSystemDate);
-      systemDate.add(index, aSystemDate);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addSystemDateAt(aSystemDate, index);
-    }
-    return wasAdded;
-  }
-
-  public static int minimumNumberOfSurveys()
-  {
-    return 0;
-  }
-
-  public boolean addSurvey(Survey aSurvey)
-  {
-    boolean wasAdded = false;
-    if (surveys.contains(aSurvey)) { return false; }
-    surveys.add(aSurvey);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeSurvey(Survey aSurvey)
-  {
-    boolean wasRemoved = false;
-    if (surveys.contains(aSurvey))
-    {
-      surveys.remove(aSurvey);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-
-  public boolean addSurveyAt(Survey aSurvey, int index)
-  {  
-    boolean wasAdded = false;
-    if(addSurvey(aSurvey))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSurveys()) { index = numberOfSurveys() - 1; }
-      surveys.remove(aSurvey);
-      surveys.add(index, aSurvey);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveSurveyAt(Survey aSurvey, int index)
-  {
-    boolean wasAdded = false;
-    if(surveys.contains(aSurvey))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSurveys()) { index = numberOfSurveys() - 1; }
-      surveys.remove(aSurvey);
-      surveys.add(index, aSurvey);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addSurveyAt(aSurvey, index);
-    }
-    return wasAdded;
-  }
-
   public static int minimumNumberOfStatuses()
   {
     return 0;
@@ -746,8 +568,6 @@ public class TreeManager
     reports.clear();
     municipality.clear();
     forecast.clear();
-    systemDate.clear();
-    surveys.clear();
     statuses.clear();
   }
 
