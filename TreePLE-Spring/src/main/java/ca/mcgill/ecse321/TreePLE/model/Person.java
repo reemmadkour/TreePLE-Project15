@@ -17,8 +17,8 @@ public class Person
   private String name;
 
   //Person Associations
+  private List<Status> status;
   private List<Role> roles;
-  private List<Survey> surveies;
 
   //------------------------
   // CONSTRUCTOR
@@ -27,8 +27,8 @@ public class Person
   public Person(String aName)
   {
     name = aName;
+    status = new ArrayList<Status>();
     roles = new ArrayList<Role>();
-    surveies = new ArrayList<Survey>();
   }
 
   //------------------------
@@ -46,6 +46,36 @@ public class Person
   public String getName()
   {
     return name;
+  }
+
+  public Status getStatus(int index)
+  {
+    Status aStatus = status.get(index);
+    return aStatus;
+  }
+
+  public List<Status> getStatus()
+  {
+    List<Status> newStatus = Collections.unmodifiableList(status);
+    return newStatus;
+  }
+
+  public int numberOfStatus()
+  {
+    int number = status.size();
+    return number;
+  }
+
+  public boolean hasStatus()
+  {
+    boolean has = status.size() > 0;
+    return has;
+  }
+
+  public int indexOfStatus(Status aStatus)
+  {
+    int index = status.indexOf(aStatus);
+    return index;
   }
 
   public Role getRole(int index)
@@ -78,34 +108,76 @@ public class Person
     return index;
   }
 
-  public Survey getSurvey(int index)
+  public static int minimumNumberOfStatus()
   {
-    Survey aSurvey = surveies.get(index);
-    return aSurvey;
+    return 0;
   }
 
-  public List<Survey> getSurveies()
+  public Status addStatus(Date aDate, Tree aTree)
   {
-    List<Survey> newSurveies = Collections.unmodifiableList(surveies);
-    return newSurveies;
+    return new Status(aDate, aTree, this);
   }
 
-  public int numberOfSurveies()
+  public boolean addStatus(Status aStatus)
   {
-    int number = surveies.size();
-    return number;
+    boolean wasAdded = false;
+    if (status.contains(aStatus)) { return false; }
+    Person existingPerson = aStatus.getPerson();
+    boolean isNewPerson = existingPerson != null && !this.equals(existingPerson);
+    if (isNewPerson)
+    {
+      aStatus.setPerson(this);
+    }
+    else
+    {
+      status.add(aStatus);
+    }
+    wasAdded = true;
+    return wasAdded;
   }
 
-  public boolean hasSurveies()
+  public boolean removeStatus(Status aStatus)
   {
-    boolean has = surveies.size() > 0;
-    return has;
+    boolean wasRemoved = false;
+    //Unable to remove aStatus, as it must always have a person
+    if (!this.equals(aStatus.getPerson()))
+    {
+      status.remove(aStatus);
+      wasRemoved = true;
+    }
+    return wasRemoved;
   }
 
-  public int indexOfSurvey(Survey aSurvey)
+  public boolean addStatusAt(Status aStatus, int index)
+  {  
+    boolean wasAdded = false;
+    if(addStatus(aStatus))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfStatus()) { index = numberOfStatus() - 1; }
+      status.remove(aStatus);
+      status.add(index, aStatus);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveStatusAt(Status aStatus, int index)
   {
-    int index = surveies.indexOf(aSurvey);
-    return index;
+    boolean wasAdded = false;
+    if(status.contains(aStatus))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfStatus()) { index = numberOfStatus() - 1; }
+      status.remove(aStatus);
+      status.add(index, aStatus);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addStatusAt(aStatus, index);
+    }
+    return wasAdded;
   }
 
   public static int minimumNumberOfRoles()
@@ -190,90 +262,18 @@ public class Person
     return wasAdded;
   }
 
-  public static int minimumNumberOfSurveies()
-  {
-    return 0;
-  }
-
-  public Survey addSurvey(Date aDate, Tree aTrees)
-  {
-    return new Survey(aDate, this, aTrees);
-  }
-
-  public boolean addSurvey(Survey aSurvey)
-  {
-    boolean wasAdded = false;
-    if (surveies.contains(aSurvey)) { return false; }
-    Person existingPerson = aSurvey.getPerson();
-    boolean isNewPerson = existingPerson != null && !this.equals(existingPerson);
-    if (isNewPerson)
-    {
-      aSurvey.setPerson(this);
-    }
-    else
-    {
-      surveies.add(aSurvey);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeSurvey(Survey aSurvey)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aSurvey, as it must always have a person
-    if (!this.equals(aSurvey.getPerson()))
-    {
-      surveies.remove(aSurvey);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-
-  public boolean addSurveyAt(Survey aSurvey, int index)
-  {  
-    boolean wasAdded = false;
-    if(addSurvey(aSurvey))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSurveies()) { index = numberOfSurveies() - 1; }
-      surveies.remove(aSurvey);
-      surveies.add(index, aSurvey);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveSurveyAt(Survey aSurvey, int index)
-  {
-    boolean wasAdded = false;
-    if(surveies.contains(aSurvey))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSurveies()) { index = numberOfSurveies() - 1; }
-      surveies.remove(aSurvey);
-      surveies.add(index, aSurvey);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addSurveyAt(aSurvey, index);
-    }
-    return wasAdded;
-  }
-
   public void delete()
   {
+    for(int i=status.size(); i > 0; i--)
+    {
+      Status aStatus = status.get(i - 1);
+      aStatus.delete();
+    }
     ArrayList<Role> copyOfRoles = new ArrayList<Role>(roles);
     roles.clear();
     for(Role aRole : copyOfRoles)
     {
       aRole.removePerson(this);
-    }
-    for(int i=surveies.size(); i > 0; i--)
-    {
-      Survey aSurvey = surveies.get(i - 1);
-      aSurvey.delete();
     }
   }
 

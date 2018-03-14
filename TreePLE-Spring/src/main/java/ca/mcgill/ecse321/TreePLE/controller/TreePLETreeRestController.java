@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Lists;
-
 import ca.mcgill.ecse321.TreePLE.dto.MunicipalityDto;
 import ca.mcgill.ecse321.TreePLE.dto.StatusDto;
 import ca.mcgill.ecse321.TreePLE.dto.TreeDto;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Status;
+import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
@@ -81,7 +80,7 @@ public class TreePLETreeRestController {
 			return null;
 		}*/
 	
-	private List<TreeDto> createTreesDtosForMunicipality(Municipality m){
+/*	private List<TreeDto> createTreesDtosForMunicipality(Municipality m){
 		
 		List<Tree> treesForMunicipality = service.getTreeByMunicipality(m);
 		List<TreeDto> trees = new ArrayList<TreeDto>();
@@ -89,9 +88,13 @@ public class TreePLETreeRestController {
 			trees.add(convertToDto(tree));
 		}
 		return trees;
-	}
+	} */
 	
 	// get all trees
+	
+	
+
+	
 	
 	@GetMapping(value = { "/trees", "/trees/" })
 	public List<TreeDto> findAllTrees() throws InvalidInputException {
@@ -103,6 +106,64 @@ public class TreePLETreeRestController {
 		return trees;
 	}
 	
+	
+	
+	@GetMapping(value = { "/CalculateCurrentBI/"})
+	public int calculateCurrentBI() {
+	int BI;	
+	BI=service.CalculateCurrentBioDiversityIndex();
+		
+		return BI;
+	}
+	
+	@GetMapping(value = { "/CalculateCurrentCarbonSEQ/"})
+	public int calculateCurrentCarbonSEQ() {
+	int seq;	
+	seq=service.CalculateCurrentCarbonSeqPerYear();
+		
+		return seq;
+	}
+	
+	
+	@GetMapping(value = { "/CurrentTotalCanopy/"})
+	public int currentTotalCanopy() {
+	int can;	
+	can=service.CalculateCurrentBioDiversityIndex();
+		
+		return can;
+	}
+	
+	@GetMapping(value= {"/trees/{species}"})
+	public List<TreeDto> getTreesBySpecies 
+	(@PathVariable  (name="species") TreeSpecies species) throws InvalidInputException {
+	
+		List<TreeDto> trees= new ArrayList<TreeDto>();
+		for(Tree tree: (service.getTreeBySpecies(species))) {
+			trees.add(convertToDto(tree));
+		}
+	 return trees; }
+	
+	
+	
+	@GetMapping(value= {"/trees/{status}"})
+	public List<TreeDto> getTreesBySpecies 
+	(@PathVariable  (name="status") TreeState state) throws InvalidInputException {
+	
+		List<TreeDto> trees= new ArrayList<TreeDto>();
+		for(Tree tree: (service.getTreeByState(state))) {
+			trees.add(convertToDto(tree));
+		}
+	 return trees; }
+	
+	@GetMapping(value= {"/trees/{MunicipalityName}"})
+	public List<TreeDto> getTreesByMunicipality 
+	(@PathVariable  (name="mun") MunicipalityName munName) throws InvalidInputException {
+	
+		List<TreeDto> trees= new ArrayList<TreeDto>();
+		for(Tree tree: (service.getTreeByMunicipality(munName))) {
+			trees.add(convertToDto(tree));
+		}
+	 return trees; }
 	//create municipality
 /*	@PostMapping(value = {"/Municipality/{name}", "/Municipality/{name}/"})
 	public MunicipalityDto NewMunicipality(@PathVariable("name") MunicipalityName munName) throws InvalidInputException {
@@ -113,8 +174,9 @@ public class TreePLETreeRestController {
 	*/
 	// Create a new tree
 	
-	@PostMapping(value = { "/PlantTree/"})
+	@PostMapping(value = { "/PlantTree/{userName}"})
 	public TreeDto plantTree(
+			@PathVariable("userName") String userName,
 			@RequestParam (name="landType") LandType landtype,
 			@RequestParam  (name="species") TreeSpecies species,
 			@RequestParam  (name="height") double height,
@@ -127,7 +189,7 @@ public class TreePLETreeRestController {
 
 	;
 	Municipality mun= service.getMunicipalityByName(municipalityName);
-		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, mun);
+		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, mun,userName);
 		
 		return convertToDto(tree);
 }
@@ -148,17 +210,128 @@ public class TreePLETreeRestController {
 	
 	//Delete / Cut Tree
 
-	@PostMapping(value = { "/cutDownTree/{treeID}" })
+	@PostMapping(value = { "/cutDownTree/{treeID}/{userName}" })
 
 
 	public TreeDto cutDownTree(
-			@PathVariable("treeID") int treeID) throws InvalidInputException {
+			@PathVariable("treeID") int treeID,
+			@PathVariable("userName") String userName)
+			throws InvalidInputException {
 		
 	Tree t = service.getTreeByID(treeID);
 
-	service.cutDownTree(t);
+	service.cutDownTree(t,userName);
 		return convertToDto(t);
 	}
+	
+	
+	
+	@PostMapping(value = { "/MarktoBeCutDown/{treeID}/{userName}" })
+
+
+	public TreeDto MarkToBeCutDown(
+			@PathVariable("treeID") int treeID,
+			@PathVariable("userName") String userName)
+			throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	service.MarkTreeToBeCutDown(t,userName);
+		return convertToDto(t);
+	}
+	
+	@PostMapping(value = { "/MarkAsDiseased/{treeID}/{userName}" })
+
+
+	public TreeDto MarkAsDiseased(
+			@PathVariable("treeID") int treeID,
+			@PathVariable("userName") String userName)
+			throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	service.MarkTreeAsDiseased(t,userName);
+		return convertToDto(t);
+	}
+	
+
+	@PostMapping(value = { "/setTreeSpecies/{treeID}" })
+
+
+	public TreeDto setTreeSpecies(
+			@PathVariable("treeID") int treeID,
+			@RequestParam  (name="species") TreeSpecies species) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	t.setTreeSpecies(species);
+		return convertToDto(t);
+	}
+	
+	@PostMapping(value = { "/setTreeLandType/{treeID}" })
+	public TreeDto setTreeLandType(
+			@PathVariable("treeID") int treeID,
+			@RequestParam  (name="landType") LandType landType) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	t.setLandType(landType);
+		return convertToDto(t);
+	}
+	
+	
+	
+	@PostMapping(value = { "/setTreeHeight/{treeID}" })
+	public TreeDto setTreeHeight(
+			@PathVariable("treeID") int treeID,
+			@RequestParam  (name="height") double height) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	t.setHeight(height);
+		return convertToDto(t);
+	}	
+
+	
+	
+	@PostMapping(value = { "/setTreeDiameter/{treeID}" })
+	public TreeDto setTreeDiameter(
+			@PathVariable("treeID") int treeID,
+			@RequestParam  (name="diameter") double diameter) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	t.setDiameter(diameter);
+		return convertToDto(t);
+	}
+
+	
+
+	@PostMapping(value = { "/setTreeLongitude/{treeID}" })
+	public TreeDto setTreeLongitude(
+			@PathVariable("treeID") int treeID,
+			@RequestParam  (name="Longitude") double Longitude) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	t.setLongitude(Longitude);
+		return convertToDto(t);
+	}	
+	
+
+	
+	
+	@PostMapping(value = { "/setTreeLatitude/{treeID}" })
+	public TreeDto setTreeLatitude(
+			@PathVariable("treeID") int treeID,
+			@RequestParam  (name="latitude") double latitude) throws InvalidInputException {
+		
+	Tree t = service.getTreeByID(treeID);
+
+	t.setLatitude(latitude);
+		return convertToDto(t);
+	}	
+	
 	
 }	
 

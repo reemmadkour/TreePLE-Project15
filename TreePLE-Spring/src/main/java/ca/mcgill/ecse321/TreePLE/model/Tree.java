@@ -34,7 +34,6 @@ public class Tree
   private double latitude;
   private LandType landType;
 
-  
   //Autounique Attributes
   private int treeID;
 
@@ -43,7 +42,6 @@ public class Tree
   private Municipality municipality;
   private Status currentStatus;
   private List<Forecast> forecasts;
-  private List<Survey> surveies;
 
   //------------------------
   // CONSTRUCTOR
@@ -63,7 +61,6 @@ public class Tree
       throw new RuntimeException("Unable to create tree due to municipality");
     }
     forecasts = new ArrayList<Forecast>();
-    surveies = new ArrayList<Survey>();
   }
 
   //------------------------
@@ -229,44 +226,14 @@ public class Tree
     return index;
   }
 
-  public Survey getSurvey(int index)
-  {
-    Survey aSurvey = surveies.get(index);
-    return aSurvey;
-  }
-
-  public List<Survey> getSurveies()
-  {
-    List<Survey> newSurveies = Collections.unmodifiableList(surveies);
-    return newSurveies;
-  }
-
-  public int numberOfSurveies()
-  {
-    int number = surveies.size();
-    return number;
-  }
-
-  public boolean hasSurveies()
-  {
-    boolean has = surveies.size() > 0;
-    return has;
-  }
-
-  public int indexOfSurvey(Survey aSurvey)
-  {
-    int index = surveies.indexOf(aSurvey);
-    return index;
-  }
-
   public static int minimumNumberOfStatuses()
   {
     return 0;
   }
 
-  public Status addStatus()
+  public Status addStatus(Date aDate, Person aPerson)
   {
-    return new Status(this);
+    return new Status(aDate, this, aPerson);
   }
 
   public boolean addStatus(Status aStatus)
@@ -367,14 +334,16 @@ public class Tree
   {
     boolean wasAdded = false;
     if (forecasts.contains(aForecast)) { return false; }
+    if (forecasts.contains(aForecast)) { return false; }
+    if (forecasts.contains(aForecast)) { return false; }
     forecasts.add(aForecast);
-    if (aForecast.indexOfTree(this) != -1)
+    if (aForecast.indexOfCurrentTree(this) != -1)
     {
       wasAdded = true;
     }
     else
     {
-      wasAdded = aForecast.addTree(this);
+      wasAdded = aForecast.addCurrentTree(this);
       if (!wasAdded)
       {
         forecasts.remove(aForecast);
@@ -393,13 +362,13 @@ public class Tree
 
     int oldIndex = forecasts.indexOf(aForecast);
     forecasts.remove(oldIndex);
-    if (aForecast.indexOfTree(this) == -1)
+    if (aForecast.indexOfCurrentTree(this) == -1)
     {
       wasRemoved = true;
     }
     else
     {
-      wasRemoved = aForecast.removeTree(this);
+      wasRemoved = aForecast.removeCurrentTree(this);
       if (!wasRemoved)
       {
         forecasts.add(oldIndex,aForecast);
@@ -440,78 +409,6 @@ public class Tree
     return wasAdded;
   }
 
-  public static int minimumNumberOfSurveies()
-  {
-    return 0;
-  }
-
-  public Survey addSurvey(Date aDate, Person aPerson)
-  {
-    return new Survey(aDate, aPerson, this);
-  }
-
-  public boolean addSurvey(Survey aSurvey)
-  {
-    boolean wasAdded = false;
-    if (surveies.contains(aSurvey)) { return false; }
-    Tree existingTrees = aSurvey.getTrees();
-    boolean isNewTrees = existingTrees != null && !this.equals(existingTrees);
-    if (isNewTrees)
-    {
-      aSurvey.setTrees(this);
-    }
-    else
-    {
-      surveies.add(aSurvey);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeSurvey(Survey aSurvey)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aSurvey, as it must always have a trees
-    if (!this.equals(aSurvey.getTrees()))
-    {
-      surveies.remove(aSurvey);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-
-  public boolean addSurveyAt(Survey aSurvey, int index)
-  {  
-    boolean wasAdded = false;
-    if(addSurvey(aSurvey))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSurveies()) { index = numberOfSurveies() - 1; }
-      surveies.remove(aSurvey);
-      surveies.add(index, aSurvey);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveSurveyAt(Survey aSurvey, int index)
-  {
-    boolean wasAdded = false;
-    if(surveies.contains(aSurvey))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfSurveies()) { index = numberOfSurveies() - 1; }
-      surveies.remove(aSurvey);
-      surveies.add(index, aSurvey);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addSurveyAt(aSurvey, index);
-    }
-    return wasAdded;
-  }
-
   public void delete()
   {
     for(int i=statuses.size(); i > 0; i--)
@@ -527,12 +424,7 @@ public class Tree
     forecasts.clear();
     for(Forecast aForecast : copyOfForecasts)
     {
-      aForecast.removeTree(this);
-    }
-    for(int i=surveies.size(); i > 0; i--)
-    {
-      Survey aSurvey = surveies.get(i - 1);
-      aSurvey.delete();
+      aForecast.removeCurrentTree(this);
     }
   }
 

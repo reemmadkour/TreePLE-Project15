@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 77 "../../../../../TreePLE.ump"
+// line 74 "../../../../../TreePLE.ump"
 public class Forecast
 {
 
@@ -14,24 +14,20 @@ public class Forecast
 
   //Forecast Associations
   private List<Report> report;
-  private List<Survey> survey;
-  private List<Tree> tree;
-  private SystemDate systemDate;
+  private List<Tree> treesToBePlanted;
+  private List<Tree> treesToBeCut;
+  private List<Tree> currentTrees;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Forecast(SystemDate aSystemDate)
+  public Forecast()
   {
     report = new ArrayList<Report>();
-    survey = new ArrayList<Survey>();
-    tree = new ArrayList<Tree>();
-    boolean didAddSystemDate = setSystemDate(aSystemDate);
-    if (!didAddSystemDate)
-    {
-      throw new RuntimeException("Unable to create forecast due to systemDate");
-    }
+    treesToBePlanted = new ArrayList<Tree>();
+    treesToBeCut = new ArrayList<Tree>();
+    currentTrees = new ArrayList<Tree>();
   }
 
   //------------------------
@@ -68,69 +64,94 @@ public class Forecast
     return index;
   }
 
-  public Survey getSurvey(int index)
+  public Tree getTreesToBePlanted(int index)
   {
-    Survey aSurvey = survey.get(index);
-    return aSurvey;
+    Tree aTreesToBePlanted = treesToBePlanted.get(index);
+    return aTreesToBePlanted;
   }
 
-  public List<Survey> getSurvey()
+  public List<Tree> getTreesToBePlanted()
   {
-    List<Survey> newSurvey = Collections.unmodifiableList(survey);
-    return newSurvey;
+    List<Tree> newTreesToBePlanted = Collections.unmodifiableList(treesToBePlanted);
+    return newTreesToBePlanted;
   }
 
-  public int numberOfSurvey()
+  public int numberOfTreesToBePlanted()
   {
-    int number = survey.size();
+    int number = treesToBePlanted.size();
     return number;
   }
 
-  public boolean hasSurvey()
+  public boolean hasTreesToBePlanted()
   {
-    boolean has = survey.size() > 0;
+    boolean has = treesToBePlanted.size() > 0;
     return has;
   }
 
-  public int indexOfSurvey(Survey aSurvey)
+  public int indexOfTreesToBePlanted(Tree aTreesToBePlanted)
   {
-    int index = survey.indexOf(aSurvey);
+    int index = treesToBePlanted.indexOf(aTreesToBePlanted);
     return index;
   }
 
-  public Tree getTree(int index)
+  public Tree getTreesToBeCut(int index)
   {
-    Tree aTree = tree.get(index);
-    return aTree;
+    Tree aTreesToBeCut = treesToBeCut.get(index);
+    return aTreesToBeCut;
   }
 
-  public List<Tree> getTree()
+  public List<Tree> getTreesToBeCut()
   {
-    List<Tree> newTree = Collections.unmodifiableList(tree);
-    return newTree;
+    List<Tree> newTreesToBeCut = Collections.unmodifiableList(treesToBeCut);
+    return newTreesToBeCut;
   }
 
-  public int numberOfTree()
+  public int numberOfTreesToBeCut()
   {
-    int number = tree.size();
+    int number = treesToBeCut.size();
     return number;
   }
 
-  public boolean hasTree()
+  public boolean hasTreesToBeCut()
   {
-    boolean has = tree.size() > 0;
+    boolean has = treesToBeCut.size() > 0;
     return has;
   }
 
-  public int indexOfTree(Tree aTree)
+  public int indexOfTreesToBeCut(Tree aTreesToBeCut)
   {
-    int index = tree.indexOf(aTree);
+    int index = treesToBeCut.indexOf(aTreesToBeCut);
     return index;
   }
 
-  public SystemDate getSystemDate()
+  public Tree getCurrentTree(int index)
   {
-    return systemDate;
+    Tree aCurrentTree = currentTrees.get(index);
+    return aCurrentTree;
+  }
+
+  public List<Tree> getCurrentTrees()
+  {
+    List<Tree> newCurrentTrees = Collections.unmodifiableList(currentTrees);
+    return newCurrentTrees;
+  }
+
+  public int numberOfCurrentTrees()
+  {
+    int number = currentTrees.size();
+    return number;
+  }
+
+  public boolean hasCurrentTrees()
+  {
+    boolean has = currentTrees.size() > 0;
+    return has;
+  }
+
+  public int indexOfCurrentTree(Tree aCurrentTree)
+  {
+    int index = currentTrees.indexOf(aCurrentTree);
+    return index;
   }
 
   public static int minimumNumberOfReport()
@@ -215,187 +236,200 @@ public class Forecast
     return wasAdded;
   }
 
-  public static int minimumNumberOfSurvey()
+  public static int minimumNumberOfTreesToBePlanted()
   {
     return 0;
   }
 
-  public boolean addSurvey(Survey aSurvey)
+  public boolean addTreesToBePlanted(Tree aTreesToBePlanted)
   {
     boolean wasAdded = false;
-    if (survey.contains(aSurvey)) { return false; }
-    survey.add(aSurvey);
-    if (aSurvey.indexOfForecast(this) != -1)
+    if (treesToBePlanted.contains(aTreesToBePlanted)) { return false; }
+    treesToBePlanted.add(aTreesToBePlanted);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeTreesToBePlanted(Tree aTreesToBePlanted)
+  {
+    boolean wasRemoved = false;
+    if (treesToBePlanted.contains(aTreesToBePlanted))
+    {
+      treesToBePlanted.remove(aTreesToBePlanted);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addTreesToBePlantedAt(Tree aTreesToBePlanted, int index)
+  {  
+    boolean wasAdded = false;
+    if(addTreesToBePlanted(aTreesToBePlanted))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfTreesToBePlanted()) { index = numberOfTreesToBePlanted() - 1; }
+      treesToBePlanted.remove(aTreesToBePlanted);
+      treesToBePlanted.add(index, aTreesToBePlanted);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveTreesToBePlantedAt(Tree aTreesToBePlanted, int index)
+  {
+    boolean wasAdded = false;
+    if(treesToBePlanted.contains(aTreesToBePlanted))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfTreesToBePlanted()) { index = numberOfTreesToBePlanted() - 1; }
+      treesToBePlanted.remove(aTreesToBePlanted);
+      treesToBePlanted.add(index, aTreesToBePlanted);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addTreesToBePlantedAt(aTreesToBePlanted, index);
+    }
+    return wasAdded;
+  }
+
+  public static int minimumNumberOfTreesToBeCut()
+  {
+    return 0;
+  }
+
+  public boolean addTreesToBeCut(Tree aTreesToBeCut)
+  {
+    boolean wasAdded = false;
+    if (treesToBeCut.contains(aTreesToBeCut)) { return false; }
+    treesToBeCut.add(aTreesToBeCut);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeTreesToBeCut(Tree aTreesToBeCut)
+  {
+    boolean wasRemoved = false;
+    if (treesToBeCut.contains(aTreesToBeCut))
+    {
+      treesToBeCut.remove(aTreesToBeCut);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addTreesToBeCutAt(Tree aTreesToBeCut, int index)
+  {  
+    boolean wasAdded = false;
+    if(addTreesToBeCut(aTreesToBeCut))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfTreesToBeCut()) { index = numberOfTreesToBeCut() - 1; }
+      treesToBeCut.remove(aTreesToBeCut);
+      treesToBeCut.add(index, aTreesToBeCut);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveTreesToBeCutAt(Tree aTreesToBeCut, int index)
+  {
+    boolean wasAdded = false;
+    if(treesToBeCut.contains(aTreesToBeCut))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfTreesToBeCut()) { index = numberOfTreesToBeCut() - 1; }
+      treesToBeCut.remove(aTreesToBeCut);
+      treesToBeCut.add(index, aTreesToBeCut);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addTreesToBeCutAt(aTreesToBeCut, index);
+    }
+    return wasAdded;
+  }
+
+  public static int minimumNumberOfCurrentTrees()
+  {
+    return 0;
+  }
+
+  public boolean addCurrentTree(Tree aCurrentTree)
+  {
+    boolean wasAdded = false;
+    if (currentTrees.contains(aCurrentTree)) { return false; }
+    currentTrees.add(aCurrentTree);
+    if (aCurrentTree.indexOfForecast(this) != -1)
     {
       wasAdded = true;
     }
     else
     {
-      wasAdded = aSurvey.addForecast(this);
+      wasAdded = aCurrentTree.addForecast(this);
       if (!wasAdded)
       {
-        survey.remove(aSurvey);
+        currentTrees.remove(aCurrentTree);
       }
     }
     return wasAdded;
   }
 
-  public boolean removeSurvey(Survey aSurvey)
+  public boolean removeCurrentTree(Tree aCurrentTree)
   {
     boolean wasRemoved = false;
-    if (!survey.contains(aSurvey))
+    if (!currentTrees.contains(aCurrentTree))
     {
       return wasRemoved;
     }
 
-    int oldIndex = survey.indexOf(aSurvey);
-    survey.remove(oldIndex);
-    if (aSurvey.indexOfForecast(this) == -1)
+    int oldIndex = currentTrees.indexOf(aCurrentTree);
+    currentTrees.remove(oldIndex);
+    if (aCurrentTree.indexOfForecast(this) == -1)
     {
       wasRemoved = true;
     }
     else
     {
-      wasRemoved = aSurvey.removeForecast(this);
+      wasRemoved = aCurrentTree.removeForecast(this);
       if (!wasRemoved)
       {
-        survey.add(oldIndex,aSurvey);
+        currentTrees.add(oldIndex,aCurrentTree);
       }
     }
     return wasRemoved;
   }
 
-  public boolean addSurveyAt(Survey aSurvey, int index)
+  public boolean addCurrentTreeAt(Tree aCurrentTree, int index)
   {  
     boolean wasAdded = false;
-    if(addSurvey(aSurvey))
+    if(addCurrentTree(aCurrentTree))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfSurvey()) { index = numberOfSurvey() - 1; }
-      survey.remove(aSurvey);
-      survey.add(index, aSurvey);
+      if(index > numberOfCurrentTrees()) { index = numberOfCurrentTrees() - 1; }
+      currentTrees.remove(aCurrentTree);
+      currentTrees.add(index, aCurrentTree);
       wasAdded = true;
     }
     return wasAdded;
   }
 
-  public boolean addOrMoveSurveyAt(Survey aSurvey, int index)
+  public boolean addOrMoveCurrentTreeAt(Tree aCurrentTree, int index)
   {
     boolean wasAdded = false;
-    if(survey.contains(aSurvey))
+    if(currentTrees.contains(aCurrentTree))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfSurvey()) { index = numberOfSurvey() - 1; }
-      survey.remove(aSurvey);
-      survey.add(index, aSurvey);
+      if(index > numberOfCurrentTrees()) { index = numberOfCurrentTrees() - 1; }
+      currentTrees.remove(aCurrentTree);
+      currentTrees.add(index, aCurrentTree);
       wasAdded = true;
     } 
     else 
     {
-      wasAdded = addSurveyAt(aSurvey, index);
+      wasAdded = addCurrentTreeAt(aCurrentTree, index);
     }
     return wasAdded;
-  }
-
-  public static int minimumNumberOfTree()
-  {
-    return 0;
-  }
-
-  public boolean addTree(Tree aTree)
-  {
-    boolean wasAdded = false;
-    if (tree.contains(aTree)) { return false; }
-    tree.add(aTree);
-    if (aTree.indexOfForecast(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aTree.addForecast(this);
-      if (!wasAdded)
-      {
-        tree.remove(aTree);
-      }
-    }
-    return wasAdded;
-  }
-
-  public boolean removeTree(Tree aTree)
-  {
-    boolean wasRemoved = false;
-    if (!tree.contains(aTree))
-    {
-      return wasRemoved;
-    }
-
-    int oldIndex = tree.indexOf(aTree);
-    tree.remove(oldIndex);
-    if (aTree.indexOfForecast(this) == -1)
-    {
-      wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aTree.removeForecast(this);
-      if (!wasRemoved)
-      {
-        tree.add(oldIndex,aTree);
-      }
-    }
-    return wasRemoved;
-  }
-
-  public boolean addTreeAt(Tree aTree, int index)
-  {  
-    boolean wasAdded = false;
-    if(addTree(aTree))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfTree()) { index = numberOfTree() - 1; }
-      tree.remove(aTree);
-      tree.add(index, aTree);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveTreeAt(Tree aTree, int index)
-  {
-    boolean wasAdded = false;
-    if(tree.contains(aTree))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfTree()) { index = numberOfTree() - 1; }
-      tree.remove(aTree);
-      tree.add(index, aTree);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addTreeAt(aTree, index);
-    }
-    return wasAdded;
-  }
-
-  public boolean setSystemDate(SystemDate aSystemDate)
-  {
-    boolean wasSet = false;
-    if (aSystemDate == null)
-    {
-      return wasSet;
-    }
-
-    SystemDate existingSystemDate = systemDate;
-    systemDate = aSystemDate;
-    if (existingSystemDate != null && !existingSystemDate.equals(aSystemDate))
-    {
-      existingSystemDate.removeForecast(this);
-    }
-    systemDate.addForecast(this);
-    wasSet = true;
-    return wasSet;
   }
 
   public void delete()
@@ -406,21 +440,14 @@ public class Forecast
     {
       aReport.removeForecast(this);
     }
-    ArrayList<Survey> copyOfSurvey = new ArrayList<Survey>(survey);
-    survey.clear();
-    for(Survey aSurvey : copyOfSurvey)
+    treesToBePlanted.clear();
+    treesToBeCut.clear();
+    ArrayList<Tree> copyOfCurrentTrees = new ArrayList<Tree>(currentTrees);
+    currentTrees.clear();
+    for(Tree aCurrentTree : copyOfCurrentTrees)
     {
-      aSurvey.removeForecast(this);
+      aCurrentTree.removeForecast(this);
     }
-    ArrayList<Tree> copyOfTree = new ArrayList<Tree>(tree);
-    tree.clear();
-    for(Tree aTree : copyOfTree)
-    {
-      aTree.removeForecast(this);
-    }
-    SystemDate placeholderSystemDate = systemDate;
-    this.systemDate = null;
-    placeholderSystemDate.removeForecast(this);
   }
 
 }

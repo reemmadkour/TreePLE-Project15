@@ -52,7 +52,7 @@ public class TreeDto {
 	  public TreeSpecies getTreeSpecies() {
 			return treeSpecies;
 		}
-
+	  
 		public double getHeight() {
 			return height;
 		}
