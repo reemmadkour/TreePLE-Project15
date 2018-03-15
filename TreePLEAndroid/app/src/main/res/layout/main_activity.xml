@@ -16,9 +16,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
-
+        <!-- TODO add a View Maps Button here -->
         <Button
             android:id="@+id/button1"
             style="@android:style/Widget.Button"
@@ -38,6 +39,11 @@
             android:layout_height="2dp"
             android:background="#16552e" />
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#16552e" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,8 +54,124 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Please Enter You Name"
+                    android:inputType="textPersonName"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="#16552e" />
+
+
+
+            <!-- TODO add Diameter Text -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/diametertext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/linearLayout"
+                    android:ems="10"
+                    android:hint="Diameter"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
+
 
             </LinearLayout>
+
+            <!-- TODO add height text -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/heighttext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/diametertext"
+                    android:layout_marginTop="13dp"
+                    android:ems="10"
+                    android:hint="Height"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <EditText
+                android:id="@+id/longtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/diametertext"
+                android:layout_marginTop="13dp"
+                android:ems="10"
+                android:hint="Longitude"
+                android:inputType="numberDecimal"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/lattext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/diametertext"
+                    android:layout_marginTop="13dp"
+                    android:ems="10"
+                    android:hint="Latitude"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
+        <!-- TODO add a Municipality Spinner -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,6 +192,7 @@
                     android:visibility="visible" />
             </LinearLayout>
 
+            <!-- TODO add a Species Spinner -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,45 +200,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="@string/heightspinner"
-                    android:textStyle="italic" />
-
-                <Spinner
-                    android:id="@+id/heightspinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/diameterspinner"
-                    android:textStyle="italic" />
-
-                <Spinner
-                    android:id="@+id/diameterspinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/speciesspinner"
                     android:textStyle="italic" />
 
@@ -126,6 +211,8 @@
                     android:layout_gravity="end"
                     android:visibility="visible" />
             </LinearLayout>
+
+            <!-- TODO add a Land Type Spinner -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -146,23 +233,27 @@
                     android:visibility="visible" />
             </LinearLayout>
 
-
-
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
-                <!-- TODO add a ADDTREE and Refresh Lists buttons here -->
 
+                <!-- TODO add a ADDTREE and Refresh Lists buttons here -->
 
                 <Button
                     android:id="@+id/AddTree"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/heighttext"
+                    android:layout_marginTop="16dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
                     android:onClick="addTree"
                     android:text="@string/AddTree" />
+
+
             </LinearLayout>
+
 
         </LinearLayout>
 
@@ -171,32 +262,11 @@
             android:layout_height="2dp"
             android:background="#16552e" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/newMun_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/newMun_hint"
-                android:textSize="14sp"
-                android:textStyle="italic" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed"
-                android:onClick="addMunicipality"
-                android:text="@string/newmun_button" />
-        </LinearLayout>
-
 
 
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

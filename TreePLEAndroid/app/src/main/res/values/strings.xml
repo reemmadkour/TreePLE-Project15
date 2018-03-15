@@ -10,10 +10,14 @@
     <string name="refresh_list">Refresh</string>
 
     <string name="munspinner_label">Municipality</string>
-    <string name="heightspinner">Height</string>
-    <string name="diameterspinner">Diameter</string>
+    <string name="heighttext">Height</string>
+    <string name="diametertext">Diameter</string>
     <string name="speciesspinner">Species</string>
     <string name="landspinner">Landtype</string>
+
+    <string name="longtext">Height</string>
+    <string name="lattext">Diameter</string>
+    <string name="username">Diameter</string>
 
 
 </resources>
