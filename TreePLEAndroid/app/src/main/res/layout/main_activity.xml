@@ -10,6 +10,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
+    android:background="@drawable/tree3"
 
     tools:context="ca.mcgill.ecse321.treeple.MainActivity">
 
@@ -61,15 +62,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/username"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="Please Enter You Name"
-                    android:inputType="textPersonName"
-                    android:textStyle="italic" />
             </LinearLayout>
 
 
