@@ -404,75 +404,72 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		double diameter = 12;
 		double longitude = 23;
 		double latitude = 24;
+		String userName = "M.ad";
 		TreeSpecies species = TreeSpecies.Willow;
 		LandType landtype = LandType.Institutional;
 		try {
-			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal);
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal, userName);
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		//change parameters
-		height = 10;
-		diameter = 22;
-		longitude = 23;
-		latitude = 24;
+		height = 20;
+		diameter = 44;
+		longitude = 20;
+		latitude = 42;
+		userName="laura12";
 		species = TreeSpecies.Willow;
 		landtype = LandType.Institutional;
-		mun = new Municipality();
-		mun.setMunicipalityName(MunicipalityName.Montreal);
 		try {
-			service.plantTree(landtype, species, height, diameter, longitude, latitude, mun);
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, laval, userName);
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		//change parameters
-		height = 10;
-		diameter = 22;
-		longitude = 23;
-		latitude = 24;
+		height = 30;
+		diameter = 32;
+		longitude = 48;
+		latitude = 67;
+		userName="laura12";
 		species = TreeSpecies.Willow;
 		landtype = LandType.Institutional;
-		mun = new Municipality();
-		mun.setMunicipalityName(MunicipalityName.Montreal);
 		service = new TreePLETreeService(tm);
 		try {
-			service.plantTree(landtype, species, height, diameter, longitude, latitude, mun);
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal, userName);
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		height = 10;
-		diameter = 22;
-		longitude = 23;
-		latitude = 24;
+		height = 40;
+		diameter = 10;
+		longitude = 64;
+		latitude = 35;
+		userName="james";
 		species = TreeSpecies.Willow;
 		landtype = LandType.Institutional;
-		montreal = new Municipality();
-		mun.setMunicipalityName(MunicipalityName.Montreal);
 		service = new TreePLETreeService(tm);
 		try {
-			service.plantTree(landtype, species, height, diameter, longitude, latitude, mun);
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal, userName);
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		height = 10;
-		diameter = 22;
-		longitude = 23;
-		latitude = 24;
+		height = 16;
+		diameter = 35;
+		longitude = 27;
+		latitude = 29;
+		userName = "john";
 		species = TreeSpecies.Willow;
 		landtype = LandType.Institutional;
-		//mun = new Municipality();
-		montreal.setMunicipalityName(MunicipalityName.Montreal);
 		service = new TreePLETreeService(tm);
 		try {
-			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal);
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, laval, userName);
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -35,15 +35,11 @@ public class TestPersistence {
 		Tree tree1 = new Tree(12, 23, 34, 34, municipality1);
 		Tree tree2 = new Tree(34, 24, 26, 34, municipality2);
 			
-
-
-		
-		
-			// manage trees
-			tm.addTree(tree1);
-			tm.addTree(tree2);
-			tm.addMunicipality(municipality1);
-			tm.addMunicipality(municipality2);
+		// manage trees
+		tm.addTree(tree1);
+		tm.addTree(tree2);
+		tm.addMunicipality(municipality1);
+		tm.addMunicipality(municipality2);
 		
 
 		//create survey
