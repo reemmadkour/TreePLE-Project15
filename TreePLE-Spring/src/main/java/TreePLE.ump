@@ -45,6 +45,7 @@ Date date;
 
 class Person {
 name;
+
   1--* Status status;
  * -- * Role roles;
 }
@@ -72,6 +73,8 @@ double bioDiversityIndex;
 
 
 class Forecast {
+autounique fID;
+  0..*-- 1 Person person;
 * -- * Report report;
 * -> 0..* Tree treesToBePlanted;
   * -> 0..* Tree treesToBeCut;

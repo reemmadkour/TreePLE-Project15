@@ -6,13 +6,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import ca.mcgill.ecse321.TreePLE.model.Forecast;
 //import ca.mcgill.ecse321.TreePLE.controller.RequestParam;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
-
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
@@ -36,6 +36,55 @@ public class TreePLETreeService {
 		  
 		}
 		
+		public Forecast createNewForecast(String userName) {
+			List<Person> users= listAllUsers();
+			  Person user =null;
+			  for(Person p : users) {
+				  if (p.getName()==userName) { user=p;}
+			  }
+			  if(user==null) {
+				  user= new Person(userName);
+			  }
+			
+			Forecast f= new Forecast(user);
+			return f;
+		}
+		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException{
+			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
+				    throw new InvalidInputException("Missing information");
+				  }
+				  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
+				  Person user= f.getPerson();
+				  Date date1= new Date();
+				  Status s = new Status(date1,t,user);
+				 
+				  //change tree status to planted
+				  s.setTreeState(TreeState.Planted);
+				  t.setCurrentStatus(s);
+				  
+				  t.addStatus(s);
+				  
+				
+				  
+				  //set tree species
+				  t.setTreeSpecies(species);
+				  
+				  //set Landtype
+				  t.setLandType(landtype);
+				  
+				
+				  
+				  //set municipality
+				  t.setMunicipality(municipality);
+				  //MunicipalityName name = municipality.getMunicipalityName();
+				  //municipality.setMunicipalityName(name);
+				  f.addTreesToBePlanted(t);
+				  tm.addForecast(f);
+				  PersistenceXStream.saveToXMLwithXStream(tm);
+				  return f ;
+				  
+				  
+		}
 		public Tree getTreeByID  (int id) throws InvalidInputException  {
 			List<Tree> alltrees= listAllTrees();
 		Tree tree= null;
@@ -255,7 +304,21 @@ return (treeList.size()*48);
 		  // service stub
 			return tm.getMunicipality();
 		}
-		
+		public Forecast cutDownTreeForForecast(Tree t, Forecast f) throws InvalidInputException{
+			if(t==null) {
+				throw new InvalidInputException("fill in the missing information");
+			}
+			
+			 
+			  //change tree status to planted
+			
+			  f.addTreesToBeCut(t);
+			  PersistenceXStream.saveToXMLwithXStream(tm);
+			  return f ;
+			  
+			  	
+			
+		}
 		
 		//cut down tree
 		public Tree cutDownTree(Tree t, String userName) throws InvalidInputException {
@@ -307,7 +370,7 @@ return (treeList.size()*48);
 		
 	
 	
-		s.setTreeState(TreeState.Cut);
+		s.setTreeState(TreeState.Diseased);
 	
 		t.addStatus(s);
 		t.setCurrentStatus(s);
@@ -337,7 +400,7 @@ return (treeList.size()*48);
 		
 	
 	
-		s.setTreeState(TreeState.Cut);
+		s.setTreeState(TreeState.ToBeCut);
 	
 		t.addStatus(s);
 		t.setCurrentStatus(s);

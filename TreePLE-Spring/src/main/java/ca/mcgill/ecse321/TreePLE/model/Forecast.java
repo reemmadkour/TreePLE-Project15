@@ -4,15 +4,25 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 74 "../../../../../TreePLE.ump"
+// line 75 "../../../../../TreePLE.ump"
 public class Forecast
 {
+
+  //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  private static int nextFID = 1;
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
+  //Autounique Attributes
+  private int fID;
+
   //Forecast Associations
+  private Person person;
   private List<Report> report;
   private List<Tree> treesToBePlanted;
   private List<Tree> treesToBeCut;
@@ -22,8 +32,14 @@ public class Forecast
   // CONSTRUCTOR
   //------------------------
 
-  public Forecast()
+  public Forecast(Person aPerson)
   {
+    fID = nextFID++;
+    boolean didAddPerson = setPerson(aPerson);
+    if (!didAddPerson)
+    {
+      throw new RuntimeException("Unable to create forecast due to person");
+    }
     report = new ArrayList<Report>();
     treesToBePlanted = new ArrayList<Tree>();
     treesToBeCut = new ArrayList<Tree>();
@@ -33,6 +49,16 @@ public class Forecast
   //------------------------
   // INTERFACE
   //------------------------
+
+  public int getFID()
+  {
+    return fID;
+  }
+
+  public Person getPerson()
+  {
+    return person;
+  }
 
   public Report getReport(int index)
   {
@@ -152,6 +178,25 @@ public class Forecast
   {
     int index = currentTrees.indexOf(aCurrentTree);
     return index;
+  }
+
+  public boolean setPerson(Person aPerson)
+  {
+    boolean wasSet = false;
+    if (aPerson == null)
+    {
+      return wasSet;
+    }
+
+    Person existingPerson = person;
+    person = aPerson;
+    if (existingPerson != null && !existingPerson.equals(aPerson))
+    {
+      existingPerson.removeForecast(this);
+    }
+    person.addForecast(this);
+    wasSet = true;
+    return wasSet;
   }
 
   public static int minimumNumberOfReport()
@@ -434,6 +479,9 @@ public class Forecast
 
   public void delete()
   {
+    Person placeholderPerson = person;
+    this.person = null;
+    placeholderPerson.removeForecast(this);
     ArrayList<Report> copyOfReport = new ArrayList<Report>(report);
     report.clear();
     for(Report aReport : copyOfReport)
@@ -450,4 +498,11 @@ public class Forecast
     }
   }
 
+
+  public String toString()
+  {
+    return super.toString() + "["+
+            "fID" + ":" + getFID()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "person = "+(getPerson()!=null?Integer.toHexString(System.identityHashCode(getPerson())):"null");
+  }
 }

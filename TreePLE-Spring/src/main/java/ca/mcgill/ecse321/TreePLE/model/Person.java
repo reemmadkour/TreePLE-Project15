@@ -19,6 +19,7 @@ public class Person
   //Person Associations
   private List<Status> status;
   private List<Role> roles;
+  private List<Forecast> forecasts;
 
   //------------------------
   // CONSTRUCTOR
@@ -29,6 +30,7 @@ public class Person
     name = aName;
     status = new ArrayList<Status>();
     roles = new ArrayList<Role>();
+    forecasts = new ArrayList<Forecast>();
   }
 
   //------------------------
@@ -105,6 +107,36 @@ public class Person
   public int indexOfRole(Role aRole)
   {
     int index = roles.indexOf(aRole);
+    return index;
+  }
+
+  public Forecast getForecast(int index)
+  {
+    Forecast aForecast = forecasts.get(index);
+    return aForecast;
+  }
+
+  public List<Forecast> getForecasts()
+  {
+    List<Forecast> newForecasts = Collections.unmodifiableList(forecasts);
+    return newForecasts;
+  }
+
+  public int numberOfForecasts()
+  {
+    int number = forecasts.size();
+    return number;
+  }
+
+  public boolean hasForecasts()
+  {
+    boolean has = forecasts.size() > 0;
+    return has;
+  }
+
+  public int indexOfForecast(Forecast aForecast)
+  {
+    int index = forecasts.indexOf(aForecast);
     return index;
   }
 
@@ -262,6 +294,78 @@ public class Person
     return wasAdded;
   }
 
+  public static int minimumNumberOfForecasts()
+  {
+    return 0;
+  }
+
+  public Forecast addForecast()
+  {
+    return new Forecast(this);
+  }
+
+  public boolean addForecast(Forecast aForecast)
+  {
+    boolean wasAdded = false;
+    if (forecasts.contains(aForecast)) { return false; }
+    Person existingPerson = aForecast.getPerson();
+    boolean isNewPerson = existingPerson != null && !this.equals(existingPerson);
+    if (isNewPerson)
+    {
+      aForecast.setPerson(this);
+    }
+    else
+    {
+      forecasts.add(aForecast);
+    }
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeForecast(Forecast aForecast)
+  {
+    boolean wasRemoved = false;
+    //Unable to remove aForecast, as it must always have a person
+    if (!this.equals(aForecast.getPerson()))
+    {
+      forecasts.remove(aForecast);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addForecastAt(Forecast aForecast, int index)
+  {  
+    boolean wasAdded = false;
+    if(addForecast(aForecast))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfForecasts()) { index = numberOfForecasts() - 1; }
+      forecasts.remove(aForecast);
+      forecasts.add(index, aForecast);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveForecastAt(Forecast aForecast, int index)
+  {
+    boolean wasAdded = false;
+    if(forecasts.contains(aForecast))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfForecasts()) { index = numberOfForecasts() - 1; }
+      forecasts.remove(aForecast);
+      forecasts.add(index, aForecast);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addForecastAt(aForecast, index);
+    }
+    return wasAdded;
+  }
+
   public void delete()
   {
     for(int i=status.size(); i > 0; i--)
@@ -274,6 +378,11 @@ public class Person
     for(Role aRole : copyOfRoles)
     {
       aRole.removePerson(this);
+    }
+    for(int i=forecasts.size(); i > 0; i--)
+    {
+      Forecast aForecast = forecasts.get(i - 1);
+      aForecast.delete();
     }
   }
 
