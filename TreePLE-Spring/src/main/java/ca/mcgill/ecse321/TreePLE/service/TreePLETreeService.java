@@ -11,6 +11,7 @@ import ca.mcgill.ecse321.TreePLE.model.Forecast;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
+import ca.mcgill.ecse321.TreePLE.model.Report;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
@@ -35,6 +36,34 @@ public class TreePLETreeService {
 		  tm.addMunicipality(m2);
 		  
 		}
+		
+		
+		public Report generateReportForForecast(Forecast f) {
+	int i=0;
+	for(i=0; i<f.getCurrentTrees().size();i++) {
+		f.removeCurrentTree(f.getCurrentTree(i));
+	}
+	for(i=0; i<f.getTreesToBePlanted().size();i++) {
+		f.addCurrentTree(f.getTreesToBePlanted(i));
+	}
+	List<Tree> currentToAdd = new ArrayList<Tree>();
+	currentToAdd = getNonCutTreesInList(tm.getTrees());
+	for(i=0; i<currentToAdd.size();i++) {
+		if(!(f.getTreesToBeCut().contains(currentToAdd.get(i)))){
+			f.addCurrentTree(currentToAdd.get(i));}}
+	double b=0;
+	double c= 0;
+	int s=0;
+	b= CalculateBioDiversityIndexForTrees(f.getCurrentTrees());
+	c= TotalCanopyForTrees(f.getCurrentTrees());
+	s= CalculateCarbonSeqPerYear(f.getCurrentTrees());
+	Report r= new Report(c,s,b,f);
+	return r;
+	
+		}
+		
+		
+		
 		
 		public Forecast createNewForecast(String userName) {
 			List<Person> users= listAllUsers();
@@ -179,12 +208,21 @@ public class TreePLETreeService {
 		 
 			return tm.getPerson();
 		}
-		
+		public List<Tree> getNonCutTreesInList(List<Tree> treeList){
+			List<Tree> ts= new ArrayList <Tree>();
+			for (Tree tree: treeList) {
+				if(!tree.getCurrentStatus().getTreeState().equals(TreeState.Cut)) {
+				ts.add(tree);}}
+				return ts;
+				
+				}
+			
 		
 		public int CalculateBioDiversityIndexForTrees(List<Tree> treeList) {
-			
+			List<Tree> ts= new ArrayList <Tree>();
+			ts= getNonCutTreesInList(treeList);
 			List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
-			for (Tree tree: treeList) {
+			for (Tree tree: ts) {
 				TreeSpecies n= tree.getTreeSpecies();
 				if( Species.contains(n)){}
 				else { Species.add(n);}
@@ -197,15 +235,18 @@ public class TreePLETreeService {
 			}
 			
 public int CalculateCarbonSeqPerYear(List<Tree> treeList) {
-	
-	return (treeList.size()*48);
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
+	return (ts.size()*48);
 			
 }
 
 public double TotalCanopyForTrees(List<Tree> treeList) {
 	double TotalCanopy=0;
 	double area=0;
-	for (Tree tree: treeList) {
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
+	for (Tree tree: ts) {
 		area=(3.14)*(tree.getDiameter()*0.5)*(tree.getDiameter()*0.5);
 	TotalCanopy=TotalCanopy+area;
 			
@@ -216,9 +257,11 @@ public double TotalCanopyForTrees(List<Tree> treeList) {
 		
 public double CurrentTotalCanopy() {
 	List<Tree> treeList=listAllTrees();
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
 	double TotalCanopy=0;
-	double area=0;
-	for (Tree tree: treeList) {
+	double  area=0;
+	for (Tree tree: ts) {
 		area=(3.14)*(tree.getDiameter()*0.5)*(tree.getDiameter()*0.5);
 	TotalCanopy=TotalCanopy+area;
 			
@@ -229,8 +272,10 @@ public double CurrentTotalCanopy() {
 				
 public int CalculateCurrentBioDiversityIndex() {
 	List<Tree> treeList= listAllTrees();
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
 	List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
-	for (Tree tree: treeList) {
+	for (Tree tree: ts) {
 		TreeSpecies n= tree.getTreeSpecies();
 		if( Species.contains(n)){}
 		else { Species.add(n);}
@@ -244,7 +289,9 @@ public int CalculateCurrentBioDiversityIndex() {
 	
 public int CalculateCurrentCarbonSeqPerYear() {
 	List<Tree> treeList= listAllTrees();
-return (treeList.size()*48);
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
+return (ts.size()*48);
 	
 }
 		
@@ -304,6 +351,9 @@ return (treeList.size()*48);
 		  // service stub
 			return tm.getMunicipality();
 		}
+		
+		
+		
 		public Forecast cutDownTreeForForecast(Tree t, Forecast f) throws InvalidInputException{
 			if(t==null) {
 				throw new InvalidInputException("fill in the missing information");

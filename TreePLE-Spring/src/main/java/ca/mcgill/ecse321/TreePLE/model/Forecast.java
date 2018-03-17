@@ -204,47 +204,37 @@ public class Forecast
     return 0;
   }
 
+  public Report addReport(double aCanopy, int aCarbonSequestration, double aBioDiversityIndex)
+  {
+    return new Report(aCanopy, aCarbonSequestration, aBioDiversityIndex, this);
+  }
+
   public boolean addReport(Report aReport)
   {
     boolean wasAdded = false;
     if (report.contains(aReport)) { return false; }
-    report.add(aReport);
-    if (aReport.indexOfForecast(this) != -1)
+    Forecast existingForecast = aReport.getForecast();
+    boolean isNewForecast = existingForecast != null && !this.equals(existingForecast);
+    if (isNewForecast)
     {
-      wasAdded = true;
+      aReport.setForecast(this);
     }
     else
     {
-      wasAdded = aReport.addForecast(this);
-      if (!wasAdded)
-      {
-        report.remove(aReport);
-      }
+      report.add(aReport);
     }
+    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removeReport(Report aReport)
   {
     boolean wasRemoved = false;
-    if (!report.contains(aReport))
+    //Unable to remove aReport, as it must always have a forecast
+    if (!this.equals(aReport.getForecast()))
     {
-      return wasRemoved;
-    }
-
-    int oldIndex = report.indexOf(aReport);
-    report.remove(oldIndex);
-    if (aReport.indexOfForecast(this) == -1)
-    {
+      report.remove(aReport);
       wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aReport.removeForecast(this);
-      if (!wasRemoved)
-      {
-        report.add(oldIndex,aReport);
-      }
     }
     return wasRemoved;
   }
@@ -482,11 +472,10 @@ public class Forecast
     Person placeholderPerson = person;
     this.person = null;
     placeholderPerson.removeForecast(this);
-    ArrayList<Report> copyOfReport = new ArrayList<Report>(report);
-    report.clear();
-    for(Report aReport : copyOfReport)
+    for(int i=report.size(); i > 0; i--)
     {
-      aReport.removeForecast(this);
+      Report aReport = report.get(i - 1);
+      aReport.delete();
     }
     treesToBePlanted.clear();
     treesToBeCut.clear();
