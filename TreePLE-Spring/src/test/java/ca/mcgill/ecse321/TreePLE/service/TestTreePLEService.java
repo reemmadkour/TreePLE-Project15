@@ -245,7 +245,7 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 
 
 		        } catch (InvalidInputException e) {
-		            // Check that no error occured
+		            // Check that no error occurred
 		            fail();
 		        }
 
@@ -384,6 +384,140 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		assertEquals(TreeSpecies.Willow, tm.getTree(0).getTreeSpecies());
 		assertEquals(TreeState.Planted, tm.getTree(0).getCurrentStatus().getTreeState());
 		assertEquals(MunicipalityName.Montreal, tm.getTree(0).getMunicipality().getMunicipalityName());
+	}
+	
+	@Test
+	public void testIntegration() {
+		
+		TreePLETreeService service = new TreePLETreeService(tm);
+		Municipality montreal = new Municipality();
+		Municipality laval = new Municipality();
+
+		montreal.setMunicipalityName(MunicipalityName.Montreal);
+		laval.setMunicipalityName(MunicipalityName.Montreal);
+
+		
+		//Replace every tree. with service. and remove all tree
+		
+		
+		double height = 10;
+		double diameter = 12;
+		double longitude = 23;
+		double latitude = 24;
+		String userName = "M.ad";
+		TreeSpecies species = TreeSpecies.Willow;
+		LandType landtype = LandType.Institutional;
+		try {
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal, userName);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//change parameters
+		height = 20;
+		diameter = 44;
+		longitude = 20;
+		latitude = 42;
+		userName="laura12";
+		species = TreeSpecies.Willow;
+		landtype = LandType.Institutional;
+		try {
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, laval, userName);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//change parameters
+		height = 30;
+		diameter = 32;
+		longitude = 48;
+		latitude = 67;
+		userName="laura12";
+		species = TreeSpecies.Willow;
+		landtype = LandType.Institutional;
+		service = new TreePLETreeService(tm);
+		try {
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal, userName);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		height = 40;
+		diameter = 10;
+		longitude = 64;
+		latitude = 35;
+		userName="james";
+		species = TreeSpecies.Willow;
+		landtype = LandType.Institutional;
+		service = new TreePLETreeService(tm);
+		try {
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, montreal, userName);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		height = 16;
+		diameter = 35;
+		longitude = 27;
+		latitude = 29;
+		userName = "john";
+		species = TreeSpecies.Willow;
+		landtype = LandType.Institutional;
+		service = new TreePLETreeService(tm);
+		try {
+			service.plantTree(landtype, species, height, diameter, longitude, latitude, laval, userName);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//check model in memory
+		assertEquals(TreeState.Planted, tm.getTree(0).getCurrentStatus().getTreeState());
+		assertEquals(10, tm.getTree(0).getHeight());
+		assertEquals(TreeSpecies.Willow, tm.getTree(0).getTreeSpecies());
+		assertEquals(LandType.Institutional, tm.getTree(0).getLandType());
+
+        //pis continue for each field then for each tree
+
+		//change all TreeState.PlantTree into .Planted
+		assertEquals(TreeState.Planted, tm.getTree(1).getCurrentStatus().getTreeState());
+		assertEquals(TreeState.Planted, tm.getTree(2).getCurrentStatus().getTreeState());
+		assertEquals(TreeState.Planted, tm.getTree(3).getCurrentStatus().getTreeState());
+		assertEquals(TreeState.Planted, tm.getTree(4).getCurrentStatus().getTreeState());
+
+		service.cutDownTree(tm.getTree(0));
+		assertEquals(TreeState.Cut, tm.getTree(0).getCurrentStatus().getTreeState());
+		
+		
+		Tree.MarkTreeAsDiseased(tm.getTree(3));
+		assertEquals(TreeState.Diseased, tm.getTree(3).getCurrentStatus().getTreeState());
+		
+		//now for fun mark another as diseased then cut
+		
+       
+		//test getTreeByID; repeat for every treeID 
+		assertEquals(service.getTreeByID(1), tm.get(0);
+		
+		//repeat for Laval
+		assertEquals(service.getMunicipalityByName(MunicipalityName.Montreal).getMunicipalityName(), MunicipalityName.Montreal);
+
+		//date won't check 
+
+		//testing getTreeByMunicipality
+		
+		List<Trees>montrealTrees=service.getTreeByMunicipality(montreal);
+		assertEquals(montrealTrees.size(), 3); //means I have 3 in Mtl 
+		//bioIndex
+		assertEquals(service.CalculateBioDiversityIndexForTrees(montrealTrees), myvalueME); //means I have 3 in Mtl 
+
+	//getTreeBySpecies and getTreebyState is the same as getTreeByMuncipality
+
+		//markToBeCutDown to be the same as .CUTdOWN
+		
 	}
 
 }

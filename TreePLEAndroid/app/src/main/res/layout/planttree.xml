@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tree3"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over">
+
+    <Button
+        android:id="@+id/button8"
+        style="@android:style/Widget.Button.Transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="23dp"
+        android:text="Plant Tree"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/diameter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button8"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="@string/diametertext"
+        android:inputType="textPersonName"
+        android:textStyle="italic" />
+
+</RelativeLayout>
