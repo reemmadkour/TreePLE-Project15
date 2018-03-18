@@ -847,6 +847,94 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(TreeState.Cut, registeredTreesCut.get(0).getCurrentStatus().getTreeState());
 
 	}
+	@Test
+	public void testListAllUser(){
+	double height = 10;
+	double diameter = 12;
+	double longitude = 23;
+	double latitude = 24;
+	TreeSpecies species = TreeSpecies.Willow;
+	LandType landtype = LandType.Institutional;
+	MunicipalityName mun= MunicipalityName.Montreal;
+	Municipality m= new Municipality();
+	m.setMunicipalityName(mun);
+	Tree t= new Tree(height,diameter,longitude,latitude,m);
+	t.setLandType(landtype);
+	t.setTreeSpecies(species);
+	Person user= new Person("Jon");
+	tm.addPerson(user);
+	tm.addTree(t);
+	
+	double height2 = 12;
+	double diameter2 = 19;
+	double longitude2 = 76;
+	double latitude2 = 54;
+	TreeSpecies species2 = TreeSpecies.Willow;
+	LandType landtype2 = LandType.Municipal;
+	Date  date2 = new Date();
+	Person personMarkingDiseased = new Person("Jony");
+	Municipality mun2 = new Municipality();
+	mun2.setMunicipalityName(MunicipalityName.Montreal);
+	Tree tree2 = new Tree(height2, diameter2, longitude2, latitude2, mun2);
+	Status status2= new Status(date2, tree2, personMarkingDiseased);
+	status2.setTreeState(TreeState.Diseased);
+	tree2.addStatus(status2);
+	tree2.setCurrentStatus(status2);
+	tree2.setTreeSpecies(species2);
+	tree2.setLandType(landtype2);
+	tm.addPerson(personMarkingDiseased);
+	tm.addTree(tree2);
+	
+	double height3 = 17;
+	double diameter3 = 12;
+	double longitude3 = 70;
+	double latitude3 = 54;
+	TreeSpecies species3 = TreeSpecies.Willow;
+	LandType landtype3 = LandType.Municipal;
+	Date  date3 = new Date();
+	Person personMarkingToBeCut = new Person("Jessy");
+	Municipality mun3 = new Municipality();
+	mun3.setMunicipalityName(MunicipalityName.Montreal);
+	Tree tree3 = new Tree(height3, diameter3, longitude3, latitude3, mun3);
+	Status status3= new Status(date3, tree3, personMarkingToBeCut);
+	status3.setTreeState(TreeState.ToBeCut);
+	tree2.addStatus(status3);
+	tree2.setCurrentStatus(status3);
+	tree2.setTreeSpecies(species3);
+	tree3.setLandType(landtype3);
+	tm.addPerson(personMarkingToBeCut);
+	tm.addTree(tree3);
+	
+	double height4 = 17;
+	double diameter4 = 12;
+	double longitude4 = 70;
+	double latitude4 = 54;
+	TreeSpecies species4 = TreeSpecies.Willow;
+	LandType landtype4 = LandType.Municipal;
+	Date  date4 = new Date();
+	Person personMarkingCut = new Person("Jessica");
+	Municipality mun4 = new Municipality();
+	mun4.setMunicipalityName(MunicipalityName.Montreal);
+	Tree tree4 = new Tree(height4, diameter4, longitude4, latitude4, mun4);
+	Status status4= new Status(date4, tree4, personMarkingCut);
+	status4.setTreeState(TreeState.Cut);
+	tree4.addStatus(status4);
+	tree4.setCurrentStatus(status4);
+	tree4.setTreeSpecies(species4);
+	tree4.setLandType(landtype4);
+	tm.addPerson(personMarkingCut);
+	tm.addTree(tree4);
+
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	
+		tree.listAllUsers();
+	
+	assertEquals("Jon", tree.listAllUsers().get(0).getName());
+	assertEquals("Jony", tree.listAllUsers().get(1).getName());
+	assertEquals("Jessy", tree.listAllUsers().get(2).getName());
+	assertEquals("Jessica", tree.listAllUsers().get(3).getName());
+}
+
 	
 	
 	private void checkResultTree(LandType landtype, TreeSpecies species, double height, double diameter,
@@ -862,6 +950,7 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(municipality, tm.getTree(0).getMunicipality().getMunicipalityName());
 		assertEquals(userName, tm.getTree(0).getCurrentStatus().getPerson().getName());
 	}
+	
 
 	
 	//test ran and works 
