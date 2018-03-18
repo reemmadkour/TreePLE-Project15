@@ -506,46 +506,88 @@ assertEquals("Please fill in all missing information!", er);
 
 	@Test
 	public void testgetTreeById() {
-		assertEquals(0, tm.getTrees().size());
-		double height1 = 13;
-		double diameter1 = 15;
-		double longitude1 = 65;
-		double latitude1 = 87;
-		String name1 = "Jon";
-		TreeSpecies species1 = TreeSpecies.Willow;
-		LandType landtype1 = LandType.Institutional;
-		MunicipalityName mun1 = MunicipalityName.Montreal;
-
-		double height2 = 12;
-		double diameter2 = 19;
-		double longitude2 = 76;
-		double latitude2 = 54;
-		String name2 = "Jony";
-		TreeSpecies species2 = TreeSpecies.Willow;
-		LandType landtype2 = LandType.Municipal;
-		MunicipalityName mun2 = MunicipalityName.Montreal;
-
+		
+		double height = 10;
+		double height1 = 5;
+		double diameter = 12;
+		double longitude = 23;
+		double latitude = 24;
 		String error = null;
-		TreePLETreeService tree1 = new TreePLETreeService(tm);
-
+		String name = "Jon";
+		TreeSpecies species = TreeSpecies.Willow;
+		LandType landtype = LandType.Institutional;
+		MunicipalityName mun= MunicipalityName.Montreal;
+		Municipality m= new Municipality();
+		m.setMunicipalityName(mun);
+		Tree t= new Tree(height,diameter,longitude,latitude,m);
+		t.setLandType(landtype);
+		t.setTreeSpecies(species);
+		Person user= new Person("Jon");
+		tm.addPerson(user);
+		tm.addTree(t);
+		TreePLETreeService tree = new TreePLETreeService(tm);
+		Tree tree5 = new Tree(height1,diameter,longitude,latitude,m);
 		try {
-			tree1.plantTree(landtype1, species1, height1, diameter1, longitude1, latitude1, mun1, name1);
-			tree1.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name2);
-			tree1.getTreeByID(0);
-			tree1.getTreeByID(1);
+			
+			tree5= tree.getTreeByID(tm.getTree(0).getTreeID());
+			
 
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
 
-		List<Tree> registeredTrees = tree1.listAllTrees();
 
 		// check number of registered trees
-		assertEquals(2, registeredTrees.size());
+		assertEquals(1, tm.getTrees().size());
 
-		assertEquals(5, registeredTrees.get(0).getTreeID());
-		assertEquals(6, registeredTrees.get(1).getTreeID());
+		assertEquals(t, tree5);
+		assertEquals(27, tm.getTree(0).getTreeID());
 	}
+	
+	@Test
+	public void listAllUsers() {
+		
+		assertEquals(0, tm.getTrees().size());
+
+		double height1 = 13;
+		double diameter1 = 15;
+		double longitude1 = 65;
+		double latitude1 = 87;
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		MunicipalityName mun1 = MunicipalityName.Laval;
+		
+		double height2 = 12;
+		double diameter2 = 19;
+		double longitude2 = 76;
+		double latitude2 = 54;
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Municipal;
+		MunicipalityName mun2 = MunicipalityName.Montreal;
+		TreePLETreeService tree = new TreePLETreeService(tm);
+		
+		Person p1 = new Person("jon");
+		Person p2 = new Person("jonny");
+		tm.addPerson(p1);
+		tm.addPerson(p2);
+		
+		try {
+			tree.plantTree(landtype1, species1, height1, diameter1, longitude1, latitude1, mun1, p1.getName());
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, p2.getName());
+
+		} catch (InvalidInputException e) {
+			// Check that no error occured
+			fail();
+		}
+
+		List<Person> registeredUsers = tree.listAllUsers();
+
+		// check number of registered trees
+		assertEquals(2, registeredUsers.size());
+		assertEquals("jon", registeredUsers.get(0).getName());
+		assertEquals("jonny", registeredUsers.get(1).getName());
+	}
+	
 	
 
 	@Test
