@@ -38,7 +38,7 @@ public class TreePLETreeService {
 		}
 		
 		
-		public Report generateReportForForecast(Forecast f) {
+		public Report generateReportForForecast(Forecast f) throws InvalidInputException {
 	int i=0;
 	for(i=0; i<f.getCurrentTrees().size();i++) {
 		f.removeCurrentTree(f.getCurrentTree(i));
@@ -220,7 +220,11 @@ public class TreePLETreeService {
 				}
 			
 		
-		public double CalculateBioDiversityIndexForTrees(List<Tree> treeList) {
+		public double CalculateBioDiversityIndexForTrees(List<Tree> treeList) throws InvalidInputException {
+			
+			if (treeList==null) { 
+				throw new InvalidInputException ("Missing Information");}
+			
 			List<Tree> ts= new ArrayList <Tree>();
 			ts= getNonCutTreesInList(treeList);
 			List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
@@ -233,6 +237,8 @@ public class TreePLETreeService {
 			double denominator=treeList.size();
 			double index= numerator/denominator;
 			return index;
+			
+			
 				
 			}
 			
@@ -243,7 +249,11 @@ public int CalculateCarbonSeqPerYear(List<Tree> treeList) {
 			
 }
 
-public double TotalCanopyForTrees(List<Tree> treeList) {
+public double TotalCanopyForTrees(List<Tree> treeList) throws InvalidInputException {
+	
+	if (treeList==null) { 
+		throw new InvalidInputException ("Missing Information");}
+	
 	double TotalCanopy=0;
 	double area=0;
 	List<Tree> ts= new ArrayList <Tree>();
@@ -404,7 +414,7 @@ return (ts.size()*48);
 		//mark as diseased
 		
 		public Tree MarkTreeAsDiseased(Tree t,String userName) throws InvalidInputException {
-			if((t==null)) {
+			if((t==null)||(userName==null)||(userName.trim().length() == 0)) {
 				throw new InvalidInputException("Please fill in all missing information!")	;
 			}
 			
@@ -426,7 +436,7 @@ return (ts.size()*48);
 	
 		t.addStatus(s);
 		t.setCurrentStatus(s);
-		
+		 tm.addPerson(user);
 		tm.addStatus(s);
 		PersistenceXStream.saveToXMLwithXStream(tm);
 		  
@@ -450,7 +460,7 @@ return (ts.size()*48);
 			Date date = new Date();
 		  Status s = new Status(date,t,user);
 		
-	
+		 tm.addPerson(user);
 	
 		s.setTreeState(TreeState.ToBeCut);
 	
