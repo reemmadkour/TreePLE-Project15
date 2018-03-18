@@ -2,9 +2,8 @@
 /*This code was generated using the UMPLE 1.26.1-f40f105-3613 modeling language!*/
 
 package ca.mcgill.ecse321.TreePLE.model;
-import java.util.*;
 
-// line 64 "../../../../../TreePLE.ump"
+// line 65 "../../../../../TreePLE.ump"
 public class Report
 {
 
@@ -13,30 +12,34 @@ public class Report
   //------------------------
 
   //Report Attributes
-  private int canopy;
+  private double canopy;
   private int carbonSequestration;
   private double bioDiversityIndex;
 
   //Report Associations
-  private List<Forecast> forecasts;
+  private Forecast forecast;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Report(int aCanopy, int aCarbonSequestration, double aBioDiversityIndex)
+  public Report(double aCanopy, int aCarbonSequestration, double aBioDiversityIndex, Forecast aForecast)
   {
     canopy = aCanopy;
     carbonSequestration = aCarbonSequestration;
     bioDiversityIndex = aBioDiversityIndex;
-    forecasts = new ArrayList<Forecast>();
+    boolean didAddForecast = setForecast(aForecast);
+    if (!didAddForecast)
+    {
+      throw new RuntimeException("Unable to create report due to forecast");
+    }
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setCanopy(int aCanopy)
+  public boolean setCanopy(double aCanopy)
   {
     boolean wasSet = false;
     canopy = aCanopy;
@@ -60,7 +63,7 @@ public class Report
     return wasSet;
   }
 
-  public int getCanopy()
+  public double getCanopy()
   {
     return canopy;
   }
@@ -75,126 +78,35 @@ public class Report
     return bioDiversityIndex;
   }
 
-  public Forecast getForecast(int index)
+  public Forecast getForecast()
   {
-    Forecast aForecast = forecasts.get(index);
-    return aForecast;
+    return forecast;
   }
 
-  public List<Forecast> getForecasts()
+  public boolean setForecast(Forecast aForecast)
   {
-    List<Forecast> newForecasts = Collections.unmodifiableList(forecasts);
-    return newForecasts;
-  }
-
-  public int numberOfForecasts()
-  {
-    int number = forecasts.size();
-    return number;
-  }
-
-  public boolean hasForecasts()
-  {
-    boolean has = forecasts.size() > 0;
-    return has;
-  }
-
-  public int indexOfForecast(Forecast aForecast)
-  {
-    int index = forecasts.indexOf(aForecast);
-    return index;
-  }
-
-  public static int minimumNumberOfForecasts()
-  {
-    return 0;
-  }
-
-  public boolean addForecast(Forecast aForecast)
-  {
-    boolean wasAdded = false;
-    if (forecasts.contains(aForecast)) { return false; }
-    forecasts.add(aForecast);
-    if (aForecast.indexOfReport(this) != -1)
+    boolean wasSet = false;
+    if (aForecast == null)
     {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aForecast.addReport(this);
-      if (!wasAdded)
-      {
-        forecasts.remove(aForecast);
-      }
-    }
-    return wasAdded;
-  }
-
-  public boolean removeForecast(Forecast aForecast)
-  {
-    boolean wasRemoved = false;
-    if (!forecasts.contains(aForecast))
-    {
-      return wasRemoved;
+      return wasSet;
     }
 
-    int oldIndex = forecasts.indexOf(aForecast);
-    forecasts.remove(oldIndex);
-    if (aForecast.indexOfReport(this) == -1)
+    Forecast existingForecast = forecast;
+    forecast = aForecast;
+    if (existingForecast != null && !existingForecast.equals(aForecast))
     {
-      wasRemoved = true;
+      existingForecast.removeReport(this);
     }
-    else
-    {
-      wasRemoved = aForecast.removeReport(this);
-      if (!wasRemoved)
-      {
-        forecasts.add(oldIndex,aForecast);
-      }
-    }
-    return wasRemoved;
-  }
-
-  public boolean addForecastAt(Forecast aForecast, int index)
-  {  
-    boolean wasAdded = false;
-    if(addForecast(aForecast))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfForecasts()) { index = numberOfForecasts() - 1; }
-      forecasts.remove(aForecast);
-      forecasts.add(index, aForecast);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveForecastAt(Forecast aForecast, int index)
-  {
-    boolean wasAdded = false;
-    if(forecasts.contains(aForecast))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfForecasts()) { index = numberOfForecasts() - 1; }
-      forecasts.remove(aForecast);
-      forecasts.add(index, aForecast);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addForecastAt(aForecast, index);
-    }
-    return wasAdded;
+    forecast.addReport(this);
+    wasSet = true;
+    return wasSet;
   }
 
   public void delete()
   {
-    ArrayList<Forecast> copyOfForecasts = new ArrayList<Forecast>(forecasts);
-    forecasts.clear();
-    for(Forecast aForecast : copyOfForecasts)
-    {
-      aForecast.removeReport(this);
-    }
+    Forecast placeholderForecast = forecast;
+    this.forecast = null;
+    placeholderForecast.removeReport(this);
   }
 
 
@@ -203,6 +115,7 @@ public class Report
     return super.toString() + "["+
             "canopy" + ":" + getCanopy()+ "," +
             "carbonSequestration" + ":" + getCarbonSequestration()+ "," +
-            "bioDiversityIndex" + ":" + getBioDiversityIndex()+ "]";
+            "bioDiversityIndex" + ":" + getBioDiversityIndex()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "forecast = "+(getForecast()!=null?Integer.toHexString(System.identityHashCode(getForecast())):"null");
   }
 }
