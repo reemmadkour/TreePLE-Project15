@@ -64,7 +64,6 @@ public class TreePLETreeService {
 		
 		
 		
-		
 		public Forecast createNewForecast(String userName) {
 			List<Person> users= listAllUsers();
 			  Person user =null;
@@ -78,11 +77,12 @@ public class TreePLETreeService {
 			Forecast f= new Forecast(user);
 			return f;
 		}
-		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality) throws InvalidInputException{
-			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
+		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName) throws InvalidInputException{
+			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
 				    throw new InvalidInputException("Missing information");
 				  }
-				  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
+			 Municipality m= new Municipality();
+				  Tree t = new Tree(height, diameter, longitude, latitude, m);
 				  Person user= f.getPerson();
 				  Date date1= new Date();
 				  Status s = new Status(date1,t,user);
@@ -104,7 +104,7 @@ public class TreePLETreeService {
 				
 				  
 				  //set municipality
-				  t.setMunicipality(municipality);
+				  t.setMunicipality(m);
 				  //MunicipalityName name = municipality.getMunicipalityName();
 				  //municipality.setMunicipalityName(name);
 				  f.addTreesToBePlanted(t);
@@ -149,11 +149,12 @@ public class TreePLETreeService {
 	
 		
 		//plant a tree method
-		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality, String userName) throws InvalidInputException
+		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, String userName) throws InvalidInputException
 		{
-		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
+		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
 		    throw new InvalidInputException("Missing information");
 		  }
+		  Municipality municipality= getMunicipalityByName(munName);
 		  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
 		  List<Person> users= listAllUsers();
 		  Person user =null;
@@ -270,7 +271,7 @@ public double CurrentTotalCanopy() {
 	
 }
 				
-public int CalculateCurrentBioDiversityIndex() {
+public double CalculateCurrentBioDiversityIndex() {
 	List<Tree> treeList= listAllTrees();
 	List<Tree> ts= new ArrayList <Tree>();
 	ts= getNonCutTreesInList(treeList);
@@ -280,9 +281,9 @@ public int CalculateCurrentBioDiversityIndex() {
 		if( Species.contains(n)){}
 		else { Species.add(n);}
 		}
-	int numerator= Species.size();
-	int denominator=treeList.size();
-	int index= numerator/denominator;
+	double numerator= Species.size();
+	double denominator=treeList.size();
+	double index= numerator/denominator;
 	return index;
 		
 	}
@@ -433,7 +434,7 @@ return (ts.size()*48);
 	}
 		
 		public Tree MarkTreeToBeCutDown(Tree t, String userName) throws InvalidInputException {
-			if((t==null)) {
+			if((t==null)||(userName==null)||(userName.trim().length() == 0)) {
 				throw new InvalidInputException("Please fill in all missing information!")	;
 			}
 		
