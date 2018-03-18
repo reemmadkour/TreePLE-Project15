@@ -77,6 +77,7 @@ public class TreePLETreeService {
 			Forecast f= new Forecast(user);
 			return f;
 		}
+		
 		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName) throws InvalidInputException{
 			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
 				    throw new InvalidInputException("Missing information");
@@ -116,16 +117,16 @@ public class TreePLETreeService {
 		}
 		public Tree getTreeByID  (int id) throws InvalidInputException  {
 			List<Tree> alltrees= listAllTrees();
-		Tree tree= null;
-		for (Tree tr : alltrees) {
-			if(tr.getTreeID()==id) {
-				tree=tr;
-				break;
+			Tree tree= null;
+			for (Tree tr : alltrees) {
+				if(tr.getTreeID()==id) {
+					tree=tr;
+					break;
+				}
 			}
+			if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
+			else{return tree;}
 		}
-		if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
-		else{return tree;}
-	}
 		
 			
 		public Municipality getMunicipalityByName  (MunicipalityName municipalityName) throws InvalidInputException  {
