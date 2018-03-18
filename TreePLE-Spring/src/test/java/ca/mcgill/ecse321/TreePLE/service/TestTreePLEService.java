@@ -389,7 +389,7 @@ assertEquals("Please fill in all missing information!", er);
 		double height3 = 16;
 		double diameter3 = 12;
 		double longitude3 = 70;
-		double latitude3 = 54;
+		double latitude3 = 53;
 		String name3 = "Jessy";
 		TreeSpecies species3 = TreeSpecies.Willow;
 		LandType landtype3 = LandType.Municipal;
@@ -411,9 +411,9 @@ assertEquals("Please fill in all missing information!", er);
 		// check number of registered participants
 		assertEquals(3, allTrees.size());
 
-		List<Tree> registeredTreesByMunicipality = tree.getTreeByMunicipality(mun1);
-		List<Tree> registeredTreesByMunicipality2 = tree.getTreeByMunicipality(mun2);
-		List<Tree> registeredTreesByMunicipality3 = tree.getTreeByMunicipality(mun3);
+		List<Tree> registeredTreesByMunicipality = tree.getTreeByMunicipality(mun1); // lists all trees in mun1, laval
+		List<Tree> registeredTreesByMunicipality2 = tree.getTreeByMunicipality(mun2); //lists all trees in mun2, montreal
+		
 		// tree 1
 		assertEquals(15, registeredTreesByMunicipality.get(0).getHeight(), 0);
 		assertEquals(19, registeredTreesByMunicipality.get(0).getDiameter(), 0);
@@ -433,14 +433,14 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(MunicipalityName.Montreal,
 				registeredTreesByMunicipality2.get(0).getMunicipality().getMunicipalityName());
 		// tree 3
-		assertEquals(16, registeredTreesByMunicipality3.get(0).getHeight(), 0);
-		assertEquals(12, registeredTreesByMunicipality3.get(0).getDiameter(), 0);
-		assertEquals(70, registeredTreesByMunicipality3.get(0).getLongitude(), 0);
-		assertEquals(54, registeredTreesByMunicipality3.get(0).getLatitude(), 0);
-		assertEquals(LandType.Municipal, registeredTreesByMunicipality3.get(0).getLandType());
-		assertEquals(TreeSpecies.Willow, registeredTreesByMunicipality3.get(0).getTreeSpecies());
+		assertEquals(16, registeredTreesByMunicipality2.get(1).getHeight(), 0);
+		assertEquals(12, registeredTreesByMunicipality2.get(1).getDiameter(), 0);
+		assertEquals(70, registeredTreesByMunicipality2.get(1).getLongitude(), 0);
+		assertEquals(53, registeredTreesByMunicipality2.get(1).getLatitude(), 0);
+		assertEquals(LandType.Municipal, registeredTreesByMunicipality2.get(1).getLandType());
+		assertEquals(TreeSpecies.Willow, registeredTreesByMunicipality2.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal,
-				registeredTreesByMunicipality3.get(0).getMunicipality().getMunicipalityName());
+				registeredTreesByMunicipality2.get(1).getMunicipality().getMunicipalityName());
 
 	}
 
@@ -469,7 +469,7 @@ assertEquals("Please fill in all missing information!", er);
 		LandType landtype2 = LandType.Municipal;
 		MunicipalityName mun2 = MunicipalityName.Montreal;
 		
-		double height3 = 16;
+		double height3 = 17;
 		double diameter3 = 12;
 		double longitude3 = 70;
 		double latitude3 = 54;
@@ -490,18 +490,12 @@ assertEquals("Please fill in all missing information!", er);
 			fail();
 		}
 
-		// List<Tree> registeredTreesBySpecies = null;
-
-		// Check that initially treesBySpecies is null
-
 		List<Tree> allTrees = tree.listAllTrees();
 
 		// check number of registered participants
 		assertEquals(3, allTrees.size());
 
 		List<Tree> registeredTreesBySpecie = tree.getTreeBySpecies(species1);
-		// List<Tree> registeredTreesBySpecie2 = tree.getTreeBySpecies(species2);
-		// List<Tree> registeredTreesBySpecie3 = tree.getTreeBySpecies(species3);
 
 		// tree 1
 		assertEquals(15, registeredTreesBySpecie.get(0).getHeight(), 0);
@@ -520,7 +514,7 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(TreeSpecies.Willow, registeredTreesBySpecie.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal, registeredTreesBySpecie.get(1).getMunicipality().getMunicipalityName());
 		// tree 3
-		assertEquals(16, registeredTreesBySpecie.get(2).getHeight(), 0);
+		assertEquals(17, registeredTreesBySpecie.get(2).getHeight(), 0);
 		assertEquals(12, registeredTreesBySpecie.get(2).getDiameter(), 0);
 		assertEquals(70, registeredTreesBySpecie.get(2).getLongitude(), 0);
 		assertEquals(54, registeredTreesBySpecie.get(2).getLatitude(), 0);
@@ -529,7 +523,8 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(MunicipalityName.Montreal, registeredTreesBySpecie.get(2).getMunicipality().getMunicipalityName());
 
 	}
-
+	
+	
 	private void checkResultTree(LandType landtype, TreeSpecies species, double height, double diameter,
 			double longitude, double latitude, MunicipalityName municipality, String userName, TreeManager tm) {
 		assertEquals(1, tm.getTrees().size());
@@ -543,8 +538,6 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(municipality, tm.getTree(0).getMunicipality().getMunicipalityName());
 		assertEquals(userName, tm.getTree(0).getCurrentStatus().getPerson().getName());
 	}
-
-
 
 	
 	//test ran and works
