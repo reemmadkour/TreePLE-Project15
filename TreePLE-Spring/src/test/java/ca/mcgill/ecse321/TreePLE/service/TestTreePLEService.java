@@ -952,7 +952,6 @@ assertEquals("Please fill in all missing information!", er);
 	tm.addPerson(user);
 	tm.addTree(t);
 	
-	
 
 	TreePLETreeService tree = new TreePLETreeService(tm);
 
@@ -961,8 +960,9 @@ assertEquals("Please fill in all missing information!", er);
 	assertEquals(0, tree.listAllUsers().get(0).getName().length());
 }
 
-	@Test(expected=NullPointerException.class)
+	@Test(expected=NullPointerException.class)   //test passes if NullPointerExcetion is thrown
 	public void testListAllUserNull(){
+	
 	
 	double height = 10;
 	double diameter = 12;
