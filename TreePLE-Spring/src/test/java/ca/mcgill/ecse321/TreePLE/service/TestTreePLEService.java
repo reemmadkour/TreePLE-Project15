@@ -838,13 +838,13 @@ assertEquals("Please fill in all missing information!", er);
 			} }   
 
 		// tree 1
-		assertEquals(TreeState.Planted, tm.getTree(0).getCurrentStatus().getTreeState());
+		assertEquals(TreeState.Planted, registeredTreesPlanted.get(0).getCurrentStatus().getTreeState());
 		// tree 2
-		assertEquals(TreeState.Diseased, tm.getTree(1).getCurrentStatus().getTreeState());
+		assertEquals(TreeState.Diseased, registeredTreesDiseased.get(0).getCurrentStatus().getTreeState());
 		// tree 3
-		assertEquals(TreeState.ToBeCut, tm.getTree(2).getCurrentStatus().getTreeState());
+		assertEquals(TreeState.ToBeCut, registeredTreesToBeCut.get(0).getCurrentStatus().getTreeState());
 		//tree 4
-		assertEquals(TreeState.Cut, tm.getTree(3).getCurrentStatus().getTreeState());
+		assertEquals(TreeState.Cut, registeredTreesCut.get(0).getCurrentStatus().getTreeState());
 
 	}
 	
