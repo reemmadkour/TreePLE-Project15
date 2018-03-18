@@ -40,6 +40,7 @@ public class TestTreePLEService {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+
 	}
 
 	@Before
@@ -964,7 +965,7 @@ assertEquals("Please fill in all missing information!", er);
 	}
 	
 	@Test
-	public void testTotalCanopyForTrees() {
+	public void testTotalCanopyForTrees() throws InvalidInputException {
 		TreePLETreeService service = new TreePLETreeService(tm);
 
 
@@ -1049,9 +1050,54 @@ assertEquals("Please fill in all missing information!", er);
 
 
 		// check number of registered trees
-		assertEquals(0.25, service.TotalCanopyForTrees(listOfTrees) , 0.2);
+		assertEquals(566.77, service.TotalCanopyForTrees(listOfTrees) , 0.2);
 		
 	}
+	
+	@Test
+	public void testTotalCanopyNull() {
+		
+		assertEquals(0, tm.getTrees().size());
+		
+		TreePLETreeService service = new TreePLETreeService(tm);
+
+
+		double height = 0;
+		double diameter = 0;
+		double longitude = 0;
+		double latitude = 0;
+		String name = "";
+		TreeSpecies species = null;
+		LandType landtype = null;
+		MunicipalityName mun= MunicipalityName.Montreal;
+		Municipality m= new Municipality();
+		String error = null;
+		Date  date = new Date();
+		Person person = new Person ("Johnathan");
+		Tree tree = new Tree (height, diameter, longitude, latitude, m);
+		Status status= new Status(date, tree, person);
+		status.setTreeState(TreeState.Planted);
+		
+		tree.addStatus(status);
+		tree.setCurrentStatus(status);
+		tree.setTreeSpecies(species);
+
+		List <Tree> listOfTrees= null;
+		
+		try {
+			service.TotalCanopyForTrees(listOfTrees);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("Missing Information", error);
+
+		// check no change in memory
+		assertEquals(0, tm.getTrees().size());
+
+	}
+	
 	
 	
 	@Test

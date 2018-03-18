@@ -249,7 +249,11 @@ public int CalculateCarbonSeqPerYear(List<Tree> treeList) {
 			
 }
 
-public double TotalCanopyForTrees(List<Tree> treeList) {
+public double TotalCanopyForTrees(List<Tree> treeList) throws InvalidInputException {
+	
+	if (treeList==null) { 
+		throw new InvalidInputException ("Missing Information");}
+	
 	double TotalCanopy=0;
 	double area=0;
 	List<Tree> ts= new ArrayList <Tree>();
