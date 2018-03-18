@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -14,6 +16,11 @@ import org.junit.Test;
 
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
+import ca.mcgill.ecse321.TreePLE.model.Person;
+
+
+import ca.mcgill.ecse321.TreePLE.model.Status;
+
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
@@ -44,7 +51,122 @@ public class TestTreePLEService {
 	public void tearDown() throws Exception {
 		tm.delete();
 	}
+	
+	
+	//reem just did 
+@Test
+	public void testMarkTreeToBeCutRegularCase(){
+	double height = 10;
+	double diameter = 12;
+	double longitude = 23;
+	double latitude = 24;
+	String name = "Jon";
+	TreeSpecies species = TreeSpecies.Willow;
+	LandType landtype = LandType.Institutional;
+	MunicipalityName mun= MunicipalityName.Montreal;
+	Municipality m= new Municipality();
+	m.setMunicipalityName(mun);
+	Tree t= new Tree(height,diameter,longitude,latitude,m);
+	t.setLandType(landtype);
+	t.setTreeSpecies(species);
+	Person user= new Person("Jon");
+	tm.addPerson(user);
+	tm.addTree(t);
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	try{
+		tree.MarkTreeToBeCutDown(t, name);}
+	catch(InvalidInputException e){
+		e.printStackTrace();
+	}
+	
+	assertEquals(TreeState.ToBeCut, tm.getTree(0).getCurrentStatus().getTreeState());
+}
 
+//reem just did
+
+@Test
+public void testMarkTreeToBeCutNullUser(){
+double height = 10;
+double diameter = 12;
+double longitude = 23;
+double latitude = 24;
+String name = null;
+TreeSpecies species = TreeSpecies.Willow;
+LandType landtype = LandType.Institutional;
+MunicipalityName mun= MunicipalityName.Montreal;
+Municipality m= new Municipality();
+m.setMunicipalityName(mun);
+Tree t= new Tree(height,diameter,longitude,latitude,m);
+t.setLandType(landtype);
+t.setTreeSpecies(species);
+Person user= null;
+tm.addPerson(user);
+tm.addTree(t);
+String er= null;
+TreePLETreeService tree = new TreePLETreeService(tm);
+try{
+	tree.MarkTreeToBeCutDown(t,name );}
+catch(InvalidInputException e){
+	er=e.getMessage();
+}
+
+assertEquals("Please fill in all missing information!", er);
+}
+
+
+//reem just did
+
+@Test
+public void testMarkTreeToBeCutEmptyUser(){
+double height = 10;
+double diameter = 12;
+double longitude = 23;
+double latitude = 24;
+String name = "   ";
+TreeSpecies species = TreeSpecies.Willow;
+LandType landtype = LandType.Institutional;
+MunicipalityName mun= MunicipalityName.Montreal;
+Municipality m= new Municipality();
+m.setMunicipalityName(mun);
+Tree t= new Tree(height,diameter,longitude,latitude,m);
+t.setLandType(landtype);
+t.setTreeSpecies(species);
+//Person user= null;
+//tm.addPerson(user);
+tm.addTree(t);
+String er= null;
+TreePLETreeService tree = new TreePLETreeService(tm);
+try{
+	tree.MarkTreeToBeCutDown(t,name );}
+catch(InvalidInputException e){
+	er=e.getMessage();
+}
+
+assertEquals("Please fill in all missing information!", er);
+}
+
+
+
+//reem just did
+
+@Test
+public void testMarkTreeToBeCutNullTree(){
+
+Tree t= null;
+String name= "jay";
+Person user= new Person("jay");
+tm.addPerson(user);
+//tm.addTree(t);
+String er= null;
+TreePLETreeService tree = new TreePLETreeService(tm);
+try{
+	tree.MarkTreeToBeCutDown(t,name );}
+catch(InvalidInputException e){
+	er=e.getMessage();
+}
+
+assertEquals("Please fill in all missing information!", er);
+}
 	@Test
 	public void testcutDownTree() {
 		double height = 10;
@@ -54,8 +176,7 @@ public class TestTreePLEService {
 		String name = "Jon";
 		TreeSpecies species = TreeSpecies.Willow;
 		LandType landtype = LandType.Institutional;
-		Municipality mun = new Municipality();
-		mun.setMunicipalityName(MunicipalityName.Montreal);
+		MunicipalityName mun = MunicipalityName.Montreal;
 		TreePLETreeService tree = new TreePLETreeService(tm);
 		try {
 			tree.plantTree(landtype, species, height, diameter, longitude, latitude, mun, name);
@@ -98,8 +219,7 @@ public class TestTreePLEService {
 		TreeSpecies species = TreeSpecies.Willow;
 		LandType landtype = LandType.Institutional;
 		TreePLETreeService tree = new TreePLETreeService(tm);
-		Municipality mun = new Municipality();
-		mun.setMunicipalityName(MunicipalityName.Montreal);
+		MunicipalityName mun = MunicipalityName.Montreal;
 		try {
 			tree.plantTree(landtype, species, height, diameter, longitude, latitude, mun, name);
 		} catch (InvalidInputException e) {
@@ -128,8 +248,7 @@ public class TestTreePLEService {
 		TreeSpecies species = null;
 		LandType landtype = null;
 		TreePLETreeService tree = new TreePLETreeService(tm);
-		Municipality mun = new Municipality();
-		mun.setMunicipalityName(null);
+		MunicipalityName mun = null;
 		String error = null;
 		try {
 			tree.plantTree(landtype, species, height, diameter, longitude, latitude, mun, name);
@@ -156,8 +275,7 @@ public class TestTreePLEService {
 		String name1 = "Jon";
 		TreeSpecies species1 = TreeSpecies.Willow;
 		LandType landtype1 = LandType.Institutional;
-		Municipality mun1 = new Municipality();
-		mun1.setMunicipalityName(MunicipalityName.Laval);
+		MunicipalityName mun1 = MunicipalityName.Laval;
 
 		double height2 = 12;
 		double diameter2 = 19;
@@ -166,8 +284,7 @@ public class TestTreePLEService {
 		String name2 = "Jony";
 		TreeSpecies species2 = TreeSpecies.Willow;
 		LandType landtype2 = LandType.Municipal;
-		Municipality mun2 = new Municipality();
-		mun2.setMunicipalityName(MunicipalityName.Montreal);
+		MunicipalityName mun2 = MunicipalityName.Montreal;
 		TreePLETreeService tree = new TreePLETreeService(tm);
 
 		try {
@@ -179,7 +296,7 @@ public class TestTreePLEService {
 			fail();
 		}
 
-		/*List<Tree> registeredTrees = tree.listAllTrees();
+		List<Tree> registeredTrees = tree.listAllTrees();
 
 		// check number of registered trees
 		assertEquals(2, registeredTrees.size());
@@ -200,7 +317,7 @@ public class TestTreePLEService {
 		assertEquals(54, registeredTrees.get(1).getLatitude(), 0);
 		assertEquals(LandType.Municipal, registeredTrees.get(1).getLandType());
 		assertEquals(TreeSpecies.Willow, registeredTrees.get(1).getTreeSpecies());
-		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());*/
+		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 	}
 
 	@Test
@@ -213,8 +330,7 @@ public class TestTreePLEService {
 		String name1 = "Jon";
 		TreeSpecies species1 = TreeSpecies.Willow;
 		LandType landtype1 = LandType.Institutional;
-		Municipality mun1 = new Municipality();
-		mun1.setMunicipalityName(MunicipalityName.Laval);
+		MunicipalityName mun1 = MunicipalityName.Montreal;
 
 		double height2 = 12;
 		double diameter2 = 19;
@@ -223,8 +339,7 @@ public class TestTreePLEService {
 		String name2 = "Jony";
 		TreeSpecies species2 = TreeSpecies.Willow;
 		LandType landtype2 = LandType.Municipal;
-		Municipality mun2 = new Municipality();
-		mun2.setMunicipalityName(MunicipalityName.Montreal);
+		MunicipalityName mun2 = MunicipalityName.Montreal;
 
 		String error = null;
 		TreePLETreeService tree1 = new TreePLETreeService(tm);
@@ -260,8 +375,7 @@ public class TestTreePLEService {
 		String name1 = "Jon";
 		TreeSpecies species1 = TreeSpecies.Willow;
 		LandType landtype1 = LandType.Institutional;
-		Municipality mun1 = new Municipality();
-		mun1.setMunicipalityName(MunicipalityName.Laval);
+		MunicipalityName mun1 = MunicipalityName.Laval;
 
 		double height2 = 12;
 		double diameter2 = 19;
@@ -270,9 +384,8 @@ public class TestTreePLEService {
 		String name2 = "Jony";
 		TreeSpecies species2 = TreeSpecies.Willow;
 		LandType landtype2 = LandType.Municipal;
-		Municipality mun2 = new Municipality();
-		mun2.setMunicipalityName(MunicipalityName.Montreal);
-
+		MunicipalityName mun2 = MunicipalityName.Montreal;
+		
 		double height3 = 16;
 		double diameter3 = 12;
 		double longitude3 = 70;
@@ -280,9 +393,7 @@ public class TestTreePLEService {
 		String name3 = "Jessy";
 		TreeSpecies species3 = TreeSpecies.Willow;
 		LandType landtype3 = LandType.Municipal;
-		Municipality mun3 = new Municipality();
-		mun3.setMunicipalityName(MunicipalityName.Montreal);
-
+		MunicipalityName mun3 = MunicipalityName.Montreal;
 		TreePLETreeService tree = new TreePLETreeService(tm);
 
 		try {
@@ -300,9 +411,9 @@ public class TestTreePLEService {
 		// check number of registered participants
 		assertEquals(3, allTrees.size());
 
-		List<Tree> registeredTreesByMunicipality = tree.getTreeByMunicipality(mun1.getMunicipalityName());
-		List<Tree> registeredTreesByMunicipality2 = tree.getTreeByMunicipality(mun2.getMunicipalityName());
-		List<Tree> registeredTreesByMunicipality3 = tree.getTreeByMunicipality(mun3.getMunicipalityName());
+		List<Tree> registeredTreesByMunicipality = tree.getTreeByMunicipality(mun1);
+		List<Tree> registeredTreesByMunicipality2 = tree.getTreeByMunicipality(mun2);
+		List<Tree> registeredTreesByMunicipality3 = tree.getTreeByMunicipality(mun3);
 		// tree 1
 		assertEquals(15, registeredTreesByMunicipality.get(0).getHeight(), 0);
 		assertEquals(19, registeredTreesByMunicipality.get(0).getDiameter(), 0);
@@ -347,8 +458,7 @@ public class TestTreePLEService {
 		String name1 = "Jon";
 		TreeSpecies species1 = TreeSpecies.Willow;
 		LandType landtype1 = LandType.Institutional;
-		Municipality mun1 = new Municipality();
-		mun1.setMunicipalityName(MunicipalityName.Laval);
+		MunicipalityName mun1 = MunicipalityName.Laval;
 
 		double height2 = 12;
 		double diameter2 = 19;
@@ -357,9 +467,8 @@ public class TestTreePLEService {
 		String name2 = "Jony";
 		TreeSpecies species2 = TreeSpecies.Willow;
 		LandType landtype2 = LandType.Municipal;
-		Municipality mun2 = new Municipality();
-		mun2.setMunicipalityName(MunicipalityName.Montreal);
-
+		MunicipalityName mun2 = MunicipalityName.Montreal;
+		
 		double height3 = 16;
 		double diameter3 = 12;
 		double longitude3 = 70;
@@ -367,8 +476,7 @@ public class TestTreePLEService {
 		String name3 = "Jessy";
 		TreeSpecies species3 = TreeSpecies.Willow;
 		LandType landtype3 = LandType.Municipal;
-		Municipality mun3 = new Municipality();
-		mun3.setMunicipalityName(MunicipalityName.Montreal);
+		MunicipalityName mun3 = MunicipalityName.Montreal;
 
 		TreePLETreeService tree = new TreePLETreeService(tm);
 
@@ -423,7 +531,7 @@ public class TestTreePLEService {
 	}
 
 	private void checkResultTree(LandType landtype, TreeSpecies species, double height, double diameter,
-			double longitude, double latitude, Municipality municipality, String userName, TreeManager tm) {
+			double longitude, double latitude, MunicipalityName municipality, String userName, TreeManager tm) {
 		assertEquals(1, tm.getTrees().size());
 		assertEquals(diameter, tm.getTree(0).getDiameter(), 0);
 		assertEquals(height, tm.getTree(0).getHeight(), 0);
@@ -432,11 +540,106 @@ public class TestTreePLEService {
 		assertEquals(landtype, tm.getTree(0).getLandType());
 		assertEquals(species, tm.getTree(0).getTreeSpecies());
 		assertEquals(TreeState.Planted, tm.getTree(0).getCurrentStatus().getTreeState());
-		assertEquals(municipality.getMunicipalityName(), tm.getTree(0).getMunicipality().getMunicipalityName());
+		assertEquals(municipality, tm.getTree(0).getMunicipality().getMunicipalityName());
 		assertEquals(userName, tm.getTree(0).getCurrentStatus().getPerson().getName());
 	}
-/*
+
+
+
+	
+	//test ran and works
 	@Test
+	public void testCalculateBioDiversity() {
+		
+		TreePLETreeService service = new TreePLETreeService(tm);
+
+
+		double height1 = 15;
+		double diameter1 = 19;
+		double longitude1 = 75;
+		double latitude1 = 77;
+		Person person1 = new Person("John");
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		Date  date1 = new Date();
+		Municipality mun1 = new Municipality();
+		mun1.setMunicipalityName(MunicipalityName.Laval);
+		Tree tree1 = new Tree(height1, diameter1, longitude1, latitude1, mun1);
+		Status status1= new Status(date1, tree1, person1);
+		status1.setTreeState(TreeState.Planted);
+		tree1.addStatus(status1);
+		tree1.setCurrentStatus(status1);
+		tree1.setTreeSpecies(species1);
+
+		
+		double height2 = 12;
+		double diameter2 = 19;
+		double longitude2 = 76;
+		double latitude2 = 54;
+		Person person2 = new Person ("Jony");
+		Date  date2 = new Date();
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Municipal;
+		Municipality mun2 = new Municipality();
+		mun2.setMunicipalityName(MunicipalityName.Laval);
+		Tree tree2 = new Tree(height2, diameter2, longitude2, latitude2, mun2);
+		Status status2= new Status(date2, tree2, person2);
+		status2.setTreeState(TreeState.Planted);
+		tree2.addStatus(status2);
+		tree2.setCurrentStatus(status2);
+		tree2.setTreeSpecies(species2);
+		tree2.setLandType(landtype2);
+		
+		double height3 = 16;
+		double diameter3 = 12;
+		double longitude3 = 70;
+		double latitude3 = 54;
+		Person person3 = new Person ("Jessy");
+		TreeSpecies species3 = TreeSpecies.Willow;
+		LandType landtype3 = LandType.Municipal;
+		Municipality mun3 = new Municipality();
+		Date  date3 = new Date();
+		mun3.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree3 = new Tree(height3, diameter3, longitude3, latitude3, mun3);
+		Status status3= new Status(date3, tree3, person3);
+		status3.setTreeState(TreeState.Planted);
+		tree3.addStatus(status3);
+		tree3.setCurrentStatus(status3);
+		tree3.setTreeSpecies(species3);
+		
+		double height4 = 16;
+		double diameter4 = 12;
+		double longitude4 = 70;
+		double latitude4 = 54;
+		Date  date4 = new Date();
+		Person person4 = new Person ("Johnathan");
+		TreeSpecies species4 = TreeSpecies.Willow;
+		LandType landtype4 = LandType.Municipal;
+		Municipality mun4= new Municipality();
+		mun4.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree4 = new Tree(height4, diameter4, longitude4, latitude4, mun4);
+		Status status4= new Status(date4, tree4, person3);
+		status4.setTreeState(TreeState.Planted);
+		tree4.addStatus(status4);
+		tree4.setCurrentStatus(status4);
+		tree4.setTreeSpecies(species4);
+
+		List <Tree> listOfTrees= new ArrayList <Tree>();
+		listOfTrees.add(tree1);
+		listOfTrees.add(tree2);
+		listOfTrees.add(tree3);
+		listOfTrees.add(tree4);
+
+
+		service.CalculateBioDiversityIndexForTrees(listOfTrees);
+
+
+		// check number of registered trees
+		assertEquals(0.25, service.CalculateBioDiversityIndexForTrees(listOfTrees) , 0.2);
+		
+	}
+
+	/*@Test
 	public void testIntegration() {
 		
 		TreePLETreeService service = new TreePLETreeService(tm);
@@ -539,35 +742,40 @@ public class TestTreePLEService {
 		assertEquals(TreeState.Planted, tm.getTree(3).getCurrentStatus().getTreeState());
 		assertEquals(TreeState.Planted, tm.getTree(4).getCurrentStatus().getTreeState());
 
-		service.cutDownTree(tm.getTree(0));
+		
+		service.cutDownTree(tm.getTree(0),"M.ad");
 		assertEquals(TreeState.Cut, tm.getTree(0).getCurrentStatus().getTreeState());
 		
 		
-		Tree.MarkTreeAsDiseased(tm.getTree(3));
+		service.MarkTreeAsDiseased(tm.getTree(3), "laura12");
 		assertEquals(TreeState.Diseased, tm.getTree(3).getCurrentStatus().getTreeState());
 		
 		//now for fun mark another as diseased then cut
 		
        
 		//test getTreeByID; repeat for every treeID 
-		assertEquals(service.getTreeByID(1), tm.get(0);
+		assertEquals(service.getTreeByID(1), tm.getTree(0).get);
 		
 		//repeat for Laval
-		assertEquals(service.getMunicipalityByName(MunicipalityName.Montreal).getMunicipalityName(), MunicipalityName.Montreal);
+		assertEquals(service.getMunicipalityByName(MunicipalityName.Montreal).getMunicipalityName(), MunicipalityName.Montreal);		
+		assertEquals(service.getMunicipalityByName(MunicipalityName.Laval).getMunicipalityName(), MunicipalityName.Laval);
 
 		//date won't check 
 
 		//testing getTreeByMunicipality
 		
-		List<Trees>montrealTrees=service.getTreeByMunicipality(montreal);
+		List<Tree>montrealTrees=service.getTreeByMunicipality(MunicipalityName.Montreal);
 		assertEquals(montrealTrees.size(), 3); //means I have 3 in Mtl 
 		//bioIndex
-		assertEquals(service.CalculateBioDiversityIndexForTrees(montrealTrees), myvalueME); //means I have 3 in Mtl 
+		assertEquals(service.CalculateBioDiversityIndexForTrees(montrealTrees), 4); //means I have 3 in Mtl 
 
 	//getTreeBySpecies and getTreebyState is the same as getTreeByMuncipality
 
 		//markToBeCutDown to be the same as .CUTdOWN
 		
-	}*/
+
+	}
+
+		*/
 
 }
