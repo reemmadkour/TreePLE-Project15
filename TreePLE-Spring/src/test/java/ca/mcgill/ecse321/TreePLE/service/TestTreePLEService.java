@@ -391,6 +391,45 @@ public class TestTreePLEService {
 		assertEquals(TreeState.Planted, tm.getTree(0).getCurrentStatus().getTreeState());
 		assertEquals(MunicipalityName.Montreal, tm.getTree(0).getMunicipality().getMunicipalityName());
 	}
+	
+	private void checkCalculateCurrentBioDiversity() {
+		
+		Municipality laval = new Municipality();
+		laval.setMunicipalityName(MunicipalityName.Laval);
+		Municipality montreal = new Municipality();
+		montreal.setMunicipalityName(MunicipalityName.Montreal);
+		
+		double height1 = 15;
+		double diameter1 = 19;
+		double longitude1 = 75;
+		double latitude1 = 77;
+		String name1 = "Jon";
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		
+
+		double height2 = 12;
+		double diameter2 = 19;
+		double longitude2 = 76;
+		double latitude2 = 54;
+		String name2 = "Jony";
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Municipal;
+		
+
+		double height3 = 16;
+		double diameter3 = 12;
+		double longitude3 = 70;
+		double latitude3 = 54;
+		String name3 = "Jessy";
+		TreeSpecies species3 = TreeSpecies.Willow;
+		LandType landtype3 = LandType.Municipal;
+		Municipality mun3 = new Municipality();
+		mun3.setMunicipalityName(MunicipalityName.Montreal);
+		
+		
+		
+	}
 
 	@Test
 	public void testIntegration() {
@@ -495,23 +534,24 @@ public class TestTreePLEService {
 		assertEquals(TreeState.Planted, tm.getTree(3).getCurrentStatus().getTreeState());
 		assertEquals(TreeState.Planted, tm.getTree(4).getCurrentStatus().getTreeState());
 
-		service.cutDownTree(tm.getTree(0),tm.getlistAllUsers.getName(0));
+		/*
+		service.cutDownTree(tm.getTree(0),"M.ad");
 		assertEquals(TreeState.Cut, tm.getTree(0).getCurrentStatus().getTreeState());
 		
 		
-		Tree.MarkTreeAsDiseased(tm.getTree(3), tm.getPerson(3));
+		service.MarkTreeAsDiseased(tm.getTree(3), "laura12");
 		assertEquals(TreeState.Diseased, tm.getTree(3).getCurrentStatus().getTreeState());
 		
 		//now for fun mark another as diseased then cut
 		
        
 		//test getTreeByID; repeat for every treeID 
-		assertEquals(service.getTreeByID(1), tm.get(0));
+		assertEquals(service.getTreeByID(1), tm.getTree(0).get);
 		
 		//repeat for Laval
 		assertEquals(service.getMunicipalityByName(MunicipalityName.Montreal).getMunicipalityName(), MunicipalityName.Montreal);		
 		assertEquals(service.getMunicipalityByName(MunicipalityName.Laval).getMunicipalityName(), MunicipalityName.Laval);
-
+*/
 		//date won't check 
 
 		//testing getTreeByMunicipality
@@ -524,6 +564,7 @@ public class TestTreePLEService {
 	//getTreeBySpecies and getTreebyState is the same as getTreeByMuncipality
 
 		//markToBeCutDown to be the same as .CUTdOWN
+		
 		
 	}
 
