@@ -219,7 +219,7 @@ public class TreePLETreeService {
 				}
 			
 		
-		public int CalculateBioDiversityIndexForTrees(List<Tree> treeList) {
+		public double CalculateBioDiversityIndexForTrees(List<Tree> treeList) {
 			List<Tree> ts= new ArrayList <Tree>();
 			ts= getNonCutTreesInList(treeList);
 			List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
@@ -228,9 +228,9 @@ public class TreePLETreeService {
 				if( Species.contains(n)){}
 				else { Species.add(n);}
 				}
-			int numerator= Species.size();
-			int denominator=treeList.size();
-			int index= numerator/denominator;
+			double numerator= Species.size();
+			double denominator=treeList.size();
+			double index= numerator/denominator;
 			return index;
 				
 			}
