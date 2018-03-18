@@ -55,7 +55,7 @@ public class TreePLETreeService {
 	double c= 0;
 	int s=0;
 	b= CalculateBioDiversityIndexForTrees(f.getCurrentTrees());
-	c= TotalCanopyForTrees(f.getCurrentTrees());
+	c= calculateTotalCanopyForTrees(f.getCurrentTrees());
 	s= CalculateCarbonSeqPerYear(f.getCurrentTrees());
 	Report r= new Report(c,s,b,f);
 	return r;
@@ -249,7 +249,7 @@ public int CalculateCarbonSeqPerYear(List<Tree> treeList) {
 			
 }
 
-public double TotalCanopyForTrees(List<Tree> treeList) throws InvalidInputException {
+public double calculateTotalCanopyForTrees(List<Tree> treeList) throws InvalidInputException {
 	
 	if (treeList==null) { 
 		throw new InvalidInputException ("Missing Information");}
@@ -267,7 +267,7 @@ public double TotalCanopyForTrees(List<Tree> treeList) throws InvalidInputExcept
 	
 }
 		
-public double CurrentTotalCanopy() {
+public double calculateCurrentTotalCanopy() {
 	List<Tree> treeList=listAllTrees();
 	List<Tree> ts= new ArrayList <Tree>();
 	ts= getNonCutTreesInList(treeList);

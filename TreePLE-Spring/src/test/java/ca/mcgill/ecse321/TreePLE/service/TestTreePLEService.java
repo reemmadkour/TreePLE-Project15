@@ -1046,11 +1046,11 @@ assertEquals("Please fill in all missing information!", er);
 		listOfTrees.add(tree4);
 
 
-		service.TotalCanopyForTrees(listOfTrees);
+		service.calculateTotalCanopyForTrees(listOfTrees);
 
 
 		// check number of registered trees
-		assertEquals(566.77, service.TotalCanopyForTrees(listOfTrees) , 0.2);
+		assertEquals(566.77, service.calculateTotalCanopyForTrees(listOfTrees) , 0.2);
 		
 	}
 	
@@ -1085,7 +1085,7 @@ assertEquals("Please fill in all missing information!", er);
 		List <Tree> listOfTrees= null;
 		
 		try {
-			service.TotalCanopyForTrees(listOfTrees);
+			service.calculateTotalCanopyForTrees(listOfTrees);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
