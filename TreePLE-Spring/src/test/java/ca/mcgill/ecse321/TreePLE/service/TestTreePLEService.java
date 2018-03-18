@@ -433,8 +433,8 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(MunicipalityName.Montreal,
 				registeredTreesByMunicipality2.get(0).getMunicipality().getMunicipalityName());
 		// tree 3
-		assertEquals(16, registeredTreesByMunicipality2.get(1).getHeight(), 0);
-		assertEquals(12, registeredTreesByMunicipality2.get(1).getDiameter(), 0);
+		assertEquals(16, registeredTreesByMunicipality2.get(1).getHeight(), 0);              //the tree and its data are stored in registeredTreesByMunicipality2, 
+		assertEquals(12, registeredTreesByMunicipality2.get(1).getDiameter(), 0);            //along with other trees in the same municipality
 		assertEquals(70, registeredTreesByMunicipality2.get(1).getLongitude(), 0);
 		assertEquals(53, registeredTreesByMunicipality2.get(1).getLatitude(), 0);
 		assertEquals(LandType.Municipal, registeredTreesByMunicipality2.get(1).getLandType());
