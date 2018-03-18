@@ -489,30 +489,31 @@ TreePLETreeService tree = new TreePLETreeService(tm);
 		assertEquals(TreeState.Planted, tm.getTree(3).getCurrentStatus().getTreeState());
 		assertEquals(TreeState.Planted, tm.getTree(4).getCurrentStatus().getTreeState());
 
-		service.cutDownTree(tm.getTree(0));
+		service.cutDownTree(tm.getTree(0),tm.getlistAllUsers.getName(0));
 		assertEquals(TreeState.Cut, tm.getTree(0).getCurrentStatus().getTreeState());
 		
 		
-		Tree.MarkTreeAsDiseased(tm.getTree(3));
+		Tree.MarkTreeAsDiseased(tm.getTree(3), tm.getPerson(3));
 		assertEquals(TreeState.Diseased, tm.getTree(3).getCurrentStatus().getTreeState());
 		
 		//now for fun mark another as diseased then cut
 		
        
 		//test getTreeByID; repeat for every treeID 
-		assertEquals(service.getTreeByID(1), tm.get(0);
+		assertEquals(service.getTreeByID(1), tm.get(0));
 		
 		//repeat for Laval
-		assertEquals(service.getMunicipalityByName(MunicipalityName.Montreal).getMunicipalityName(), MunicipalityName.Montreal);
+		assertEquals(service.getMunicipalityByName(MunicipalityName.Montreal).getMunicipalityName(), MunicipalityName.Montreal);		
+		assertEquals(service.getMunicipalityByName(MunicipalityName.Laval).getMunicipalityName(), MunicipalityName.Laval);
 
 		//date won't check 
 
 		//testing getTreeByMunicipality
 		
-		List<Trees>montrealTrees=service.getTreeByMunicipality(montreal);
+		List<Tree>montrealTrees=service.getTreeByMunicipality(MunicipalityName.Montreal);
 		assertEquals(montrealTrees.size(), 3); //means I have 3 in Mtl 
 		//bioIndex
-		assertEquals(service.CalculateBioDiversityIndexForTrees(montrealTrees), myvalueME); //means I have 3 in Mtl 
+		assertEquals(service.CalculateBioDiversityIndexForTrees(montrealTrees), 4); //means I have 3 in Mtl 
 
 	//getTreeBySpecies and getTreebyState is the same as getTreeByMuncipality
 
