@@ -53,8 +53,7 @@ public class TestTreePLEService {
 	}
 	
 	
-	//reem just did 
-@Test
+	@Test
 	public void testMarkTreeToBeCutRegularCase(){
 	double height = 10;
 	double diameter = 12;
@@ -80,9 +79,95 @@ public class TestTreePLEService {
 	}
 	
 	assertEquals(TreeState.ToBeCut, tm.getTree(0).getCurrentStatus().getTreeState());
+	assertEquals("Jon", tm.getTree(0).getCurrentStatus().getPerson().getName());
 }
 
+@Test
+public void testMarkTreeToBeCutNewUser(){
+double height = 10;
+double diameter = 12;
+double longitude = 23;
+double latitude = 24;
+String name = "John";
+TreeSpecies species = TreeSpecies.Willow;
+LandType landtype = LandType.Institutional;
+MunicipalityName mun= MunicipalityName.Montreal;
+Municipality m= new Municipality();
+m.setMunicipalityName(mun);
+Tree t= new Tree(height,diameter,longitude,latitude,m);
+t.setLandType(landtype);
+t.setTreeSpecies(species);
+//Person user= new Person("Jon");
+//tm.addPerson(user);
+
+TreePLETreeService tree = new TreePLETreeService(tm);
+tm.addTree(t);
+try{
+	tree.MarkTreeToBeCutDown(t, name);}
+catch(InvalidInputException e){
+	e.printStackTrace();
+}
+
+assertEquals(TreeState.ToBeCut, tm.getTree(0).getCurrentStatus().getTreeState());
+
+assertEquals(1, tm.getPerson().size());
+
+}
+
+
 //reem just did
+
+public void testMarkTreeToBeCutEmptyUser(){
+	double height = 10;
+	double diameter = 12;
+	double longitude = 23;
+	double latitude = 24;
+	String name = "   ";
+	TreeSpecies species = TreeSpecies.Willow;
+	LandType landtype = LandType.Institutional;
+	MunicipalityName mun= MunicipalityName.Montreal;
+	Municipality m= new Municipality();
+	m.setMunicipalityName(mun);
+	Tree t= new Tree(height,diameter,longitude,latitude,m);
+	t.setLandType(landtype);
+	t.setTreeSpecies(species);
+	//Person user= null;
+	//tm.addPerson(user);
+	tm.addTree(t);
+	String er= null;
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	try{
+		tree.MarkTreeToBeCutDown(t,name );}
+	catch(InvalidInputException e){
+		er=e.getMessage();
+	}
+	
+	assertEquals("Please fill in all missing information!", er);
+
+}
+
+
+
+//reem just did
+
+@Test
+public void testMarkTreeToBeCutNullTree(){
+
+	Tree t= null;
+	String name= "jay";
+	Person user= new Person("jay");
+	tm.addPerson(user);
+	//tm.addTree(t);
+	String er= null;
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	try{
+		tree.MarkTreeToBeCutDown(t,name );}
+	catch(InvalidInputException e){
+		er=e.getMessage();
+	}
+
+assertEquals("Please fill in all missing information!", er);
+}
 
 @Test
 public void testMarkTreeToBeCutNullUser(){
@@ -114,15 +199,66 @@ assertEquals("Please fill in all missing information!", er);
 }
 
 
+//reem just did2
+
+@Test
+public void testMarkTreeAsDiseasedEmptyUser(){
+double height = 10;
+double diameter = 12;
+double longitude = 23;
+double latitude = 24;
+String name = "   ";
+TreeSpecies species = TreeSpecies.Willow;
+LandType landtype = LandType.Institutional;
+MunicipalityName mun= MunicipalityName.Montreal;
+Municipality m= new Municipality();
+m.setMunicipalityName(mun);
+Tree t= new Tree(height,diameter,longitude,latitude,m);
+t.setLandType(landtype);
+t.setTreeSpecies(species);
+//Person user= null;
+//tm.addPerson(user);
+tm.addTree(t);
+String er= null;
+TreePLETreeService tree = new TreePLETreeService(tm);
+try{
+	tree.MarkTreeAsDiseased(t,name );}
+catch(InvalidInputException e){
+	er=e.getMessage();
+}
+
+assertEquals("Please fill in all missing information!", er);
+}
+
+
+
 //reem just did
 
 @Test
-public void testMarkTreeToBeCutEmptyUser(){
+public void testMarkTreeAsDiseasedNullTree(){
+
+Tree t= null;
+String name= "jay";
+Person user= new Person("jay");
+tm.addPerson(user);
+//tm.addTree(t);
+String er= null;
+TreePLETreeService tree = new TreePLETreeService(tm);
+try{
+	tree.MarkTreeAsDiseased(t,name );}
+catch(InvalidInputException e){
+	er=e.getMessage();
+}
+}
+	
+	//reem just did 
+@Test
+	public void testMarkTreeAsDiseasedRegularCase(){
 	double height = 10;
 	double diameter = 12;
 	double longitude = 23;
 	double latitude = 24;
-	String name = "   ";
+	String name = "Jon";
 	TreeSpecies species = TreeSpecies.Willow;
 	LandType landtype = LandType.Institutional;
 	MunicipalityName mun= MunicipalityName.Montreal;
@@ -131,42 +267,89 @@ public void testMarkTreeToBeCutEmptyUser(){
 	Tree t= new Tree(height,diameter,longitude,latitude,m);
 	t.setLandType(landtype);
 	t.setTreeSpecies(species);
-	//Person user= null;
-	//tm.addPerson(user);
+	Person user= new Person("Jon");
+	tm.addPerson(user);
 	tm.addTree(t);
-	String er= null;
 	TreePLETreeService tree = new TreePLETreeService(tm);
 	try{
-		tree.MarkTreeToBeCutDown(t,name );}
+		tree.MarkTreeAsDiseased(t, name);}
 	catch(InvalidInputException e){
-		er=e.getMessage();
+		e.printStackTrace();
 	}
 	
-	assertEquals("Please fill in all missing information!", er);
+	assertEquals(TreeState.Diseased, tm.getTree(0).getCurrentStatus().getTreeState());
+	assertEquals("Jon", tm.getTree(0).getCurrentStatus().getPerson().getName());
 }
 
+@Test
+public void testMarkTreeAsDiseasedNewUser(){
+double height = 10;
+double diameter = 12;
+double longitude = 23;
+double latitude = 24;
+String name = "John";
+TreeSpecies species = TreeSpecies.Willow;
+LandType landtype = LandType.Institutional;
+MunicipalityName mun= MunicipalityName.Montreal;
+Municipality m= new Municipality();
+m.setMunicipalityName(mun);
+Tree t= new Tree(height,diameter,longitude,latitude,m);
+t.setLandType(landtype);
+t.setTreeSpecies(species);
+//Person user= new Person("Jon");
+//tm.addPerson(user);
+
+TreePLETreeService tree = new TreePLETreeService(tm);
+tm.addTree(t);
+try{
+	tree.MarkTreeAsDiseased(t, name);}
+catch(InvalidInputException e){
+	e.printStackTrace();
+}
+
+assertEquals(TreeState.Diseased, tm.getTree(0).getCurrentStatus().getTreeState());
+
+assertEquals(1, tm.getPerson().size());
+
+}
 
 
 //reem just did
 
 @Test
-public void testMarkTreeToBeCutNullTree(){
-
-	Tree t= null;
-	String name= "jay";
-	Person user= new Person("jay");
-	tm.addPerson(user);
-	//tm.addTree(t);
-	String er= null;
-	TreePLETreeService tree = new TreePLETreeService(tm);
-	try{
-		tree.MarkTreeToBeCutDown(t,name );}
-	catch(InvalidInputException e){
-		er=e.getMessage();
-	}
+public void testMarkTreeAsDiseasedNullUser(){
+double height = 10;
+double diameter = 12;
+double longitude = 23;
+double latitude = 24;
+String name = null;
+TreeSpecies species = TreeSpecies.Willow;
+LandType landtype = LandType.Institutional;
+MunicipalityName mun= MunicipalityName.Montreal;
+Municipality m= new Municipality();
+m.setMunicipalityName(mun);
+Tree t= new Tree(height,diameter,longitude,latitude,m);
+t.setLandType(landtype);
+t.setTreeSpecies(species);
+Person user= null;
+tm.addPerson(user);
+tm.addTree(t);
+String er= null;
+TreePLETreeService tree = new TreePLETreeService(tm);
+try{
+	tree.MarkTreeAsDiseased(t,name );}
+catch(InvalidInputException e){
+	er=e.getMessage();
+}
 
 assertEquals("Please fill in all missing information!", er);
 }
+
+
+//reem just did
+
+
+
 	@Test
 	public void testcutDownTree() {
 		double height = 10;

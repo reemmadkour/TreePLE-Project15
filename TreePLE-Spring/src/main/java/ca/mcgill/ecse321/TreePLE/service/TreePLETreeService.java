@@ -410,7 +410,7 @@ return (ts.size()*48);
 		//mark as diseased
 		
 		public Tree MarkTreeAsDiseased(Tree t,String userName) throws InvalidInputException {
-			if((t==null)) {
+			if((t==null)||(userName==null)||(userName.trim().length() == 0)) {
 				throw new InvalidInputException("Please fill in all missing information!")	;
 			}
 			
@@ -432,7 +432,7 @@ return (ts.size()*48);
 	
 		t.addStatus(s);
 		t.setCurrentStatus(s);
-		
+		 tm.addPerson(user);
 		tm.addStatus(s);
 		PersistenceXStream.saveToXMLwithXStream(tm);
 		  
@@ -456,7 +456,7 @@ return (ts.size()*48);
 			Date date = new Date();
 		  Status s = new Status(date,t,user);
 		
-	
+		 tm.addPerson(user);
 	
 		s.setTreeState(TreeState.ToBeCut);
 	
