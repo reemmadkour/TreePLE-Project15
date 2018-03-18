@@ -934,6 +934,31 @@ assertEquals("Please fill in all missing information!", er);
 	assertEquals("Jessy", tree.listAllUsers().get(2).getName());
 	assertEquals("Jessica", tree.listAllUsers().get(3).getName());
 }
+	@Test
+	public void testListAllUserEmpty(){
+	double height = 10;
+	double diameter = 12;
+	double longitude = 23;
+	double latitude = 24;
+	TreeSpecies species = TreeSpecies.Willow;
+	LandType landtype = LandType.Institutional;
+	MunicipalityName mun= MunicipalityName.Montreal;
+	Municipality m= new Municipality();
+	m.setMunicipalityName(mun);
+	Tree t= new Tree(height,diameter,longitude,latitude,m);
+	t.setLandType(landtype);
+	t.setTreeSpecies(species);
+	Person user= new Person("");
+	tm.addPerson(user);
+	tm.addTree(t);
+
+	TreePLETreeService tree = new TreePLETreeService(tm);
+
+			tree.listAllUsers();
+
+	assertEquals(0, tree.listAllUsers().get(0).getName().length());
+}
+
 
 	
 	
