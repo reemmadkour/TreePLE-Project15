@@ -49,35 +49,14 @@ import android.support.v7.app.AppCompatActivity;
 
 
 
-        // When click on viewmaps (View Maps) it takes you to google maps
+        /* When click on viewmaps (View Maps) it takes you to google maps
         public void addListenerOnButton() {
 
             final Context context = this;
 
-          Button viewMaps = (Button) findViewById(R.id.viewmaps);
+          button = (Button) findViewById(R.id.viewmaps);
 
-            viewMaps.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-
-                    Intent intent = new Intent(context, MapsActivity.class);
-                    startActivity(intent);
-
-                }
-
-            });
-
-        }
-
-        // When click on button1 (View Maps) it takes you to google maps
-        public void addListenerOnButton5() {
-
-            final Context context = this;
-
-            Button viewMaps = (Button) findViewById(R.id.viewmaps_b);
-
-            viewMaps.setOnClickListener(new View.OnClickListener() {
+            button.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
@@ -89,7 +68,9 @@ import android.support.v7.app.AppCompatActivity;
 
             });
 
-        }
+        }*/
+
+
 
         // When click on ok it takes you to options
         public void addListenerOnButton2() {
@@ -110,43 +91,6 @@ import android.support.v7.app.AppCompatActivity;
 
         }
 
-        // When click on plant tree  it takes you to plant tree page
-        public void addListenerOnButton3() {
-
-            final Context context = this;
-
-            Button plant  = (Button) findViewById(R.id.planttree_b);
-
-            plant.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-
-                    setContentView(R.layout.planttree);
-                }
-
-            });
-
-        }
-
-        // When click on cut tree  it takes you to cut tree page
-        public void addListenerOnButton4() {
-
-            final Context context = this;
-
-            Button cut  = (Button) findViewById(R.id.cuttree_b);
-
-            cut.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-
-                    setContentView(R.layout.cut);
-                }
-
-            });
-
-        }
 
 
 
@@ -159,11 +103,11 @@ import android.support.v7.app.AppCompatActivity;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.welcomepage);
 
-            addListenerOnButton();
+           // addListenerOnButton();
             addListenerOnButton2();
-            addListenerOnButton3();
-            addListenerOnButton4();
-            addListenerOnButton5();
+           // addListenerOnButton3();
+          //  addListenerOnButton4();
+            //addListenerOnButton5();
 
             //userType spinner
             List userType = new ArrayList<String>();
@@ -187,163 +131,12 @@ import android.support.v7.app.AppCompatActivity;
             munSpinner.setAdapter(munAdapter);
 
 
-            //species Spinner
-            List species = new ArrayList<String>();
-            species.add("Please Select");
-            species.add("Willow");
-            //species.add("Cedar");
-            ArrayAdapter<String> speciesArrayAdapter = new ArrayAdapter<String>(
-                    this, android.R.layout.simple_spinner_item, species);
-            speciesArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-
-
-            final Spinner speciesSpinner = (Spinner)findViewById(R.id.species);
-            speciesSpinner.setAdapter(speciesArrayAdapter);
-
-
-            //landtype spinner
-            List landType = new ArrayList<String>();
-            landType.add("Please Select");
-            landType.add("Institutional");
-
-            ArrayAdapter<String> landArrayAdapter = new ArrayAdapter<String>(
-                    this, android.R.layout.simple_spinner_item, landType);
-            landArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-
-
-            final Spinner landSpinner = (Spinner)findViewById(R.id.landtype);
-            landSpinner.setAdapter(landArrayAdapter);
-
-            final EditText diameterText = (EditText)findViewById(R.id.diameter);
-            final EditText heightText = (EditText)findViewById(R.id.height);
-
-            final EditText longitudeText = (EditText)findViewById(R.id.longitude);
-            final EditText latitudeText = (EditText)findViewById(R.id.latitude);
-            final EditText usernameText = (EditText)findViewById(R.id.username_entry);
-
-            // Get initial
-            refreshLists(this.getCurrentFocus());
-        }
-
-        public void refreshLists(View view) {
-
-            refreshList(munAdapter, municipalities, "municipalities");
-        }
-
-
-        private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
-            HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                    names.clear();
-                    names.add("Please select...");
-                    for( int i = 0; i < response.length(); i++){
-                        try {
-                            names.add(response.getJSONObject(i).getString("name"));
-                        } catch (Exception e) {
-                            error += e.getMessage();
-                        }
-                        refreshErrorMessage();
-                    }
-                    adapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    try {
-                        error += errorResponse.get("message").toString();
-                    } catch (JSONException e) {
-                        error += e.getMessage();
-                    }
-                    refreshErrorMessage();
-                }
-            });
-        }
-
-
-
-        //refresh error messge to display error message on screen
-        private void refreshErrorMessage() {
-            // set the error message
-            TextView tvError = (TextView) findViewById(R.id.error);
-            tvError.setText(error);
-
-            if (error == null || error.length() == 0) {
-                tvError.setVisibility(View.GONE);
-            } else {
-                tvError.setVisibility(View.VISIBLE);
-            }
 
         }
 
-        //addTrees
-        public void addTree(View v) {
-            //municipality spinner
-            final Spinner munSpinner = (Spinner) findViewById(R.id.municipality);
-            error = "";
-            RequestParams rp = new RequestParams();
-            rp.add("municipality", munSpinner.getSelectedItem().toString());
-
-
-            final Spinner speciesSpinner = (Spinner)findViewById(R.id.species);
-
-            final Spinner landSpinner = (Spinner)findViewById(R.id.landtype);
-
-            final EditText diameterText = (EditText)findViewById(R.id.diameter);
-            final EditText heightText = (EditText)findViewById(R.id.height);
-
-            final EditText longText = (EditText)findViewById(R.id.longitude);
-            final EditText latText = (EditText)findViewById(R.id.latitude);
-            final EditText usernameText = (EditText)findViewById(R.id.username_entry);
 
 
 
-            //adding to request parameters
-
-            rp.add("species", speciesSpinner.getSelectedItem().toString());
-            rp.add("landType", landSpinner.getSelectedItem().toString());
-            rp.add("height", heightText.toString());
-            rp.add("diameter", diameterText.toString());
-            rp.add("longitude", longText.toString());
-            rp.add("latitude", latText.toString());
-            rp.add("userName", usernameText.toString());
-
-            HttpUtils.post("PlantTree/" , rp, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    refreshErrorMessage();
-                    ((Spinner) findViewById(R.id.municipality)).getSelectedItem();
-                    ((Spinner) findViewById(R.id.species)).getSelectedItem();
-                    ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
-                    if(((Spinner) findViewById(R.id.municipality)).getSelectedItem()== "Please Select" || ((Spinner) findViewById(R.id.species)).getSelectedItem() == "Please Select" ||((Spinner) findViewById(R.id.landtype)).getSelectedItem()=="Please Select" ){
-                        error = "Invalid Selection. Please pick an option!";
-                    }
-                    diameterText.setText("");
-                    heightText.setText("");
-                    longText.setText("");
-                    latText.setText("");
-                    usernameText.setText("");
-                }
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    try {
-                        error += errorResponse.get("message").toString();
-                    } catch (JSONException e) {
-                        error += e.getMessage();
-                    }
-
-                    refreshErrorMessage();
-
-                }
-            });
-
-            munSpinner.setSelection(0);
-            speciesSpinner.setSelection(0);
-            landSpinner.setSelection(0);
-
-            refreshErrorMessage();
-        }
 
 
 

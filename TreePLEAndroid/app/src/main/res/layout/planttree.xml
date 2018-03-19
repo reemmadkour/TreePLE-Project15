@@ -8,26 +8,31 @@
     android:backgroundTintMode="src_over">
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/PlantTreeTitle"
 
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="23dp"
+        android:background="#30000000"
+
+        android:fontFamily="sans-serif"
         android:text="Plant Tree"
-        android:textSize="30sp" />
+        android:textColor="#fff"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/diameter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button8"
+        android:layout_below="@+id/PlantTreeTitle"
         android:layout_marginStart="14dp"
         android:layout_marginTop="17dp"
         android:ems="10"
-        android:hint="@string/diametertext"
+        android:hint="Diameter"
         android:inputType="numberDecimal"
         android:textStyle="italic" />
 
@@ -39,7 +44,7 @@
         android:layout_below="@+id/diameter"
         android:layout_marginTop="17dp"
         android:ems="10"
-        android:hint="@string/heighttext"
+        android:hint="Height"
         android:inputType="numberDecimal"
         android:textStyle="italic" />
 
@@ -48,7 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/height"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/height"
+        android:layout_marginTop="21dp"
         android:ems="10"
         android:hint="Longitude"
         android:inputType="numberSigned"
@@ -60,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/longitude"
         android:layout_below="@+id/longitude"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Latitude"
         android:inputType="numberSigned"
@@ -108,20 +114,32 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/landType"
-        android:layout_marginEnd="31dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="21dp"
+        android:background="#30000000"
+        android:fontFamily="sans-serif"
+
         android:onClick="addTree"
+
         android:text="OK"
+        android:textColor="#fff"
         android:textStyle="bold" />
+
 
     <Button
         android:id="@+id/viewmaps"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_alignBaseline="@+id/plantTree"
+
         android:layout_alignBottom="@+id/plantTree"
         android:layout_toEndOf="@+id/landType"
+        android:background="#30000000"
+        android:fontFamily="sans-serif"
         android:text="Maps"
+        android:textColor="#fff"
         android:textStyle="bold" />
 
 </RelativeLayout>

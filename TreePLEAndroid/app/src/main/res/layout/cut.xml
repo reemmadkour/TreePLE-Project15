@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="25dp"
         android:text="Cut Tree"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:background="#30000000"/>
 
 </RelativeLayout>

@@ -82,8 +82,10 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/textView4"
         android:layout_below="@+id/municipality"
-        android:layout_marginTop="32dp"
-        android:text="OK" />
+        android:layout_marginTop="28dp"
+        android:background="#30000000"
+        android:text="OK"
+        android:textColor="#fff" />/>
 
     <Spinner
         android:id="@+id/municipality"
