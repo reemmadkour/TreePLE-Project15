@@ -18,7 +18,6 @@ import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
 
-
 import ca.mcgill.ecse321.TreePLE.model.Status;
 
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
@@ -250,6 +249,8 @@ try{
 catch(InvalidInputException e){
 	er=e.getMessage();
 }
+assertEquals("Please fill in all missing information!", er);
+
 }
 	
 	//reem just did 
