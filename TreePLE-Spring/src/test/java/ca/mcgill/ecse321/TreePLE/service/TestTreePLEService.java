@@ -541,53 +541,8 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(1, tm.getTrees().size());
 
 		assertEquals(t, tree5);
-		assertEquals(27, tm.getTree(0).getTreeID());
+		assertEquals(39, tm.getTree(0).getTreeID());
 	}
-	
-	@Test
-	public void listAllUsers() {
-		
-		assertEquals(0, tm.getTrees().size());
-
-		double height1 = 13;
-		double diameter1 = 15;
-		double longitude1 = 65;
-		double latitude1 = 87;
-		TreeSpecies species1 = TreeSpecies.Willow;
-		LandType landtype1 = LandType.Institutional;
-		MunicipalityName mun1 = MunicipalityName.Laval;
-		
-		double height2 = 12;
-		double diameter2 = 19;
-		double longitude2 = 76;
-		double latitude2 = 54;
-		TreeSpecies species2 = TreeSpecies.Willow;
-		LandType landtype2 = LandType.Municipal;
-		MunicipalityName mun2 = MunicipalityName.Montreal;
-		TreePLETreeService tree = new TreePLETreeService(tm);
-		
-		Person p1 = new Person("jon");
-		Person p2 = new Person("jonny");
-		tm.addPerson(p1);
-		tm.addPerson(p2);
-		
-		try {
-			tree.plantTree(landtype1, species1, height1, diameter1, longitude1, latitude1, mun1, p1.getName());
-			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, p2.getName());
-
-		} catch (InvalidInputException e) {
-			// Check that no error occured
-			fail();
-		}
-
-		List<Person> registeredUsers = tree.listAllUsers();
-
-		// check number of registered trees
-		assertEquals(2, registeredUsers.size());
-		assertEquals("jon", registeredUsers.get(0).getName());
-		assertEquals("jonny", registeredUsers.get(1).getName());
-	}
-	
 	
 
 	@Test
@@ -1415,6 +1370,95 @@ assertEquals("Please fill in all missing information!", er);
 
 	}
 	
+	@Test
+	public void testCalculateCurrentTotalCanopyForTrees() throws InvalidInputException {
+		TreePLETreeService service = new TreePLETreeService(tm);
+
+
+		double height1 = 15;
+		double diameter1 = 19;
+		double longitude1 = 75;
+		double latitude1 = 77;
+		Person person1 = new Person("John");
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		Date  date1 = new Date();
+		Municipality mun1 = new Municipality();
+		mun1.setMunicipalityName(MunicipalityName.Laval);
+		Tree tree1 = new Tree(height1, diameter1, longitude1, latitude1, mun1);
+		Status status1= new Status(date1, tree1, person1);
+		status1.setTreeState(TreeState.Planted);
+		tree1.addStatus(status1);
+		tree1.setCurrentStatus(status1);
+		tree1.setTreeSpecies(species1);
+
+		
+		double height2 = 12;
+		double diameter2 = 19;
+		double longitude2 = 76;
+		double latitude2 = 54;
+		Person person2 = new Person ("Jony");
+		Date  date2 = new Date();
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Municipal;
+		Municipality mun2 = new Municipality();
+		mun2.setMunicipalityName(MunicipalityName.Laval);
+		Tree tree2 = new Tree(height2, diameter2, longitude2, latitude2, mun2);
+		Status status2= new Status(date2, tree2, person2);
+		status2.setTreeState(TreeState.Planted);
+		tree2.addStatus(status2);
+		tree2.setCurrentStatus(status2);
+		tree2.setTreeSpecies(species2);
+		tree2.setLandType(landtype2);
+		
+		double height3 = 16;
+		double diameter3 = 12;
+		double longitude3 = 70;
+		double latitude3 = 54;
+		Person person3 = new Person ("Jessy");
+		TreeSpecies species3 = TreeSpecies.Willow;
+		LandType landtype3 = LandType.Municipal;
+		Municipality mun3 = new Municipality();
+		Date  date3 = new Date();
+		mun3.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree3 = new Tree(height3, diameter3, longitude3, latitude3, mun3);
+		Status status3= new Status(date3, tree3, person3);
+		status3.setTreeState(TreeState.Cut);
+		tree3.addStatus(status3);
+		tree3.setCurrentStatus(status3);
+		tree3.setTreeSpecies(species3);
+		
+		double height4 = 16;
+		double diameter4 = 12;
+		double longitude4 = 70;
+		double latitude4 = 54;
+		Date  date4 = new Date();
+		Person person4 = new Person ("Johnathan");
+		TreeSpecies species4 = TreeSpecies.Willow;
+		LandType landtype4 = LandType.Municipal;
+		Municipality mun4= new Municipality();
+		mun4.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree4 = new Tree(height4, diameter4, longitude4, latitude4, mun4);
+		Status status4= new Status(date4, tree4, person3);
+		status4.setTreeState(TreeState.Cut);
+		tree4.addStatus(status4);
+		tree4.setCurrentStatus(status4);
+		tree4.setTreeSpecies(species4);
+
+		List <Tree> listOfTrees= new ArrayList <Tree>();
+		listOfTrees.add(tree1);
+		listOfTrees.add(tree2);
+		listOfTrees.add(tree3);
+		listOfTrees.add(tree4);
+
+
+		service.calculateCurrentTotalCanopy();
+
+
+		// check number of registered trees
+		assertEquals(0, service.calculateCurrentTotalCanopy() , 0.2);
+		
+	}
 	
 	
 	@Test
