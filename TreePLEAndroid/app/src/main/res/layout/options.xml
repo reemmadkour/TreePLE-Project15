@@ -8,6 +8,8 @@
 
     <Button
         android:id="@+id/button4"
+
+
         style="@android:style/Widget.Button.Transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +22,7 @@
 
     <Button
         android:id="@+id/planttree_b"
-        style="@android:style/Widget.Button.Transparent"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/cuttree_b"
@@ -30,7 +32,7 @@
 
     <Button
         android:id="@+id/cuttree_b"
-        style="@android:style/Widget.Button.Transparent"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/planttree_b"
@@ -39,7 +41,7 @@
 
     <Button
         android:id="@+id/viewmaps_b"
-        style="@android:style/Widget.Button.Transparent"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/cuttree_b"

@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/button8"
-        style="@android:style/Widget.Button.Transparent"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -103,7 +103,7 @@
 
     <Button
         android:id="@+id/plantTree"
-        style="@android:style/Widget.Button.Transparent"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -116,7 +116,7 @@
 
     <Button
         android:id="@+id/viewmaps"
-        style="@android:style/Widget.Button.Transparent"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/plantTree"

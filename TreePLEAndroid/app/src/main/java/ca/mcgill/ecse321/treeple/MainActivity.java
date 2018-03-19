@@ -197,7 +197,7 @@ import android.support.v7.app.AppCompatActivity;
             speciesArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
 
-            final Spinner speciesSpinner = (Spinner)findViewById(R.id.speciesspinner);
+            final Spinner speciesSpinner = (Spinner)findViewById(R.id.species);
             speciesSpinner.setAdapter(speciesArrayAdapter);
 
 
