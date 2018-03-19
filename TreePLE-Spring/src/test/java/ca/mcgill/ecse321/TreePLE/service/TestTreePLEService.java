@@ -249,6 +249,8 @@ try{
 catch(InvalidInputException e){
 	er=e.getMessage();
 }
+assertEquals("Please fill in all missing information!", er);
+
 }
 	
 	//reem just did 
