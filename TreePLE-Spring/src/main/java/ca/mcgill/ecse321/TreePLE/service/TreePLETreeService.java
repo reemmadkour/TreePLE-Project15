@@ -267,10 +267,13 @@ public double calculateTotalCanopyForTrees(List<Tree> treeList) throws InvalidIn
 	
 }
 		
-public double calculateCurrentTotalCanopy() {
+public double calculateCurrentTotalCanopy() throws InvalidInputException {
+	
 	List<Tree> treeList=listAllTrees();
 	List<Tree> ts= new ArrayList <Tree>();
 	ts= getNonCutTreesInList(treeList);
+	if (treeList==null) { 
+		throw new InvalidInputException ("Missing Information");}
 	double TotalCanopy=0;
 	double  area=0;
 	for (Tree tree: ts) {
