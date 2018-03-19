@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content_main"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/tree3"
@@ -24,10 +25,103 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/button8"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="17dp"
         android:ems="10"
         android:hint="@string/diametertext"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/diameter"
+        android:layout_below="@+id/diameter"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/heighttext"
+        android:inputType="numberDecimal"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/height"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="Longitude"
+        android:inputType="numberSigned"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/longitude"
+        android:layout_below="@+id/longitude"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Latitude"
+        android:inputType="numberSigned"
+        android:textStyle="italic" />
+
+    <Spinner
+        android:id="@+id/species"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Species"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/landtype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Species" />
+
+    <TextView
+        android:id="@+id/Species"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/latitude"
+        android:layout_marginTop="14dp"
+        android:text="Species"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/landType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/landtype"
+        android:layout_alignStart="@+id/landtype"
+        android:text="LandType"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/plantTree"
+        style="@android:style/Widget.Button.Transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/landType"
+        android:layout_marginEnd="31dp"
+        android:layout_marginTop="22dp"
+        android:onClick="addTree"
+        android:text="OK"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/viewmaps"
+        style="@android:style/Widget.Button.Transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/plantTree"
+        android:layout_toEndOf="@+id/landType"
+        android:text="Maps"
+        android:textStyle="bold" />
 
 </RelativeLayout>

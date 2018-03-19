@@ -44,16 +44,19 @@ import android.support.v7.app.AppCompatActivity;
         private List<String> municipalities = new ArrayList<>();
         private ArrayAdapter<String> munAdapter;
 
+        private List<String> trees = new ArrayList<>();
+        private ArrayAdapter<String> treeAdapter;
 
 
-        // When click on button1 (View Maps) it takes you to google maps
+
+        // When click on viewmaps (View Maps) it takes you to google maps
         public void addListenerOnButton() {
 
             final Context context = this;
 
-            button = (Button) findViewById(R.id.button1);
+          Button viewMaps = (Button) findViewById(R.id.viewmaps);
 
-            button.setOnClickListener(new View.OnClickListener() {
+            viewMaps.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
@@ -67,6 +70,86 @@ import android.support.v7.app.AppCompatActivity;
 
         }
 
+        // When click on button1 (View Maps) it takes you to google maps
+        public void addListenerOnButton5() {
+
+            final Context context = this;
+
+            Button viewMaps = (Button) findViewById(R.id.viewmaps_b);
+
+            viewMaps.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+
+                    Intent intent = new Intent(context, MapsActivity.class);
+                    startActivity(intent);
+
+                }
+
+            });
+
+        }
+
+        // When click on ok it takes you to options
+        public void addListenerOnButton2() {
+
+            final Context context = this;
+
+            Button options  = (Button) findViewById(R.id.ok_1);
+
+            options.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+
+                    setContentView(R.layout.options);
+                }
+
+            });
+
+        }
+
+        // When click on plant tree  it takes you to plant tree page
+        public void addListenerOnButton3() {
+
+            final Context context = this;
+
+            Button plant  = (Button) findViewById(R.id.planttree_b);
+
+            plant.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+
+                    setContentView(R.layout.planttree);
+                }
+
+            });
+
+        }
+
+        // When click on cut tree  it takes you to cut tree page
+        public void addListenerOnButton4() {
+
+            final Context context = this;
+
+            Button cut  = (Button) findViewById(R.id.cuttree_b);
+
+            cut.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+
+                    setContentView(R.layout.cut);
+                }
+
+            });
+
+        }
+
+
+
 
 
 
@@ -74,36 +157,35 @@ import android.support.v7.app.AppCompatActivity;
         protected void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.main_activity);
+            setContentView(R.layout.welcomepage);
 
             addListenerOnButton();
+            addListenerOnButton2();
+            addListenerOnButton3();
+            addListenerOnButton4();
+            addListenerOnButton5();
+
+            //userType spinner
+            List userType = new ArrayList<String>();
+            userType.add("Please Select");
+            userType.add("Local User");
+            userType.add("Scientist");
+
+            ArrayAdapter<String> userArrayAdapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_spinner_item, userType);
+            userArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+
+            //Municipalities Spinner
             municipalities.add("Please Select");
             municipalities.add("Montreal");
             municipalities.add("Laval");
-            final Spinner munSpinner = (Spinner) findViewById(R.id.munspinner);
-
-
+            final Spinner munSpinner = (Spinner) findViewById(R.id.municipality);
 
             munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, municipalities);
             munAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             munSpinner.setAdapter(munAdapter);
 
-            /*height and diameter population
-            List numbers = new ArrayList<Integer>();
-            for (int i = 0; i <= 100; i++) {
-                numbers.add(Integer.toString(i));
-            }*/
-
-           /* ArrayAdapter<Integer> spinnerArrayAdapter = new ArrayAdapter<Integer>(
-                    this, android.R.layout.simple_spinner_item, numbers);
-            spinnerArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );*/
-
-            /*height spinner
-            final Spinner heightSpinner = (Spinner)findViewById(R.id.heightspinner);
-            heightSpinner.setAdapter(spinnerArrayAdapter);
-            //diameter spinner
-            final Spinner diameterSpinner = (Spinner) findViewById(R.id.diameterspinner);
-            diameterSpinner.setAdapter(spinnerArrayAdapter);*/
 
             //species Spinner
             List species = new ArrayList<String>();
@@ -129,18 +211,15 @@ import android.support.v7.app.AppCompatActivity;
             landArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
 
-            final Spinner landSpinner = (Spinner)findViewById(R.id.landspinner);
+            final Spinner landSpinner = (Spinner)findViewById(R.id.landtype);
             landSpinner.setAdapter(landArrayAdapter);
 
-            final EditText diameterText = (EditText)findViewById(R.id.diametertext);
-            final EditText heightText = (EditText)findViewById(R.id.heighttext);
+            final EditText diameterText = (EditText)findViewById(R.id.diameter);
+            final EditText heightText = (EditText)findViewById(R.id.height);
 
-            final EditText longitudeText = (EditText)findViewById(R.id.longtext);
-            final EditText latitudeText = (EditText)findViewById(R.id.lattext);
-            final EditText usernameText = (EditText)findViewById(R.id.username);
-
-
-
+            final EditText longitudeText = (EditText)findViewById(R.id.longitude);
+            final EditText latitudeText = (EditText)findViewById(R.id.latitude);
+            final EditText usernameText = (EditText)findViewById(R.id.username_entry);
 
             // Get initial
             refreshLists(this.getCurrentFocus());
@@ -201,36 +280,27 @@ import android.support.v7.app.AppCompatActivity;
         //addTrees
         public void addTree(View v) {
             //municipality spinner
-            final Spinner munSpinner = (Spinner) findViewById(R.id.munspinner);
+            final Spinner munSpinner = (Spinner) findViewById(R.id.municipality);
             error = "";
             RequestParams rp = new RequestParams();
             rp.add("municipality", munSpinner.getSelectedItem().toString());
 
-            //height spinner
-            //final Spinner heightSpinner = (Spinner)findViewById(R.id.heightspinner);
 
-            //diameter spinner
-          //  final Spinner diameterSpinner = (Spinner) findViewById(R.id.diameterspinner);
+            final Spinner speciesSpinner = (Spinner)findViewById(R.id.species);
 
-            final Spinner speciesSpinner = (Spinner)findViewById(R.id.speciesspinner);
+            final Spinner landSpinner = (Spinner)findViewById(R.id.landtype);
 
-            final Spinner landSpinner = (Spinner)findViewById(R.id.landspinner);
+            final EditText diameterText = (EditText)findViewById(R.id.diameter);
+            final EditText heightText = (EditText)findViewById(R.id.height);
 
-            final EditText diameterText = (EditText)findViewById(R.id.diametertext);
-            final EditText heightText = (EditText)findViewById(R.id.heighttext);
-
-            final EditText longText = (EditText)findViewById(R.id.longtext);
-            final EditText latText = (EditText)findViewById(R.id.lattext);
-            final EditText usernameText = (EditText)findViewById(R.id.username);
-
-
-
+            final EditText longText = (EditText)findViewById(R.id.longitude);
+            final EditText latText = (EditText)findViewById(R.id.latitude);
+            final EditText usernameText = (EditText)findViewById(R.id.username_entry);
 
 
 
             //adding to request parameters
-            //rp.add("height", heightSpinner.getSelectedItem().toString());
-            //rp.add("diameter", diameterSpinner.getSelectedItem().toString());
+
             rp.add("species", speciesSpinner.getSelectedItem().toString());
             rp.add("landType", landSpinner.getSelectedItem().toString());
             rp.add("height", heightText.toString());
@@ -243,9 +313,17 @@ import android.support.v7.app.AppCompatActivity;
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     refreshErrorMessage();
-                    ((Spinner) findViewById(R.id.munspinner)).getSelectedItem();
-                    ((Spinner) findViewById(R.id.speciesspinner)).getSelectedItem();
-                    ((Spinner) findViewById(R.id.landspinner)).getSelectedItem();
+                    ((Spinner) findViewById(R.id.municipality)).getSelectedItem();
+                    ((Spinner) findViewById(R.id.species)).getSelectedItem();
+                    ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
+                    if(((Spinner) findViewById(R.id.municipality)).getSelectedItem()== "Please Select" || ((Spinner) findViewById(R.id.species)).getSelectedItem() == "Please Select" ||((Spinner) findViewById(R.id.landtype)).getSelectedItem()=="Please Select" ){
+                        error = "Invalid Selection. Please pick an option!";
+                    }
+                    diameterText.setText("");
+                    heightText.setText("");
+                    longText.setText("");
+                    latText.setText("");
+                    usernameText.setText("");
                 }
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
@@ -261,8 +339,6 @@ import android.support.v7.app.AppCompatActivity;
             });
 
             munSpinner.setSelection(0);
-            //heightSpinner.setSelection(0);
-            //diameterSpinner.setSelection(0);
             speciesSpinner.setSelection(0);
             landSpinner.setSelection(0);
 

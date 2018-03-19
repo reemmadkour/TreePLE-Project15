@@ -19,32 +19,32 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/planttree_b"
         style="@android:style/Widget.Button.Transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button5"
+        android:layout_alignBottom="@+id/cuttree_b"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="91dp"
         android:text="Plant Tree" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/cuttree_b"
         style="@android:style/Widget.Button.Transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button6"
+        android:layout_alignStart="@+id/planttree_b"
         android:layout_centerVertical="true"
         android:text="Cut Tree" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/viewmaps_b"
         style="@android:style/Widget.Button.Transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/button6"
-        android:layout_marginBottom="137dp"
+        android:layout_alignStart="@+id/cuttree_b"
+        android:layout_below="@+id/cuttree_b"
+        android:layout_marginTop="47dp"
         android:text="View Map" />
 
 </RelativeLayout>

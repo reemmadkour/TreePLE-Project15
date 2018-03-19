@@ -47,8 +47,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        final EditText longText = (EditText)findViewById(R.id.longtext);
-        final EditText latText = (EditText)findViewById(R.id.lattext);
+        final EditText longText = (EditText)findViewById(R.id.longitude);
+        final EditText latText = (EditText)findViewById(R.id.latitude);
         String longitude = longText.getText().toString(); // Same
         Double lng  = Double.parseDouble(longitude);
 
@@ -58,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-       mMap.addMarker(new MarkerOptions().position(tree));
+       mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
 
         // Add a marker in Sydney and move the camera
        /* LatLng sydney = new LatLng(-34, 151);
