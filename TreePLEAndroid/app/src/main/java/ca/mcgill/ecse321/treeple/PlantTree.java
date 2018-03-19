@@ -41,8 +41,7 @@ public class PlantTree extends AppCompatActivity{
     private GoogleMap mMap;
     private String error ;
     Button button;
-    private List<String> municipalities = new ArrayList<>();
-    private ArrayAdapter<String> munAdapter;
+
 
     private List<String> trees = new ArrayList<>();
     private ArrayAdapter<String> treeAdapter;
@@ -84,7 +83,7 @@ public class PlantTree extends AppCompatActivity{
         addListenerOnButton();
 
 
-        //userType spinner
+        /*userType spinner
         List userType = new ArrayList<String>();
         userType.add("Please Select");
         userType.add("Local User");
@@ -92,10 +91,10 @@ public class PlantTree extends AppCompatActivity{
 
         ArrayAdapter<String> userArrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, userType);
-        userArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        userArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );*/
 
 
-        //Municipalities Spinner
+        /*Municipalities Spinner
         municipalities.add("Please Select");
         municipalities.add("Montreal");
         municipalities.add("Laval");
@@ -103,7 +102,7 @@ public class PlantTree extends AppCompatActivity{
 
         munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, municipalities);
         munAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        munSpinner.setAdapter(munAdapter);
+        munSpinner.setAdapter(munAdapter);*/
 
 
         //species Spinner
@@ -140,14 +139,10 @@ public class PlantTree extends AppCompatActivity{
         final EditText latitudeText = (EditText)findViewById(R.id.latitude);
         final EditText usernameText = (EditText)findViewById(R.id.username_entry);
 
-        // Get initial
-        refreshLists(this.getCurrentFocus());
+
     }
 
-    public void refreshLists(View view) {
 
-        refreshList(munAdapter, municipalities, "municipalities");
-    }
 
 
     private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {

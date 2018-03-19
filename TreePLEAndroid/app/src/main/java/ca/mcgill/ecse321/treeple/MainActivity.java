@@ -44,6 +44,9 @@ import android.support.v7.app.AppCompatActivity;
         private List<String> municipalities = new ArrayList<>();
         private ArrayAdapter<String> munAdapter;
 
+        private List<String> userType = new ArrayList<>();
+        private ArrayAdapter<String> userAdapter;
+
         private List<String> trees = new ArrayList<>();
         private ArrayAdapter<String> treeAdapter;
 
@@ -110,18 +113,19 @@ import android.support.v7.app.AppCompatActivity;
             //addListenerOnButton5();
 
             //userType spinner
-            List userType = new ArrayList<String>();
-            userType.add("Please Select");
+
+            //userType.add("Please Select");
             userType.add("Local User");
             userType.add("Scientist");
+            final Spinner userSpinner = (Spinner) findViewById(R.id.userType);
 
-            ArrayAdapter<String> userArrayAdapter = new ArrayAdapter<String>(
-                    this, android.R.layout.simple_spinner_item, userType);
-            userArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+            userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userType);
+            userAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+            userSpinner.setAdapter(userAdapter);
 
 
             //Municipalities Spinner
-            municipalities.add("Please Select");
+           // municipalities.add("Please Select");
             municipalities.add("Montreal");
             municipalities.add("Laval");
             final Spinner munSpinner = (Spinner) findViewById(R.id.municipality);
