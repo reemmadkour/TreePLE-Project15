@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 52 "../../../../../TreePLE.ump"
+// line 53 "../../../../../TreePLE.ump"
 public abstract class Role
 {
 

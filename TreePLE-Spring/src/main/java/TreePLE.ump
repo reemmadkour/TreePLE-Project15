@@ -45,6 +45,7 @@ Date date;
 
 class Person {
 name;
+
   1--* Status status;
  * -- * Role roles;
 }
@@ -62,7 +63,7 @@ class LocalUser {
 }
 
 class Report{
-int canopy;
+double canopy;
 int carbonSequestration;
 double bioDiversityIndex;
 
@@ -72,7 +73,9 @@ double bioDiversityIndex;
 
 
 class Forecast {
-* -- * Report report;
+autounique fID;
+  0..*-- 1 Person person;
+1 -- 0..* Report report;
 * -> 0..* Tree treesToBePlanted;
   * -> 0..* Tree treesToBeCut;
  * -- 0..* Tree currentTrees;

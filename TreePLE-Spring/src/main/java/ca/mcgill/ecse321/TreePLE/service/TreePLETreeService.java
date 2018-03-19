@@ -6,13 +6,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import ca.mcgill.ecse321.TreePLE.model.Forecast;
 //import ca.mcgill.ecse321.TreePLE.controller.RequestParam;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
+import ca.mcgill.ecse321.TreePLE.model.Report;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
-
 import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
@@ -36,18 +37,96 @@ public class TreePLETreeService {
 		  
 		}
 		
+		
+		public Report generateReportForForecast(Forecast f) throws InvalidInputException {
+	int i=0;
+	for(i=0; i<f.getCurrentTrees().size();i++) {
+		f.removeCurrentTree(f.getCurrentTree(i));
+	}
+	for(i=0; i<f.getTreesToBePlanted().size();i++) {
+		f.addCurrentTree(f.getTreesToBePlanted(i));
+	}
+	List<Tree> currentToAdd = new ArrayList<Tree>();
+	currentToAdd = getNonCutTreesInList(tm.getTrees());
+	for(i=0; i<currentToAdd.size();i++) {
+		if(!(f.getTreesToBeCut().contains(currentToAdd.get(i)))){
+			f.addCurrentTree(currentToAdd.get(i));}}
+	double b=0;
+	double c= 0;
+	int s=0;
+	b= CalculateBioDiversityIndexForTrees(f.getCurrentTrees());
+	c= calculateTotalCanopyForTrees(f.getCurrentTrees());
+	s= CalculateCarbonSeqPerYear(f.getCurrentTrees());
+	Report r= new Report(c,s,b,f);
+	return r;
+	
+		}
+		
+		
+		
+		public Forecast createNewForecast(String userName) {
+			List<Person> users= listAllUsers();
+			  Person user =null;
+			  for(Person p : users) {
+				  if (p.getName()==userName) { user=p;}
+			  }
+			  if(user==null) {
+				  user= new Person(userName);
+			  }
+			
+			Forecast f= new Forecast(user);
+			return f;
+		}
+		
+		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName) throws InvalidInputException{
+			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
+				    throw new InvalidInputException("Missing information");
+				  }
+			 Municipality m= new Municipality();
+				  Tree t = new Tree(height, diameter, longitude, latitude, m);
+				  Person user= f.getPerson();
+				  Date date1= new Date();
+				  Status s = new Status(date1,t,user);
+				 
+				  //change tree status to planted
+				  s.setTreeState(TreeState.Planted);
+				  t.setCurrentStatus(s);
+				  
+				  t.addStatus(s);
+				  
+				
+				  
+				  //set tree species
+				  t.setTreeSpecies(species);
+				  
+				  //set Landtype
+				  t.setLandType(landtype);
+				  
+				
+				  
+				  //set municipality
+				  t.setMunicipality(m);
+				  //MunicipalityName name = municipality.getMunicipalityName();
+				  //municipality.setMunicipalityName(name);
+				  f.addTreesToBePlanted(t);
+				  tm.addForecast(f);
+				  PersistenceXStream.saveToXMLwithXStream(tm);
+				  return f ;
+				  
+				  
+		}
 		public Tree getTreeByID  (int id) throws InvalidInputException  {
 			List<Tree> alltrees= listAllTrees();
-		Tree tree= null;
-		for (Tree tr : alltrees) {
-			if(tr.getTreeID()==id) {
-				tree=tr;
-				break;
+			Tree tree= null;
+			for (Tree tr : alltrees) {
+				if(tr.getTreeID()==id) {
+					tree=tr;
+					break;
+				}
 			}
+			if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
+			else{return tree;}
 		}
-		if (tree == null) { throw new InvalidInputException("Tree doesn't exist");}
-		else{return tree;}
-	}
 		
 			
 		public Municipality getMunicipalityByName  (MunicipalityName municipalityName) throws InvalidInputException  {
@@ -71,11 +150,12 @@ public class TreePLETreeService {
 	
 		
 		//plant a tree method
-		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, Municipality municipality, String userName) throws InvalidInputException
+		public Tree plantTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, String userName) throws InvalidInputException
 		{
-		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || municipality == null) {
+		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
 		    throw new InvalidInputException("Missing information");
 		  }
+		  Municipality municipality= getMunicipalityByName(munName);
 		  Tree t = new Tree(height, diameter, longitude, latitude, municipality);
 		  List<Person> users= listAllUsers();
 		  Person user =null;
@@ -130,33 +210,55 @@ public class TreePLETreeService {
 		 
 			return tm.getPerson();
 		}
-		
-		
-		public int CalculateBioDiversityIndexForTrees(List<Tree> treeList) {
-			
-			List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
+		public List<Tree> getNonCutTreesInList(List<Tree> treeList){
+			List<Tree> ts= new ArrayList <Tree>();
 			for (Tree tree: treeList) {
+				if(!tree.getCurrentStatus().getTreeState().equals(TreeState.Cut)) {
+				ts.add(tree);}}
+				return ts;
+				
+				}
+			
+		
+		public double CalculateBioDiversityIndexForTrees(List<Tree> treeList) throws InvalidInputException {
+			
+			if (treeList==null) { 
+				throw new InvalidInputException ("Missing Information");}
+			
+			List<Tree> ts= new ArrayList <Tree>();
+			ts= getNonCutTreesInList(treeList);
+			List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
+			for (Tree tree: ts) {
 				TreeSpecies n= tree.getTreeSpecies();
 				if( Species.contains(n)){}
 				else { Species.add(n);}
 				}
-			int numerator= Species.size();
-			int denominator=treeList.size();
-			int index= numerator/denominator;
+			double numerator= Species.size();
+			double denominator=treeList.size();
+			double index= numerator/denominator;
 			return index;
+			
+			
 				
 			}
 			
 public int CalculateCarbonSeqPerYear(List<Tree> treeList) {
-	
-	return (treeList.size()*48);
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
+	return (ts.size()*48);
 			
 }
 
-public double TotalCanopyForTrees(List<Tree> treeList) {
+public double calculateTotalCanopyForTrees(List<Tree> treeList) throws InvalidInputException {
+	
+	if (treeList==null) { 
+		throw new InvalidInputException ("Missing Information");}
+	
 	double TotalCanopy=0;
 	double area=0;
-	for (Tree tree: treeList) {
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
+	for (Tree tree: ts) {
 		area=(3.14)*(tree.getDiameter()*0.5)*(tree.getDiameter()*0.5);
 	TotalCanopy=TotalCanopy+area;
 			
@@ -165,11 +267,16 @@ public double TotalCanopyForTrees(List<Tree> treeList) {
 	
 }
 		
-public double CurrentTotalCanopy() {
+public double calculateCurrentTotalCanopy() throws InvalidInputException {
+	
 	List<Tree> treeList=listAllTrees();
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
+	if (treeList==null) { 
+		throw new InvalidInputException ("Missing Information");}
 	double TotalCanopy=0;
-	double area=0;
-	for (Tree tree: treeList) {
+	double  area=0;
+	for (Tree tree: ts) {
 		area=(3.14)*(tree.getDiameter()*0.5)*(tree.getDiameter()*0.5);
 	TotalCanopy=TotalCanopy+area;
 			
@@ -178,24 +285,28 @@ public double CurrentTotalCanopy() {
 	
 }
 				
-public int CalculateCurrentBioDiversityIndex() {
+public double CalculateCurrentBioDiversityIndex() {
 	List<Tree> treeList= listAllTrees();
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
 	List<TreeSpecies>Species= new ArrayList<TreeSpecies>();
-	for (Tree tree: treeList) {
+	for (Tree tree: ts) {
 		TreeSpecies n= tree.getTreeSpecies();
 		if( Species.contains(n)){}
 		else { Species.add(n);}
 		}
-	int numerator= Species.size();
-	int denominator=treeList.size();
-	int index= numerator/denominator;
+	double numerator= Species.size();
+	double denominator=treeList.size();
+	double index= numerator/denominator;
 	return index;
 		
 	}
 	
 public int CalculateCurrentCarbonSeqPerYear() {
 	List<Tree> treeList= listAllTrees();
-return (treeList.size()*48);
+	List<Tree> ts= new ArrayList <Tree>();
+	ts= getNonCutTreesInList(treeList);
+return (ts.size()*48);
 	
 }
 		
@@ -257,6 +368,23 @@ return (treeList.size()*48);
 		}
 		
 		
+		
+		public Forecast cutDownTreeForForecast(Tree t, Forecast f) throws InvalidInputException{
+			if(t==null) {
+				throw new InvalidInputException("fill in the missing information");
+			}
+			
+			 
+			  //change tree status to planted
+			
+			  f.addTreesToBeCut(t);
+			  PersistenceXStream.saveToXMLwithXStream(tm);
+			  return f ;
+			  
+			  	
+			
+		}
+		
 		//cut down tree
 		public Tree cutDownTree(Tree t, String userName) throws InvalidInputException {
 			if((t==null)) {
@@ -289,7 +417,7 @@ return (treeList.size()*48);
 		//mark as diseased
 		
 		public Tree MarkTreeAsDiseased(Tree t,String userName) throws InvalidInputException {
-			if((t==null)) {
+			if((t==null)||(userName==null)||(userName.trim().length() == 0)) {
 				throw new InvalidInputException("Please fill in all missing information!")	;
 			}
 			
@@ -307,11 +435,11 @@ return (treeList.size()*48);
 		
 	
 	
-		s.setTreeState(TreeState.Cut);
+		s.setTreeState(TreeState.Diseased);
 	
 		t.addStatus(s);
 		t.setCurrentStatus(s);
-		
+		 tm.addPerson(user);
 		tm.addStatus(s);
 		PersistenceXStream.saveToXMLwithXStream(tm);
 		  
@@ -320,7 +448,7 @@ return (treeList.size()*48);
 	}
 		
 		public Tree MarkTreeToBeCutDown(Tree t, String userName) throws InvalidInputException {
-			if((t==null)) {
+			if((t==null)||(userName==null)||(userName.trim().length() == 0)) {
 				throw new InvalidInputException("Please fill in all missing information!")	;
 			}
 		
@@ -335,9 +463,9 @@ return (treeList.size()*48);
 			Date date = new Date();
 		  Status s = new Status(date,t,user);
 		
+		 tm.addPerson(user);
 	
-	
-		s.setTreeState(TreeState.Cut);
+		s.setTreeState(TreeState.ToBeCut);
 	
 		t.addStatus(s);
 		t.setCurrentStatus(s);

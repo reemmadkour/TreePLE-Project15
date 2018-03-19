@@ -4,15 +4,25 @@
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 74 "../../../../../TreePLE.ump"
+// line 75 "../../../../../TreePLE.ump"
 public class Forecast
 {
+
+  //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  private static int nextFID = 1;
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
+  //Autounique Attributes
+  private int fID;
+
   //Forecast Associations
+  private Person person;
   private List<Report> report;
   private List<Tree> treesToBePlanted;
   private List<Tree> treesToBeCut;
@@ -22,8 +32,14 @@ public class Forecast
   // CONSTRUCTOR
   //------------------------
 
-  public Forecast()
+  public Forecast(Person aPerson)
   {
+    fID = nextFID++;
+    boolean didAddPerson = setPerson(aPerson);
+    if (!didAddPerson)
+    {
+      throw new RuntimeException("Unable to create forecast due to person");
+    }
     report = new ArrayList<Report>();
     treesToBePlanted = new ArrayList<Tree>();
     treesToBeCut = new ArrayList<Tree>();
@@ -33,6 +49,16 @@ public class Forecast
   //------------------------
   // INTERFACE
   //------------------------
+
+  public int getFID()
+  {
+    return fID;
+  }
+
+  public Person getPerson()
+  {
+    return person;
+  }
 
   public Report getReport(int index)
   {
@@ -154,52 +180,61 @@ public class Forecast
     return index;
   }
 
+  public boolean setPerson(Person aPerson)
+  {
+    boolean wasSet = false;
+    if (aPerson == null)
+    {
+      return wasSet;
+    }
+
+    Person existingPerson = person;
+    person = aPerson;
+    if (existingPerson != null && !existingPerson.equals(aPerson))
+    {
+      existingPerson.removeForecast(this);
+    }
+    person.addForecast(this);
+    wasSet = true;
+    return wasSet;
+  }
+
   public static int minimumNumberOfReport()
   {
     return 0;
+  }
+
+  public Report addReport(double aCanopy, int aCarbonSequestration, double aBioDiversityIndex)
+  {
+    return new Report(aCanopy, aCarbonSequestration, aBioDiversityIndex, this);
   }
 
   public boolean addReport(Report aReport)
   {
     boolean wasAdded = false;
     if (report.contains(aReport)) { return false; }
-    report.add(aReport);
-    if (aReport.indexOfForecast(this) != -1)
+    Forecast existingForecast = aReport.getForecast();
+    boolean isNewForecast = existingForecast != null && !this.equals(existingForecast);
+    if (isNewForecast)
     {
-      wasAdded = true;
+      aReport.setForecast(this);
     }
     else
     {
-      wasAdded = aReport.addForecast(this);
-      if (!wasAdded)
-      {
-        report.remove(aReport);
-      }
+      report.add(aReport);
     }
+    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removeReport(Report aReport)
   {
     boolean wasRemoved = false;
-    if (!report.contains(aReport))
+    //Unable to remove aReport, as it must always have a forecast
+    if (!this.equals(aReport.getForecast()))
     {
-      return wasRemoved;
-    }
-
-    int oldIndex = report.indexOf(aReport);
-    report.remove(oldIndex);
-    if (aReport.indexOfForecast(this) == -1)
-    {
+      report.remove(aReport);
       wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aReport.removeForecast(this);
-      if (!wasRemoved)
-      {
-        report.add(oldIndex,aReport);
-      }
     }
     return wasRemoved;
   }
@@ -434,11 +469,13 @@ public class Forecast
 
   public void delete()
   {
-    ArrayList<Report> copyOfReport = new ArrayList<Report>(report);
-    report.clear();
-    for(Report aReport : copyOfReport)
+    Person placeholderPerson = person;
+    this.person = null;
+    placeholderPerson.removeForecast(this);
+    for(int i=report.size(); i > 0; i--)
     {
-      aReport.removeForecast(this);
+      Report aReport = report.get(i - 1);
+      aReport.delete();
     }
     treesToBePlanted.clear();
     treesToBeCut.clear();
@@ -450,4 +487,11 @@ public class Forecast
     }
   }
 
+
+  public String toString()
+  {
+    return super.toString() + "["+
+            "fID" + ":" + getFID()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "person = "+(getPerson()!=null?Integer.toHexString(System.identityHashCode(getPerson())):"null");
+  }
 }

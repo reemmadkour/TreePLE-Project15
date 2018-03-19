@@ -109,8 +109,8 @@ public class TreePLETreeRestController {
 	
 	
 	@GetMapping(value = { "/CalculateCurrentBI/"})
-	public int calculateCurrentBI() {
-	int BI;	
+	public double calculateCurrentBI() {
+	double BI;	
 	BI=service.CalculateCurrentBioDiversityIndex();
 		
 		return BI;
@@ -126,8 +126,8 @@ public class TreePLETreeRestController {
 	
 	
 	@GetMapping(value = { "/CurrentTotalCanopy/"})
-	public int currentTotalCanopy() {
-	int can;	
+	public double currentTotalCanopy() {
+	double can;	
 	can=service.CalculateCurrentBioDiversityIndex();
 		
 		return can;
@@ -188,8 +188,8 @@ public class TreePLETreeRestController {
 			) throws InvalidInputException {
 
 	;
-	Municipality mun= service.getMunicipalityByName(municipalityName);
-		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, mun,userName);
+	
+		Tree tree= service.plantTree(landtype, species, height,diameter, longitude, latitude, municipalityName,userName);
 		
 		return convertToDto(tree);
 }
