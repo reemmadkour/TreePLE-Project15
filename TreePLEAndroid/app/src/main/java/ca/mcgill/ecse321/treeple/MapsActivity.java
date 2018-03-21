@@ -20,7 +20,7 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +47,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        final EditText longText = (EditText)findViewById(R.id.longitude);
-        final EditText latText = (EditText)findViewById(R.id.latitude);
-        String longitude = longText.getText().toString(); // Same
-        Double lng  = Double.parseDouble(longitude);
+       // final EditText longText = (EditText)findViewById(R.id.longitude);
+        //final EditText latText = (EditText)findViewById(R.id.latitude);
+       // String longitude = longText.getText().toString(); // Same
+      //  Double lng  = Double.parseDouble(longitude);
 
-        String latitude = latText.getText().toString();
-        Double lat = Double.parseDouble(latitude);
-        LatLng tree = new LatLng(lat, lng);
+        //String latitude = latText.getText().toString();
+       // Double lat = Double.parseDouble(latitude);
+       // LatLng tree = new LatLng(lat, lng);
 
 
 
-       mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
+      // mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
 
         // Add a marker in Sydney and move the camera
-       /* LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));*/
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(tree));
+       LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
 

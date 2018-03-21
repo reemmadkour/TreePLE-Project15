@@ -27,78 +27,49 @@ import cz.msebera.android.httpclient.Header;
  * Created by leaakkari on 2018-03-19.
  */
 
+
+
 public class Options extends AppCompatActivity {
 
-    /* When click on viewmaps (View Maps) it takes you to google maps
-        public void addListenerOnButton() {
+    Button plant, cut, maps;
 
-            final Context context = this;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
-          button = (Button) findViewById(R.id.viewmaps);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.options);
 
-            button.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-
-                    Intent intent = new Intent(context, MapsActivity.class);
-                    startActivity(intent);
-
-                }
-
-            });
-
-        }*/
-
-    // When click on button1 (View Maps) it takes you to google maps
-    public void addListenerOnButton5() {
-
-        final Context context = this;
-
-        Button viewMaps = (Button) findViewById(R.id.viewmaps_b);
-
-        viewMaps.setOnClickListener(new View.OnClickListener() {
+        //plant tree button
+        plant= (Button) findViewById(R.id.planttree_b);
+        plant.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(context, MapsActivity.class);
-                startActivity(intent);
-
-            }
-
-        });
-
-    }
-
-
-
-    // When click on plant tree  it takes you to plant tree page
-    public void addListenerOnButton3() {
-
-        final Context context = this;
-
-        Button plantTree  = (Button) findViewById(R.id.planttree_b);
-
-        plantTree.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, PlantTree.class);
+                Intent intent = new Intent(Options.this, PlantTree.class);
                 startActivity(intent);
             }
 
         });
 
-    }
 
-    // When click on cut tree  it takes you to cut tree page
-    public void addListenerOnButton4() {
+       // View Maps Button
+        maps = (Button) findViewById(R.id.viewmaps_b);
 
-        final Context context = this;
+        maps.setOnClickListener(new View.OnClickListener() {
 
-        Button cut  = (Button) findViewById(R.id.cuttree_b);
+            @Override
+            public void onClick(View arg0) {
+
+                Intent i = new Intent(Options.this, MapsActivity.class);
+                startActivity(i);
+
+            }
+
+        });
+
+        //cut Tree Button
+        cut  = (Button) findViewById(R.id.cuttree_b);
 
         cut.setOnClickListener(new View.OnClickListener() {
 
@@ -109,25 +80,6 @@ public class Options extends AppCompatActivity {
             }
 
         });
-
-    }
-
-
-
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.options);
-
-
-        addListenerOnButton3();
-        addListenerOnButton4();
-        addListenerOnButton5();
-
 
     }
 
