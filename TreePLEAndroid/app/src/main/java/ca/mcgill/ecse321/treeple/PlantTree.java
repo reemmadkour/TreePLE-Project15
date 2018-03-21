@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -39,8 +40,10 @@ import android.support.v7.app.AppCompatActivity;
 public class PlantTree extends AppCompatActivity{
 
     private String error ;
+    Button ok;
     Button mapsv;
     Button mainPlant;
+    Button back;
     EditText diameter, height, longitude, latitude, userName;
 
 
@@ -72,6 +75,8 @@ public class PlantTree extends AppCompatActivity{
         //maps view button takes you to google maps
 
         mapsv = (Button) findViewById(R.id.viewmaps);
+        ok = (Button)findViewById(R.id.plantTree);
+        back = (Button)findViewById(R.id.back);
 
         mapsv.setOnClickListener(new View.OnClickListener() {
 
@@ -87,6 +92,17 @@ public class PlantTree extends AppCompatActivity{
 
         mainPlant = (Button)findViewById(R.id.PlantTreeTitle);
 
+        back.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(PlantTree.this, Options.class);
+                startActivity(intent);
+
+            }
+
+        });
 
 
 
@@ -206,9 +222,10 @@ public class PlantTree extends AppCompatActivity{
         latitude = (EditText)findViewById(R.id.latitude);
 
 
-        userName= (EditText)findViewById(R.id.username_entry);
+        //userName= (EditText)findViewById(R.id.username_entry);
         Intent i = getIntent();
-        userName.setText(i.getStringExtra("userName"));
+        //userName.setText(i.getStringExtra("userName"));
+       String userName = i.getStringExtra("userName");
 
 
 
@@ -220,7 +237,7 @@ public class PlantTree extends AppCompatActivity{
         rp.add("diameter", diameter.toString());
         rp.add("longitude", longitude.toString());
         rp.add("latitude", latitude.toString());
-        rp.add("userName", userName.toString());
+        rp.add("userName", userName);
 
         HttpUtils.post("PlantTree/" , rp, new JsonHttpResponseHandler() {
             @Override
@@ -236,9 +253,9 @@ public class PlantTree extends AppCompatActivity{
                 height.setText("");
                 longitude.setText("");
                 latitude.setText("");
-                userName.setText("");
+                //userName.setText("");
             }
-            @Override
+           @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
                     error += errorResponse.get("message").toString();
@@ -251,11 +268,15 @@ public class PlantTree extends AppCompatActivity{
             }
         });
 
+        longitude.setText("");
+        latitude.setText("");
+        height.setText("");
+        diameter.setText("");
         munSpinner.setSelection(0);
         speciesSpinner.setSelection(0);
         landSpinner.setSelection(0);
 
-        refreshErrorMessage();
+       refreshErrorMessage();
     }
 
 

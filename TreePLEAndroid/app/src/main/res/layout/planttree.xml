@@ -32,9 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/PlantTreeTitle"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="17dp"
+        android:layout_below="@+id/error"
+        android:layout_marginStart="15dp"
         android:ems="10"
         android:hint="Diameter"
         android:inputType="numberDecimal"
@@ -139,7 +138,8 @@
 
         android:layout_alignBaseline="@+id/plantTree"
         android:layout_alignBottom="@+id/plantTree"
-        android:layout_toEndOf="@+id/landType"
+        android:layout_marginEnd="21dp"
+        android:layout_toStartOf="@+id/plantTree"
         android:background="#30000000"
         android:fontFamily="sans-serif"
         android:text="Maps"
@@ -162,5 +162,22 @@
         android:text="Municipality"
         android:textSize="18sp"
         android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/diameter"
+        android:layout_below="@+id/PlantTreeTitle"
+        android:textColor="@color/colorAccent"
+       />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/error"
+        android:layout_toStartOf="@+id/municipality"
+        android:background="@drawable/back2" />
 
 </RelativeLayout>
