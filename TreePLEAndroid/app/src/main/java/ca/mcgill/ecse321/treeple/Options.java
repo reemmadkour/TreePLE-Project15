@@ -76,7 +76,9 @@ public class Options extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                setContentView(R.layout.cut);
+                //setContentView(R.layout.cut);
+                Intent i = new Intent(Options.this, CutTree.class);
+                startActivity(i);
             }
 
         });

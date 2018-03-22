@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -37,7 +39,7 @@ import android.support.v7.app.AppCompatActivity;
 
 
 
-public class PlantTree extends AppCompatActivity{
+public class PlantTree extends AppCompatActivity {
 
     private String error ;
     Button ok;
@@ -45,7 +47,7 @@ public class PlantTree extends AppCompatActivity{
     Button mainPlant;
     Button back;
     EditText diameter, height, longitude, latitude, userName;
-
+    private GoogleMap mMap;
 
     private List<String> municipalities = new ArrayList<>();
     private ArrayAdapter<String> munAdapter;
@@ -78,12 +80,17 @@ public class PlantTree extends AppCompatActivity{
         ok = (Button)findViewById(R.id.plantTree);
         back = (Button)findViewById(R.id.back);
 
+
+
         mapsv.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
+               // Intent sendingIntent = new Intent(PlantTree.this, MapsActivity.class);
+                //Intent i = new Intent(PlantTree.this, MapsActivity.class);
                 Intent intent = new Intent(PlantTree.this, MapsActivity.class);
+
                 startActivity(intent);
 
             }
@@ -200,8 +207,13 @@ public class PlantTree extends AppCompatActivity{
 
     }
 
+
+
+
     //addTrees
     public void addTree(View v) {
+
+
         //municipality spinner
 
         munSpinner = (Spinner) findViewById(R.id.municipality);
@@ -237,9 +249,9 @@ public class PlantTree extends AppCompatActivity{
         rp.add("diameter", diameter.toString());
         rp.add("longitude", longitude.toString());
         rp.add("latitude", latitude.toString());
-        rp.add("userName", userName);
+        //rp.add("userName", userName);
 
-        HttpUtils.post("PlantTree/" , rp, new JsonHttpResponseHandler() {
+        HttpUtils.post("PlantTree/" + userName , rp, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 refreshErrorMessage();
@@ -278,6 +290,7 @@ public class PlantTree extends AppCompatActivity{
 
        refreshErrorMessage();
     }
+
 
 
 

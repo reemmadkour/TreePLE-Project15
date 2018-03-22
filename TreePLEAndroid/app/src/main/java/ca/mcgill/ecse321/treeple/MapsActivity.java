@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.treeple;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -57,14 +59,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        // LatLng tree = new LatLng(lat, lng);
 
 
-
       // mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
 
         // Add a marker in Sydney and move the camera
        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+
+
+   /* @Override
+    public boolean onMarkerClick(Marker marker) {
+        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree));
+        return false;
+    }*/
 
 
 
