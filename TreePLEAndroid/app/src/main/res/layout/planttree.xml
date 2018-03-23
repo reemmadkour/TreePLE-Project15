@@ -80,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/Species"
-        android:layout_toEndOf="@+id/landType" />
+        android:layout_alignParentEnd="true" />
 
     <Spinner
         android:id="@+id/landtype"
@@ -116,10 +116,9 @@
         android:id="@+id/plantTree"
 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="11dp"
         android:layout_marginStart="28dp"
         android:layout_toEndOf="@+id/latitude"
         android:background="#30000000"
@@ -133,16 +132,14 @@
     <Button
         android:id="@+id/viewmaps"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55dp"
 
+        android:layout_height="55dp"
         android:layout_alignBaseline="@+id/plantTree"
         android:layout_alignBottom="@+id/plantTree"
-        android:layout_marginEnd="21dp"
-        android:layout_toStartOf="@+id/plantTree"
-        android:background="#30000000"
+        android:layout_alignEnd="@+id/Species"
+        android:background="@drawable/maps"
         android:fontFamily="sans-serif"
-        android:text="Maps"
         android:textColor="#fff"
         android:textStyle="bold" />
 
