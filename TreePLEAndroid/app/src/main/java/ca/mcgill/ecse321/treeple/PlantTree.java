@@ -49,6 +49,8 @@ public class PlantTree extends AppCompatActivity {
     EditText diameter, height, longitude, latitude, userName;
     private GoogleMap mMap;
 
+    TextView message;
+
     private List<String> municipalities = new ArrayList<>();
     private ArrayAdapter<String> munAdapter;
 
@@ -61,11 +63,7 @@ public class PlantTree extends AppCompatActivity {
     private ArrayAdapter<String> landAdapter;
 
     Spinner speciesSpinner, landSpinner , munSpinner;
-
-
-
-
-
+    private double aDouble;
 
 
     @Override
@@ -221,6 +219,7 @@ public class PlantTree extends AppCompatActivity {
        // munSpinner.setText(i.getStringExtra("municipality"));
         error = "";
         RequestParams rp = new RequestParams();
+        RequestParams rp2 = new RequestParams();
         rp.add("municipality", munSpinner.getSelectedItem().toString());
 
 
@@ -233,22 +232,22 @@ public class PlantTree extends AppCompatActivity {
         longitude = (EditText)findViewById(R.id.longitude);
         latitude = (EditText)findViewById(R.id.latitude);
 
-
+        message = (TextView)findViewById(R.id.textView5) ;
         //userName= (EditText)findViewById(R.id.username_entry);
         Intent i = getIntent();
         //userName.setText(i.getStringExtra("userName"));
        String userName = i.getStringExtra("userName");
-
+       // double height1 = Double.parseDouble(height.getText().toString());
 
 
         //adding to request parameters
 
         rp.add("species", speciesSpinner.getSelectedItem().toString());
         rp.add("landType", landSpinner.getSelectedItem().toString());
-        rp.add("height", height.toString());
-        rp.add("diameter", diameter.toString());
-        rp.add("longitude", longitude.toString());
-        rp.add("latitude", latitude.toString());
+        rp.add("height",height.getText().toString() );
+        rp.add("diameter", diameter.getText().toString());
+        rp.add("longitude", longitude.getText().toString());
+        rp.add("latitude", latitude.getText().toString());
         //rp.add("userName", userName);
 
         HttpUtils.post("PlantTree/" + userName , rp, new JsonHttpResponseHandler() {
@@ -258,6 +257,8 @@ public class PlantTree extends AppCompatActivity {
                 ((Spinner) findViewById(R.id.municipality)).getSelectedItem();
                 ((Spinner) findViewById(R.id.species)).getSelectedItem();
                 ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
+                message.setVisibility(View.VISIBLE);
+
                 if(((Spinner) findViewById(R.id.municipality)).getSelectedItem()== "Please Select" || ((Spinner) findViewById(R.id.species)).getSelectedItem() == "Please Select" ||((Spinner) findViewById(R.id.landtype)).getSelectedItem()=="Please Select" ){
                     error = "Invalid Selection. Please pick an option!";
                 }
