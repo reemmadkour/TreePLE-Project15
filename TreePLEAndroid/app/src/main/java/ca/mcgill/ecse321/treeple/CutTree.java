@@ -40,9 +40,6 @@ import cz.msebera.android.httpclient.Header;
 public class CutTree extends AppCompatActivity {
 
     Button back;
-    private String error;
-
-    EditText treeId;
 
 
     @Override
@@ -69,7 +66,7 @@ public class CutTree extends AppCompatActivity {
 
     }
 
-    public void cut(View v){
+    /*public void cut(View v){
 
         Intent i = getIntent();
         String userName = i.getStringExtra("userName");
@@ -100,7 +97,7 @@ public class CutTree extends AppCompatActivity {
         });
 
 
-    }
+    }*/
 
 
 

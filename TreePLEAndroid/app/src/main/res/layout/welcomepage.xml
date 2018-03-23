@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/userType"
         android:layout_alignStart="@+id/username_entry"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="18dp"
         android:text="Please Select:"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@android:color/background_dark"

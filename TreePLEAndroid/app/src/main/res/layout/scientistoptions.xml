@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cut"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over"
+    tools:context="ca.mcgill.ecse321.treeple.Options">>>
+
+    <Button
+        android:id="@+id/button4"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:background="#30000000"
+        android:text="Choose One:"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/planttree_s"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cuttree_s"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        android:text="Plant Tree"
+        android:background="#30000000"/>
+
+    <Button
+        android:id="@+id/cuttree_s"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/planttree_s"
+        android:layout_centerVertical="true"
+        android:text="Cut Tree"
+        android:background="#30000000"/>
+
+    <Button
+        android:id="@+id/viewmaps_s"
+
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="31dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/maps" />
+
+    <Button
+        android:id="@+id/diseased_s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/planttree_s"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:background="#30000000"
+        android:text="Mark Tree Diseased" />
+
+</RelativeLayout>

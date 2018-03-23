@@ -36,7 +36,7 @@ import cz.msebera.android.httpclient.Header;
 
 
 import android.support.v7.app.AppCompatActivity;
-
+import android.widget.Toast;
 
 
 public class PlantTree extends AppCompatActivity {
@@ -219,7 +219,7 @@ public class PlantTree extends AppCompatActivity {
        // munSpinner.setText(i.getStringExtra("municipality"));
         error = "";
         RequestParams rp = new RequestParams();
-        RequestParams rp2 = new RequestParams();
+
         rp.add("municipality", munSpinner.getSelectedItem().toString());
 
 
@@ -263,6 +263,16 @@ public class PlantTree extends AppCompatActivity {
                 ((Spinner) findViewById(R.id.species)).getSelectedItem();
                 ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
                 message.setVisibility(View.VISIBLE);
+
+                //TODO: Test this pop up dialog!
+                /*ok = (Button) findViewById(R.id.button);
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), "Congatulations! you have successfully planted a tree!", Toast.LENGTH_LONG);
+                    }
+                });*/
+
 
                 if(((Spinner) findViewById(R.id.municipality)).getSelectedItem()== "Please Select" || ((Spinner) findViewById(R.id.species)).getSelectedItem() == "Please Select" ||((Spinner) findViewById(R.id.landtype)).getSelectedItem()=="Please Select" ){
                     error = "Invalid Selection. Please pick an option!";

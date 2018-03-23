@@ -27,25 +27,4 @@
         android:textSize="30sp"
         android:background="#30000000"/>
 
-    <EditText
-        android:id="@+id/tid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
-        android:ems="10"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/cut_t"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tid"
-        android:layout_below="@+id/tid"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="123dp"
-        android:onClick="cut"
-        android:text="Cut Tree" />
-
 </RelativeLayout>
