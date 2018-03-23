@@ -232,11 +232,16 @@ public class PlantTree extends AppCompatActivity {
         longitude = (EditText)findViewById(R.id.longitude);
         latitude = (EditText)findViewById(R.id.latitude);
 
+        Intent intent = new Intent(PlantTree.this, MapsActivity.class);
+        intent.putExtra("longitude", longitude.getText().toString());
+        intent.putExtra("latitude", latitude.getText().toString());
+
         message = (TextView)findViewById(R.id.textView5) ;
-        //userName= (EditText)findViewById(R.id.username_entry);
+
+        // take username data input from welcomePage
         Intent i = getIntent();
-        //userName.setText(i.getStringExtra("userName"));
        String userName = i.getStringExtra("userName");
+
        // double height1 = Double.parseDouble(height.getText().toString());
 
 

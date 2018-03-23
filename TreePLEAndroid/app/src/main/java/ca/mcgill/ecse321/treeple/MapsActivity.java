@@ -58,13 +58,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        // Double lat = Double.parseDouble(latitude);
        // LatLng tree = new LatLng(lat, lng);
 
+        Intent i = getIntent();
+        Double lat = i.getDoubleExtra("latitude", 0);
+        Double lng = i.getDoubleExtra("longitude", 0);
 
-      // mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
+        LatLng tree = new LatLng(lat, lng);
+      mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
 
         // Add a marker in Sydney and move the camera
-       LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+       //LatLng sydney = new LatLng(-34, 151);
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(tree));
     }
 
 
