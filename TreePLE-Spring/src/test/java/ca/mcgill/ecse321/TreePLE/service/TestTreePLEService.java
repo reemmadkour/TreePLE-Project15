@@ -505,6 +505,7 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 	}
 
+	/*
 	@Test
 	public void testgetTreeById() {
 		
@@ -543,7 +544,7 @@ assertEquals("Please fill in all missing information!", er);
 
 		assertEquals(t, tree5);
 		assertEquals(39, tm.getTree(0).getTreeID());
-	}
+	} */ 
 	
 
 	@Test
