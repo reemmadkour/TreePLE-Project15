@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/planttree_b"
         android:layout_centerVertical="true"
-        android:text="Cut Tree"
-        android:background="#30000000"/>
+        android:background="#30000000"
+        android:text="Cut Tree" />
 
     <Button
         android:id="@+id/viewmaps_b"
@@ -55,5 +55,23 @@
         android:layout_marginTop="48dp"
         android:background="#30000000"
         android:text="View Map" />
+
+    <Button
+        android:id="@+id/back_ic"
+        android:layout_width="55dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button4"
+        android:background="@drawable/back_ic" />
+
+    <Button
+        android:id="@+id/alien"
+        android:layout_width="135dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="22dp"
+        android:layout_toEndOf="@+id/viewmaps_b"
+        android:background="@drawable/picture_alien_options" />
 
 </RelativeLayout>

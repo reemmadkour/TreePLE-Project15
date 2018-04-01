@@ -44,7 +44,7 @@ import android.support.v7.app.AppCompatActivity;
 
         private String error;
 
-        Button ok_b;
+        Button ok_b, back_first;
 
 
         private List<String> userType = new ArrayList<>();
@@ -75,7 +75,7 @@ import android.support.v7.app.AppCompatActivity;
             userSpinner.setAdapter(userAdapter);
 
 
-            //Go to Options
+            //Go to before options Options
             ok_b = (Button) findViewById(R.id.ok_1);
 
             ok_b.setOnClickListener(new View.OnClickListener() {
@@ -84,12 +84,28 @@ import android.support.v7.app.AppCompatActivity;
 
                         //setContentView(R.layout.options);
 
-                    Intent i = new Intent(MainActivity.this, Options.class);
+                    Intent i = new Intent(MainActivity.this, BeforeOptions.class);
                     i.putExtra("userName", username.getText().toString());
                     startActivity(i);
                 }
 
                 });
+
+            //Go back to first page
+            back_first = (Button) findViewById(R.id.b_first);
+
+            back_first.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+
+
+                    Intent i = new Intent(MainActivity.this, FirstPage.class);
+
+                    startActivity(i);
+                }
+
+            });
+
 
 
 

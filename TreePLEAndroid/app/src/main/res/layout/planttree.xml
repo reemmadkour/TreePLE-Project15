@@ -172,11 +172,11 @@
 
     <Button
         android:id="@+id/back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="55dp"
+        android:layout_height="45dp"
         android:layout_above="@+id/error"
-        android:layout_toStartOf="@+id/municipality"
-        android:background="@drawable/back2" />
+        android:layout_alignEnd="@+id/Species"
+        android:background="@drawable/back_ic" />
 
     <TextView
         android:id="@+id/textView5"
