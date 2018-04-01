@@ -61,6 +61,19 @@
         android:layout_marginTop="45dp"
         android:layout_toEndOf="@+id/ltd_cut"
         android:background="#30000000"
+        android:onClick="cut"
         android:text="@android:string/ok" />
+
+    <TextView
+        android:id="@+id/success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ok_cut"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/back2"
+        android:text="Success!"
+        android:textSize="18sp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

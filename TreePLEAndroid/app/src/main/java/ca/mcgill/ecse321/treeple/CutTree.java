@@ -26,6 +26,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,8 @@ public class CutTree extends AppCompatActivity {
 
     Button back, ok;
     String error;
+
+    TextView message;
 
     EditText lgt, lat;
 
@@ -126,6 +129,8 @@ public class CutTree extends AppCompatActivity {
         lgt = (EditText)findViewById(R.id.lgt_cut);
         lat = (EditText)findViewById(R.id.ltd_cut);
 
+        message = (TextView)findViewById(R.id.success);
+
         RequestParams rp = new RequestParams();
         rp.add("longitude", lgt.getText().toString());
         rp.add("latitude",lat.getText().toString());
@@ -139,6 +144,7 @@ public class CutTree extends AppCompatActivity {
                 //refreshErrorMessage();
                lgt.setText("");
                lat.setText("");
+               message.setVisibility(View.VISIBLE);
 
             }
            @Override
