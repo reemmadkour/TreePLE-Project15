@@ -31,7 +31,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class Options extends AppCompatActivity {
 
-    Button plant, cut, maps;
+    Button plant, cut, maps, back_b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,22 @@ public class Options extends AppCompatActivity {
             }
 
         });
+
+        //cut Tree Button
+        back_b  = (Button) findViewById(R.id.back_ic);
+
+        back_b.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                //setContentView(R.layout.cut);
+                Intent i = new Intent(Options.this, BeforeOptions.class);
+                startActivity(i);
+            }
+
+        });
+
 
     }
 
