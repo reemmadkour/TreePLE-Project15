@@ -264,6 +264,9 @@ public class PlantTree extends AppCompatActivity {
                 ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
                 message.setVisibility(View.VISIBLE);
 
+                //ok = (Button)findViewById(R.id.plantTree);
+
+
                 //TODO: Test this pop up dialog!
                 /*ok = (Button) findViewById(R.id.button);
                 ok.setOnClickListener(new View.OnClickListener() {
