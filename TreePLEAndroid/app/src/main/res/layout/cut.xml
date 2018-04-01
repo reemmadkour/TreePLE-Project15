@@ -2,29 +2,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cut"
+    android:background="@drawable/tree2"
     android:backgroundTint="#80FFFFFF"
     android:backgroundTintMode="src_over">
 
     <Button
         android:id="@+id/back2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/title_cut"
         android:layout_alignParentStart="true"
         android:layout_marginStart="20dp"
-        android:background="@drawable/back2" />
+        android:background="@drawable/back_ic" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/title_cut"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="29dp"
+        android:background="#10000000"
         android:text="Cut Tree"
-        android:textSize="30sp"
-        android:background="#30000000"/>
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/lgt_cut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/back2"
+        android:layout_below="@+id/back2"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Longitude"
+        android:inputType="numberDecimal"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/ltd_cut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/lgt_cut"
+        android:layout_below="@+id/lgt_cut"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="Latitude"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/ok_cut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/ltd_cut"
+        android:layout_marginTop="45dp"
+        android:layout_toEndOf="@+id/ltd_cut"
+        android:background="#30000000"
+        android:text="@android:string/ok" />
 
 </RelativeLayout>

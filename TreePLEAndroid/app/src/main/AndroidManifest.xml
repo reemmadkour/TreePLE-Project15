@@ -68,6 +68,11 @@
         </activity>
         <activity
             android:label="@string/app_name"
+            android:name=".CutTree" >
+
+        </activity>
+        <activity
+            android:label="@string/app_name"
             android:name=".DiseasedTree" >
 
         </activity>

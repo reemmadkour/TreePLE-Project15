@@ -39,7 +39,10 @@ import cz.msebera.android.httpclient.Header;
 
 public class CutTree extends AppCompatActivity {
 
-    Button back;
+    Button back, ok;
+    String error;
+
+    EditText lgt, lat;
 
 
     @Override
@@ -66,21 +69,76 @@ public class CutTree extends AppCompatActivity {
 
     }
 
-    /*public void cut(View v){
+    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    try {
+                        names.add(response.getJSONObject(i).getString("name"));
+                    } catch (Exception e) {
+                        error += e.getMessage();
+                    }
+                    refreshErrorMessage();
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+
+
+    //refresh error messge to display error message on screen
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
+
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+
+
+
+    public void cut(View v){
 
         Intent i = getIntent();
         String userName = i.getStringExtra("userName");
 
-        treeId = (EditText)findViewById(R.id.tid);
+        lgt = (EditText)findViewById(R.id.lgt_cut);
+        lat = (EditText)findViewById(R.id.ltd_cut);
+
+        RequestParams rp = new RequestParams();
+        rp.add("longitude", lgt.getText().toString());
+        rp.add("latitude",lat.getText().toString());
 
 
     //@PostMapping(value = { "/cutDownTree/{treeID}/{userName}" })
 
-        HttpUtils.post("/cutDownTree/" + treeId +  userName ,  new RequestParams(), new JsonHttpResponseHandler() {
+        HttpUtils.post("/cutDownTree/"  +  userName ,  new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //refreshErrorMessage();
-               treeId.setText("");
+               lgt.setText("");
+               lat.setText("");
 
             }
            @Override
@@ -91,13 +149,13 @@ public class CutTree extends AppCompatActivity {
                     error += e.getMessage();
                 }
 
-                //refreshErrorMessage();
+                refreshErrorMessage();
 
             }
         });
 
 
-    }*/
+    }
 
 
 
