@@ -1,10 +1,7 @@
 package ca.mcgill.ecse321.treeple;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Path;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,21 +9,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by student on 07/03/18.
@@ -57,7 +41,7 @@ import android.support.v7.app.AppCompatActivity;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.welcomepage);
 
-            welcome = (TextView) findViewById(R.id.textView);
+            welcome = (TextView) findViewById(R.id.welcome);
 
             username = (EditText) findViewById(R.id.username_entry);
 

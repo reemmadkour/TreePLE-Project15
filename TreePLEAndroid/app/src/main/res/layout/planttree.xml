@@ -173,10 +173,10 @@
     <Button
         android:id="@+id/back"
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_above="@+id/error"
         android:layout_toStartOf="@+id/municipality"
-        android:background="@drawable/back2" />
+        android:background="@drawable/back_ic" />
 
     <TextView
         android:id="@+id/textView5"
@@ -188,5 +188,13 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView5"
+        android:background="@drawable/splant" />
 
 </RelativeLayout>
