@@ -25,7 +25,6 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 	@Autowired
 	private WebFrontendProperties webFrontendProperties;
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(TreePLESpringApplication.class, args);
 	}
@@ -39,35 +38,34 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 				.setDestinationNamingConvention(NamingConventions.NONE);
 		return modelMapper;
 	}
+
 	@Bean
 	public TreeManager treeMan() {
 		return PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
-		
-	}	
 
-	//TODO add a Bean to provide a registration manager
-//	@Bean
-//	public RegistrationManager regMan() {
-//		return PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
-//		return null;
-//	}
-	
-	
+	}
+
+	// TODO add a Bean to provide a registration manager
+	// @Bean
+	// public RegistrationManager regMan() {
+	// return
+	// PersistenceXStream.initializeModelManager(PersistenceXStream.getFilename());
+	// return null;
+	// }
+
 	// Enable CORS globally
 
 	@Bean
-	  public WebMvcConfigurer corsConfigurer() {
-	    return new WebMvcConfigurerAdapter() {
-	      @Override
-	      public void addCorsMappings(CorsRegistry registry) {
-	        String frontendUrl = "http://" + webFrontendProperties.getIp() + ":" + webFrontendProperties.getPort();
-		String androidUrl = "http://" + androidProperties.getIp() + ":" + androidProperties.getPort();
-		// For debug purposes, allow connecting  from localhost as well
-		registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://localhost:8087", "http://127.0.0.1:8087");
-	      }
-	    };
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				String frontendUrl = "http://" + webFrontendProperties.getIp() + ":" + webFrontendProperties.getPort();
+				String androidUrl = "http://" + androidProperties.getIp() + ":" + androidProperties.getPort();
+				// For debug purposes, allow connecting from localhost as well
+				registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://127.0.0.1:8087");
+			}
+		};
 
-
-	  }
+	}
 }
-
