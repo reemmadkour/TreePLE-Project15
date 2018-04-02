@@ -109,6 +109,18 @@ public class PlantTree extends AppCompatActivity {
 
         });
 
+        ok.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(PlantTree.this, AfterPlant.class);
+                startActivity(intent);
+
+            }
+
+        });
+
 
 
         // set species Spinner
@@ -263,9 +275,6 @@ public class PlantTree extends AppCompatActivity {
                 ((Spinner) findViewById(R.id.species)).getSelectedItem();
                 ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
                 message.setVisibility(View.VISIBLE);
-
-                //ok = (Button)findViewById(R.id.plantTree);
-
 
                 //TODO: Test this pop up dialog!
                 /*ok = (Button) findViewById(R.id.button);

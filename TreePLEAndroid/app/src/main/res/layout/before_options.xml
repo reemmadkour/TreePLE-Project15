@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/after_options">
+    android:background="@drawable/beforeo">
 
     <Button
         android:id="@+id/next_options"
@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="77dp"
+        android:layout_marginEnd="33dp"
         android:background="#10000000"
         android:text="Next" />
 

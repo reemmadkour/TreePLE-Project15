@@ -69,6 +69,22 @@ public class CutTree extends AppCompatActivity {
 
         });
 
+        //ok
+        ok = (Button) findViewById(R.id.ok_cut);
+        ok.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(CutTree.this, AfterCut.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+
+
 
     }
 

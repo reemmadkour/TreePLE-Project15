@@ -12,7 +12,6 @@
         android:layout_height="50dp"
         android:layout_alignBottom="@+id/title_cut"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/title_cut"
         android:layout_marginStart="20dp"
         android:background="@drawable/back_ic" />
 
@@ -49,8 +48,8 @@
         android:layout_below="@+id/lgt_cut"
         android:layout_marginTop="42dp"
         android:ems="10"
-        android:hint="Latitude"
         android:inputType="numberDecimal"
+        android:text="Latitude"
         android:textStyle="italic" />
 
     <Button

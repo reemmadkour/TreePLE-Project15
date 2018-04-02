@@ -65,13 +65,6 @@
         android:layout_alignTop="@+id/button4"
         android:background="@drawable/back_ic" />
 
-    <Button
-        android:id="@+id/alien"
-        android:layout_width="135dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="22dp"
-        android:layout_toEndOf="@+id/viewmaps_b"
-        android:background="@drawable/picture_alien_options" />
+
 
 </RelativeLayout>

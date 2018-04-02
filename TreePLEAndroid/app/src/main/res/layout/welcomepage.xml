@@ -99,14 +99,6 @@
         android:text="UserType"
         android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="140dp"
-        android:layout_height="80dp"
-        android:layout_alignEnd="@+id/textView4"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="49dp"
-        android:background="@drawable/alien_looking" />
 
     <Button
         android:id="@+id/b_first"

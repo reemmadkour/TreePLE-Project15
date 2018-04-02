@@ -76,6 +76,14 @@
             android:name=".DiseasedTree" >
 
         </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".AfterPlant" >
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".AfterCut" >
+        </activity>
     </application>
 
 </manifest>
