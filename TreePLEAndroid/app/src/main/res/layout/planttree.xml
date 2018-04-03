@@ -193,14 +193,10 @@
         android:id="@+id/button3"
         android:layout_width="100dp"
         android:layout_height="100dp"
-<<<<<<< HEAD
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView5"
-        android:background="@drawable/splant" />
-=======
+
         android:layout_alignBottom="@+id/latitude"
         android:layout_alignEnd="@+id/plantTree"
         android:background="@drawable/goodjob" />
->>>>>>> Android_bob_2
+
 
 </RelativeLayout>

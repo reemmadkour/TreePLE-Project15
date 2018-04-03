@@ -42,14 +42,11 @@
         android:layout_alignBottom="@+id/cuttree_b"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="91dp"
-<<<<<<< HEAD
-        android:background="#30000000"
-        android:text="Plant Tree"
-        android:textColor="@color/common_google_signin_btn_text_dark_default" />
-=======
+
+
         android:background="#10000000"
         android:text="Plant Tree" />
->>>>>>> Android_bob_2
+
 
     <Button
         android:id="@+id/cuttree_b"
@@ -58,14 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/planttree_b"
         android:layout_centerVertical="true"
-<<<<<<< HEAD
-        android:background="#30000000"
-        android:text="Cut Tree"
-        android:textColor="@color/common_google_signin_btn_text_dark_default" />
-=======
+
         android:background="#10000000"
         android:text="Cut Tree" />
->>>>>>> Android_bob_2
+
 
     <Button
         android:id="@+id/viewmaps_b"
@@ -75,14 +68,7 @@
         android:layout_alignStart="@+id/cuttree_b"
         android:layout_below="@+id/planttree_b"
         android:layout_marginTop="48dp"
-<<<<<<< HEAD
-        android:background="#30000000"
-        android:text="View Map"
-        android:textColor="@color/common_google_signin_btn_text_dark_default" />
-=======
-        android:background="#10000000"
-        android:text="View Map" />
->>>>>>> Android_bob_2
+        android:text="View Maps" />
 
     <Button
         android:id="@+id/back_ic"
@@ -93,14 +79,7 @@
         android:layout_alignTop="@+id/button4"
         android:background="@drawable/back_ic" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/planttree_b"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/soptions" />
+
 
 
 </RelativeLayout>
