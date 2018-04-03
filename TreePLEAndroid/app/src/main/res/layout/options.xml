@@ -5,10 +5,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cut"
+    android:background="@drawable/background"
     android:backgroundTint="#80FFFFFF"
     android:backgroundTintMode="src_over"
     tools:context="ca.mcgill.ecse321.treeple.Options">>>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/glasses" />
 
     <Button
         android:id="@+id/button4"
@@ -20,8 +29,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="28dp"
         android:background="#30000000"
+        android:backgroundTint="@android:color/transparent"
         android:text="Choose One:"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@android:color/darker_gray"
         android:textSize="30sp" />
 
     <Button
@@ -32,8 +42,8 @@
         android:layout_alignBottom="@+id/cuttree_b"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="91dp"
-        android:text="Plant Tree"
-        android:background="#30000000"/>
+        android:background="#10000000"
+        android:text="Plant Tree" />
 
     <Button
         android:id="@+id/cuttree_b"
@@ -42,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/planttree_b"
         android:layout_centerVertical="true"
-        android:background="#30000000"
+        android:background="#10000000"
         android:text="Cut Tree" />
 
     <Button
@@ -53,7 +63,7 @@
         android:layout_alignStart="@+id/cuttree_b"
         android:layout_below="@+id/planttree_b"
         android:layout_marginTop="48dp"
-        android:background="#30000000"
+        android:background="#10000000"
         android:text="View Map" />
 
     <Button

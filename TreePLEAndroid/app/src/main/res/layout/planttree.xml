@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tree3"
+    android:background="@drawable/background"
     android:backgroundTint="#80FFFFFF"
     android:backgroundTintMode="src_over"
     tools:context="ca.mcgill.ecse321.treeple.PlantTree">>>
@@ -19,12 +19,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="23dp"
-        android:background="#30000000"
 
+        android:layout_marginTop="23dp"
+        android:backgroundTint="@android:color/transparent"
         android:fontFamily="sans-serif"
         android:text="Plant Tree"
-        android:textColor="#fff"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp" />
 
     <EditText
@@ -116,12 +116,12 @@
     <Button
         android:id="@+id/plantTree"
 
-        android:layout_width="wrap_content"
+        android:layout_width="55dp"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="11dp"
-        android:layout_marginStart="28dp"
-        android:layout_toEndOf="@+id/latitude"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginEnd="13dp"
+        android:layout_marginTop="19dp"
         android:background="#30000000"
         android:fontFamily="sans-serif"
         android:onClick="addTree"
@@ -133,12 +133,12 @@
     <Button
         android:id="@+id/viewmaps"
 
-        android:layout_width="55dp"
+        android:layout_width="40dp"
 
-        android:layout_height="55dp"
-        android:layout_alignBaseline="@+id/plantTree"
-        android:layout_alignBottom="@+id/plantTree"
-        android:layout_alignEnd="@+id/Species"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/back"
+        android:layout_alignBottom="@+id/back"
+        android:layout_alignStart="@+id/plantTree"
         android:background="@drawable/maps"
         android:fontFamily="sans-serif"
         android:textColor="#fff"
@@ -176,7 +176,7 @@
         android:layout_height="40dp"
         android:layout_above="@+id/error"
         android:layout_toStartOf="@+id/municipality"
-        android:background="@drawable/back2" />
+        android:background="@drawable/back_ic" />
 
     <TextView
         android:id="@+id/textView5"
@@ -188,5 +188,13 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignBottom="@+id/latitude"
+        android:layout_alignEnd="@+id/plantTree"
+        android:background="@drawable/goodjob" />
 
 </RelativeLayout>
