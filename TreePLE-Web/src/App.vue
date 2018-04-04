@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.png"></a>
+      <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.jpg"></a>
      
       <div class="navbar" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -9,11 +9,11 @@
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/#/municipalities">Municipalities <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/#/municipalities"><i class="fa fa-eye fa-fw"></i>  View Trees<span class="sr-only">(current)</span></a>
           </li>
          
            <li class="nav-item active">
-            <a class="nav-link" href="/#/map">Map <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/#/map">Locate Trees<span class="sr-only">(current)</span></a>
           </li>
 
            <li class="nav-item active">
@@ -29,7 +29,7 @@
           </li>
 
           <li class="nav-item active">
-            <a class="nav-link" href="http://ecse321-12.ece.mcgill.ca:8087/app-release.apk"> Download APK <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="http://ecse321-14.ece.mcgill.ca:8087/app-release.apk"> Download APK <span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
