@@ -63,7 +63,7 @@ public class TreePLESpringApplication extends SpringBootServletInitializer {
 				String frontendUrl = "http://" + webFrontendProperties.getIp() + ":" + webFrontendProperties.getPort();
 				String androidUrl = "http://" + androidProperties.getIp() + ":" + androidProperties.getPort();
 				// For debug purposes, allow connecting from localhost as well
-				registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://127.0.0.1:8087");
+				registry.addMapping("/**").allowedOrigins(frontendUrl, androidUrl, "http://ecse321-14.ece.mcgill.ca:8087");
 			}
 		};
 
