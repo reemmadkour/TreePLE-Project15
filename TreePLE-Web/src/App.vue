@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/app">TreePLE  <img src="./assets/logo.jpg"></a>
+      <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.jpg"></a>
      
       <div class="navbar" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -21,7 +21,7 @@
           </li>
 
           <li class="nav-item active">
-            <a class="nav-link" href="/#/app"> List Trees <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/#/residents"> List Trees <span class="sr-only">(current)</span></a>
           </li>
 
            <li class="nav-item active">
