@@ -76,6 +76,12 @@
         android:textSize="18sp"
         android:visibility="invisible" />
 
-
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/ltd_cut"
+        android:layout_toEndOf="@+id/success"
+        android:background="@drawable/soptions" />
 
 </RelativeLayout>
