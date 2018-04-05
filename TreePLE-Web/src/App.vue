@@ -46,9 +46,7 @@ export default {
 
 </script>
 
-<style lang="scss">
-
-@import 'src/assets/css/W3.css';
+<style>
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
