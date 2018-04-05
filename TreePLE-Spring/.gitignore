@@ -3,7 +3,6 @@
 !gradle/wrapper/gradle-wrapper.jar
 /bin/
 
-data.xml
 
 ### STS ###
 .apt_generated
