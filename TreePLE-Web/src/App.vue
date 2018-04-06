@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-inverse bg-inverse">
       <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.jpg"></a>
      
       <div class="navbar" id="navbarSupportedContent">
@@ -53,20 +53,14 @@ export default {
 
 img {
   display:inline;
-  width:3em;
-  margin-right:5em;
+  width:2em;
+  margin-right:2em;
 }
 
 #navMenu {
   background-color:black;
 }
 
-#navMenu li {
-  float: left;
-  display: inline;
-  margin:0;
-  width:10%;
-}
 
 </style>
 
