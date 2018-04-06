@@ -1,10 +1,10 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.26.1-f40f105-3613 modeling language!*/
+/*This code was generated using the UMPLE 1.27.0.3728.d139ed893 modeling language!*/
 
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 
-// line 53 "../../../../../TreePLE.ump"
+// line 57 "../../../../../TreePLE.ump"
 public abstract class Role
 {
 
@@ -67,43 +67,32 @@ public abstract class Role
   {
     boolean wasAdded = false;
     if (persons.contains(aPerson)) { return false; }
-    persons.add(aPerson);
-    if (aPerson.indexOfRole(this) != -1)
+    Role existingRoles = aPerson.getRoles();
+    if (existingRoles == null)
     {
-      wasAdded = true;
+      aPerson.setRoles(this);
+    }
+    else if (!this.equals(existingRoles))
+    {
+      existingRoles.removePerson(aPerson);
+      addPerson(aPerson);
     }
     else
     {
-      wasAdded = aPerson.addRole(this);
-      if (!wasAdded)
-      {
-        persons.remove(aPerson);
-      }
+      persons.add(aPerson);
     }
+    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removePerson(Person aPerson)
   {
     boolean wasRemoved = false;
-    if (!persons.contains(aPerson))
+    if (persons.contains(aPerson))
     {
-      return wasRemoved;
-    }
-
-    int oldIndex = persons.indexOf(aPerson);
-    persons.remove(oldIndex);
-    if (aPerson.indexOfRole(this) == -1)
-    {
+      persons.remove(aPerson);
+      aPerson.setRoles(null);
       wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aPerson.removeRole(this);
-      if (!wasRemoved)
-      {
-        persons.add(oldIndex,aPerson);
-      }
     }
     return wasRemoved;
   }
@@ -142,11 +131,9 @@ public abstract class Role
 
   public void delete()
   {
-    ArrayList<Person> copyOfPersons = new ArrayList<Person>(persons);
-    persons.clear();
-    for(Person aPerson : copyOfPersons)
+    while( !persons.isEmpty() )
     {
-      aPerson.removeRole(this);
+      persons.get(0).setRoles(null);
     }
   }
 

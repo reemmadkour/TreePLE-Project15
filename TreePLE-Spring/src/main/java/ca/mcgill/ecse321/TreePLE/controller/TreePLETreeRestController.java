@@ -210,10 +210,27 @@ public class TreePLETreeRestController {
 	
 	//Delete / Cut Tree
 
-	@PostMapping(value = { "/cutDownTree/{treeID}/{userName}" })
+	@PostMapping(value = { "/cutDownTree/{latitude}/{longitude}/{userName}" })
 
 
 	public TreeDto cutDownTree(
+			@PathVariable("latitude") double latitude,
+			@PathVariable("longitude") double longitude,
+			@PathVariable("userName") String userName)
+			throws InvalidInputException {
+		
+	Tree t = service.getPlantedTreeByLocation(latitude,longitude);
+
+	service.cutDownTree(t,userName);
+		return convertToDto(t);
+	}
+
+	
+
+	@PostMapping(value = { "/cutDownTree/{treeID}/{userName}" })
+
+
+	public TreeDto cutDownTreeWithID(
 			@PathVariable("treeID") int treeID,
 			@PathVariable("userName") String userName)
 			throws InvalidInputException {
@@ -226,10 +243,25 @@ public class TreePLETreeRestController {
 	
 	
 	
-	@PostMapping(value = { "/MarktoBeCutDown/{treeID}/{userName}" })
+	@PostMapping(value = { "/MarktoBeCutDown/{latitude}/{longitude}/{userName}" })
 
 
 	public TreeDto MarkToBeCutDown(
+			@PathVariable("latitude") double latitude,
+			@PathVariable("longitude") double longitude,
+			@PathVariable("userName") String userName)
+			throws InvalidInputException {
+		
+	Tree t = service.getPlantedTreeByLocation(latitude,longitude);
+
+	service.MarkTreeToBeCutDown(t,userName);
+		return convertToDto(t);
+	}
+	
+	@PostMapping(value = { "/MarktoBeCutDown/{treeID}/{userName}" })
+
+
+	public TreeDto MarkToBeCutDownWithID(
 			@PathVariable("treeID") int treeID,
 			@PathVariable("userName") String userName)
 			throws InvalidInputException {
@@ -240,10 +272,27 @@ public class TreePLETreeRestController {
 		return convertToDto(t);
 	}
 	
-	@PostMapping(value = { "/MarkAsDiseased/{treeID}/{userName}" })
+	
+	@PostMapping(value = { "/MarkAsDiseased/{latitude}/{longitude}/{userName}" })
 
 
 	public TreeDto MarkAsDiseased(
+			@PathVariable("latitude") double latitude,
+			@PathVariable("longitude") double longitude,
+			@PathVariable("userName") String userName)
+			throws InvalidInputException {
+		
+	Tree t = service.getPlantedTreeByLocation(latitude,longitude);
+
+	service.MarkTreeAsDiseased(t,userName);
+		return convertToDto(t);
+	}
+	
+	
+	@PostMapping(value = { "/MarkAsDiseased/{treeID}/{userName}" })
+
+
+	public TreeDto MarkAsDiseasedWithID(
 			@PathVariable("treeID") int treeID,
 			@PathVariable("userName") String userName)
 			throws InvalidInputException {
@@ -254,6 +303,7 @@ public class TreePLETreeRestController {
 		return convertToDto(t);
 	}
 	
+
 
 	@PostMapping(value = { "/setTreeSpecies/{treeID}" })
 
