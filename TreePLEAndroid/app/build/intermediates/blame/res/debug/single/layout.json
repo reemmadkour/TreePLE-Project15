@@ -44,12 +44,20 @@
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/layout/abc_screen_content_include.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/0a13b20f550bad47d4d41675bd10add6/res/layout/notification_template_big_media_narrow.xml"
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/help_plant.xml",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/layout/help_plant.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/layout/abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/0a13b20f550bad47d4d41675bd10add6/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/help_species.xml",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/layout/help_species.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
@@ -64,12 +72,12 @@
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/layout/design_navigation_menu.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_custom.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/0a13b20f550bad47d4d41675bd10add6/res/layout/notification_template_big_media_custom.xml"
-    },
-    {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/activity_maps.xml",
         "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/layout/activity_maps.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_custom.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/0a13b20f550bad47d4d41675bd10add6/res/layout/notification_template_big_media_custom.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
@@ -536,8 +544,16 @@
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/layout/abc_action_bar_title_item.xml"
     },
     {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/help_height.xml",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/layout/help_height.xml"
+    },
+    {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/c6a534b43b7116786ab836222ecee19b/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/help_diameter.xml",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/layout/help_diameter.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/debug/layout/help_species.xml",
