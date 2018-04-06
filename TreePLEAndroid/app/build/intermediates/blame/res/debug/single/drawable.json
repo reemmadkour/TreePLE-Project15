@@ -24,12 +24,12 @@
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/drawable/common_google_signin_btn_text_dark_focused.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable/glasses.png",
-        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable/glasses.png"
-    },
-    {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable/navigation_empty_icon.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/drawable/navigation_empty_icon.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable/glasses.png",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable/glasses.png"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_small_material.xml",

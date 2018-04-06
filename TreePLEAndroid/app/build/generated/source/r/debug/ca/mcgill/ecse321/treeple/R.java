@@ -3313,7 +3313,6 @@ containing a value of this type.
         public static final int button3=0x7f0f00df;
         public static final int button4=0x7f0f00ca;
         public static final int button5=0x7f0f00c9;
-        public static final int button6=0x7f0f00e0;
         public static final int buttonPanel=0x7f0f006d;
         public static final int cancel_action=0x7f0f00ba;
         public static final int center=0x7f0f0036;
@@ -3360,6 +3359,7 @@ containing a value of this type.
         public static final int forever=0x7f0f0049;
         public static final int ghost_view=0x7f0f0005;
         public static final int height=0x7f0f00d2;
+        public static final int help=0x7f0f00e0;
         public static final int help_diameter=0x7f0f00b2;
         public static final int help_height=0x7f0f00b1;
         public static final int help_species=0x7f0f00b3;
