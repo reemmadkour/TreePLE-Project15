@@ -11,6 +11,7 @@ import ca.mcgill.ecse321.TreePLE.model.Forecast;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
+import ca.mcgill.ecse321.TreePLE.model.Person.Level;
 import ca.mcgill.ecse321.TreePLE.model.Report;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
@@ -57,10 +58,15 @@ public class TreePLETreeService {
 	b= CalculateBioDiversityIndexForTrees(f.getCurrentTrees());
 	c= calculateTotalCanopyForTrees(f.getCurrentTrees());
 	s= CalculateCarbonSeqPerYear(f.getCurrentTrees());
-	Report r= new Report(c,s,b,f);
+	Date d= new Date();
+	Report r= new Report(c,s,b,d,f);
+	for(i=0; i<f.getCurrentTrees().size();i++) {
+		r.addTreesForReport(f.getCurrentTree(i));
+	}
 	return r;
 	
 		}
+		
 		
 		
 		
@@ -78,12 +84,14 @@ public class TreePLETreeService {
 			return f;
 		}
 		
-		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName) throws InvalidInputException{
-			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
+		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, int quantity) throws InvalidInputException{
+			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null || quantity<=0) {
 				    throw new InvalidInputException("Missing information");
 				  }
+			 double k=0;
 			 Municipality m= new Municipality();
-				  Tree t = new Tree(height, diameter, longitude, latitude, m);
+			 for(int i=0; i<quantity;i++) {
+				  Tree t = new Tree(height, diameter, (longitude+k), (latitude+k), m);
 				  Person user= f.getPerson();
 				  Date date1= new Date();
 				  Status s = new Status(date1,t,user);
@@ -106,15 +114,40 @@ public class TreePLETreeService {
 				  
 				  //set municipality
 				  t.setMunicipality(m);
-				  //MunicipalityName name = municipality.getMunicipalityName();
-				  //municipality.setMunicipalityName(name);
+				 
 				  f.addTreesToBePlanted(t);
+				  k=k+0.00001;}
 				  tm.addForecast(f);
 				  PersistenceXStream.saveToXMLwithXStream(tm);
 				  return f ;
 				  
 				  
 		}
+		
+		
+		public List<Tree> getPlantedTrees(){
+			List<Tree> ts= new ArrayList <Tree>();
+			for (Tree tree: tm.getTrees()) {
+				if(tree.getCurrentStatus().getTreeState().equals(TreeState.Planted)) {
+				ts.add(tree);}}
+				return ts;
+				
+				}
+		
+		public Tree getPlantedTreeByLocation( double latitude, double longitude) throws InvalidInputException {
+			Tree tn=null;
+			for (Tree t : getPlantedTrees()) {
+				if (t.getLatitude()==latitude&&t.getLongitude()==longitude) {
+					tn=t;
+					//return tn;
+					break;
+				}
+			}
+			
+			 if (tn==null) { throw new InvalidInputException ("no tree exists here");}
+			 else {return tn;}
+		}
+		
 		public Tree getTreeByID  (int id) throws InvalidInputException  {
 			List<Tree> alltrees= listAllTrees();
 			Tree tree= null;
@@ -165,6 +198,9 @@ public class TreePLETreeService {
 		  if(user==null) {
 			  user= new Person(userName);
 		  }
+		  
+			  
+		  user.setTreesPlanted(user.getTreesPlanted()+1);
 		  Date date1= new Date();
 		  Status s = new Status(date1,t,user);
 		 
@@ -385,6 +421,46 @@ return (ts.size()*48);
 			
 		}
 		
+		
+		
+		public Forecast cutDownTreesinAreaForForecast(double latitude, Forecast f, double longitude, MunicipalityName munName) throws InvalidInputException{
+			if(munName==null||f==null) {
+				throw new InvalidInputException("fill in the missing information");
+			}
+			List<Tree> treesInMun=getMunicipalityByName(munName).getTrees();
+			double k= 0.09;
+			for(Tree t:treesInMun) {
+		
+			if((Math.abs(t.getLatitude()-latitude)<k)&&(Math.abs(t.getLongitude()-longitude)<k)) {
+			  f.addTreesToBeCut(t);}}
+			  PersistenceXStream.saveToXMLwithXStream(tm);
+			  return f ;
+			  
+			  	
+			
+		}
+		
+		public String pollUserLevel(String userName) throws InvalidInputException {
+			Person person= getUserByName(userName);
+			int score= person.getTreesPlanted()-person.getTreesCut();
+			if (score>=5&&score<10) { person.setLevel(Level.RemarkableCitizen); return("Congratulations, you now have the title of Remarkable Citizen! Keep planting to level up!");}
+			if (score>=10&&score<20) { person.setLevel(Level.ExceptionalCitizen); return("Congratulations, you now have the title of Exceptional Citizen! Keep planting to level up!");}
+			if (score>=20) { person.setLevel(Level.PerfectCitizen); return("Congratulations, you now have the title of Perfect Citizen!");}				
+			else { return (" No earned titles.Keep planting trees to level up!");}
+		}
+		
+		
+		public Person getUserByName(String userName) throws InvalidInputException {
+			List<Person> users= listAllUsers();
+			  Person user =null;
+			  for(Person p : users) {
+				  if (p.getName()==userName) { user=p;}
+			  }
+			  if(user==null) {
+				 throw new InvalidInputException("user doesn't exist!");}
+			  else {return user;}
+			  
+		}
 		//cut down tree
 		public Tree cutDownTree(Tree t, String userName) throws InvalidInputException {
 			if((t==null)) {
@@ -398,6 +474,7 @@ return (ts.size()*48);
 			  if(user==null) {
 				  user= new Person(userName);
 			  }
+			  user.setTreesCut(user.getTreesCut()+1);
 				Date date = new Date();
 			  Status s = new Status(date,t,user);
 			

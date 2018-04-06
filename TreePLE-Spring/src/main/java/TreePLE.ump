@@ -13,9 +13,10 @@ class TreeManager{
 
 class Tree{
 autounique treeID;
-  
-enum TreeSpecies {Willow}
-lazy TreeSpecies treeSpecies;
+  enum TreeSpecies{Willow,RedMaple,LobollyPine,Sweetgum,DouglasFir,QuackingAspen,SugarMaple,Balsamfir,FloweringDogwood,LodgepolePine,WhiteOak}
+  lazy TreeSpecies treeSpecies;
+//enum TreeSpecies {Willow}
+//lazy TreeSpecies treeSpecies;
   
 double height;
 double diameter;
@@ -31,7 +32,7 @@ lazy LandType landType;
 }
 
 class Municipality{
-  enum MunicipalityName {Montreal, Laval}
+  enum MunicipalityName {Montreal,Laval,Anjou,AhuntsicCartierville,LeSudOuest,LIlleBizadSaintGenevieve,MercierHochelagaMaisonneuve,MontrealNord,PierrefondsRoxboro,RiviereDesPrairiesPointeAuxTrembles,Rosemont,VilleraySaintMichel,CoteDesNeiges, Lachine, LaSalle, LePlateau, Outremont, Verdun, VilleMarie}
   lazy MunicipalityName municipalityName;
 }
 
@@ -45,9 +46,12 @@ Date date;
 
 class Person {
 name;
-
+ defaulted int treesPlanted=0;
+  defaulted int treesCut=0;
+  enum Level{LocalCitizen, RemarkableCitizen, ExceptionalCitizen, PerfectCitizen}
+  lazy defaulted Level level= Level.LocalCitizen;
   1--* Status status;
- * -- * Role roles;
+ * -- 0..1 Role roles;
 }
 
 class Role {
@@ -55,10 +59,14 @@ class Role {
 }
 
 class Scientist{
+  String role= "expert";
+    
 isA Role;
 }
 
 class LocalUser {
+  String role="local";
+ 
  isA Role;
 }
 
@@ -66,9 +74,12 @@ class Report{
 double canopy;
 int carbonSequestration;
 double bioDiversityIndex;
-
+Date date;
+* -- 0..* Tree treesForReport;
 
 }
+
+
 
 
 
