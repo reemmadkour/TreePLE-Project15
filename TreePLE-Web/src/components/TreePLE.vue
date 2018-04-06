@@ -2,7 +2,7 @@
 
 <div id="TreePLE">
 
-    <h1>TreePLE</h1> 
+   
     <h2> List of all trees </h2>
     <table style="width:100%">
  <th> Species </th>
@@ -76,7 +76,7 @@
  #TreePLE {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background: #BFF0BF;
+    background: #ffffff;
   }
 th, td {
     padding: 5px;
