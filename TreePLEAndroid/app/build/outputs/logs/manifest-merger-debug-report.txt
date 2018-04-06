@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
-INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
-INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
-INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
+ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
 MERGED from [com.android.support:design:26.1.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/AndroidManifest.xml:17:1-31:12
 MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/49bb991a180de84b694da98c2ed5605c/AndroidManifest.xml:17:1-32:12
@@ -25,20 +25,20 @@ MERGED from [com.google.android.gms:play-services-base-license:11.8.0] /Users/le
 MERGED from [com.google.android.gms:play-services-basement-license:11.8.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-basement-license-11.8.0.aar/cdd316b57a3bc07e0e006ea019ebfa6c/AndroidManifest.xml:2:1-6:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/dbf5bd733dd6d2f9d59d8465ad531469/AndroidManifest.xml:17:1-30:12
 MERGED from [com.google.android.gms:play-services-tasks-license:11.8.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.8.0.aar/be47d8cccd32189047f36504735f4996/AndroidManifest.xml:2:1-6:12
-INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
-INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
-INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
+INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
+INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
 	package
 		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:3:5-40
 		INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml
-		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
 		INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml
-		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-89:12
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:1-105:12
 		INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:2:11-69
@@ -57,7 +57,7 @@ ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15
 	android:name
 		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:12:22-78
 application
-ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:14:5-87:19
+ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:14:5-103:19
 MERGED from [com.android.support:design:26.1.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:design:26.1.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/AndroidManifest.xml:25:5-29:19
@@ -194,6 +194,30 @@ ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15
 		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:84:13-45
 	android:name
 		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:85:13-37
+activity#ca.mcgill.ecse321.treeple.HelpPlant
+ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:87:9-90:20
+	android:label
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:88:13-45
+	android:name
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:89:13-38
+activity#ca.mcgill.ecse321.treeple.HelpHeight
+ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:91:9-94:20
+	android:label
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:92:13-45
+	android:name
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:93:13-39
+activity#ca.mcgill.ecse321.treeple.HelpDiameter
+ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:95:9-98:20
+	android:label
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:96:13-45
+	android:name
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:97:13-41
+activity#ca.mcgill.ecse321.treeple.HelpSpecies
+ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:99:9-102:20
+	android:label
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:100:13-45
+	android:name
+		ADDED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml:101:13-40
 uses-sdk
 INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/AndroidManifest.xml

@@ -84,6 +84,22 @@
             android:label="@string/app_name"
             android:name=".AfterCut" >
         </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".HelpPlant" >
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".HelpHeight" >
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".HelpDiameter" >
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".HelpSpecies" >
+        </activity>
     </application>
 
 </manifest>

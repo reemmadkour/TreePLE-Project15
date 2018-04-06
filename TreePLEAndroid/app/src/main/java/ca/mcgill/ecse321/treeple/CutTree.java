@@ -88,7 +88,7 @@ public class CutTree extends AppCompatActivity {
 
     }
 
-    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
+    /*private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
         HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
 
             @Override
@@ -177,7 +177,7 @@ public class CutTree extends AppCompatActivity {
         });
 
 
-    }
+    }*/
 
 
 
