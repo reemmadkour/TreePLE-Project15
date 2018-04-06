@@ -1,15 +1,75 @@
 [
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_text_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_text_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/design_error.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/color/design_error.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/switch_thumb_material_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_light.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_search_url_text.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_text_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/switch_thumb_material_dark.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_dark.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_disable_only_material_dark.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_text_light.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_text_light.xml"
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_disable_only_material_light.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_light.xml",
@@ -24,39 +84,39 @@
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/switch_thumb_material_light.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/design_error.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/color/design_error.xml"
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_hint_foreground_material_dark.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_light.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_material_light.xml"
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/design_error.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/color/design_error.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_dark.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_secondary_text_material_dark.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_light.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_secondary_text_material_light.xml"
-    },
-    {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_dark.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_text_dark.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_tint.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_tint.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_tint.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_tint.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/switch_thumb_material_dark.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/switch_thumb_material_dark.xml"
-    },
-    {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/common_google_signin_btn_text_dark.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/color/common_google_signin_btn_text_dark.xml"
-    },
-    {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_dark.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/TreePLEAndroid/app/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_light.xml",
+        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color/abc_hint_foreground_material_light.xml"
     }
 ]

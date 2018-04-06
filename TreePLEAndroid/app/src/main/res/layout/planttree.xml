@@ -60,7 +60,7 @@
         android:layout_toEndOf="@+id/error"
         android:ems="10"
         android:hint="Longitude"
-        android:inputType="numberSigned"
+        android:inputType="numberSigned|numberDecimal"
         android:textStyle="italic" />
 
     <EditText
@@ -72,7 +72,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Latitude"
-        android:inputType="numberSigned"
+        android:inputType="numberSigned|numberDecimal"
         android:textStyle="italic" />
 
     <Spinner
@@ -136,9 +136,9 @@
         android:layout_width="40dp"
 
         android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/back"
-        android:layout_alignBottom="@+id/back"
-        android:layout_alignStart="@+id/plantTree"
+        android:layout_alignBaseline="@+id/plantTree"
+        android:layout_alignBottom="@+id/plantTree"
+        android:layout_toEndOf="@+id/error"
         android:background="@drawable/maps"
         android:fontFamily="sans-serif"
         android:textColor="#fff"
@@ -197,6 +197,14 @@
         android:layout_alignBottom="@+id/latitude"
         android:layout_alignEnd="@+id/plantTree"
         android:background="@drawable/goodjob" />
+
+    <Button
+        android:id="@+id/help"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button3"
+        android:layout_alignTop="@+id/PlantTreeTitle"
+        android:background="@android:drawable/ic_dialog_info" />
 
 
 </RelativeLayout>

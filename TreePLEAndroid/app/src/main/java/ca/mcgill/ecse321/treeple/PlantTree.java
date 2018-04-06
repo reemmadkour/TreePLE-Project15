@@ -45,7 +45,7 @@ public class PlantTree extends AppCompatActivity {
     Button ok;
     Button mapsv;
     Button mainPlant;
-    Button back;
+    Button back, help;
     EditText diameter, height, longitude, latitude, userName;
     private GoogleMap mMap;
 
@@ -77,7 +77,20 @@ public class PlantTree extends AppCompatActivity {
         mapsv = (Button) findViewById(R.id.viewmaps);
         ok = (Button)findViewById(R.id.plantTree);
         back = (Button)findViewById(R.id.back);
+        help = (Button)findViewById(R.id.help);
 
+
+        help.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(PlantTree.this, HelpPlant.class);
+                startActivity(intent);
+
+            }
+
+        });
 
 
         mapsv.setOnClickListener(new View.OnClickListener() {
