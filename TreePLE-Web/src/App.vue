@@ -27,10 +27,6 @@
            <li class="nav-item active">
             <a class="nav-link" href="/#/transactions"> Plant Tree <span class="sr-only">(current)</span></a>
           </li>
-
-          <li class="nav-item active">
-            <a class="nav-link" href="http://ecse321-14.ece.mcgill.ca:8087/app-release.apk"> Android <span class="sr-only">(current)</span></a>
-          </li>
         </ul>
       </div>
     </nav>
