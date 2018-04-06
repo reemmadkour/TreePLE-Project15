@@ -28,7 +28,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.mcgill.ecse321.treeple.dto.TreeDto;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -46,7 +45,7 @@ public class PlantTree extends AppCompatActivity {
     Button ok;
     Button mapsv;
     Button mainPlant;
-    Button back;
+    Button back, help;
     EditText diameter, height, longitude, latitude, userName;
     private GoogleMap mMap;
 
@@ -67,13 +66,6 @@ public class PlantTree extends AppCompatActivity {
     private double aDouble;
 
 
-    private List<TreeDto> trees = new ArrayList<TreeDto>();
-    private ArrayAdapter<TreeDto> treeAdapter;
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -85,7 +77,20 @@ public class PlantTree extends AppCompatActivity {
         mapsv = (Button) findViewById(R.id.viewmaps);
         ok = (Button)findViewById(R.id.plantTree);
         back = (Button)findViewById(R.id.back);
+        help = (Button)findViewById(R.id.help);
 
+
+        help.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(PlantTree.this, HelpPlant.class);
+                startActivity(intent);
+
+            }
+
+        });
 
 
         mapsv.setOnClickListener(new View.OnClickListener() {
@@ -176,37 +181,19 @@ public class PlantTree extends AppCompatActivity {
 
     }
 
-    /*@GetMapping(value = { "/trees", "/trees/" })
-	public List<TreeDto> findAllTrees() throws InvalidInputException {
-		List<TreeDto> trees = new ArrayList<TreeDto>();
-
-		for (Tree tree : service.listAllTrees()) {
-			trees.add(convertToDto(tree));
-		}
-		return trees;
-	}*/
 
 
 
-    // TODO get trees
-
-    /*public void refreshLists(View view) {
-
-        refreshList(treeAdapter, trees, "trees");
-    }*/
-
-
-
-    /*private void refreshList(final ArrayAdapter<TreeDto> adapter,final  List<TreeDto> trees, String restFunctionName) {
+    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
         HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                trees.clear();
-                //names.add("Please select...");
+                names.clear();
+                names.add("Please select...");
                 for( int i = 0; i < response.length(); i++){
                     try {
-                        trees.add(response.getJSONObject(i).getString("trees"));
+                        names.add(response.getJSONObject(i).getString("name"));
                     } catch (Exception e) {
                         error += e.getMessage();
                     }
@@ -225,7 +212,7 @@ public class PlantTree extends AppCompatActivity {
                 refreshErrorMessage();
             }
         });
-    }*/
+    }
 
 
 
@@ -344,11 +331,6 @@ public class PlantTree extends AppCompatActivity {
 
        refreshErrorMessage();
     }
-
-
-
-
-
 
 
 
