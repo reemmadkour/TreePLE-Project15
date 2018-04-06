@@ -19,7 +19,7 @@
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
            <td>{{ tree.landType }}</td>
-		<td>{{ tree.municipality }}</td>
+		
                 
           
   </tr>
@@ -30,7 +30,7 @@
           <td>45.5</td>
           <td>-73.57</td>
           <td>Institutional</td>
-          <td>01</td>
+         
           <td>Montreal-West</td>
           
       </tr>
@@ -41,7 +41,7 @@
           <td>42.5</td>
           <td>-79.57</td>
           <td>Municipal</td>
-          <td>02</td>
+          
           <td>Montreal-West</td>
           
       </tr>
@@ -53,7 +53,7 @@
           <td>27.4</td>
           <td>-68.34</td>
           <td>Institutional</td>
-          <td>03</td>
+       
           <td>Montreal-North</td>
           
       </tr>
