@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.mcgill.ecse321.treeple.dto.TreeDto;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -64,6 +65,13 @@ public class PlantTree extends AppCompatActivity {
 
     Spinner speciesSpinner, landSpinner , munSpinner;
     private double aDouble;
+
+
+    private List<TreeDto> trees = new ArrayList<TreeDto>();
+    private ArrayAdapter<TreeDto> treeAdapter;
+
+
+
 
 
     @Override
@@ -168,19 +176,37 @@ public class PlantTree extends AppCompatActivity {
 
     }
 
+    /*@GetMapping(value = { "/trees", "/trees/" })
+	public List<TreeDto> findAllTrees() throws InvalidInputException {
+		List<TreeDto> trees = new ArrayList<TreeDto>();
+
+		for (Tree tree : service.listAllTrees()) {
+			trees.add(convertToDto(tree));
+		}
+		return trees;
+	}*/
 
 
 
-    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
+    // TODO get trees
+
+    /*public void refreshLists(View view) {
+
+        refreshList(treeAdapter, trees, "trees");
+    }*/
+
+
+
+    /*private void refreshList(final ArrayAdapter<TreeDto> adapter,final  List<TreeDto> trees, String restFunctionName) {
         HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
+                trees.clear();
+                //names.add("Please select...");
                 for( int i = 0; i < response.length(); i++){
                     try {
-                        names.add(response.getJSONObject(i).getString("name"));
+                        trees.add(response.getJSONObject(i).getString("trees"));
                     } catch (Exception e) {
                         error += e.getMessage();
                     }
@@ -199,7 +225,7 @@ public class PlantTree extends AppCompatActivity {
                 refreshErrorMessage();
             }
         });
-    }
+    }*/
 
 
 
@@ -318,6 +344,11 @@ public class PlantTree extends AppCompatActivity {
 
        refreshErrorMessage();
     }
+
+
+
+
+
 
 
 
