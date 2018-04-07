@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         android:background="#30000000"
         android:backgroundTint="@android:color/transparent"
         android:text="Choose One:"
@@ -39,11 +39,11 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/cuttree_b"
+
+
+        android:layout_below="@+id/button4"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp"
-
-
+        android:layout_marginTop="45dp"
         android:background="#10000000"
         android:text="Plant Tree" />
 
@@ -53,11 +53,12 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/planttree_b"
-        android:layout_centerVertical="true"
 
+        android:layout_above="@+id/viewmaps_b"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
         android:background="#10000000"
-        android:text="Cut Tree" />
+        android:text="Mark Tree To be Cut" />
 
 
     <Button
@@ -65,9 +66,10 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/cuttree_b"
-        android:layout_below="@+id/planttree_b"
-        android:layout_marginTop="48dp"
+        android:layout_above="@+id/button5"
+        android:layout_alignStart="@+id/planttree_b"
+        android:layout_marginBottom="51dp"
+        android:background="#10000000"
         android:text="View Maps" />
 
     <Button

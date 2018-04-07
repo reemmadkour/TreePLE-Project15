@@ -35,6 +35,7 @@ import cz.msebera.android.httpclient.Header;
 
 
 /**
+ * This class implements a method that lets a user cut down a tree
  * Created by leaakkari on 2018-03-22.
  */
 
@@ -43,7 +44,7 @@ public class CutTree extends AppCompatActivity {
     Button back, ok;
     String error;
 
-    TextView message;
+    TextView message, invalid;
 
     EditText lgt, lat;
 
@@ -54,8 +55,11 @@ public class CutTree extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cut);
 
+       lgt = (EditText)findViewById(R.id.lgt_cut);
+        lat = (EditText)findViewById(R.id.ltd_cut);
+
         //takes you back to options page
-        back = (Button) findViewById(R.id.back2);
+        back = (Button) findViewById(R.id.back_c);
 
         back.setOnClickListener(new View.OnClickListener() {
 
@@ -69,6 +73,8 @@ public class CutTree extends AppCompatActivity {
 
         });
 
+        invalid = (TextView)findViewById((R.id.invalid_cut));
+
         //ok
         ok = (Button) findViewById(R.id.ok_cut);
         ok.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +82,15 @@ public class CutTree extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(CutTree.this, AfterCut.class);
-                startActivity(intent);
+                if(lgt.getText().toString().matches("") || lat.getText().toString().matches("")){
+                    invalid.setText("Please input longitude and latitude!");
+                    invalid.setVisibility(View.VISIBLE);
+                }
+                else {
+
+                    Intent intent = new Intent(CutTree.this, AfterCut.class);
+                    startActivity(intent);
+                }
 
             }
 
@@ -86,9 +99,10 @@ public class CutTree extends AppCompatActivity {
 
 
 
+
     }
 
-    /*private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
+    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
         HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
 
             @Override
@@ -137,7 +151,7 @@ public class CutTree extends AppCompatActivity {
 
 
 
-    public void cut(View v){
+   /* public void cut(View v){
 
         Intent i = getIntent();
         String userName = i.getStringExtra("userName");

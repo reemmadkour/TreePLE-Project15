@@ -42,6 +42,7 @@ import android.widget.Toast;
 public class PlantTree extends AppCompatActivity {
 
     private String error ;
+    TextView invalid;
     Button ok;
     Button mapsv;
     Button mainPlant;
@@ -78,6 +79,7 @@ public class PlantTree extends AppCompatActivity {
         ok = (Button)findViewById(R.id.plantTree);
         back = (Button)findViewById(R.id.back);
         help = (Button)findViewById(R.id.help);
+        invalid = (TextView)findViewById(R.id.invalid);
 
 
         help.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +129,21 @@ public class PlantTree extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(PlantTree.this, AfterPlant.class);
-                startActivity(intent);
+                if(((Spinner) findViewById(R.id.municipality)).getSelectedItem().toString().equals("Please Select" )|| ((Spinner) findViewById(R.id.species)).getSelectedItem().toString().equals("Please Select" )||((Spinner) findViewById(R.id.landtype)).getSelectedItem().toString().equals("Please Select" ) ){
+                    invalid.setText("Invalid Selection. Please pick an option!");
+                    invalid.setVisibility(View.VISIBLE);
+                }else  if(diameter.getText().toString().matches("")
+                        || height.getText().toString().matches("")
+                        || longitude.getText().toString().matches("")
+                        || latitude.getText().toString().matches("")){
+
+                    invalid.setText("Please fill in everything!");
+                    invalid.setVisibility(View.VISIBLE);
+                }else {
+
+                    Intent intent = new Intent(PlantTree.this, AfterPlant.class);
+                    startActivity(intent);
+                }
 
             }
 
@@ -237,6 +252,7 @@ public class PlantTree extends AppCompatActivity {
     public void addTree(View v) {
 
 
+
         //municipality spinner
 
         munSpinner = (Spinner) findViewById(R.id.municipality);
@@ -280,6 +296,8 @@ public class PlantTree extends AppCompatActivity {
         rp.add("latitude", latitude.getText().toString());
         //rp.add("userName", userName);
 
+
+
         HttpUtils.post("PlantTree/" + userName , rp, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -299,9 +317,8 @@ public class PlantTree extends AppCompatActivity {
                 });*/
 
 
-                if(((Spinner) findViewById(R.id.municipality)).getSelectedItem()== "Please Select" || ((Spinner) findViewById(R.id.species)).getSelectedItem() == "Please Select" ||((Spinner) findViewById(R.id.landtype)).getSelectedItem()=="Please Select" ){
-                    error = "Invalid Selection. Please pick an option!";
-                }
+
+
                 diameter.setText("");
                 height.setText("");
                 longitude.setText("");
