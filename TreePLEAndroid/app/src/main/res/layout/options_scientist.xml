@@ -46,9 +46,9 @@
         android:id="@+id/sc_cut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/sc_plant"
         android:layout_below="@+id/sc_plant"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:background="#10000000"
         android:text="Cut Tree" />
 
@@ -56,9 +56,9 @@
         android:id="@+id/sc_mark_cut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/sc_diseased"
+        android:layout_below="@+id/sc_cut"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
+        android:layout_marginTop="31dp"
         android:background="#10000000"
         android:text="To be Cut Down Tree" />
 
@@ -66,9 +66,9 @@
         android:id="@+id/sc_diseased"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/maps_scientist"
-        android:layout_alignEnd="@+id/sc_mark_cut"
-        android:layout_marginBottom="12dp"
+        android:layout_alignStart="@+id/sc_mark_cut"
+        android:layout_alignTop="@+id/sc_mark_cut"
+        android:layout_marginTop="57dp"
         android:background="#10000000"
         android:text="Mark Diseased Tree" />
 
