@@ -8,9 +8,9 @@
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">List Trees by
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="#">All</a></li>
-      <li><a href="#">Municipality</a></li>
-      <li><a href="#">Species</a></li>
+      <li><a class="dropdown-item" href="#">All</a></li>
+      <li><a class="dropdown-item" href="#">Municipality</a></li>
+      <li><a class="dropdown-item" href="#">Species</a></li>
     </ul>
   </div>
 
