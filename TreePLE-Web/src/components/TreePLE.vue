@@ -5,6 +5,7 @@
    
     <h2> List of all trees </h2>
     <table class="table table-hover" style="width:100%">
+<thead>
  <th> Species </th>
   <th> Height </th>
    <th> Diameter </th>
@@ -12,6 +13,8 @@
      <th> Latitude </th>
       <th> Landtype </th>
         <th> Municipality </th>
+</thead>
+<tbody>
 <tr v-for="tree in Trees" >
       <td>{{ tree.treeSpecies }}</td>
        <td>{{ tree.height }}</td>
@@ -59,6 +62,7 @@
       </tr>
 
   </tr>
+</tbody>
       </table>
 <p> </p>
 
