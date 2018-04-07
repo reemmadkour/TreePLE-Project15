@@ -15,7 +15,7 @@ import ca.mcgill.ecse321.TreePLE.model.Person.Level;
 import ca.mcgill.ecse321.TreePLE.model.Report;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
-import ca.mcgill.ecse321.TreePLE.model.Tree;
+import ca.mcgill.ecse321.TreePLE.model.*;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
 import ca.mcgill.ecse321.TreePLE.model.TreeManager;
