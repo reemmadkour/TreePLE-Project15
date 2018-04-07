@@ -2,7 +2,7 @@
   <div id="app">
 
     <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-      <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.jpg"></a>
+      <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.png"></a>
      
       <div class="navbar" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
