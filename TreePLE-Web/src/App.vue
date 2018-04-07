@@ -1,5 +1,18 @@
 <template>
   <div id="app">
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
     <nav class="navbar navbar-expand-lg sticky-top navbar-light" style="background-color: #000033;">
       <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.jpg"></a>
      
