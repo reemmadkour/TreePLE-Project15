@@ -4,7 +4,7 @@
 
    
     <h2> List of all trees </h2>
-    <table style="width:100%">
+    <table class="table table-hover" style="width:100%">
  <th> Species </th>
   <th> Height </th>
    <th> Diameter </th>
