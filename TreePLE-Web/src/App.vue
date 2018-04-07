@@ -57,9 +57,7 @@ img {
   margin-right:2em;
 }
 
-#navMenu {
-  background-color:black;
-}
+
 
 
 </style>
