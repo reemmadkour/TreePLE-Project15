@@ -11,7 +11,8 @@ import com.loopj.android.http.RequestParams;
 public class HttpUtils {
 
     //public static final String DEFAULT_BASE_URL = "http://192.168.56.50:8088/";
-    public static final String DEFAULT_BASE_URL = "http://ecse321-14.ece.mcgill.ca:8080/";
+    public static final String DEFAULT_BASE_URL = "http://ecse321-14.ece.mcgill.ca:8080/" ;
+
 
     private static String baseUrl;
     private static AsyncHttpClient client = new AsyncHttpClient();

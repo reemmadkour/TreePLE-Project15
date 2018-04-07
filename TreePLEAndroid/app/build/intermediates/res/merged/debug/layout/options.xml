@@ -54,11 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_above="@+id/viewmaps_b"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp"
+        android:layout_below="@+id/planttree_b"
+        android:layout_marginTop="36dp"
+        android:layout_toStartOf="@+id/button5"
         android:background="#10000000"
-        android:text="Mark Tree To be Cut" />
+        android:text="Cut Tree" />
 
 
     <Button
