@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/ic_launcher_foreground.xml",
         "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
     },
@@ -26,5 +27,33 @@
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/help.png",
         "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/help.png"
+=======
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/trunk1.png",
+        "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/trunk1.png"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/species.png",
+        "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/species.png"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/diseased.png",
+        "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/diseased.png"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/height.png",
+        "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/height.png"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/help.png",
+        "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/help.png"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/diameter.png",
+        "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/diameter.png"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-v24/ic_launcher_foreground.xml",
+        "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
     }
 ]

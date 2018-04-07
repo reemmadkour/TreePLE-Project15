@@ -1,13 +1,23 @@
 [
     {
+<<<<<<< HEAD
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color-v23/abc_tint_seek_thumb.xml"
+=======
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_tint_seek_thumb.xml"
     },
     {
-        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/design_tint_password_toggle.xml",
-        "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/color-v23/design_tint_password_toggle.xml"
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_btn_colored_text_material.xml"
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
     },
     {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+<<<<<<< HEAD
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_text_material.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color-v23/abc_btn_colored_text_material.xml"
     },
@@ -38,5 +48,33 @@
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_btn_checkable.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/5ad074948dfdc1fc25ad692d0af02f2a/res/color-v23/abc_tint_btn_checkable.xml"
+=======
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/design_tint_password_toggle.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/340a3b9721758ee1ce71f753a7c0668f/res/color-v23/design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_track.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_edittext.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_default.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/color-v23/abc_tint_spinner.xml",
+        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/color-v23/abc_tint_spinner.xml"
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
     }
 ]
