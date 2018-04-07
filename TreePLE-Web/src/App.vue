@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-inverse">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
       <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.jpg"></a>
      
       <div class="navbar" id="navbarSupportedContent">
@@ -27,6 +27,10 @@
 
           
         </ul>
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
       </div>
     </nav>
     <br>
