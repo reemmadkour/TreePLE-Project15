@@ -1,6 +1,10 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "map": [
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
@@ -22,6 +26,7 @@
                         "endOffsets": "666,736,807,879,937,995,1101,1165,1228,1410"
                     }
                 },
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
@@ -55,6 +60,8 @@
                         "endColumns": "59,69,70,71,57,57,105,63,62,12",
                         "endOffsets": "666,736,807,879,937,995,1101,1165,1228,1410"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-sw600dp-v13/values-sw600dp-v13.xml",
@@ -65,6 +72,7 @@
                         "endColumns": "68,68,69,73,75,58,70,67",
                         "endOffsets": "119,188,258,332,408,467,538,606"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

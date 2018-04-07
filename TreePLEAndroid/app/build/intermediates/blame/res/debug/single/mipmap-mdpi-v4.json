@@ -1,5 +1,17 @@
 [
     {
+<<<<<<< HEAD
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher_foreground.png",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher_round.png",
+        "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+=======
         "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher_round.png",
         "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
@@ -10,5 +22,6 @@
     {
         "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
         "source": "/home/ecse321/git/Project-15/TreePLEAndroid/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
     }
 ]

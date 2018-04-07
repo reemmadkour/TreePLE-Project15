@@ -1,10 +1,17 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-bn/values-bn.xml",
+            "map": [
+                {
+                    "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/values-bn/values.xml",
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-bn/values-bn.xml",
             "map": [
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/a2df1d895efff0fc14ccce5fc837a77a/res/values-bn/values.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -19,6 +26,8 @@
                         "endColumns": "110,190,129,112,195,123,141,132,203,110,186,129,192,177,89,96,118",
                         "endOffsets": "2235,2426,2556,2669,2865,2989,3131,3264,3679,3790,3977,4107,4300,4478,4568,4665,4784"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-bn/values.xml",
@@ -36,6 +45,7 @@
                         "endColumns": "210",
                         "endOffsets": "3475"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-bn/values-bn.xml",
@@ -92,6 +102,8 @@
                         "endColumns": "210",
                         "endOffsets": "3475"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-bn/values-bn.xml",
@@ -109,6 +121,7 @@
                         "endColumns": "108,107,122,111,105,93,104,128,77,77,86,109,115,106,109,105,112,127,104,89,100",
                         "endOffsets": "209,317,440,552,658,752,857,986,1064,1142,1229,1339,1455,1562,1672,1778,1891,2019,2124,4874,4975"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

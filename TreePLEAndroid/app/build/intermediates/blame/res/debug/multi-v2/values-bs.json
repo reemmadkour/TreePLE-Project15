@@ -36,6 +36,8 @@
                         "endColumns": "107,191,127,111,208,127,141,130,212,108,191,128,208,175,97,94,113",
                         "endOffsets": "2176,2368,2496,2608,2817,2945,3087,3218,3631,3740,3932,4061,4270,4446,4544,4639,4753"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-bs/values-bs.xml",
@@ -53,11 +55,16 @@
                         "endColumns": "118,107,122,108,106,85,100,121,81,80,85,102,104,97,104,110,104,119,96,83,100",
                         "endOffsets": "219,327,450,559,666,752,853,975,1057,1138,1224,1327,1432,1530,1635,1746,1851,1971,2068,4837,4938"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         },
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-bs/values-bs.xml",
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-bs/values-bs.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
             "map": [
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-bs/values.xml",
@@ -92,6 +99,8 @@
                         "endColumns": "107,191,127,111,208,127,141,130,212,108,191,128,208,175,97,94,113",
                         "endOffsets": "2176,2368,2496,2608,2817,2945,3087,3218,3631,3740,3932,4061,4270,4446,4544,4639,4753"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-bs/values-bs.xml",
@@ -109,6 +118,7 @@
                         "endColumns": "118,107,122,108,106,85,100,121,81,80,85,102,104,97,104,110,104,119,96,83,100",
                         "endOffsets": "219,327,450,559,666,752,853,975,1057,1138,1224,1327,1432,1530,1635,1746,1851,1971,2068,4837,4938"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

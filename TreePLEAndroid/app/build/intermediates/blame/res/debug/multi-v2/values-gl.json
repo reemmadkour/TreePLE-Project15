@@ -19,6 +19,8 @@
                         "endColumns": "111,107,122,111,107,84,101,125,83,80,81,106,108,98,107,103,106,121,99,81,100",
                         "endOffsets": "212,320,443,555,663,748,850,976,1060,1141,1223,1330,1439,1538,1646,1750,1857,1979,2079,4931,5032"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-gl/values.xml",
@@ -53,11 +55,16 @@
                         "endColumns": "107,194,130,109,217,133,148,137,229,110,199,136,223,181,96,98,113",
                         "endOffsets": "2187,2382,2513,2623,2841,2975,3124,3262,3685,3796,3996,4133,4357,4539,4636,4735,4849"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         },
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gl/values-gl.xml",
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gl/values-gl.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
             "map": [
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-gl/values-gl.xml",
@@ -75,6 +82,8 @@
                         "endColumns": "111,107,122,111,107,84,101,125,83,80,81,106,108,98,107,103,106,121,99,81,100",
                         "endOffsets": "212,320,443,555,663,748,850,976,1060,1141,1223,1330,1439,1538,1646,1750,1857,1979,2079,4931,5032"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-gl/values.xml",
@@ -109,6 +118,7 @@
                         "endColumns": "107,194,130,109,217,133,148,137,229,110,199,136,223,181,96,98,113",
                         "endOffsets": "2187,2382,2513,2623,2841,2975,3124,3262,3685,3796,3996,4133,4357,4539,4636,4735,4849"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

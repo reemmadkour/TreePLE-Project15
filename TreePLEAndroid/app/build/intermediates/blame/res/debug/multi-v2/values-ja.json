@@ -55,6 +55,8 @@
                     }
                 }
             ]
+<<<<<<< HEAD
+=======
         },
         {
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ja/values-ja.xml",
@@ -111,6 +113,7 @@
                     }
                 }
             ]
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
         }
     ]
 }

@@ -1,6 +1,10 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml",
+            "map": [
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-zh-rCN/values-zh-rCN.xml",
             "map": [
                 {
@@ -37,6 +41,7 @@
                         "endOffsets": "3097"
                     }
                 },
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-zh-rCN/values-zh-rCN.xml",
                     "from": {
@@ -57,6 +62,10 @@
             ]
         },
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-zh-rCN/values-zh-rCN.xml",
+            "map": [
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml",
             "map": [
                 {
@@ -93,6 +102,7 @@
                         "endOffsets": "3097"
                     }
                 },
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-zh-rCN/values-zh-rCN.xml",
                     "from": {

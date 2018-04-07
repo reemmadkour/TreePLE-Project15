@@ -36,6 +36,8 @@
                         "endColumns": "111,188,133,108,195,127,158,138,202,108,198,130,199,197,90,91,105",
                         "endOffsets": "2161,2350,2484,2593,2789,2917,3076,3215,3627,3736,3935,4066,4266,4464,4555,4647,4753"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-mn/values.xml",
@@ -53,11 +55,16 @@
                         "endColumns": "208",
                         "endOffsets": "3424"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         },
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mn/values-mn.xml",
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-mn/values-mn.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
             "map": [
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-mn/values-mn.xml",
@@ -92,6 +99,8 @@
                         "endColumns": "111,188,133,108,195,127,158,138,202,108,198,130,199,197,90,91,105",
                         "endOffsets": "2161,2350,2484,2593,2789,2917,3076,3215,3627,3736,3935,4066,4266,4464,4555,4647,4753"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-mn/values.xml",
@@ -109,6 +118,7 @@
                         "endColumns": "208",
                         "endOffsets": "3424"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

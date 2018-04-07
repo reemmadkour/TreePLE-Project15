@@ -36,6 +36,8 @@
                         "endColumns": "104,107,122,103,113,85,110,115,79,78,83,108,106,100,107,104,106,123,98,83,100",
                         "endOffsets": "205,313,436,540,654,740,851,967,1047,1126,1210,1319,1426,1527,1635,1740,1847,1971,2070,4884,4985"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-uz/values.xml",
@@ -53,11 +55,16 @@
                         "endColumns": "208",
                         "endOffsets": "3434"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         },
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uz/values-uz.xml",
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uz/values-uz.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
             "map": [
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/a2df1d895efff0fc14ccce5fc837a77a/res/values-uz/values.xml",
@@ -92,6 +99,8 @@
                         "endColumns": "104,107,122,103,113,85,110,115,79,78,83,108,106,100,107,104,106,123,98,83,100",
                         "endOffsets": "205,313,436,540,654,740,851,967,1047,1126,1210,1319,1426,1527,1635,1740,1847,1971,2070,4884,4985"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-uz/values.xml",
@@ -109,6 +118,7 @@
                         "endColumns": "208",
                         "endOffsets": "3434"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

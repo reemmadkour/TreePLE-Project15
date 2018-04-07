@@ -1,6 +1,10 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml",
+            "map": [
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml",
             "map": [
                 {
@@ -20,6 +24,7 @@
                         "endOffsets": "2214,2426,2558,2669,2899,3034,3185,3327,3788,3902,4118,4256,4475,4684,4787,4884,4997"
                     }
                 },
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-fr/values.xml",
                     "from": {
@@ -57,6 +62,10 @@
             ]
         },
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-fr/values-fr.xml",
+            "map": [
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/values-fr/values-fr.xml",
             "map": [
                 {
@@ -76,6 +85,7 @@
                         "endOffsets": "2214,2426,2558,2669,2899,3034,3185,3327,3788,3902,4118,4256,4475,4684,4787,4884,4997"
                     }
                 },
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-fr/values.xml",
                     "from": {

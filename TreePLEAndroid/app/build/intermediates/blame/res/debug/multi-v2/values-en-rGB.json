@@ -38,6 +38,9 @@
                     }
                 },
                 {
+<<<<<<< HEAD
+                    "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/e1d3e0d749581991260a5412dcf87825/res/values-en-rGB/values.xml",
+=======
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/a2df1d895efff0fc14ccce5fc837a77a/res/values-en-rGB/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -61,6 +64,7 @@
             "map": [
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-en-rGB/values.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -75,6 +79,8 @@
                         "endColumns": "196",
                         "endOffsets": "3351"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-en-rGB/values-en-rGB.xml",
@@ -109,6 +115,7 @@
                         "endColumns": "106,183,126,108,209,124,145,131,217,106,182,126,204,177,92,91,107",
                         "endOffsets": "2121,2305,2432,2541,2751,2876,3022,3154,3569,3676,3859,3986,4191,4369,4462,4554,4662"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

@@ -36,6 +36,8 @@
                         "endColumns": "104,185,126,105,197,126,141,131,194,104,175,124,192,174,89,89,109",
                         "endOffsets": "2103,2289,2416,2522,2720,2847,2989,3121,3493,3598,3774,3899,4092,4267,4357,4447,4557"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-iw/values-iw.xml",
@@ -53,11 +55,16 @@
                         "endColumns": "103,109,125,98,107,83,99,113,77,77,78,101,103,95,102,100,99,115,95,78,102",
                         "endOffsets": "204,314,440,539,647,731,831,945,1023,1101,1180,1282,1386,1482,1585,1686,1786,1902,1998,4636,4739"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         },
         {
+<<<<<<< HEAD
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
+=======
             "outputFile": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
             "map": [
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/75fecc3b26350e60ac625d822b22a7cb/res/values-iw/values.xml",
@@ -92,6 +99,8 @@
                         "endColumns": "104,185,126,105,197,126,141,131,194,104,175,124,192,174,89,89,109",
                         "endOffsets": "2103,2289,2416,2522,2720,2847,2989,3121,3493,3598,3774,3899,4092,4267,4357,4447,4557"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-iw/values-iw.xml",
@@ -109,6 +118,7 @@
                         "endColumns": "103,109,125,98,107,83,99,113,77,77,78,101,103,95,102,100,99,115,95,78,102",
                         "endOffsets": "204,314,440,539,647,731,831,945,1023,1101,1180,1282,1386,1482,1585,1686,1786,1902,1998,4636,4739"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }

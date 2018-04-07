@@ -19,6 +19,16 @@
                         "endColumns": "204",
                         "endOffsets": "3433"
                     }
+<<<<<<< HEAD
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
+            "map": [
+                {
+                    "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/03aaa40b2e4cdf97f7ec4f94774ac30c/res/values-uk/values.xml",
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-uk/values-uk.xml",
@@ -39,6 +49,7 @@
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/a2df1d895efff0fc14ccce5fc837a77a/res/values-uk/values.xml",
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -75,6 +86,8 @@
                         "endColumns": "204",
                         "endOffsets": "3433"
                     }
+<<<<<<< HEAD
+=======
                 },
                 {
                     "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/4d0ee70e2f449a18867ba4898576782e/res/values-uk/values-uk.xml",
@@ -109,6 +122,7 @@
                         "endColumns": "109,194,128,111,212,130,144,133,226,107,192,126,205,171,99,90,116",
                         "endOffsets": "2169,2364,2493,2605,2818,2949,3094,3228,3660,3768,3961,4088,4294,4466,4566,4657,4774"
                     }
+>>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
                 }
             ]
         }
