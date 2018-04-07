@@ -14,6 +14,14 @@ android {
         exclude 'META-INF/ASL2.0'
     }
 
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "ca.mcgill.ecse321.treeple"
