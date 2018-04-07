@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light" style="background-color: #000033;">
       <a class="navbar-brand" href="/">TreePLE  <img src="./assets/logo.jpg"></a>
      
       <div class="navbar" id="navbarSupportedContent">
