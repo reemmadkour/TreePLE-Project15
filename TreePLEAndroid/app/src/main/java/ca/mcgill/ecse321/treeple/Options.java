@@ -92,7 +92,7 @@ public class Options extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 //setContentView(R.layout.cut);
-                Intent i = new Intent(Options.this, BeforeOptions.class);
+                Intent i = new Intent(Options.this, MainActivity.class);
                 startActivity(i);
             }
 

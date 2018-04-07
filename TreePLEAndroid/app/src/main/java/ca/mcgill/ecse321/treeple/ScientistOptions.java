@@ -37,10 +37,10 @@ public class ScientistOptions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.options);
+        setContentView(R.layout.options_scientist);
 
         //plant tree button
-        plant= (Button) findViewById(R.id.planttree_s);
+        plant= (Button) findViewById(R.id.plant_s);
         plant.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -54,7 +54,7 @@ public class ScientistOptions extends AppCompatActivity {
 
 
         // View Maps Button
-        maps = (Button) findViewById(R.id.viewmaps_s);
+        maps = (Button) findViewById(R.id.maps_s);
 
         maps.setOnClickListener(new View.OnClickListener() {
 
@@ -69,7 +69,7 @@ public class ScientistOptions extends AppCompatActivity {
         });
 
         //cut Tree Button
-        cut  = (Button) findViewById(R.id.cuttree_s);
+        cut  = (Button) findViewById(R.id.cut_s);
 
         cut.setOnClickListener(new View.OnClickListener() {
 

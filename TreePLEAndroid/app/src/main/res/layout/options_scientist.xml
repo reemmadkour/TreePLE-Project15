@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <Button
+        android:id="@+id/maps_s"
+
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="21dp"
+        android:layout_marginStart="27dp"
+        android:background="@drawable/maps" />
+
+    <Button
+        android:id="@+id/diseased_s"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignStart="@+id/cut_s"
+        android:layout_below="@+id/cut_s"
+        android:layout_marginTop="38dp"
+        android:background="#10000000"
+        android:text="Mark Diseased" />
+
+    <Button
+        android:id="@+id/cut_s"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignStart="@+id/plant_s"
+        android:layout_below="@+id/plant_s"
+        android:layout_marginTop="33dp"
+        android:background="#10000000"
+        android:text="Cut Tree" />
+
+    <Button
+        android:id="@+id/plant_s"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_below="@+id/button6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:background="#10000000"
+        android:text="Plant Tree" />
+
+    <Button
+        android:id="@+id/button6"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="29dp"
+        android:background="#30000000"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Choose One:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="30sp" />
+
+</RelativeLayout>
