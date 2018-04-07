@@ -152,9 +152,25 @@ public class PlantTree extends AppCompatActivity {
 
 
         // set species Spinner
+        //public enum TreeSpecies { Willow, RedMaple, LobollyPine, Sweetgum, DouglasFir, QuackingAspen, SugarMaple, Balsamfir, FloweringDogwood, LodgepolePine, WhiteOak }
+       // public enum LandType { Residential, Institutional, Park, Municipal }
 
         species.add("Please Select");
         species.add("Willow");
+
+        species.add("RedMaple");
+        species.add("LobollyPine");
+        species.add("Sweetgum");
+        species.add("DouglasFir");
+        species.add("QuackingAspen");
+        species.add("SugarMaple");
+        species.add("Balsamfir");
+        species.add("FloweringDogwood");
+        species.add("LodgepolePine");
+        species.add("WhiteOak");
+
+
+
         //species.add("Cedar");
         speciesAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, species);
@@ -168,6 +184,9 @@ public class PlantTree extends AppCompatActivity {
         // set landtype spinner
         landType.add("Please Select");
         landType.add("Institutional");
+        landType.add("Residential");
+        landType.add("Park");
+        landType.add("Municipal");
 
         landAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, landType);
@@ -176,9 +195,36 @@ public class PlantTree extends AppCompatActivity {
         landSpinner.setAdapter(landAdapter);
 
         //set Municipalities Spinner
+        //Montreal, Laval, Anjou, AhuntsicCartierville, LeSudOuest, LIlleBizadSaintGenevieve, MercierHochelagaMaisonneuve, MontrealNord,
+        // PierrefondsRoxboro, RiviereDesPrairiesPointeAuxTrembles, Rosemont, VilleraySaintMichel, CoteDesNeiges,
+        // Lachine, LaSalle, LePlateau, Outremont, Verdun, VilleMarie
         municipalities.add("Please Select");
         municipalities.add("Montreal");
         municipalities.add("Laval");
+        municipalities.add("Anjou");
+        municipalities.add("AhuntsicCartierville");
+        municipalities.add("LeSudOuest");
+        municipalities.add("LeSudOuest");
+        municipalities.add("LIlleBizadSaintGenevieve");
+
+        municipalities.add("MercierHochelagaMaisonneuve");
+        municipalities.add("MontrealNord");
+        municipalities.add("PierrefondsRoxboro");
+        municipalities.add("RiviereDesPrairiesPointeAuxTrembles");
+        municipalities.add("Rosemont");
+        municipalities.add("VilleraySaintMichel");
+        municipalities.add("CoteDesNeiges");
+        municipalities.add("Lachine");
+
+        municipalities.add("LaSalle");
+        municipalities.add("LePlateau");
+        municipalities.add("Outremont");
+        municipalities.add("Verdun");
+        municipalities.add("VilleMarie");
+
+
+
+
         munSpinner = (Spinner) findViewById(R.id.municipality);
 
         munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, municipalities);
