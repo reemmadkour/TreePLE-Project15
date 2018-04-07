@@ -16,6 +16,11 @@ export default new Router({
       path: '/app',
       name: 'TreePLE',
       component: TreePLE
+    },
+    {
+      path: '/login',
+      name: 'TreePLE',
+      component: TreePLE
     }
   ]
 })
