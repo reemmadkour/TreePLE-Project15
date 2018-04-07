@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" style="background-image: url('./forest.jpg');">
+  <div class="hello">
       
 	<form action="/action_page.php">
   <div class="form-group">
@@ -34,9 +34,12 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-#hello
-{
-background-image: url("./forest.jpg");
+#hello {
+  background-image: url("../assets/forest.jpg");
+  height: 40em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 3em;
 }
 ul {
   list-style-type: none;
