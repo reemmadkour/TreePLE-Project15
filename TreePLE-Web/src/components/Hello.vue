@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
       
-	<form action="/app">
+	<form action="/#/app">
   <div class="form-group">
     <label for="email">Email address:</label>
     <input type="email" class="form-control" id="email">

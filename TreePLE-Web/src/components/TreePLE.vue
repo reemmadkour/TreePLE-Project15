@@ -4,16 +4,19 @@
 
    
     <h2> List of all trees </h2>
+
 <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">List Trees by
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">All</a></li>
-      <li><a href="#">Municipality</a></li>
-      <li><a href="#">Species</a></li>
-    </ul>
+ <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    List Trees By
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">All</a>
+    <a class="dropdown-item" href="#">Municipality</a>
+    <a class="dropdown-item" href="#">Species</a>
   </div>
 
+</div>
+ 
 
     <table class="table table-hover" style="width:100%">
 <thead>
@@ -83,8 +86,9 @@
     </p>
   </div>
 </template>
-<script src="./treePlanning.js">
-</script>
+
+<script src="./treePlanning.js"></script>
+
 <style>
 
  #TreePLE {

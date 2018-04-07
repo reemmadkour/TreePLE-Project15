@@ -227,7 +227,7 @@ public class TreePLETreeService {
 		  municipality.addTree(t);
 		  
 		  //add tree to the list
-		
+		tm.addPerson(user);
 		  tm.addStatus(s);
 		  tm.addTree(t);
 		  PersistenceXStream.saveToXMLwithXStream(tm);
