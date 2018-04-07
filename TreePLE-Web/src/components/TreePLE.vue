@@ -6,7 +6,7 @@
     <h2> List of all trees </h2>
 
 <div class="dropdown">
- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+ <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     List Trees By
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
