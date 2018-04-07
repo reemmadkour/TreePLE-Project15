@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" style="background-image: url(./forest.jpg);">
       
 	<form action="/action_page.php">
   <div class="form-group">
