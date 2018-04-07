@@ -18,7 +18,7 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
   </div>
-  <div="container"> 
+  <div> 
 	<form action="/action_page.php">
   <div class="form-group">
     <label for="email">Email address:</label>
