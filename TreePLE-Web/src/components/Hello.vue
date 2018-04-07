@@ -34,7 +34,10 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-
+#hello
+{
+background-image: url("./forest.jpg");
+}
 ul {
   list-style-type: none;
   padding: 0;
