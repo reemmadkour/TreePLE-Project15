@@ -2,17 +2,19 @@
 
 <div id="TreePLE">
 
-    <h1>TreePLE</h1> 
+   
     <h2> List of all trees </h2>
-    <table style="width:100%">
+    <table class="table table-hover" style="width:100%">
+<thead>
  <th> Species </th>
   <th> Height </th>
    <th> Diameter </th>
     <th> Longitude </th>
      <th> Latitude </th>
       <th> Landtype </th>
-       <th> TreeID </th>
         <th> Municipality </th>
+</thead>
+<tbody>
 <tr v-for="tree in Trees" >
       <td>{{ tree.treeSpecies }}</td>
        <td>{{ tree.height }}</td>
@@ -20,7 +22,7 @@
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
            <td>{{ tree.landType }}</td>
-		<td>{{ tree.treeID }}</td>
+		
                 
           
   </tr>
@@ -31,7 +33,7 @@
           <td>45.5</td>
           <td>-73.57</td>
           <td>Institutional</td>
-          <td>01</td>
+         
           <td>Montreal-West</td>
           
       </tr>
@@ -42,7 +44,7 @@
           <td>42.5</td>
           <td>-79.57</td>
           <td>Municipal</td>
-          <td>02</td>
+          
           <td>Montreal-West</td>
           
       </tr>
@@ -54,12 +56,13 @@
           <td>27.4</td>
           <td>-68.34</td>
           <td>Institutional</td>
-          <td>03</td>
+       
           <td>Montreal-North</td>
           
       </tr>
 
   </tr>
+</tbody>
       </table>
 <p> </p>
 
@@ -76,7 +79,7 @@
  #TreePLE {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background: #BFF0BF;
+    background: #ffffff;
   }
 th, td {
     padding: 5px;

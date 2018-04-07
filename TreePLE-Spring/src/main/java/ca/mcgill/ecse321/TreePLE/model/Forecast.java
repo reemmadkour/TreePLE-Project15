@@ -1,10 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.26.1-f40f105-3613 modeling language!*/
+/*This code was generated using the UMPLE 1.27.0.3728.d139ed893 modeling language!*/
 
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
+import java.sql.Date;
 
-// line 75 "../../../../../TreePLE.ump"
+// line 86 "../../../../../TreePLE.ump"
 public class Forecast
 {
 
@@ -203,10 +204,10 @@ public class Forecast
   {
     return 0;
   }
-
-  public Report addReport(double aCanopy, int aCarbonSequestration, double aBioDiversityIndex)
+  /* Code from template association_AddManyToOne */
+  public Report addReport(double aCanopy, int aCarbonSequestration, double aBioDiversityIndex, Date aDate)
   {
-    return new Report(aCanopy, aCarbonSequestration, aBioDiversityIndex, this);
+    return new Report(aCanopy, aCarbonSequestration, aBioDiversityIndex, aDate, this);
   }
 
   public boolean addReport(Report aReport)
@@ -471,7 +472,10 @@ public class Forecast
   {
     Person placeholderPerson = person;
     this.person = null;
-    placeholderPerson.removeForecast(this);
+    if(placeholderPerson != null)
+    {
+      placeholderPerson.removeForecast(this);
+    }
     for(int i=report.size(); i > 0; i--)
     {
       Report aReport = report.get(i - 1);

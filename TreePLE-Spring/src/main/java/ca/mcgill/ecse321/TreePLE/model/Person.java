@@ -1,13 +1,19 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.26.1-f40f105-3613 modeling language!*/
+/*This code was generated using the UMPLE 1.27.0.3728.d139ed893 modeling language!*/
 
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 46 "../../../../../TreePLE.ump"
+// line 47 "../../../../../TreePLE.ump"
 public class Person
 {
+
+  //------------------------
+  // ENUMERATIONS
+  //------------------------
+
+  public enum Level { LocalCitizen, RemarkableCitizen, ExceptionalCitizen, PerfectCitizen }
 
   //------------------------
   // MEMBER VARIABLES
@@ -15,10 +21,13 @@ public class Person
 
   //Person Attributes
   private String name;
+  private int treesPlanted;
+  private int treesCut;
+  private Level level;
 
   //Person Associations
   private List<Status> status;
-  private List<Role> roles;
+  private Role roles;
   private List<Forecast> forecasts;
 
   //------------------------
@@ -28,8 +37,10 @@ public class Person
   public Person(String aName)
   {
     name = aName;
+    resetTreesPlanted();
+    resetTreesCut();
+    resetLevel();
     status = new ArrayList<Status>();
-    roles = new ArrayList<Role>();
     forecasts = new ArrayList<Forecast>();
   }
 
@@ -45,9 +56,87 @@ public class Person
     return wasSet;
   }
 
+  public boolean setTreesPlanted(int aTreesPlanted)
+  {
+    boolean wasSet = false;
+    treesPlanted = aTreesPlanted;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean resetTreesPlanted()
+  {
+    boolean wasReset = false;
+    treesPlanted = getDefaultTreesPlanted();
+    wasReset = true;
+    return wasReset;
+  }
+
+  public boolean setTreesCut(int aTreesCut)
+  {
+    boolean wasSet = false;
+    treesCut = aTreesCut;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean resetTreesCut()
+  {
+    boolean wasReset = false;
+    treesCut = getDefaultTreesCut();
+    wasReset = true;
+    return wasReset;
+  }
+
+  public boolean setLevel(Level aLevel)
+  {
+    boolean wasSet = false;
+    level = aLevel;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean resetLevel()
+  {
+    boolean wasReset = false;
+    level = getDefaultLevel();
+    wasReset = true;
+    return wasReset;
+  }
+
   public String getName()
   {
     return name;
+  }
+
+  public int getTreesPlanted()
+  {
+    return treesPlanted;
+  }
+
+  public int getDefaultTreesPlanted()
+  {
+    return 0;
+  }
+
+  public int getTreesCut()
+  {
+    return treesCut;
+  }
+
+  public int getDefaultTreesCut()
+  {
+    return 0;
+  }
+
+  public Level getLevel()
+  {
+    return level;
+  }
+
+  public Level getDefaultLevel()
+  {
+    return Level.LocalCitizen;
   }
 
   public Status getStatus(int index)
@@ -80,34 +169,15 @@ public class Person
     return index;
   }
 
-  public Role getRole(int index)
+  public Role getRoles()
   {
-    Role aRole = roles.get(index);
-    return aRole;
-  }
-
-  public List<Role> getRoles()
-  {
-    List<Role> newRoles = Collections.unmodifiableList(roles);
-    return newRoles;
-  }
-
-  public int numberOfRoles()
-  {
-    int number = roles.size();
-    return number;
+    return roles;
   }
 
   public boolean hasRoles()
   {
-    boolean has = roles.size() > 0;
+    boolean has = roles != null;
     return has;
-  }
-
-  public int indexOfRole(Role aRole)
-  {
-    int index = roles.indexOf(aRole);
-    return index;
   }
 
   public Forecast getForecast(int index)
@@ -144,7 +214,7 @@ public class Person
   {
     return 0;
   }
-
+  /* Code from template association_AddManyToOne */
   public Status addStatus(Date aDate, Tree aTree)
   {
     return new Status(aDate, aTree, this);
@@ -212,93 +282,28 @@ public class Person
     return wasAdded;
   }
 
-  public static int minimumNumberOfRoles()
+  public boolean setRoles(Role aRoles)
   {
-    return 0;
-  }
-
-  public boolean addRole(Role aRole)
-  {
-    boolean wasAdded = false;
-    if (roles.contains(aRole)) { return false; }
-    roles.add(aRole);
-    if (aRole.indexOfPerson(this) != -1)
+    boolean wasSet = false;
+    Role existingRoles = roles;
+    roles = aRoles;
+    if (existingRoles != null && !existingRoles.equals(aRoles))
     {
-      wasAdded = true;
+      existingRoles.removePerson(this);
     }
-    else
+    if (aRoles != null)
     {
-      wasAdded = aRole.addPerson(this);
-      if (!wasAdded)
-      {
-        roles.remove(aRole);
-      }
+      aRoles.addPerson(this);
     }
-    return wasAdded;
-  }
-
-  public boolean removeRole(Role aRole)
-  {
-    boolean wasRemoved = false;
-    if (!roles.contains(aRole))
-    {
-      return wasRemoved;
-    }
-
-    int oldIndex = roles.indexOf(aRole);
-    roles.remove(oldIndex);
-    if (aRole.indexOfPerson(this) == -1)
-    {
-      wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aRole.removePerson(this);
-      if (!wasRemoved)
-      {
-        roles.add(oldIndex,aRole);
-      }
-    }
-    return wasRemoved;
-  }
-
-  public boolean addRoleAt(Role aRole, int index)
-  {  
-    boolean wasAdded = false;
-    if(addRole(aRole))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfRoles()) { index = numberOfRoles() - 1; }
-      roles.remove(aRole);
-      roles.add(index, aRole);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveRoleAt(Role aRole, int index)
-  {
-    boolean wasAdded = false;
-    if(roles.contains(aRole))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfRoles()) { index = numberOfRoles() - 1; }
-      roles.remove(aRole);
-      roles.add(index, aRole);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addRoleAt(aRole, index);
-    }
-    return wasAdded;
+    wasSet = true;
+    return wasSet;
   }
 
   public static int minimumNumberOfForecasts()
   {
     return 0;
   }
-
+  /* Code from template association_AddManyToOne */
   public Forecast addForecast()
   {
     return new Forecast(this);
@@ -373,11 +378,11 @@ public class Person
       Status aStatus = status.get(i - 1);
       aStatus.delete();
     }
-    ArrayList<Role> copyOfRoles = new ArrayList<Role>(roles);
-    roles.clear();
-    for(Role aRole : copyOfRoles)
+    if (roles != null)
     {
-      aRole.removePerson(this);
+      Role placeholderRoles = roles;
+      this.roles = null;
+      placeholderRoles.removePerson(this);
     }
     for(int i=forecasts.size(); i > 0; i--)
     {
@@ -390,6 +395,10 @@ public class Person
   public String toString()
   {
     return super.toString() + "["+
-            "name" + ":" + getName()+ "]";
+            "name" + ":" + getName()+ "," +
+            "treesPlanted" + ":" + getTreesPlanted()+ "," +
+            "treesCut" + ":" + getTreesCut()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "level" + "=" + (getLevel() != null ? !getLevel().equals(this)  ? getLevel().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "roles = "+(getRoles()!=null?Integer.toHexString(System.identityHashCode(getRoles())):"null");
   }
 }

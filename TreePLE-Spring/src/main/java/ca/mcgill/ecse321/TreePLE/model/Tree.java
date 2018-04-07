@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.26.1-f40f105-3613 modeling language!*/
+/*This code was generated using the UMPLE 1.27.0.3728.d139ed893 modeling language!*/
 
 package ca.mcgill.ecse321.TreePLE.model;
 import java.util.*;
@@ -13,7 +13,7 @@ public class Tree
   // ENUMERATIONS
   //------------------------
 
-  public enum TreeSpecies { Willow }
+  public enum TreeSpecies { Willow, RedMaple, LobollyPine, Sweetgum, DouglasFir, QuackingAspen, SugarMaple, Balsamfir, FloweringDogwood, LodgepolePine, WhiteOak }
   public enum LandType { Residential, Institutional, Park, Municipal }
 
   //------------------------
@@ -41,6 +41,7 @@ public class Tree
   private List<Status> statuses;
   private Municipality municipality;
   private Status currentStatus;
+  private List<Report> reports;
   private List<Forecast> forecasts;
 
   //------------------------
@@ -60,6 +61,7 @@ public class Tree
     {
       throw new RuntimeException("Unable to create tree due to municipality");
     }
+    reports = new ArrayList<Report>();
     forecasts = new ArrayList<Forecast>();
   }
 
@@ -120,6 +122,10 @@ public class Tree
     return treeSpecies;
   }
 
+  /**
+   * enum TreeSpecies {Willow}
+   * lazy TreeSpecies treeSpecies;
+   */
   public double getHeight()
   {
     return height;
@@ -196,6 +202,36 @@ public class Tree
     return has;
   }
 
+  public Report getReport(int index)
+  {
+    Report aReport = reports.get(index);
+    return aReport;
+  }
+
+  public List<Report> getReports()
+  {
+    List<Report> newReports = Collections.unmodifiableList(reports);
+    return newReports;
+  }
+
+  public int numberOfReports()
+  {
+    int number = reports.size();
+    return number;
+  }
+
+  public boolean hasReports()
+  {
+    boolean has = reports.size() > 0;
+    return has;
+  }
+
+  public int indexOfReport(Report aReport)
+  {
+    int index = reports.indexOf(aReport);
+    return index;
+  }
+
   public Forecast getForecast(int index)
   {
     Forecast aForecast = forecasts.get(index);
@@ -230,7 +266,7 @@ public class Tree
   {
     return 0;
   }
-
+  /* Code from template association_AddManyToOne */
   public Status addStatus(Date aDate, Person aPerson)
   {
     return new Status(aDate, this, aPerson);
@@ -323,6 +359,88 @@ public class Tree
     currentStatus = aNewCurrentStatus;
     wasSet = true;
     return wasSet;
+  }
+
+  public static int minimumNumberOfReports()
+  {
+    return 0;
+  }
+
+  public boolean addReport(Report aReport)
+  {
+    boolean wasAdded = false;
+    if (reports.contains(aReport)) { return false; }
+    reports.add(aReport);
+    if (aReport.indexOfTreesForReport(this) != -1)
+    {
+      wasAdded = true;
+    }
+    else
+    {
+      wasAdded = aReport.addTreesForReport(this);
+      if (!wasAdded)
+      {
+        reports.remove(aReport);
+      }
+    }
+    return wasAdded;
+  }
+
+  public boolean removeReport(Report aReport)
+  {
+    boolean wasRemoved = false;
+    if (!reports.contains(aReport))
+    {
+      return wasRemoved;
+    }
+
+    int oldIndex = reports.indexOf(aReport);
+    reports.remove(oldIndex);
+    if (aReport.indexOfTreesForReport(this) == -1)
+    {
+      wasRemoved = true;
+    }
+    else
+    {
+      wasRemoved = aReport.removeTreesForReport(this);
+      if (!wasRemoved)
+      {
+        reports.add(oldIndex,aReport);
+      }
+    }
+    return wasRemoved;
+  }
+
+  public boolean addReportAt(Report aReport, int index)
+  {  
+    boolean wasAdded = false;
+    if(addReport(aReport))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfReports()) { index = numberOfReports() - 1; }
+      reports.remove(aReport);
+      reports.add(index, aReport);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveReportAt(Report aReport, int index)
+  {
+    boolean wasAdded = false;
+    if(reports.contains(aReport))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfReports()) { index = numberOfReports() - 1; }
+      reports.remove(aReport);
+      reports.add(index, aReport);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addReportAt(aReport, index);
+    }
+    return wasAdded;
   }
 
   public static int minimumNumberOfForecasts()
@@ -418,8 +536,17 @@ public class Tree
     }
     Municipality placeholderMunicipality = municipality;
     this.municipality = null;
-    placeholderMunicipality.removeTree(this);
+    if(placeholderMunicipality != null)
+    {
+      placeholderMunicipality.removeTree(this);
+    }
     currentStatus = null;
+    ArrayList<Report> copyOfReports = new ArrayList<Report>(reports);
+    reports.clear();
+    for(Report aReport : copyOfReports)
+    {
+      aReport.removeTreesForReport(this);
+    }
     ArrayList<Forecast> copyOfForecasts = new ArrayList<Forecast>(forecasts);
     forecasts.clear();
     for(Forecast aForecast : copyOfForecasts)
