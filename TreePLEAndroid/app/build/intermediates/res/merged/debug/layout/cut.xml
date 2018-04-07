@@ -7,15 +7,6 @@
     android:backgroundTintMode="src_over">
 
     <Button
-        android:id="@+id/back2"
-        android:layout_width="30dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/title_cut"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/back_ic" />
-
-    <Button
         android:id="@+id/title_cut"
 
         android:layout_width="match_parent"
@@ -31,10 +22,8 @@
         android:id="@+id/lgt_cut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/back2"
-        android:layout_below="@+id/back2"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="48dp"
+        android:layout_alignStart="@+id/invalid_cut"
+        android:layout_below="@+id/invalid_cut"
         android:ems="10"
         android:hint="Longitude"
         android:inputType="numberDecimal"
@@ -68,14 +57,31 @@
         android:id="@+id/success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ok_cut"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="18dp"
-        android:layout_toEndOf="@+id/back2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/lgt_cut"
+        android:layout_marginEnd="23dp"
         android:text="Success!"
         android:textSize="18sp"
         android:visibility="invisible" />
 
+    <TextView
+        android:id="@+id/invalid_cut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_cut"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="13dp"
+        android:layout_toEndOf="@+id/back2"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/back_c"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/invalid_cut"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/title_cut"
+        android:background="@drawable/back_ic" />
 
 
 </RelativeLayout>

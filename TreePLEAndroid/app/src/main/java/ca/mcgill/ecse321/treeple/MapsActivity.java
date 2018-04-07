@@ -33,6 +33,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     private Marker Marker9;
     private Marker Marker10;
 
+   // List<Marker> planted_markers;
+
+
 
 
     @Override
@@ -62,23 +65,46 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // final EditText longText = (EditText)findViewById(R.id.longitude);
-        //final EditText latText = (EditText)findViewById(R.id.latitude);
-        // String longitude = longText.getText().toString(); // Same
-        //  Double lng  = Double.parseDouble(longitude);
-
-        //String latitude = latText.getText().toString();
-        // Double lat = Double.parseDouble(latitude);
-        // LatLng tree = new LatLng(lat, lng);
-
+        //getting latitude longitude input from plant tree page
         Intent i = getIntent();
         Double lat = i.getDoubleExtra("latitude", 0);
         Double lng = i.getDoubleExtra("longitude", 0);
 
         LatLng tree = new LatLng(lat, lng);
+
+        //creating a new marker at that position, with the tree icon
         Marker1 = mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)).title("Willow"));
 
+
+        //on marker click, display marker position, tree status and tree species
         onMarkerClick(Marker1);
+
+        //TODO
+
+
+       /* Intent i2 = getIntent();
+        Double lat_cut = i2.getDoubleExtra("latitude_cut", 0);
+        Double lgt_cut = i2.getDoubleExtra("longitude_cut", 0);
+
+        LatLng tree_cut = new LatLng(lat_cut, lgt_cut);
+
+        mMap.addMarker((new MarkerOptions().position(tree_cut).icon(BitmapDescriptorFactory.fromResource(R.drawable.trunk1))));*/
+
+
+
+        /*planted_markers.add(Marker1);
+
+        for(Marker marker : planted_markers){
+            mMap.addMarker((new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.tree))));
+        }*/
+
+
+
+
+
+
+
+        // ** HARDCODIND **
 
         //Montreal: 45.5017° N, 73.5673°
         LatLng tree1 = new LatLng(45.5017, -73.5673);
@@ -124,11 +150,11 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         onMarkerClick(Marker6);
 
         mMap.setOnMarkerClickListener(this);
-        // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(tree));
+
     }
+
+
+
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
@@ -144,42 +170,16 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
             return false;
     }
 
-    /** Called when the user clicks a marker. */
-   /* @Override
-    public boolean onMarkerClick(final Marker marker) {
 
-        // Retrieve the data from the marker.
-        Integer clickCount = (Integer) marker.getTag();
-
-        // Check if a click count was set, then display the click count.
-        if (clickCount != null) {
-            clickCount = clickCount + 1;
-            marker.setTag(clickCount);
-            Toast.makeText(this,
-                    marker.getPosition() +
-                            " has been clicked " + clickCount + " times.",
-                    Toast.LENGTH_SHORT).show();
-        }
-
-        // Return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
-        return false;*/
     }
+
+
 
 
 
 
 }
 
-
-
-
-   /* @Override
-    public boolean onMarkerClick(Marker marker) {
-        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree));
-        return false;
-    }*/
 
 
 

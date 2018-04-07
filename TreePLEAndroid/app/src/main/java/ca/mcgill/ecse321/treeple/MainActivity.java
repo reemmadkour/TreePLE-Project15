@@ -18,13 +18,18 @@ import java.util.List;
 
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+/**
+ * This class implements the first login page. user has to input his username and pick his role.
+ */
 
 
-
-    public class MainActivity  extends AppCompatActivity {
+public class MainActivity  extends AppCompatActivity {
 
         EditText username;
-        TextView welcome, entername, entertype;
+        TextView welcome, entername, entertype,errorMsg;
+
 
         private String error;
 
@@ -48,6 +53,7 @@ import android.support.v7.app.AppCompatActivity;
             entername = (TextView) findViewById(R.id.textView2);
 
             entertype = (TextView) findViewById(R.id.textView4);
+            errorMsg = (TextView) findViewById(R.id.error);
 
             userType.add("Please Select");
             userType.add("Local User");
@@ -59,21 +65,49 @@ import android.support.v7.app.AppCompatActivity;
             userSpinner.setAdapter(userAdapter);
 
 
-            //Go to before options Options
+            //Go to Options
             ok_b = (Button) findViewById(R.id.ok_1);
+            //String chosenValue = userSpinner.getSelectedItem().toString();
 
-            ok_b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View arg0) {
 
-                        //setContentView(R.layout.options);
+                ok_b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
 
-                    Intent i = new Intent(MainActivity.this, BeforeOptions.class);
-                    i.putExtra("userName", username.getText().toString());
-                    startActivity(i);
-                }
+                        if(username.getText().toString().matches("")){
+                           error = "You did not enter a Username!";
+                            errorMsg.setText(error);
+                            errorMsg.setVisibility(View.VISIBLE);
+                        }
 
-                });
+                        else if(userSpinner.getSelectedItem().toString().equals("Local User")){
+
+
+
+                        Intent i = new Intent(MainActivity.this, BeforeOptions.class);
+                        i.putExtra("userName", username.getText().toString());
+                        startActivity(i);
+                    }
+
+                        else if(userSpinner.getSelectedItem().toString().equals("Scientist")){
+                            Intent i = new Intent(MainActivity.this, ScientistOptions.class);
+                            i.putExtra("userName", username.getText().toString());
+                            startActivity(i);
+                        }else if(userSpinner.getSelectedItem().toString().equals("Please Select") ){
+                            error = "Please Select Your Role!";
+
+                            errorMsg.setText(error);
+                            errorMsg.setVisibility(View.VISIBLE);
+
+
+                        }
+
+
+
+                    }
+
+                    });
+
 
             //Go back to first page
             back_first = (Button) findViewById(R.id.b_first);

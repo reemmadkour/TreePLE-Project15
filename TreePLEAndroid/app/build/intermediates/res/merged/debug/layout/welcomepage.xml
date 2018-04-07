@@ -17,9 +17,9 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ok_1"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="14dp"
         android:text="Welcome to TreePLE!"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="30sp" />
@@ -96,8 +96,8 @@
 
     <Button
         android:id="@+id/b_first"
-        android:layout_width="55dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/welcome"
         android:background="@drawable/back_ic" />
@@ -110,6 +110,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="@drawable/drums" />
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="11dp"
+        android:layout_toEndOf="@+id/drums"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>
