@@ -37,13 +37,11 @@
     <Button
         android:id="@+id/planttree_b"
 
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-
-
         android:layout_below="@+id/button4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="26dp"
+        android:layout_toStartOf="@+id/button5"
         android:background="#10000000"
         android:text="Plant Tree" />
 
@@ -51,24 +49,25 @@
     <Button
         android:id="@+id/cuttree_b"
 
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
 
-        android:layout_above="@+id/viewmaps_b"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp"
+
+        android:layout_alignStart="@+id/planttree_b"
+        android:layout_below="@+id/planttree_b"
+        android:layout_marginTop="36dp"
         android:background="#10000000"
-        android:text="Mark Tree To be Cut" />
+        android:text="Cut Tree" />
 
 
     <Button
         android:id="@+id/viewmaps_b"
 
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button5"
-        android:layout_alignStart="@+id/planttree_b"
-        android:layout_marginBottom="51dp"
+        android:layout_alignStart="@+id/cuttree_b"
+        android:layout_below="@+id/cuttree_b"
+        android:layout_marginTop="35dp"
         android:background="#10000000"
         android:text="View Maps" />
 

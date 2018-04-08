@@ -1,19 +1,10 @@
 [
     {
-<<<<<<< HEAD
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/drawable-anydpi-v21/design_ic_visibility.xml"
     },
     {
         "merged": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility_off.xml",
         "source": "/Users/leaakkari/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/cce4fe7b6b29314dc0f05a4e5a03321f/res/drawable-anydpi-v21/design_ic_visibility_off.xml"
-=======
-        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility.xml",
-        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/340a3b9721758ee1ce71f753a7c0668f/res/drawable-anydpi-v21/design_ic_visibility.xml"
-    },
-    {
-        "merged": "/home/ecse321/git/Project-15/TreePLEAndroid/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility_off.xml",
-        "source": "/home/ecse321/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/340a3b9721758ee1ce71f753a7c0668f/res/drawable-anydpi-v21/design_ic_visibility_off.xml"
->>>>>>> 17d96fb9ef05cc3e733d45b022cc9f717a4eb571
     }
 ]

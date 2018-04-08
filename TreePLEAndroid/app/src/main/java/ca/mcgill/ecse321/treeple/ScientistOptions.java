@@ -31,7 +31,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ScientistOptions extends AppCompatActivity {
 
-    Button plant, cut, maps, diseased;
+    Button plant, cut, maps, diseased, toBeCut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class ScientistOptions extends AppCompatActivity {
         setContentView(R.layout.options_scientist);
 
         //plant tree button
-        plant= (Button) findViewById(R.id.plant_s);
+        plant= (Button) findViewById(R.id.sc_plant);
         plant.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -54,7 +54,7 @@ public class ScientistOptions extends AppCompatActivity {
 
 
         // View Maps Button
-        maps = (Button) findViewById(R.id.maps_s);
+        maps = (Button) findViewById(R.id.maps_scientist);
 
         maps.setOnClickListener(new View.OnClickListener() {
 
@@ -69,7 +69,7 @@ public class ScientistOptions extends AppCompatActivity {
         });
 
         //cut Tree Button
-        cut  = (Button) findViewById(R.id.cut_s);
+        cut  = (Button) findViewById(R.id.sc_cut);
 
         cut.setOnClickListener(new View.OnClickListener() {
 
@@ -83,7 +83,7 @@ public class ScientistOptions extends AppCompatActivity {
 
         });
 
-        diseased = (Button) findViewById(R.id.diseased_s);
+        diseased = (Button) findViewById(R.id.sc_diseased);
         diseased.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -91,6 +91,19 @@ public class ScientistOptions extends AppCompatActivity {
 
                 //setContentView(R.layout.cut);
                 Intent i = new Intent(ScientistOptions.this, DiseasedTree.class);
+                startActivity(i);
+            }
+
+        });
+
+        toBeCut = (Button) findViewById(R.id.sc_mark_cut);
+        toBeCut.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                //setContentView(R.layout.cut);
+                Intent i = new Intent(ScientistOptions.this, CutTree.class);
                 startActivity(i);
             }
 

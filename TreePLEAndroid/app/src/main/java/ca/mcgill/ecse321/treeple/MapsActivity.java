@@ -1,8 +1,16 @@
 package ca.mcgill.ecse321.treeple;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 
-public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Marker Marker1;
@@ -33,7 +41,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     private Marker Marker9;
     private Marker Marker10;
 
-   // List<Marker> planted_markers;
+    //List<Marker> planted_markers;
+    //List <Marker> to_be_cut;
+    //List<Marker> diseased;
 
 
 
@@ -48,6 +58,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
     }
 
     /**
@@ -172,6 +184,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
 
     }
+
+
 
 
 
