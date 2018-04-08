@@ -22,7 +22,7 @@
 </div>
 <div class="row">
 <div class="container">
-<div class="col-xs-4 col-sm-3 offset-sm-5">
+<div class="col-xs-4 col-sm-3 offset-sm-4">
 
   <button type="submit" style="font-size:120%" class="btn btn-secondary btn-block">Submit</button>
 

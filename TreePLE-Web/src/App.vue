@@ -7,7 +7,7 @@
       <div class="navbar" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" style="font-size:140%" href="/login">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link offset-sm-10" style="font-size:140%" href="/login">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" style="font-size:140%" href="/#/view">View Trees<span class="sr-only">(current)</span></a>
