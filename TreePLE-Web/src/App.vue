@@ -10,7 +10,7 @@
             <a class="nav-link offset-sm-9" style="font-size:140%" href="/login">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link offset-sm-5" style="font-size:140%" href="/#/view">View Trees<span class="sr-only">(current)</span></a>
+            <a class="nav-link offset-sm-5"  href="/#/view">View Trees<span class="sr-only">(current)</span></a>
           </li>
          
            <li class="nav-item active">
