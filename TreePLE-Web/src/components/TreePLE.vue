@@ -16,7 +16,28 @@
   </div>
 
 </div>
- 
+ <br><div class="dropdown">
+ <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Municipality
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Montre-Nord</a>
+    <a class="dropdown-item" href="#">Westmount</a>
+    <a class="dropdown-item" href="#">Outremont</a>
+  </div>
+
+</div>
+<br><div class="dropdown">
+ <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Species
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Spruce</a>
+    <a class="dropdown-item" href="#">Birch</a>
+    <a class="dropdown-item" href="#">Oak</a>
+  </div>
+
+</div>
 
     <br><table class="table table-hover" style="width:100%">
 <thead>

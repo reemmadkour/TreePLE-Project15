@@ -3,7 +3,7 @@
 <div id="view">
 
    <br><br><br><br><br>
-    <h2>Select a Tree</h2><br><br>
+    <h2>Montreal Tree Map</h2><br><br>
 <gmap-map
     :center="center"
     :zoom="11"
