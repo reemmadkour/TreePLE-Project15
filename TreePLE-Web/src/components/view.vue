@@ -104,7 +104,7 @@
 
 <script src="./treePlanning.js"></script>
 <script>
-import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
+import * as VueGoogleMaps from 'vue2-google-maps'
 import Vue from 'vue'
 
 Vue.use(VueGoogleMaps, {
