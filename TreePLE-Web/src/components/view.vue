@@ -1,9 +1,24 @@
 <template>
 
-<div id="TreePLE">
+<div id="view">
 
    <br><br><br><br><br>
-    <h2> List of all trees </h2>
+    <h2>Select a Tree</h2><br><br>
+<gmap-map
+    :center="center"
+    :zoom="11"
+    style="width: 70%; height: 700px; margin:0px auto; display:inline-block"
+  >
+    <gmap-marker
+      :key="index"
+      v-for="(m, index) in markers"
+      :position="m.position"
+      :clickable="true"
+      :icon.sync="m.icon"
+      :draggable="flase"
+      @click="center=m.position"
+    ></gmap-marker>
+  </gmap-map>
 
 <div class="dropdown">
  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,10 +103,39 @@
 </template>
 
 <script src="./treePlanning.js"></script>
+<script>
+import * as VueGoogleMaps from 'vue2-google-maps'
+import Vue from 'vue'
 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCDWKnVgX3DIKrH1Rbux7RvLtaV6fO21QE',
+    v: '3'
+    // libraries: 'places', //// If you need to use place input
+  }
+})
+
+export default {
+  data () {
+    return {
+      icon: {
+        url: 'google.maps.SymbolPath.CIRCLE',
+        size: {width: 46, height: 46, f: 'px', b: 'px'},
+        scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
+      },
+      center: {lat: 45.549302, lng: -73.681559},
+      markers: [{
+        position: {lat: 45.549302, lng: -73.681559}
+      }, {
+        position: {lat: 46.549302, lng: -74.681559}
+      }]
+    }
+  }
+}
+</script>
 <style>
 
- #TreePLE { 
+ #view { 
    background-image: url("../assets/Greenery.jpg");
     height: 7em; 
     background-repeat: repeat;
