@@ -65,7 +65,7 @@
           <td>Red Maple</td>
           <td>12.91</td>
           <td>1</td>
-          <td>45.5</td>
+          <td>45.56</td>
           <td>-73.57</td>
           <td>Institutional</td>
          
@@ -111,6 +111,10 @@
 <script src="./treePlanning.js"></script>
 
 <style>
+
+dropdown{
+    display: inline;
+}
 
  #TreePLE { 
    background-image: url("../assets/Greenery.jpg");
