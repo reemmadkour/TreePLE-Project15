@@ -32,8 +32,7 @@ export default {
         longitude: '',
         latitude: '',
         landType: '',
-        treeID: '',
-        municipality: '' },
+        municipalityName: '' },
       errorTree: ''
     }
   },
