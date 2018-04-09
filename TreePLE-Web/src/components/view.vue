@@ -9,6 +9,9 @@
     :zoom="11"
     style="width: 70%; height: 700px; margin:0px auto; display:inline-block"
   >
+<gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
+        {{infoContent}}
+      </gmap-info-window>
     <gmap-marker
       :key="index"
       v-for="(m, index) in markers"
@@ -118,14 +121,23 @@ Vue.use(VueGoogleMaps, {
 export default {
   data () {
     return {
-      icon: {
-        url: 'google.maps.SymbolPath.CIRCLE',
-        size: {width: 46, height: 46, f: 'px', b: 'px'},
-        scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
+      infoContent: '',
+      infoWindowPos: {
+        lat: 0,
+        lng: 0
+      },
+      infoWinOpen: false,
+      currentMidx: null,
+      // optional: offset infowindow so it visually sits nicely on top of our marker
+      infoOptions: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
       },
       center: {lat: 45.549302, lng: -73.681559},
       markers: [{
-        position: {lat: 45.549302, lng: -73.681559}
+        position: {lat: 45.549302, lng: -73.681559}, infoText: 'Marker 1'
       }, {
         position: {lat: 46.549302, lng: -74.681559}
       }]
