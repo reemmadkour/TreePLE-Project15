@@ -1,9 +1,27 @@
 <template>
 
-<div id="TreePLE">
+<div id="view">
 
    <br><br><br><br><br>
-    <h2> List of all trees </h2>
+    <h2>Montreal Tree Map</h2><br><br>
+<gmap-map
+    :center="center"
+    :zoom="11"
+    style="width: 70%; height: 700px; margin:0px auto; display:inline-block"
+  >
+<gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
+        {{infoContent}}
+      </gmap-info-window>
+    <gmap-marker
+      :key="index"
+      v-for="(m, index) in markers"
+      :position="m.position"
+      :clickable="true"
+      :icon.sync="m.icon"
+      :draggable="flase"
+      @click="center=m.position"
+    ></gmap-marker>
+  </gmap-map>
 
 <div class="dropdown">
  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,28 +34,7 @@
   </div>
 
 </div>
- <br><div class="dropdown">
- <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Municipality
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Montre-Nord</a>
-    <a class="dropdown-item" href="#">Westmount</a>
-    <a class="dropdown-item" href="#">Outremont</a>
-  </div>
-
-</div>
-<br><div class="dropdown">
- <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Species
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Spruce</a>
-    <a class="dropdown-item" href="#">Birch</a>
-    <a class="dropdown-item" href="#">Oak</a>
-  </div>
-
-</div>
+ 
 
     <br><table class="table table-hover" style="width:100%">
 <thead>
@@ -57,7 +54,7 @@
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
            <td>{{ tree.landType }}</td>
-             <td>{{ tree.municipalityName }}</td>
+		
                 
           
   </tr>
@@ -65,7 +62,7 @@
           <td>Red Maple</td>
           <td>12.91</td>
           <td>1</td>
-          <td>45.56</td>
+          <td>45.5</td>
           <td>-73.57</td>
           <td>Institutional</td>
          
@@ -109,14 +106,48 @@
 </template>
 
 <script src="./treePlanning.js"></script>
+<script>
+import * as VueGoogleMaps from 'vue2-google-maps'
+import Vue from 'vue'
 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCDWKnVgX3DIKrH1Rbux7RvLtaV6fO21QE',
+    v: '3'
+    // libraries: 'places', //// If you need to use place input
+  }
+})
+
+export default {
+  data () {
+    return {
+      infoContent: '',
+      infoWindowPos: {
+        lat: 0,
+        lng: 0
+      },
+      infoWinOpen: false,
+      currentMidx: null,
+      // optional: offset infowindow so it visually sits nicely on top of our marker
+      infoOptions: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
+      },
+      center: {lat: 45.549302, lng: -73.681559},
+      markers: [{
+        position: {lat: 45.549302, lng: -73.681559}, infoText: 'Marker 1'
+      }, {
+        position: {lat: 46.549302, lng: -74.681559}
+      }]
+    }
+  }
+}
+</script>
 <style>
 
-dropdown{
-    display: inline;
-}
-
- #TreePLE { 
+ #view { 
    background-image: url("../assets/Greenery.jpg");
     height: 7em; 
     background-repeat: repeat;

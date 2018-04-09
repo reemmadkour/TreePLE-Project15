@@ -1,20 +1,37 @@
 <template>
+  <div id="home">
   <div class="hello">
-      
-	<form action="/#/app">
-  <div class="form-group">
-    <label for="email">Email address:</label>
+      <div class="bg"></div>
+	<br> <br> <br><form action="/#/app">
+  <div class="form-group row">
+  <div class="col-xs-6 offset-sm-5 text-center">
+    <label for="email" style="font-size:140%">Email address:</label>
     <input type="email" class="form-control" id="email">
   </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
+  </div>
+  <div class="form-group row">
+<div class="col-xs-6 offset-sm-5 text-center">
+    <label for="pwd" style="font-size:140%" >Password:</label>
     <input type="password" class="form-control" id="pwd">
   </div>
-  <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label>
+</div>
+  <div class="checkbox row">
+<div class="col-xs-6 offset-sm-5 text-center">
+    <label style="font-size:120%" ><input type="checkbox" > Remember me</label>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+</div>
+<div class="row">
+<div class="container">
+<div class="col-xs-4 col-sm-3 offset-sm-4">
+
+  <button type="submit" style="font-size:120%" class="btn btn-secondary btn-block">Submit</button>
+
+</div>
+</div>
+</div>
 </form>
+
+</div>
 </div>
 </template>
 
@@ -30,17 +47,17 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+
+#home {
+background-image: url("../assets/forest.jpg");
+    height: 70em; 
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
-#hello {
-  background-image: url("../assets/forest.jpg");
-  height: 40em;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: 3em;
-}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -54,4 +71,13 @@ li {
 a {
   color: #42b983;
 }
+
+
+.btn-xl {
+    padding: 40px 40px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+
 </style>

@@ -89,7 +89,7 @@ double height = 10;
 double diameter = 12;
 double longitude = 23;
 double latitude = 24;
-String name = "John";
+String name = "alex";
 TreeSpecies species = TreeSpecies.Willow;
 LandType landtype = LandType.Institutional;
 MunicipalityName mun= MunicipalityName.Montreal;
@@ -111,7 +111,7 @@ catch(InvalidInputException e){
 
 assertEquals(TreeState.ToBeCut, tm.getTree(0).getCurrentStatus().getTreeState());
 
-assertEquals(1, tm.getPerson().size());
+assertEquals(3, tm.getPerson().size());
 
 }
 
@@ -290,7 +290,7 @@ double height = 10;
 double diameter = 12;
 double longitude = 23;
 double latitude = 24;
-String name = "John";
+String name = "jess";
 TreeSpecies species = TreeSpecies.Willow;
 LandType landtype = LandType.Institutional;
 MunicipalityName mun= MunicipalityName.Montreal;
@@ -312,7 +312,7 @@ catch(InvalidInputException e){
 
 assertEquals(TreeState.Diseased, tm.getTree(0).getCurrentStatus().getTreeState());
 
-assertEquals(1, tm.getPerson().size());
+assertEquals(3, tm.getPerson().size());
 
 }
 
