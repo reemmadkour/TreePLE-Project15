@@ -1,4 +1,3 @@
-
 <template>
 <div>
 <card>
@@ -69,7 +68,7 @@
 
        <label  for="longitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Longitude </label>
       <input class="form-control" id="longitude" type="text" placeholder="longitude">
-	
+  
       <label  for="number" class="col-sm-1.5 col-form-label"> &nbsp;  &nbsp;</label>
       <input  class="form-control" id="number" type="text" placeholder="number to cut"> 
 </form>
@@ -91,7 +90,7 @@
 
        <label  for="longitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Longitude </label>
       <input class="form-control" id="longitude" type="text" placeholder="longitude">
-	
+  
 </form>
 </div>
       <div class="row offset-sm-5 text-center">
@@ -115,21 +114,48 @@
  <h2  style="font-size:200%; font-weight:bold;" >List Of Forecasts</h2>
 <table class="table table-hover" style="width:100%">
 <thead>
- <th> ID </th>
-  <th> Description </th>
+ <th> Description (hover for detail) </th>
+  <th> ID </th>
+  <th> Past Reports </th>
+  <th>    </th>
 </thead>
 <tbody>
 <tr v-for="forecast in forecasts" >
-      <td>{{ forecast.name }}</td>
+       <td><b-text v-b-popover.hover="'10 planted in Laval, 3 cut at 1.005, 3.6666 '" title="details">{{ forecast.name }}</b-text></td>
        <td>{{ forecast.id }}</td>
-       
-		
+       <td>
+        <ul>
+          <li v-for="report in participant.report">
+            {{report.date}}
+          </li>
+        </ul>
+      </td>
+       <td> <button id="create"  style="font: bold 25px Arial">  generate report</button></td>td>
+    
                 
           
   </tr>
       <tr>
-          <td>planting10, cutting 8</td>
-          <td>12</td>
+         
+          <td><b-text v-b-popover.hover="'10 planted in Laval, 3 cut at 1.005, 3.6666 '" title="details">
+    Reem : first forecast
+  </b-text></td>
+          <td>4</td>
+          <td>
+        <ul>
+          <li><a href="#"><b-text v-b-popover.hover="'BioDiv=0.9, Canopy=1000, CarbonSeq=4000 '" title="Attributes">
+            2018-08-04
+         </b-text></a></li>
+          <li><a href="#">
+            2018-01-03
+          </a></li>
+          <li><a href="#">
+            2017-01-10
+          </a></li>
+        </ul>
+      </td>
+
+          <td> <button   style="font: bold 15px Arial">  generate report</button></td>
          
           
       </tr>
@@ -144,6 +170,7 @@
 
 
 <script>
+
 </script>
 <style>
 #forecast {
@@ -151,6 +178,8 @@
     color: #7323d;
     background: #9fc6c8;
 },
+li { padding-left: 10px;
+  },
 #plant {
 padding: 1px;},
 #create {
