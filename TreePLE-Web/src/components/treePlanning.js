@@ -8,7 +8,7 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function TreeDto (landType, treeSpecies, height, diameter, longitude, latitude, treeID, municipality) {
+function TreeDto (landType, treeSpecies, height, diameter, longitude, latitude, treeID, municipalityName) {
   this.treeSpecies = treeSpecies
   this.height = height
   this.diameter = diameter
@@ -16,7 +16,7 @@ function TreeDto (landType, treeSpecies, height, diameter, longitude, latitude, 
   this.latitude = latitude
   this.landType = landType
   this.treeID = treeID
-  this.municipality = municipality
+  this.municipalityName = municipalityName
 }
 
 export default {
@@ -32,8 +32,7 @@ export default {
         longitude: '',
         latitude: '',
         landType: '',
-        treeID: '',
-        municipality: { munName: '' }},
+        municipalityName: '' },
       errorTree: ''
     }
   },
