@@ -57,7 +57,7 @@
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
            <td>{{ tree.landType }}</td>
-             <td>{{ tree.municipality.municipalityName }}</td>
+             <td>{{ tree.municipality.municipality }}</td>
                 
           
   </tr>
