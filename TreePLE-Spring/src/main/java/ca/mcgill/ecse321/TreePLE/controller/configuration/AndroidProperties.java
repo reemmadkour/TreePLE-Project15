@@ -10,7 +10,7 @@ public class AndroidProperties {
 	/**
 	 * The IP adress of the Android client
 	 */
-	private String ip = "ecse-14.ece.mcgill.ca";
+	private String ip = "127.0.0.1";
 	/**
 	 * The port on which the Android client listens
 	 */

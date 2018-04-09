@@ -26,8 +26,8 @@ import ca.mcgill.ecse321.TreePLE.model.TreeManager;
 public class PersistenceXStream {
 
 	private static XStream xstream = new XStream();
-private static String filename = "/tomcatoutput/data.xml";	
-//private static String filename = "data.xml";
+//private static String filename = "/tomcatoutput/data.xml";	
+private static String filename = "data.xml";
 
 	// TODO create the TreePLEManager instance here (replace the void return value as well)
 	public static TreeManager initializeModelManager(String fileName) {
