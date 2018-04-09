@@ -16,7 +16,28 @@
   </div>
 
 </div>
- 
+ <br><div class="dropdown">
+ <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Municipality
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Montre-Nord</a>
+    <a class="dropdown-item" href="#">Westmount</a>
+    <a class="dropdown-item" href="#">Outremont</a>
+  </div>
+
+</div>
+<br><div class="dropdown">
+ <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Species
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Spruce</a>
+    <a class="dropdown-item" href="#">Birch</a>
+    <a class="dropdown-item" href="#">Oak</a>
+  </div>
+
+</div>
 
     <br><table class="table table-hover" style="width:100%">
 <thead>
@@ -36,7 +57,7 @@
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
            <td>{{ tree.landType }}</td>
-		
+             <td>{{ tree.municipalityName }}</td>
                 
           
   </tr>
@@ -44,7 +65,7 @@
           <td>Red Maple</td>
           <td>12.91</td>
           <td>1</td>
-          <td>45.5</td>
+          <td>45.56</td>
           <td>-73.57</td>
           <td>Institutional</td>
          
@@ -90,6 +111,10 @@
 <script src="./treePlanning.js"></script>
 
 <style>
+
+dropdown{
+    display: inline;
+}
 
  #TreePLE { 
    background-image: url("../assets/Greenery.jpg");
