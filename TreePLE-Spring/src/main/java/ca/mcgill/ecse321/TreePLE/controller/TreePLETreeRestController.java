@@ -19,8 +19,6 @@ import ca.mcgill.ecse321.TreePLE.dto.StatusDto;
 import ca.mcgill.ecse321.TreePLE.dto.TreeDto;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
-import ca.mcgill.ecse321.TreePLE.model.Person;
-import ca.mcgill.ecse321.TreePLE.model.Scientist;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
 import ca.mcgill.ecse321.TreePLE.model.Tree;
@@ -209,17 +207,6 @@ public class TreePLETreeRestController {
 	}
 
 	
-	@GetMapping(value = { "/scientists/", "/scientists" })
-	public List<String> findAllScientists() {
-		List<String> scientistNames = new ArrayList<String>();
-		for(Person m: service.listAllUsers()) {
-		if (m.getRoles().getClass()==Scientist.class) {
-			scientistNames.add(m.getName());
-		}
-		}
-		return scientistNames;
-	}
-
 	
 	//Delete / Cut Tree
 
@@ -368,8 +355,6 @@ public class TreePLETreeRestController {
 		return convertToDto(t);
 	}
 
-	
-	
 	
 
 	@PostMapping(value = { "/setTreeLongitude/{treeID}" })

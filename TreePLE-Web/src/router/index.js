@@ -2,9 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import TreePLE from '@/components/TreePLE'
-import forecast from '@/components/forecast'
-import view from '@/components/view'
-import Plant from '@/components/Plant'
 
 Vue.use(Router)
 
@@ -21,19 +18,9 @@ export default new Router({
       component: TreePLE
     },
     {
-      path: '/forecast',
-      name: 'forecast',
-      component: forecast
-    },
-    {
-      path: '/view',
-      name: 'view',
-      component: view
-    },
-    {
-      path: '/Plant',
-      name: 'Plant',
-      component: Plant
+      path: '/login',
+      name: 'TreePLE',
+      component: TreePLE
     }
   ]
 })
