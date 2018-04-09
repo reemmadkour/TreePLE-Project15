@@ -32,7 +32,7 @@ export default {
         longitude: '',
         latitude: '',
         landType: '',
-        municipality: '' },
+        municipality: {municipalityName: '' }},
       errorTree: ''
     }
   },
