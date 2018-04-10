@@ -124,7 +124,7 @@ public class PlantTree extends AppCompatActivity {
 
         });
 
-        ok.setOnClickListener(new View.OnClickListener() {
+       /* ok.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -147,7 +147,7 @@ public class PlantTree extends AppCompatActivity {
 
             }
 
-        });
+        });*/
 
 
 
@@ -296,9 +296,6 @@ public class PlantTree extends AppCompatActivity {
 
     //addTrees
     public void addTree(View v) {
-
-
-
         //municipality spinner
 
         munSpinner = (Spinner) findViewById(R.id.municipality);
@@ -378,8 +375,24 @@ public class PlantTree extends AppCompatActivity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
-
+                message.setText(throwable.getMessage());
+                message.setVisibility(View.VISIBLE);
                 refreshErrorMessage();
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                message.setText(throwable.getMessage());
+                message.setVisibility(View.VISIBLE);
+                refreshErrorMessage();
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
 
             }
         });

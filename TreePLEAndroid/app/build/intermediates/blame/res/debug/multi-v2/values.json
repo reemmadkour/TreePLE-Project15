@@ -21,9 +21,11 @@
                 {
                     "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/debug/res/values/google_maps_api.xml",
                     "from": {
-                        "startLines": "-1",
-                        "startColumns": "-1",
-                        "startOffsets": "-1"
+                        "startLines": "22",
+                        "startColumns": "4",
+                        "startOffsets": "893",
+                        "endColumns": "137",
+                        "endOffsets": "1026"
                     },
                     "to": {
                         "startLines": "761",
@@ -51,11 +53,9 @@
                 {
                     "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/values/ic_launcher_background.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "56",
-                        "endOffsets": "107"
+                        "startLines": "-1",
+                        "startColumns": "-1",
+                        "startOffsets": "-1"
                     },
                     "to": {
                         "startLines": "75",
@@ -274,9 +274,11 @@
                 {
                     "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/debug/res/values/google_maps_api.xml",
                     "from": {
-                        "startLines": "-1",
-                        "startColumns": "-1",
-                        "startOffsets": "-1"
+                        "startLines": "22",
+                        "startColumns": "4",
+                        "startOffsets": "893",
+                        "endColumns": "137",
+                        "endOffsets": "1026"
                     },
                     "to": {
                         "startLines": "761",
@@ -304,11 +306,9 @@
                 {
                     "source": "/Users/leaakkari/Documents/School/Winter 2018/ECSE 321/git/Project-15/TreePLEAndroid/app/src/main/res/values/ic_launcher_background.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "56",
-                        "endOffsets": "107"
+                        "startLines": "-1",
+                        "startColumns": "-1",
+                        "startOffsets": "-1"
                     },
                     "to": {
                         "startLines": "75",
