@@ -29,12 +29,20 @@ public class TreePLETreeService {
 		public TreePLETreeService(TreeManager tm)
 		{
 		  this.tm = tm;
+		  Person scientist1= new Person( "John");
+		  Person scientist2= new Person("Daniel");
+		  Scientist s= new Scientist();
+		  scientist1.setRoles(s);
+		  Scientist s2= new Scientist();
+		  scientist2.setRoles(s2);
 		  Municipality m1= new Municipality();
 		  m1.setMunicipalityName(MunicipalityName.Montreal);
 		  Municipality m2= new Municipality();
 		  m2.setMunicipalityName(MunicipalityName.Laval);
 		  tm.addMunicipality(m1);
 		  tm.addMunicipality(m2);
+		  tm.addPerson(scientist1);
+		  tm.addPerson(scientist2);
 		  
 		}
 		
@@ -81,8 +89,15 @@ public class TreePLETreeService {
 			  }
 			
 			Forecast f= new Forecast(user);
+			tm.addForecast(f);
+			 PersistenceXStream.saveToXMLwithXStream(tm);
 			return f;
+			
 		}
+		public String getDescriptionOfForecast(Forecast f) {
+			String Description="Planted "+String.valueOf(f.getTreesToBePlanted().size())+"in"+f.getTreesToBePlanted(0).getMunicipality().getMunicipalityName().toString()+f.getTreesToBePlanted(0).getTreeSpecies().toString()+"  and Cut: "+
+					String.valueOf(f.getTreesToBeCut().size())+"in"+f.getTreesToBeCut(0).getMunicipality().getMunicipalityName().toString()+f.getTreesToBeCut(0).getTreeSpecies().toString();
+			return Description;}
 		
 		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, int quantity) throws InvalidInputException{
 			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null || quantity<=0) {
@@ -239,6 +254,30 @@ public class TreePLETreeService {
 		{
 		 
 			return tm.getTrees();
+		}
+		
+		public List<Municipality> listAllMunicipalities()
+		{
+		 
+			return tm.getMunicipality();
+		}
+		
+		public List<String>  listAllSpecies()
+		{
+			List<String>species=null;
+		
+		 for(int i=0;i<Tree.TreeSpecies.values().length;i++) {
+			species.add( Tree.TreeSpecies.values()[i].toString());}
+		 return species;
+		}
+		
+		public List<String>  listAllStates()
+		{
+			List<String>states=null;
+		
+		 for(int i=0;i<Status.TreeState.values().length;i++) {
+			states.add( Status.TreeState.values()[i].toString());}
+		 return states;
 		}
 		
 		public List<Person> listAllUsers()
