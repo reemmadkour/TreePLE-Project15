@@ -83,7 +83,7 @@
 <div class="form-group row">
  <form class="form-inline">
        <div class="form-group row">
-  <label for="exampleSelect1" class="col-sm-1 col-2 col-form-label">Municipality</label>
+  <label for="exampleSelect1" class="col-sm-1.5 col-2 col-form-label">Municipality</label>
 <div class="col-3">
     <select class="form-control" id="exampleSelect1">
       <option>Anjou</option>
