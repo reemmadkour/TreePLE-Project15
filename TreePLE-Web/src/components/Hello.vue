@@ -6,13 +6,25 @@
   <div class="form-group row">
   <div class="col-xs-6 offset-sm-5 text-center">
     <label for="email" style="font-size:140%">Email address:</label>
-    <input type="email" class="form-control" id="email">
+    <input required type="email" class="form-control" id="email" placeholder="Email">
+      <div class="valid-feedback">
+        Looks good!>
+      </div>
+<div class="invalid-feedback">
+        Please provide a valid email.
+      </div>
   </div>
   </div>
   <div class="form-group row">
 <div class="col-xs-6 offset-sm-5 text-center">
     <label for="pwd" style="font-size:140%" >Password:</label>
-    <input type="password" class="form-control" id="pwd">
+    <input required type="password" class="form-control" id="pwd" placeholder="Password">
+<div class="valid-feedback">
+        Looks good!>
+      </div>
+<div class="invalid-feedback">
+        Please provide a password.
+      </div>
   </div>
 </div>
   <div class="checkbox row">
@@ -78,6 +90,7 @@ a {
     font-size: 20px;
     border-radius: 20px;
 }
+
 
 
 </style>

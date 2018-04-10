@@ -9,21 +9,46 @@
     <h3 id="plant" style="font-size:140%; text-align:left; font-weight:bold;"> Plant Trees For Forecast:</h3>
        <div class="form-group row">
          <form class="form-inline">
-      <label for="landType" class="col-sm-1.5 col-form-label"> &nbsp;    &nbsp;   &nbsp;  LandType </label>
+      <label for="landType" class="col-sm-1 col-form-label"> &nbsp;    &nbsp;   &nbsp;   </label>
 
-      <select class="form-control" id="landType">
-        <option> Municipal</option>
-       <option> Residential</option>
-      </select>
+     <div class="form-group row">
+  <label for="exampleSelect1" class="col-2 col-form-label">LandType</label>
+<div class="col-3">
+    <select class="form-control" id="exampleSelect1">
+      <option>Institutional</option>
+      <option>Municipal</option>
+      <option>Residential</option>
+      <option>Park</option>
+    </select>
+</div>
+</div>
 
-      <label for="species" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp;Species </label>
-      <select class="form-control" id="species">
-        <option> Willow</option>
-        <option> Red Maple</option>
-      </select>
 
-      <label for="diameter" class="col-sm-1.5 col-form-label"> Diameter </label>
-      <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="diameter"  placeholder="canopy Diameter">
+      <div class="form-group row">
+  <label for="exampleSelect1" class="col-2 col-form-label">Municipality</label>
+<div class="col-3">
+    <select class="form-control" id="exampleSelect1">
+      <option>Anjou</option>
+      <option>Ahuntsic-Cartierville</option>
+      <option>Côte-des-Neiges–Notre-Dame-de-Grâce</option>
+      <option>Lachine</option>
+      <option>LaSalle</option>
+<option>Le Plateau-Mont-Royal</option>
+<option>Le Sud-Ouest</option>
+<option>L'Île-Bizard–Sainte-Geneviève</option>
+<option>Mercier–Hochelaga-Maisonneuve </option>
+<option>Montréal-Nord</option>
+<option>Outremont</option>
+<option>Pierrefonds-Roxboro</option>
+<option>Rivière-des-Prairies–Pointe-aux-Trembles</option>
+<option>Rosemont–La Petite-Patrie</option>
+<option>Sainte-Anne-de-Bellevue</option>
+    </select>
+</div>
+</div>
+
+      <label for="diameter" class="col-sm-2 col-form-label"> Diameter </label>
+      <input required type="number" min="0" class="form-control mb-2 mr-sm-2 mb-sm-0" id="diameter" placeholder="canopy Diameter">
         </form>
 </div>
 
@@ -36,18 +61,18 @@
       </select>
 
       <label  for="latitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Latitude </label>
-      <input class="form-control" id="latitude" type="text" placeholder="latitude">
+      <input required type="number" class="form-control" id="latitude" placeholder="latitude">
 
        <label  for="longitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Longitude </label>
-      <input class="form-control" id="longitude" type="text" placeholder="longitude">
+      <input required type="number" class="form-control" id="longitude" placeholder="longitude">
 
       <label  for="number" class="col-sm-1.5 col-form-label"> &nbsp;  &nbsp;</label>
-      <input  class="form-control" id="number" type="text" placeholder="number to plant"> 
+      <input required type="number" min="0" class="form-control" id="number" placeholder="number to plant"> 
   </form>
 </div>
 
- <div class="row offset-sm-5 text-center">
-      <button > Plant for forecast</button><br>
+ <div class="col-xs-7 col-sm-4 row offset-sm-4 text-center">
+      <button class="btn btn-secondary btn-block"> Plant for forecast</button><br>
 </div>
 
 <br>
@@ -57,24 +82,41 @@
 
 <div class="form-group row">
  <form class="form-inline">
-       <label for="municipality" class="col-sm-1.5 col-form-label">  &nbsp;   &nbsp;  &nbsp;Municipality </label>
-      <select class="form-control" id="municipality">
-        <option>Montreal</option>
-        <option> Laval</option>
-      </select>
+       <div class="form-group row">
+  <label for="exampleSelect1" class="col-2 col-form-label">Municipality</label>
+<div class="col-3">
+    <select class="form-control" id="exampleSelect1">
+      <option>Anjou</option>
+      <option>Ahuntsic-Cartierville</option>
+      <option>Côte-des-Neiges–Notre-Dame-de-Grâce</option>
+      <option>Lachine</option>
+      <option>LaSalle</option>
+<option>Le Plateau-Mont-Royal</option>
+<option>Le Sud-Ouest</option>
+<option>L'Île-Bizard–Sainte-Geneviève</option>
+<option>Mercier–Hochelaga-Maisonneuve </option>
+<option>Montréal-Nord</option>
+<option>Outremont</option>
+<option>Pierrefonds-Roxboro</option>
+<option>Rivière-des-Prairies–Pointe-aux-Trembles</option>
+<option>Rosemont–La Petite-Patrie</option>
+<option>Sainte-Anne-de-Bellevue</option>
+    </select>
+</div>
+</div>
      
       <label  for="latitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Latitude </label>
-      <input class="form-control" id="latitude" type="text" placeholder="latitude">
+      <input required type="number" class="form-control" id="latitude" placeholder="latitude">
 
        <label  for="longitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Longitude </label>
-      <input class="form-control" id="longitude" type="text" placeholder="longitude">
-  
+      <input required type="number" class="form-control" id="longitude"  placeholder="longitude">
+	
       <label  for="number" class="col-sm-1.5 col-form-label"> &nbsp;  &nbsp;</label>
-      <input  class="form-control" id="number" type="text" placeholder="number to cut"> 
+      <input required type="number" min="0" class="form-control" id="number" placeholder="number to cut"> 
 </form>
 </div>
-      <div class="row offset-sm-5 text-center">
-      <button > Cut for forecast</button><br>
+      <div class="col-xs-7 col-sm-4 row offset-sm-4 text-center">
+      <button class="btn btn-secondary btn-block"> Cut for forecast</button><br>
 </div>
 
 
@@ -86,20 +128,20 @@
        
      
       <label  for="latitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Latitude </label>
-      <input class="form-control" id="latitude" type="text" placeholder="latitude">
+      <input required type="number" class="form-control" id="latitude" placeholder="latitude">
 
        <label  for="longitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Longitude </label>
-      <input class="form-control" id="longitude" type="text" placeholder="longitude">
-  
+      <input required type="number" class="form-control" id="longitude" placeholder="longitude">
+	
 </form>
 </div>
-      <div class="row offset-sm-5 text-center">
-      <button > Cut for forecast</button><br>
+      <div class="col-xs-7 col-sm-4 row offset-sm-4 text-center">
+      <button class="btn btn-secondary btn-block"> Cut for forecast</button><br>
 </div> 
 <br>
 <br>
- <div class="row offset-sm-5 text-center">
-     <button id="create"  style="font: bold 25px Arial">  Create Forecast</button><br>
+ <div class="col-xs-7 col-sm-4 row offset-sm-4 text-center">
+     <button id="create"  style="font: bold 25px Arial" class="btn btn-secondary btn-block">  Create Forecast</button><br>
 </div>
 
    
@@ -110,7 +152,7 @@
 </card>
 
 
-<div>
+<br><br><div>
  <h2  style="font-size:200%; font-weight:bold;" >List Of Forecasts</h2>
 <table class="table table-hover" style="width:100%">
 <thead>
@@ -131,7 +173,7 @@
         </ul>
       </td>
        <td> <button id="create"  style="font: bold 25px Arial">  generate report</button></td>td>
-    
+		
                 
           
   </tr>
@@ -176,7 +218,7 @@
 #forecast {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #7323d;
-    background: #9fc6c8;
+    background: #ffffff;
 },
 li { padding-left: 10px;
   },
