@@ -6,7 +6,7 @@
   <div class="form-group row">
   <label for="example-text-input" class="col-2 col-form-label">Height</label>
   <div class="col-3">
-    <input required type="number" min="0" class="form-control" id="example-height-input" placeholder="Height" value="123" required>
+    <input required type="number" min="0" class="form-control" id="example-height-input" placeholder="Height" required>
 <div class="invalid-feedback">
         Please provide a valid height.
       </div>
