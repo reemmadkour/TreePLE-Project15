@@ -35,8 +35,15 @@ export default {
   data () {
     return {
       Trees: [],
-      selectedTree: [],
       response: [],
+      treeData: {
+        treeSpecies: '',
+        height: '',
+        diameter: '',
+        longitude: '',
+        latitude: '',
+        landType: '',
+        municipality: { municipalityName: '' }},
       positions: [],
       municipalities: [],
       newTree: {
@@ -54,11 +61,7 @@ export default {
         scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
       },
       center: {lat: 45.549302, lng: -73.681559},
-      markers: [{
-        position: {lat: 45.549302, lng: -73.681559}
-      }, {
-        position: {lat: 46.549302, lng: -74.681559}
-      }],
+      markers: [],
       errorTree: ''
     }
   },

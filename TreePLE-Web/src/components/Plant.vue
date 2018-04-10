@@ -1,6 +1,6 @@
 <template>
-<div id="planting">
-<br><h1> Plant Tree </h1><br>
+<div id="planting"> <br><br><br><br><br>
+<br><h2> Plant Tree </h2><br>
 <div class="container"><br><br>
 <form action="/#/view">
   <div class="form-group row">
@@ -76,3 +76,13 @@
 </div>
 </div>
 </template>
+<style>
+
+ #planting { 
+   background-image: url("../assets/Greenery.jpg");
+    height: 7em; 
+    background-repeat: repeat;
+    background-size: 18em;
+}
+</style>
+

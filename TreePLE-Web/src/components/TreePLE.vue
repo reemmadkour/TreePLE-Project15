@@ -21,9 +21,28 @@
     Municipality
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Montre-Nord</a>
-    <a class="dropdown-item" href="#">Westmount</a>
-    <a class="dropdown-item" href="#">Outremont</a>
+    <a class="dropdown-item" href="#">Anjou</a>
+    <a class="dropdown-item" href="#">Ahuntsic-Cartierville
+</a>
+    <a class="dropdown-item" href="#">Côte-des-Neiges–Notre-Dame-de-Grâce </a>
+<a class="dropdown-item" href="#">Lachine </a>
+<a class="dropdown-item" href="#">LaSalle </a>
+<a class="dropdown-item" href="#">Le Plateau-Mont-Royal</a>
+<a class="dropdown-item" href="#">Le Sud-Ouest </a>
+<a class="dropdown-item" href="#">L'Île-Bizard–Sainte-Geneviève </a>
+<a class="dropdown-item" href="#">Mercier–Hochelaga-Maisonneuve </a>
+<a class="dropdown-item" href="#">Montréal-Nord</a>
+<a class="dropdown-item" href="#">Outremont</a>
+<a class="dropdown-item" href="#">Pierrefonds-Roxboro</a>
+<a class="dropdown-item" href="#">Rivière-des-Prairies–Pointe-aux-Trembles</a>
+<a class="dropdown-item" href="#">Rosemont–La Petite-Patrie</a>
+<a class="dropdown-item" href="#">Sainte-Anne-de-Bellevue</a>
+<a class="dropdown-item" href="#">Saint-Laurent</a>
+<a class="dropdown-item" href="#">Saint-Léonard</a>
+<a class="dropdown-item" href="#">Verdun</a>
+<a class="dropdown-item" href="#">Ville-Marie</a>
+<a class="dropdown-item" href="#">Villeray–Saint-Michel–Parc-Extension</a>
+
   </div>
 
 </div>
@@ -32,9 +51,27 @@
     Species
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Spruce</a>
-    <a class="dropdown-item" href="#">Birch</a>
-    <a class="dropdown-item" href="#">Oak</a>
+    <a class="dropdown-item" href="#">Willow</a>
+    <a class="dropdown-item" href="#">RedMaple</a>
+    <a class="dropdown-item" href="#">LobollyPine</a>
+    <a class="dropdown-item" href="#">Sweetgum</a>
+ <a class="dropdown-item" href="#">DouglasFir</a>
+ <a class="dropdown-item" href="#">QuackingAspen</a>
+ <a class="dropdown-item" href="#">SugarMaple</a>
+ <a class="dropdown-item" href="#">Balsamfir</a>
+ <a class="dropdown-item" href="#">FloweringDogwood</a>
+ <a class="dropdown-item" href="#">WhiteOak</a>
+  </div>
+<br><br><div class="dropdown">
+ <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Status
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Planted</a>
+    <a class="dropdown-item" href="#">Cut</a>
+    <a class="dropdown-item" href="#">To be cut</a>
+    <a class="dropdown-item" href="#">diseased</a>
+ </div>
   </div>
 
 </div>
