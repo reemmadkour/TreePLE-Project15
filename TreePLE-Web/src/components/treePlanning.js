@@ -25,6 +25,7 @@ export default {
     return {
       Trees: [],
       response: [],
+      municipalities: [],
       newTree: {
         treeSpecies: '',
         height: '',
@@ -32,7 +33,8 @@ export default {
         longitude: '',
         latitude: '',
         landType: '',
-        municipality: {municipalityName: '' }},
+        municipality: { municipalityName: '' }},
+      errorMunicipalities: '',
       errorTree: ''
     }
   },
@@ -49,6 +51,16 @@ export default {
       this.errorTree = e
     })
     console.log('Trees listed')
+
+    AXIOS.get('/municipalities')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.municipalities = response.data
+    })
+    .catch(e1 => {
+      this.errorMunicipalities = e1
+    })
+    console.log('Events listed')
   },
   methods: {
   }

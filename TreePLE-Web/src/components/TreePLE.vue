@@ -3,7 +3,7 @@
 <div id="TreePLE">
 
    <br><br><br><br><br>
-    <h2> List of all trees </h2>
+    <h2> List of all trees </h2><br><br>
 
 <div class="dropdown">
  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +57,7 @@
         <td>{{ tree.longitude }}</td>
          <td>{{ tree.latitude }}</td>
            <td>{{ tree.landType }}</td>
-            
+            <td>{{tree.municipalities}}</td>
                 
           
   </tr>
