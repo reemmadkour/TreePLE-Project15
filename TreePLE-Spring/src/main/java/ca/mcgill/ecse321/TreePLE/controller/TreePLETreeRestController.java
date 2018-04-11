@@ -261,7 +261,7 @@ public class TreePLETreeRestController {
 	
 	@GetMapping(value = { "/mun", "/mun/" })
 	public List<MunicipalityDto> findAllMun() {
-		List<MunicipalityDto> mun = Lists.newArrayList();
+		List<MunicipalityDto> mun = new ArrayList<MunicipalityDto>();
 		for (Municipality municip : service.listAllMunicipalities()) {
 			mun.add(convertToDto(municip));
 		}
