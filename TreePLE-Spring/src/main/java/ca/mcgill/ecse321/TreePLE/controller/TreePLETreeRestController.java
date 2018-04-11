@@ -217,13 +217,22 @@ public class TreePLETreeRestController {
 	
 	
 	
-	@GetMapping(value = { "/municipalities/", "/municipalities" })
+	/*@GetMapping(value = { "/municipalities/", "/municipalities" })
 	public List<MunicipalityDto> findAllMunicipalities() {
 		List<MunicipalityDto> municipalities = new ArrayList<MunicipalityDto>();
 		for(Municipality m: service.findAllMunicipalities()) {
 			municipalities.add(convertToDto(m));
 		}
 		return municipalities;
+	}*/
+	
+	@GetMapping(value = { "/municipalities/", "/municipalities" })
+	public List<MunicipalityName> findMunicipalities() {
+		List<MunicipalityName> names = new ArrayList<MunicipalityName>();
+		for (MunicipalityName mun: MunicipalityName.values()) {
+			names.add(mun);
+		}
+			return names;
 	}
 
 	
