@@ -259,6 +259,17 @@ public class TreePLETreeRestController {
 			return names;
 	}
 	
+	
+	
+	@GetMapping(value = { "/municipalitiesforandroid/", "/municipalitiesforandroid" })
+	public List<String> findMunicipalities() {
+		List<String> names = new ArrayList<String>();
+		for (MunicipalityName mun: MunicipalityName.values()) {
+			names.add(mun.toString());
+		}
+			return names;
+	}
+	
 	//get all landtypes
 	@GetMapping(value = { "/landtypes/", "/landtypes" })
 	public List<LandType> findLandTypes() {
