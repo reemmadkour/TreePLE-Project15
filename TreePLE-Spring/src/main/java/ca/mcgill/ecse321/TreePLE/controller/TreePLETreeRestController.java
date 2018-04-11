@@ -118,7 +118,7 @@ public class TreePLETreeRestController {
 		return states;
 	}
 	
-	@GetMapping(value = { "/species", "/species/" })
+	/*@GetMapping(value = { "/species", "/species/" })
 	public List<String> findAllSpecies() throws InvalidInputException {
 		List<String> species = new ArrayList<String>();
 		
@@ -126,6 +126,16 @@ public class TreePLETreeRestController {
 			species.add(s);
 		}
 		return species;
+	}*/
+	
+	//find all species
+	@GetMapping(value = { "/species", "/species/" })
+	public List<TreeSpecies> findSpecies() {
+		List<TreeSpecies> species = new ArrayList<TreeSpecies>();
+		for (TreeSpecies mun: TreeSpecies.values()) {
+			species.add(mun);
+		}
+			return species;
 	}
 	
 	@GetMapping(value = { "/CalculateCurrentBI/"})
