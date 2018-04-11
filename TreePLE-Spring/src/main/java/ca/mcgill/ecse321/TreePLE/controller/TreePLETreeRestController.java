@@ -120,10 +120,10 @@ public class TreePLETreeRestController {
 	
 	//find all states fixed
 	@GetMapping(value = { "/states", "/states/" })
-	public List<TreeState> findStates() {
-		List<TreeState> state = new ArrayList<TreeState>();
+	public List<String> findStates() {
+		List<String> state = new ArrayList<String>();
 		for (TreeState mun: TreeState.values()) {
-			state.add(mun);
+			state.add(mun.toString());
 		}
 			return state;
 	}
@@ -142,10 +142,10 @@ public class TreePLETreeRestController {
 	
 	//find all species
 	@GetMapping(value = { "/species", "/species/" })
-	public List<TreeSpecies> findSpecies() {
-		List<TreeSpecies> species = new ArrayList<TreeSpecies>();
+	public List<String> findSpecies() {
+		List<String> species = new ArrayList<String>();
 		for (TreeSpecies mun: TreeSpecies.values()) {
-			species.add(mun);
+			species.add(mun.toString());
 		}
 			return species;
 	}
@@ -251,10 +251,10 @@ public class TreePLETreeRestController {
 	}*/
 	
 	@GetMapping(value = { "/municipalities/", "/municipalities" })
-	public List<MunicipalityName> findMunicipalities() {
-		List<MunicipalityName> names = new ArrayList<MunicipalityName>();
+	public List<String> findMunicipalities() {
+		List<String> names = new ArrayList<String>();
 		for (MunicipalityName mun: MunicipalityName.values()) {
-			names.add(mun);
+			names.add(mun.toString());
 		}
 			return names;
 	}
@@ -272,10 +272,10 @@ public class TreePLETreeRestController {
 	
 	//get all landtypes
 	@GetMapping(value = { "/landtypes/", "/landtypes" })
-	public List<LandType> findLandTypes() {
-		List<LandType> type = new ArrayList<LandType>();
+	public List<String> findLandTypes() {
+		List<String> type = new ArrayList<String>();
 		for (LandType mun: LandType.values()) {
-			type.add(mun);
+			type.add(mun.toString());
 		}
 			return type;
 	}
