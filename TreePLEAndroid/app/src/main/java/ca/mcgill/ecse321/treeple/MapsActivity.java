@@ -11,8 +11,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,8 +27,17 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 
 public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
@@ -41,9 +53,9 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
     private Marker Marker9;
     private Marker Marker10;
 
-    //List<Marker> planted_markers;
-    //List <Marker> to_be_cut;
-    //List<Marker> diseased;
+
+    private String error = null;
+    
 
 
 
@@ -119,47 +131,13 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
         // ** HARDCODIND **
 
         //Montreal: 45.5017° N, 73.5673°
-        LatLng tree1 = new LatLng(45.5017, -73.5673);
+        /*LatLng tree1 = new LatLng(45.5017, -73.5673);
         Marker2 = mMap.addMarker(new MarkerOptions().position(tree1).icon(BitmapDescriptorFactory.fromResource((R.drawable.tree))).title("Pine").snippet("Planted"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(tree1));
 
-        onMarkerClick(Marker2);
-
-        LatLng tree7 = new LatLng(43.7517, -71.9673);
-        Marker8 = mMap.addMarker(new MarkerOptions().position(tree7).icon(BitmapDescriptorFactory.fromResource((R.drawable.tree))).title("Pine").snippet("Planted"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(tree1));
-
-        onMarkerClick(Marker8);
-
-        LatLng tree8 = new LatLng(44.2017, -73.8673);
-        Marker9 = mMap.addMarker(new MarkerOptions().position(tree8).icon(BitmapDescriptorFactory.fromResource((R.drawable.trunk1))).title("Pine").snippet("To be Cut Down"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(tree1));
-
-        onMarkerClick(Marker9);
-
-        LatLng tree9 = new LatLng(42.3017, -73.3573);
-        Marker10 = mMap.addMarker(new MarkerOptions().position(tree9).icon(BitmapDescriptorFactory.fromResource((R.drawable.trunk1))).title("Willow").snippet("To be Cut Down"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(tree1));
-
-        onMarkerClick(Marker10);
+        onMarkerClick(Marker2);*/
 
 
-
-        LatLng tree2 = new LatLng(50.5017, -70.5673);
-        Marker3 = mMap.addMarker(new MarkerOptions().position(tree2).icon(BitmapDescriptorFactory.fromResource((R.drawable.tree))).title("Willow").snippet("Planted"));
-        onMarkerClick(Marker3);
-
-        LatLng tree3 = new LatLng(47.9017, -72.9673);
-        Marker4 = mMap.addMarker(new MarkerOptions().position(tree3).icon(BitmapDescriptorFactory.fromResource((R.drawable.tree))).title("Willow").snippet("Planted"));
-        onMarkerClick(Marker4);
-
-        LatLng tree4 = new LatLng(46.603, -69.6549);
-        Marker5 = mMap.addMarker(new MarkerOptions().position(tree4).icon(BitmapDescriptorFactory.fromResource((R.drawable.trunk1))).title("Willow").snippet("To be Cut Down"));
-        onMarkerClick(Marker5);
-
-        LatLng tree5 = new LatLng(49.5017, -69.6693);
-        Marker6 = mMap.addMarker(new MarkerOptions().position(tree5).icon(BitmapDescriptorFactory.fromResource((R.drawable.diseased))).title("Cedar").snippet("Diseased"));
-        onMarkerClick(Marker6);
 
         mMap.setOnMarkerClickListener(this);
 
@@ -186,7 +164,18 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
     }
 
 
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
 
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+
+    }
 
 
 

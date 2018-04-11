@@ -124,7 +124,7 @@ public class PlantTree extends AppCompatActivity {
 
         });
 
-        ok.setOnClickListener(new View.OnClickListener() {
+        /*ok.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -147,7 +147,7 @@ public class PlantTree extends AppCompatActivity {
 
             }
 
-        });
+        });*/
 
 
 

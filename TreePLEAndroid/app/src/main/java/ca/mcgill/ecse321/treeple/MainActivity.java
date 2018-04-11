@@ -20,6 +20,18 @@ import java.util.List;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+//import cz.msebera.android.httpclient.entity.mime.Header;
+import ca.mcgill.ecse321.TreePLE.dto.MunicipalityDto;
+import cz.msebera.android.httpclient.Header;
+
 /**
  * This class implements the first login page. user has to input his username and pick his role.
  */
@@ -39,12 +51,27 @@ public class MainActivity  extends AppCompatActivity {
         private List<String> userType = new ArrayList<>();
         private ArrayAdapter<String> userAdapter;
 
+        private List<Double> l = new ArrayList<>();
+        private List<Double> l2 = new ArrayList<>();
+
+         List<LatLng> position = new ArrayList<>();
+
+    private List<String> munName = new ArrayList<>();
+    private ArrayAdapter<String> munAdapter;
+
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.welcomepage);
+
+            Spinner munSpinner = (Spinner) findViewById(R.id.munspinner);
+
+            munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, munName);
+            munAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            munSpinner.setAdapter(munAdapter);
 
             welcome = (TextView) findViewById(R.id.welcome);
 
@@ -126,10 +153,204 @@ public class MainActivity  extends AppCompatActivity {
 
 
 
+            refreshListLat(munAdapter ,munName, "trees");
+            refreshListLgt(munAdapter ,munName, "trees");
+
+
+            //final List<LatLng> position = ListTreeByLocation();
+
+           // System.out.println("PSITION " + position);
+
 
 
         }
+
+
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
+
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+
     }
+
+
+    /*public void refreshLists(View view) {
+        refreshList(munAdapter ,munName, "mun");
+
+    }
+
+    private void refreshList(final ArrayAdapter<String> adapter, final List<String> names, String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    //JSONObject mun = new JSONObject();
+                    try {
+                        //names.add(response.getJSONObject(i).getString("name"));
+                        names.add(response.getJSONObject(i).getString("name"));
+
+                    } catch (Exception e) {
+                        error += e.getMessage();
+
+                    }
+                    refreshErrorMessage();
+                }
+
+
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }*/
+
+
+    public void refreshLists(View view) {
+        //refreshListLat(munAdapter ,munName, "trees");
+        //refreshListLgt(munAdapter ,munName, "trees");
+
+        System.out.println("l" + l);
+        System.out.println("l2" + l2);
+        position = ListTreeByLocation();
+        System.out.println("On CLICK" + position);
+    }
+
+    private void refreshListLat(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    //JSONObject mun = new JSONObject();
+                    try {
+                        //names.add(response.getJSONObject(i).getString("name"));
+                        names.add(response.getJSONObject(i).getString("latitude"));
+
+                        Double latitude = Double.parseDouble(names.get(i));
+                        l.add(latitude);
+
+                        //Double.parseDouble(aString)
+
+                    } catch (Exception e) {
+                        error += e.getMessage();
+
+                    }
+                    refreshErrorMessage();
+                }
+            System.out.println(names);
+                System.out.println("list " + l);
+
+                adapter.notifyDataSetChanged();
+                //adapter2.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+
+    private void refreshListLgt(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    //JSONObject mun = new JSONObject();
+                    try {
+                        //names.add(response.getJSONObject(i).getString("name"));
+                        names.add(response.getJSONObject(i).getString("longitude"));
+
+                        Double longitude = Double.parseDouble(names.get(i));
+                        l2.add(longitude);
+
+
+
+                        //Double.parseDouble(aString)
+
+                    } catch (Exception e) {
+                        error += e.getMessage();
+
+                    }
+                    refreshErrorMessage();
+                }
+                System.out.println(names);
+                System.out.println("list " + l2);
+
+
+
+
+
+                adapter.notifyDataSetChanged();
+                //adapter2.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+    private List<LatLng> ListTreeByLocation(){
+        if(position.size()>0) {
+            position.clear();
+        }
+
+        for(int i=0; i<l.size(); i++){
+           LatLng p = new LatLng(l.get(i), l2.get(i));
+           position.add(p);
+        }
+
+
+        return position;
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 

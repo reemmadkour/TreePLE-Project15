@@ -57,9 +57,10 @@
         android:id="@+id/success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/lgt_cut"
-        android:layout_marginEnd="23dp"
+        android:layout_below="@+id/button3"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="21dp"
+        android:layout_toStartOf="@+id/ok_cut"
         android:text="Success!"
         android:textSize="18sp"
         android:visibility="invisible" />
@@ -90,7 +91,8 @@
         android:layout_below="@+id/ok_cut"
         android:layout_marginTop="25dp"
         android:background="#20000000"
-        android:text="Mark to be cut down" />
+        android:text="Mark to be cut down"
+        android:id="@+id/button3" />
 
 
 </RelativeLayout>

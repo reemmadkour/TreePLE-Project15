@@ -42,7 +42,7 @@ import cz.msebera.android.httpclient.Header;
 public class CutTree extends AppCompatActivity {
 
     Button back, ok;
-    String error;
+    private String error = null;
 
     TextView message, invalid;
 
@@ -76,7 +76,7 @@ public class CutTree extends AppCompatActivity {
         invalid = (TextView)findViewById((R.id.invalid_cut));
 
         //ok
-        ok = (Button) findViewById(R.id.ok_cut);
+        /*ok = (Button) findViewById(R.id.ok_cut);
         ok.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -94,7 +94,7 @@ public class CutTree extends AppCompatActivity {
 
             }
 
-        });
+        });*/
 
 
 
@@ -137,7 +137,7 @@ public class CutTree extends AppCompatActivity {
     //refresh error messge to display error message on screen
     private void refreshErrorMessage() {
         // set the error message
-        TextView tvError = (TextView) findViewById(R.id.error);
+        TextView tvError = (TextView) findViewById(R.id.success);
         tvError.setText(error);
 
         if (error == null || error.length() == 0) {
@@ -148,10 +148,25 @@ public class CutTree extends AppCompatActivity {
 
     }
 
+    /*@PostMapping(value = { "/cutDownTree/{latitude}/{longitude}/{userName}" })
+
+
+	public TreeDto cutDownTree(
+			@PathVariable("latitude") double latitude,
+			@PathVariable("longitude") double longitude,
+			@PathVariable("userName") String userName)
+			throws InvalidInputException {
+
+	Tree t = service.getPlantedTreeByLocation(latitude,longitude);
+
+	service.cutDownTree(t,userName);
+		return convertToDto(t);
+	}*/
 
 
 
-   /* public void cut(View v){
+
+   public void cut(View v){
 
         Intent i = getIntent();
         String userName = i.getStringExtra("userName");
@@ -162,13 +177,11 @@ public class CutTree extends AppCompatActivity {
         message = (TextView)findViewById(R.id.success);
 
         RequestParams rp = new RequestParams();
-        rp.add("longitude", lgt.getText().toString());
-        rp.add("latitude",lat.getText().toString());
 
 
-    //@PostMapping(value = { "/cutDownTree/{treeID}/{userName}" })
 
-        HttpUtils.post("/cutDownTree/"  +  userName ,  new RequestParams(), new JsonHttpResponseHandler() {
+
+        HttpUtils.post("/cutDownTree/"  + lat.getText() + lgt.getText() + userName ,  new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //refreshErrorMessage();
@@ -184,14 +197,15 @@ public class CutTree extends AppCompatActivity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
-
+                message.setText("FAIL");
+               message.setVisibility(View.VISIBLE);
                 refreshErrorMessage();
 
             }
         });
 
 
-    }*/
+    }
 
 
 
