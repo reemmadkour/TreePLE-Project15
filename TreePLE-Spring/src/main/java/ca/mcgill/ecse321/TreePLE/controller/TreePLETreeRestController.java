@@ -259,6 +259,15 @@ public class TreePLETreeRestController {
 			return names;
 	}
 	
+	@GetMapping(value = { "/mun", "/mun/" })
+	public List<MunicipalityDto> findAllMun() {
+		List<MunicipalityDto> mun = Lists.newArrayList();
+		for (Municipality municip : service.listAllMunicipalities()) {
+			mun.add(convertToDto(municip));
+		}
+		return mun;
+	}
+	
 	
 	
 	/*@GetMapping(value = { "/municipalitiesforandroid/", "/municipalitiesforandroid" })
