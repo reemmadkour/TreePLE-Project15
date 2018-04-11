@@ -165,6 +165,8 @@ public class TreePLETreeRestController {
 	
 	
 	
+	
+	
 	@GetMapping(value= {"/trees/{status}"})
 	public List<TreeDto> getTreesBySpecies 
 	(@PathVariable  (name="status") TreeState state) throws InvalidInputException {
@@ -234,7 +236,18 @@ public class TreePLETreeRestController {
 		}
 			return names;
 	}
-
+	
+	//get all landtypes
+	@GetMapping(value = { "/landtypes/", "/landtypes" })
+	public List<LandType> findLandTypes() {
+		List<LandType> type = new ArrayList<LandType>();
+		for (LandType mun: LandType.values()) {
+			type.add(mun);
+		}
+			return type;
+	}
+	
+	
 	
 	@GetMapping(value = { "/scientists/", "/scientists" })
 	public List<String> findAllScientists() {
