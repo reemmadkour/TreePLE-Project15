@@ -35,12 +35,12 @@ public class TreePLETreeService {
 		  //scientist1.setRoles(s);
 		 // Scientist s2= new Scientist();
 		 // scientist2.setRoles(s2);
-		  Municipality m1= new Municipality();
-		  m1.setMunicipalityName(MunicipalityName.Montreal);
-		  Municipality m2= new Municipality();
-		  m2.setMunicipalityName(MunicipalityName.Laval);
-		  tm.addMunicipality(m1);
-		  tm.addMunicipality(m2);
+		 // Municipality m1= new Municipality();
+		 // m1.setMunicipalityName(MunicipalityName.Montreal);
+		 // Municipality m2= new Municipality();
+		//  m2.setMunicipalityName(MunicipalityName.Laval);
+		//  tm.addMunicipality(m1);
+		//  tm.addMunicipality(m2);
 		  //tm.addPerson(scientist1);
 		 // tm.addPerson(scientist2);
 		  
