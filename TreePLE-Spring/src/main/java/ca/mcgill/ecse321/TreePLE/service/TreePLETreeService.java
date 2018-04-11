@@ -29,20 +29,20 @@ public class TreePLETreeService {
 		public TreePLETreeService(TreeManager tm)
 		{
 		  this.tm = tm;
-		  Person scientist1= new Person( "John");
-		  Person scientist2= new Person("Daniel");
-		  Scientist s= new Scientist();
-		  scientist1.setRoles(s);
-		  Scientist s2= new Scientist();
-		  scientist2.setRoles(s2);
+		  //Person scientist1= new Person( "John");
+		  //Person scientist2= new Person("Daniel");
+		 // Scientist s= new Scientist();
+		  //scientist1.setRoles(s);
+		 // Scientist s2= new Scientist();
+		 // scientist2.setRoles(s2);
 		  Municipality m1= new Municipality();
 		  m1.setMunicipalityName(MunicipalityName.Montreal);
 		  Municipality m2= new Municipality();
 		  m2.setMunicipalityName(MunicipalityName.Laval);
 		  tm.addMunicipality(m1);
 		  tm.addMunicipality(m2);
-		  tm.addPerson(scientist1);
-		  tm.addPerson(scientist2);
+		  //tm.addPerson(scientist1);
+		 // tm.addPerson(scientist2);
 		  
 		}
 		
