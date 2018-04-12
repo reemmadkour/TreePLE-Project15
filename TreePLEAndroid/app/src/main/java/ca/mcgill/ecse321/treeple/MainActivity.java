@@ -51,15 +51,6 @@ public class MainActivity  extends AppCompatActivity {
         private List<String> userType = new ArrayList<>();
         private ArrayAdapter<String> userAdapter;
 
-        private List<Double> l = new ArrayList<>();
-        private List<Double> l2 = new ArrayList<>();
-
-         List<LatLng> position = new ArrayList<>();
-
-    List<LatLng> position_planted = new ArrayList<>();
-    List<LatLng> position_diseased= new ArrayList<>();
-    List<LatLng> position_cut = new ArrayList<>();
-    List<LatLng> position_MarkedCut = new ArrayList<>();
 
 
     private List<String> munName = new ArrayList<>();
@@ -159,16 +150,6 @@ public class MainActivity  extends AppCompatActivity {
 
 
 
-            refreshListLat(munAdapter ,munName, "trees");
-            refreshListLgt(munAdapter ,munName, "trees");
-
-
-            //final List<LatLng> position = ListTreeByLocation();
-
-           // System.out.println("PSITION " + position);
-
-
-
         }
 
 
@@ -186,62 +167,14 @@ public class MainActivity  extends AppCompatActivity {
     }
 
 
-    /*public void refreshLists(View view) {
-        refreshList(munAdapter ,munName, "mun");
-
-    }
-
-    private void refreshList(final ArrayAdapter<String> adapter, final List<String> names, String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    //JSONObject mun = new JSONObject();
-                    try {
-                        //names.add(response.getJSONObject(i).getString("name"));
-                        names.add(response.getJSONObject(i).getString("name"));
-
-                    } catch (Exception e) {
-                        error += e.getMessage();
-
-                    }
-                    refreshErrorMessage();
-                }
-
-
-
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-    }*/
-
 
     public void refreshLists(View view) {
-        //refreshListLat(munAdapter ,munName, "trees");
+        refreshList(munAdapter ,munName, "mun");
         //refreshListLgt(munAdapter ,munName, "trees");
 
-
-
-        System.out.println("l" + l);
-        System.out.println("l2" + l2);
-        position = ListTreeByLocation();
-        System.out.println("On CLICK" + position);
     }
 
-   /* private void refreshListLat(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+   private void refreshList(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
         HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
 
             @Override
@@ -249,13 +182,10 @@ public class MainActivity  extends AppCompatActivity {
                 names.clear();
                 names.add("Please select...");
                 for( int i = 0; i < response.length(); i++){
-                    //JSONObject mun = new JSONObject();
-                    try {
-                        //names.add(response.getJSONObject(i).getString("name"));
-                        names.add(response.getJSONObject(i).getString("latitude"));
 
-                        Double latitude = Double.parseDouble(names.get(i));
-                        l.add(latitude);
+                    try {
+
+                        names.add(response.getJSONObject(i).getString("name"));
 
                         //Double.parseDouble(aString)
 
@@ -266,7 +196,6 @@ public class MainActivity  extends AppCompatActivity {
                     refreshErrorMessage();
                 }
             System.out.println(names);
-                System.out.println("list " + l);
 
                 adapter.notifyDataSetChanged();
                 //adapter2.notifyDataSetChanged();
@@ -283,181 +212,6 @@ public class MainActivity  extends AppCompatActivity {
             }
         });
     }
-
-
-    private void refreshListLgt(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    //JSONObject mun = new JSONObject();
-                    try {
-                        //names.add(response.getJSONObject(i).getString("name"));
-                        names.add(response.getJSONObject(i).getString("longitude"));
-
-                        Double longitude = Double.parseDouble(names.get(i));
-                        l2.add(longitude);
-
-
-
-                        //Double.parseDouble(aString)
-
-                    } catch (Exception e) {
-                        error += e.getMessage();
-
-                    }
-                    refreshErrorMessage();
-                }
-                System.out.println(names);
-                System.out.println("list " + l2);
-
-
-
-
-
-                adapter.notifyDataSetChanged();
-                //adapter2.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-    }*/
-
-
-    private void refreshListLat(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    //JSONObject mun = new JSONObject();
-                    try {
-                        //names.add(response.getJSONObject(i).getString("name"));
-                        names.add(response.getJSONObject(i).getString("latitude"));
-
-                        Double latitude = Double.parseDouble(names.get(i));
-                        if(response.getJSONObject(i).getJSONObject("currentStatus").getString("treeState").matches("Planted")) {
-                            l.add(latitude);
-                        }
-
-                        //Double.parseDouble(aString)
-
-                    } catch (Exception e) {
-                        error += e.getMessage();
-
-                    }
-                    refreshErrorMessage();
-                }
-                System.out.println(names);
-                System.out.println("list " + l);
-
-                adapter.notifyDataSetChanged();
-                //adapter2.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-    }
-
-
-    private void refreshListLgt(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    //JSONObject mun = new JSONObject();
-                    try {
-
-                        //names.add(response.getJSONObject(i).getString("name"));
-                        names.add(response.getJSONObject(i).getString("longitude"));
-
-                        Double longitude = Double.parseDouble(names.get(i));
-
-                        if(response.getJSONObject(i).getJSONObject("currentStatus").getString("treeState").matches("Planted")) {
-                            l2.add(longitude);
-                        }
-
-
-
-
-                        //Double.parseDouble(aString)
-
-                    } catch (Exception e) {
-                        error += e.getMessage();
-
-                    }
-                    refreshErrorMessage();
-                }
-                System.out.println(names);
-                System.out.println("list " + l2);
-
-
-
-
-
-                adapter.notifyDataSetChanged();
-                //adapter2.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-    }
-
-
-
-
-
-
-
-
-    private List<LatLng> ListTreeByLocation(){
-        if(position.size()>0) {
-            position.clear();
-        }
-
-        for(int i=0; i<l.size(); i++){
-           LatLng p = new LatLng(l.get(i), l2.get(i));
-           position.add(p);
-        }
-
-
-        return position;
-    }
-
-
-
 
 
 

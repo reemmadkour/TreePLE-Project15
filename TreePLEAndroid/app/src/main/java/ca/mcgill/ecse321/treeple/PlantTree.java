@@ -261,6 +261,7 @@ public class PlantTree extends AppCompatActivity {
                     refreshErrorMessage();
                 }
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -351,17 +352,8 @@ public class PlantTree extends AppCompatActivity {
                 ((Spinner) findViewById(R.id.municipality)).getSelectedItem();
                 ((Spinner) findViewById(R.id.species)).getSelectedItem();
                 ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
+
                 message.setVisibility(View.VISIBLE);
-
-                //TODO: Test this pop up dialog!
-                /*ok = (Button) findViewById(R.id.button);
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "Congatulations! you have successfully planted a tree!", Toast.LENGTH_LONG);
-                    }
-                });*/
-
 
 
 
@@ -370,6 +362,11 @@ public class PlantTree extends AppCompatActivity {
                 longitude.setText("");
                 latitude.setText("");
                 //userName.setText("");
+
+                Intent i = new Intent(PlantTree.this, AfterPlant.class);
+                startActivity(i);
+
+
             }
            @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
