@@ -868,8 +868,8 @@ int id b_help2 0x7f0f00b9
 int id b_help3 0x7f0f00bf
 int id b_plant 0x7f0f00be
 int id back 0x7f0f00ed
-int id back2 0x7f0f00a3
-int id back_c 0x7f0f00a4
+int id back2 0x7f0f00a2
+int id back_c 0x7f0f00a3
 int id back_ic 0x7f0f00d8
 int id back_main 0x7f0f009b
 int id back_to_cut 0x7f0f0098
@@ -878,7 +878,7 @@ int id beginning 0x7f0f004b
 int id blocking 0x7f0f0048
 int id bottom 0x7f0f0035
 int id button2 0x7f0f00fc
-int id button3 0x7f0f00a2
+int id button3 0x7f0f00a4
 int id button4 0x7f0f00d4
 int id button5 0x7f0f00d3
 int id button6 0x7f0f00da

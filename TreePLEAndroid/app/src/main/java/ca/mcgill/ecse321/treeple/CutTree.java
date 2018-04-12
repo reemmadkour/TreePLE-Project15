@@ -48,7 +48,10 @@ public class CutTree extends AppCompatActivity {
 
     EditText lgt, lat;
 
-
+    /**
+     * On Create
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -75,66 +78,16 @@ public class CutTree extends AppCompatActivity {
 
         invalid = (TextView)findViewById((R.id.invalid_cut));
 
-        //ok
-        /*ok = (Button) findViewById(R.id.ok_cut);
-        ok.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View arg0) {
-
-                if(lgt.getText().toString().matches("") || lat.getText().toString().matches("")){
-                    invalid.setText("Please input longitude and latitude!");
-                    invalid.setVisibility(View.VISIBLE);
-                }
-                else {
-
-                    Intent intent = new Intent(CutTree.this, AfterCut.class);
-                    startActivity(intent);
-                }
-
-            }
-
-        });*/
-
-
-
+        ok = (Button) findViewById(R.id.ok_cut);
 
 
     }
 
-    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    try {
-                        names.add(response.getJSONObject(i).getString("name"));
-                    } catch (Exception e) {
-                        error += e.getMessage();
-                    }
-                    refreshErrorMessage();
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-    }
-
-
-
-    //refresh error messge to display error message on screen
+    /**
+     * refresh error message, displays error on screen
+     */
     private void refreshErrorMessage() {
         // set the error message
         TextView tvError = (TextView) findViewById(R.id.success);
@@ -148,24 +101,11 @@ public class CutTree extends AppCompatActivity {
 
     }
 
-    /*@PostMapping(value = { "/cutDownTree/{latitude}/{longitude}/{userName}" })
 
-
-	public TreeDto cutDownTree(
-			@PathVariable("latitude") double latitude,
-			@PathVariable("longitude") double longitude,
-			@PathVariable("userName") String userName)
-			throws InvalidInputException {
-
-	Tree t = service.getPlantedTreeByLocation(latitude,longitude);
-
-	service.cutDownTree(t,userName);
-		return convertToDto(t);
-	}*/
-
-
-
-
+    /**
+     * Method that lets the user cut down a tree
+     * @param v
+     */
    public void cut(View v){
 
         Intent i = getIntent();
@@ -176,18 +116,18 @@ public class CutTree extends AppCompatActivity {
 
         message = (TextView)findViewById(R.id.success);
 
-        RequestParams rp = new RequestParams();
-
-
-
-
-        HttpUtils.post("/cutDownTree/"  + lat.getText() + lgt.getText() + userName ,  new RequestParams(), new JsonHttpResponseHandler() {
+        HttpUtils.post("cutDownTree/"  + lat.getText().toString() + "/"+ lgt.getText().toString() +"/"+ userName ,  new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                //refreshErrorMessage();
+                refreshErrorMessage();
                lgt.setText("");
                lat.setText("");
-               message.setVisibility(View.VISIBLE);
+
+                //going to Bob's page
+                Intent intent = new Intent(CutTree.this, AfterCut.class);
+                startActivity(intent);
+
+                //System.out.println("Success");
 
             }
            @Override
@@ -197,8 +137,50 @@ public class CutTree extends AppCompatActivity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
-                message.setText("FAIL");
-               message.setVisibility(View.VISIBLE);
+                //System.out.println("Fail");
+
+                refreshErrorMessage();
+
+            }
+        });
+
+
+    }
+
+//@PostMapping(value = { "/MarktoBeCutDown/{latitude}/{longitude}/{userName}" })
+    public void MarkCut(View v){
+
+        Intent i = getIntent();
+        String userName = i.getStringExtra("userName");
+
+        lgt = (EditText)findViewById(R.id.lgt_cut);
+        lat = (EditText)findViewById(R.id.ltd_cut);
+
+        message = (TextView)findViewById(R.id.success);
+
+        HttpUtils.post("MarktoBeCutDown/"  + lat.getText().toString() + "/"+ lgt.getText().toString() +"/"+ userName ,  new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                lgt.setText("");
+                lat.setText("");
+
+                //going to Bob's page
+                Intent intent = new Intent(CutTree.this, AfterCut.class);
+                startActivity(intent);
+
+                //System.out.println("Success");
+
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                //System.out.println("Fail");
+
                 refreshErrorMessage();
 
             }

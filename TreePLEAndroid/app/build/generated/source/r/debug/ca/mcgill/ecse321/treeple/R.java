@@ -3304,8 +3304,8 @@ containing a value of this type.
         public static final int b_help3=0x7f0f00bf;
         public static final int b_plant=0x7f0f00be;
         public static final int back=0x7f0f00ed;
-        public static final int back2=0x7f0f00a3;
-        public static final int back_c=0x7f0f00a4;
+        public static final int back2=0x7f0f00a2;
+        public static final int back_c=0x7f0f00a3;
         public static final int back_ic=0x7f0f00d8;
         public static final int back_main=0x7f0f009b;
         public static final int back_to_cut=0x7f0f0098;
@@ -3314,7 +3314,7 @@ containing a value of this type.
         public static final int blocking=0x7f0f0048;
         public static final int bottom=0x7f0f0035;
         public static final int button2=0x7f0f00fc;
-        public static final int button3=0x7f0f00a2;
+        public static final int button3=0x7f0f00a4;
         public static final int button4=0x7f0f00d4;
         public static final int button5=0x7f0f00d3;
         public static final int button6=0x7f0f00da;

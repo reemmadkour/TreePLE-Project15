@@ -38,7 +38,9 @@ import cz.msebera.android.httpclient.Header;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-
+/**
+ * This class implements the plant tree layout and methods. User can plant a tree and can be guided throughout the process.
+ */
 public class PlantTree extends AppCompatActivity {
 
     private String error ;
@@ -66,7 +68,10 @@ public class PlantTree extends AppCompatActivity {
     Spinner speciesSpinner, landSpinner , munSpinner;
     private double aDouble;
 
-
+    /**
+     * On Create method
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -124,36 +129,6 @@ public class PlantTree extends AppCompatActivity {
 
         });
 
-        /*ok.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                if(((Spinner) findViewById(R.id.municipality)).getSelectedItem().toString().equals("Please Select" )|| ((Spinner) findViewById(R.id.species)).getSelectedItem().toString().equals("Please Select" )||((Spinner) findViewById(R.id.landtype)).getSelectedItem().toString().equals("Please Select" ) ){
-                    invalid.setText("Invalid Selection. Please pick an option!");
-                    invalid.setVisibility(View.VISIBLE);
-                }else  if(diameter.getText().toString().matches("")
-                        || height.getText().toString().matches("")
-                        || longitude.getText().toString().matches("")
-                        || latitude.getText().toString().matches("")){
-
-                    invalid.setText("Please fill in everything!");
-                    invalid.setVisibility(View.VISIBLE);
-                }else {
-
-                    Intent intent = new Intent(PlantTree.this, AfterPlant.class);
-                    startActivity(intent);
-                }
-
-            }
-
-        });*/
-
-
-
-        // set species Spinner
-        //public enum TreeSpecies { Willow, RedMaple, LobollyPine, Sweetgum, DouglasFir, QuackingAspen, SugarMaple, Balsamfir, FloweringDogwood, LodgepolePine, WhiteOak }
-       // public enum LandType { Residential, Institutional, Park, Municipal }
 
         species.add("Please Select");
         species.add("Willow");
@@ -195,9 +170,7 @@ public class PlantTree extends AppCompatActivity {
         landSpinner.setAdapter(landAdapter);
 
         //set Municipalities Spinner
-        //Montreal, Laval, Anjou, AhuntsicCartierville, LeSudOuest, LIlleBizadSaintGenevieve, MercierHochelagaMaisonneuve, MontrealNord,
-        // PierrefondsRoxboro, RiviereDesPrairiesPointeAuxTrembles, Rosemont, VilleraySaintMichel, CoteDesNeiges,
-        // Lachine, LaSalle, LePlateau, Outremont, Verdun, VilleMarie
+
         municipalities.add("Please Select");
         municipalities.add("Montreal");
         municipalities.add("Laval");
@@ -223,8 +196,6 @@ public class PlantTree extends AppCompatActivity {
         municipalities.add("VilleMarie");
 
 
-
-
         munSpinner = (Spinner) findViewById(R.id.municipality);
 
         munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, municipalities);
@@ -243,42 +214,9 @@ public class PlantTree extends AppCompatActivity {
     }
 
 
-
-
-    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    try {
-                        names.add(response.getJSONObject(i).getString("name"));
-                    } catch (Exception e) {
-                        error += e.getMessage();
-                    }
-                    refreshErrorMessage();
-                }
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-    }
-
-
-
-    //refresh error messge to display error message on screen
+    /**
+     * Refresh error Message: Displays error on screen when user enters invalid input
+     */
     private void refreshErrorMessage() {
         // set the error message
         TextView tvError = (TextView) findViewById(R.id.error);
@@ -293,9 +231,10 @@ public class PlantTree extends AppCompatActivity {
     }
 
 
-
-
-    //addTrees
+    /**
+     * Add tree method.  Allows users to add a tree to database.
+     * @param v
+     */
     public void addTree(View v) {
 
 
@@ -304,7 +243,7 @@ public class PlantTree extends AppCompatActivity {
 
         munSpinner = (Spinner) findViewById(R.id.municipality);
 
-       // munSpinner.setText(i.getStringExtra("municipality"));
+        //munSpinner.setText(i.getStringExtra("municipality"));
         error = "";
         RequestParams rp = new RequestParams();
 
@@ -320,17 +259,12 @@ public class PlantTree extends AppCompatActivity {
         longitude = (EditText)findViewById(R.id.longitude);
         latitude = (EditText)findViewById(R.id.latitude);
 
-        Intent intent = new Intent(PlantTree.this, MapsActivity.class);
-        intent.putExtra("longitude", longitude.getText().toString());
-        intent.putExtra("latitude", latitude.getText().toString());
-
         message = (TextView)findViewById(R.id.textView5) ;
 
         // take username data input from welcomePage
         Intent i = getIntent();
        String userName = i.getStringExtra("userName");
 
-       // double height1 = Double.parseDouble(height.getText().toString());
 
 
         //adding to request parameters
@@ -341,7 +275,6 @@ public class PlantTree extends AppCompatActivity {
         rp.add("diameter", diameter.getText().toString());
         rp.add("longitude", longitude.getText().toString());
         rp.add("latitude", latitude.getText().toString());
-        //rp.add("userName", userName);
 
 
 
