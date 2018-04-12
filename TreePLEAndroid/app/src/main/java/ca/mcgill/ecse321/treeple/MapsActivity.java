@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,18 +45,25 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
     private GoogleMap mMap;
     private Marker Marker1;
-    private Marker Marker2;
-    private Marker Marker3;
-    private Marker Marker4;
-    private Marker Marker5;
-    private Marker Marker6;
-    private Marker Marker8;
-    private Marker Marker9;
-    private Marker Marker10;
+
+    private List<Marker> planted;
 
 
     private String error = null;
-    
+
+
+    private List<Double> l = new ArrayList<>();
+    private List<Double> l2 = new ArrayList<>();
+
+    List<LatLng> position = new ArrayList<>();
+
+
+    private List<String> munName = new ArrayList<>();
+    private ArrayAdapter<String> munAdapter;
+
+    TextView msg;
+
+
 
 
 
@@ -71,6 +79,22 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        Spinner munSpinner = (Spinner) findViewById(R.id.spinnerl);
+
+        msg = (TextView)findViewById(R.id.error_m);
+
+        munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, munName);
+        munAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        munSpinner.setAdapter(munAdapter);
+
+        refreshListLat(munAdapter ,munName, "trees");
+        refreshListLgt(munAdapter ,munName, "trees");
+        position = ListTreeByLocation();
+
+
+
+
+
 
     }
 
@@ -85,6 +109,29 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
      */
 
 
+    public void refreshMap(View view) {
+        //refreshListLat(munAdapter ,munName, "trees");
+        //refreshListLgt(munAdapter ,munName, "trees");
+
+
+        int i=0;
+        i++;
+        position = ListTreeByLocation();
+        System.out.println("l" + l);
+        System.out.println("l2" + l2);
+        System.out.println("On CLICK" + position);
+
+        if(i<=1) {
+            for (LatLng l : position) {
+                Marker m = mMap.addMarker(new MarkerOptions().position(l).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
+                onMarkerClick(m);
+            }
+        }
+
+        mMap.setOnMarkerClickListener(this);
+
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -98,6 +145,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
         //creating a new marker at that position, with the tree icon
         Marker1 = mMap.addMarker(new MarkerOptions().position(tree).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)).title("Willow"));
+
 
 
         //on marker click, display marker position, tree status and tree species
@@ -166,7 +214,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
     private void refreshErrorMessage() {
         // set the error message
-        TextView tvError = (TextView) findViewById(R.id.error);
+        TextView tvError = (TextView) findViewById(R.id.error_m);
         tvError.setText(error);
 
         if (error == null || error.length() == 0) {
@@ -176,6 +224,129 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
         }
 
     }
+
+
+    private void refreshListLat(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    //JSONObject mun = new JSONObject();
+                    try {
+                        //names.add(response.getJSONObject(i).getString("name"));
+                        names.add(response.getJSONObject(i).getString("latitude"));
+
+                        Double latitude = Double.parseDouble(names.get(i));
+                        if(response.getJSONObject(i).getJSONObject("currentStatus").getString("treeState").matches("Planted")) {
+                            l.add(latitude);
+                        }
+
+                        //Double.parseDouble(aString)
+
+                    } catch (Exception e) {
+                        error += e.getMessage();
+
+                    }
+                    refreshErrorMessage();
+                }
+                System.out.println(names);
+                System.out.println("list " + l);
+
+                adapter.notifyDataSetChanged();
+                //adapter2.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+
+    private void refreshListLgt(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    //JSONObject mun = new JSONObject();
+                    try {
+
+                        //names.add(response.getJSONObject(i).getString("name"));
+                        names.add(response.getJSONObject(i).getString("longitude"));
+
+                        Double longitude = Double.parseDouble(names.get(i));
+
+                        if(response.getJSONObject(i).getJSONObject("currentStatus").getString("treeState").matches("Planted")) {
+                            l2.add(longitude);
+                        }
+
+
+
+
+                        //Double.parseDouble(aString)
+
+                    } catch (Exception e) {
+                        error += e.getMessage();
+
+                    }
+                    refreshErrorMessage();
+                }
+                System.out.println(names);
+                System.out.println("list " + l2);
+
+
+
+
+
+                adapter.notifyDataSetChanged();
+                //adapter2.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+    private List<LatLng> ListTreeByLocation(){
+        if(position.size()>0) {
+            position.clear();
+        }
+
+        for(int i=0; i<l.size(); i++){
+            LatLng p = new LatLng(l.get(i), l2.get(i));
+            position.add(p);
+        }
+
+
+        return position;
+    }
+
 
 
 

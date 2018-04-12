@@ -56,6 +56,12 @@ public class MainActivity  extends AppCompatActivity {
 
          List<LatLng> position = new ArrayList<>();
 
+    List<LatLng> position_planted = new ArrayList<>();
+    List<LatLng> position_diseased= new ArrayList<>();
+    List<LatLng> position_cut = new ArrayList<>();
+    List<LatLng> position_MarkedCut = new ArrayList<>();
+
+
     private List<String> munName = new ArrayList<>();
     private ArrayAdapter<String> munAdapter;
 
@@ -67,17 +73,17 @@ public class MainActivity  extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.welcomepage);
 
-            Spinner munSpinner = (Spinner) findViewById(R.id.munspinner);
-
-            munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, munName);
-            munAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            munSpinner.setAdapter(munAdapter);
 
             welcome = (TextView) findViewById(R.id.welcome);
 
             username = (EditText) findViewById(R.id.username_entry);
 
             entername = (TextView) findViewById(R.id.textView2);
+            Spinner munSpinner = (Spinner) findViewById(R.id.munspinner);
+
+            munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, munName);
+            munAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            munSpinner.setAdapter(munAdapter);
 
             entertype = (TextView) findViewById(R.id.textView4);
             errorMsg = (TextView) findViewById(R.id.error);
@@ -227,13 +233,15 @@ public class MainActivity  extends AppCompatActivity {
         //refreshListLat(munAdapter ,munName, "trees");
         //refreshListLgt(munAdapter ,munName, "trees");
 
+
+
         System.out.println("l" + l);
         System.out.println("l2" + l2);
         position = ListTreeByLocation();
         System.out.println("On CLICK" + position);
     }
 
-    private void refreshListLat(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+   /* private void refreshListLat(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
         HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
 
             @Override
@@ -324,7 +332,115 @@ public class MainActivity  extends AppCompatActivity {
                 refreshErrorMessage();
             }
         });
+    }*/
+
+
+    private void refreshListLat(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    //JSONObject mun = new JSONObject();
+                    try {
+                        //names.add(response.getJSONObject(i).getString("name"));
+                        names.add(response.getJSONObject(i).getString("latitude"));
+
+                        Double latitude = Double.parseDouble(names.get(i));
+                        if(response.getJSONObject(i).getJSONObject("currentStatus").getString("treeState").matches("Planted")) {
+                            l.add(latitude);
+                        }
+
+                        //Double.parseDouble(aString)
+
+                    } catch (Exception e) {
+                        error += e.getMessage();
+
+                    }
+                    refreshErrorMessage();
+                }
+                System.out.println(names);
+                System.out.println("list " + l);
+
+                adapter.notifyDataSetChanged();
+                //adapter2.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
     }
+
+
+    private void refreshListLgt(final ArrayAdapter<String> adapter, final List<String> names,String restFunctionName) {
+        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                names.clear();
+                names.add("Please select...");
+                for( int i = 0; i < response.length(); i++){
+                    //JSONObject mun = new JSONObject();
+                    try {
+
+                        //names.add(response.getJSONObject(i).getString("name"));
+                        names.add(response.getJSONObject(i).getString("longitude"));
+
+                        Double longitude = Double.parseDouble(names.get(i));
+
+                        if(response.getJSONObject(i).getJSONObject("currentStatus").getString("treeState").matches("Planted")) {
+                            l2.add(longitude);
+                        }
+
+
+
+
+                        //Double.parseDouble(aString)
+
+                    } catch (Exception e) {
+                        error += e.getMessage();
+
+                    }
+                    refreshErrorMessage();
+                }
+                System.out.println(names);
+                System.out.println("list " + l2);
+
+
+
+
+
+                adapter.notifyDataSetChanged();
+                //adapter2.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+
+
+
+
+
+
 
     private List<LatLng> ListTreeByLocation(){
         if(position.size()>0) {
@@ -339,6 +455,11 @@ public class MainActivity  extends AppCompatActivity {
 
         return position;
     }
+
+
+
+
+
 
 
 
