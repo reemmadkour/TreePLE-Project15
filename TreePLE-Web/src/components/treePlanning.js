@@ -44,9 +44,11 @@ export default {
         height: '',
         diameter: '',
         longitude: '',
+        currentStatus: {
+          treeState: '' },
         latitude: '',
         landType: '',
-        municipality: { municipalityName: '' }},
+        municipality: { name: '' }},
       errorMunicipalities: '',
       icon: {
         url: 'google.maps.SymbolPath.CIRCLE',
@@ -97,7 +99,7 @@ export default {
     .catch(e1 => {
       this.errorMunicipalities = e1
     })
-    console.log('Events listed')
+    console.log('Municipalities listed')
   },
   methods: {
   }

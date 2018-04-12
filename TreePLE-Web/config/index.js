@@ -30,7 +30,7 @@ module.exports = {
     port: 8087,
     host:  'ecse321-14.ece.mcgill.ca',
     backendHost: 'ecse321-14.ece.mcgill.ca',
-    backendPort: 8080,
+    backendPort: 8087,
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
