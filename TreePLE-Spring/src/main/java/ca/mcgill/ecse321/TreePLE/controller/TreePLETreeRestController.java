@@ -218,14 +218,13 @@ public class TreePLETreeRestController {
 	
 	
 	@GetMapping(value = { "/municipalities/", "/municipalities" })
-	public List<MunicipalityDto> findAllMunicipalities() {
-		List<MunicipalityDto> municipalities = new ArrayList<MunicipalityDto>();
-		for(Municipality m: service.findAllMunicipalities()) {
-			municipalities.add(convertToDto(m));
+	public List<String> findMunicipalities() {
+		List<String> names = new ArrayList<String>();
+		for (MunicipalityName mun: MunicipalityName.values()) {
+			names.add(mun.toString());
 		}
-		return municipalities;
+			return names;
 	}
-
 	
 	@GetMapping(value = { "/scientists/", "/scientists" })
 	public List<String> findAllScientists() {
@@ -320,7 +319,7 @@ public class TreePLETreeRestController {
 	}
 	
 	
-	@PostMapping(value = { "/MarkAsDiseased/{treeID}/{userName}" })
+	/**@PostMapping(value = { "/MarkAsDiseased/{treeID}/{userName}" })
 
 
 	public TreeDto MarkAsDiseasedWithID(
@@ -333,7 +332,7 @@ public class TreePLETreeRestController {
 	service.MarkTreeAsDiseased(t,userName);
 		return convertToDto(t);
 	}
-	
+	*/
 
 
 	@PostMapping(value = { "/setTreeSpecies/{treeID}" })

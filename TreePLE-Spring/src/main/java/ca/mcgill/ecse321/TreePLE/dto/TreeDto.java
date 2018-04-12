@@ -23,7 +23,7 @@ public class TreeDto {
 	  private StatusDto currentStatus;
 	  private int treeID;
 	 // private List<Forecast> forecasts;
-	 // private MunicipalityDto municipality;
+	 private MunicipalityDto municipality;
 	 // private int id;
 	  
 	  public TreeDto() {
@@ -81,9 +81,9 @@ public class TreeDto {
 			return treeID;
 		}
 		
-	/*	public MunicipalityDto getMunicipality() {
+		public MunicipalityDto getMunicipality() {
 			return municipality;
-		}*/
+		}
 		public StatusDto getCurrentStatus() {
 			return currentStatus;
 		}
