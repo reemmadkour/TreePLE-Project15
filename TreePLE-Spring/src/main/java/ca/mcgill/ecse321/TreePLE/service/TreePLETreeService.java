@@ -528,7 +528,7 @@ return (ts.size()*48);
 					scientists.add(p.getName());  
 					  
 				  }
-
+				 }
 			  }
 			
 			return scientists;
