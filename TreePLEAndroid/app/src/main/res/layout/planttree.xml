@@ -170,14 +170,6 @@
         android:textColor="@color/colorAccent"
        />
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="55dp"
-        android:layout_height="48dp"
-        android:layout_above="@+id/error"
-        android:layout_alignEnd="@+id/Species"
-        android:background="@drawable/back_ic" />
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -194,7 +186,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignEnd="@+id/plantTree"
-        android:layout_alignTop="@+id/back"
+        android:layout_alignTop="@+id/PlantTreeTitle"
         android:background="@drawable/i" />
 
     <TextView

@@ -41,7 +41,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class CutTree extends AppCompatActivity {
 
-    Button back, ok;
+    Button  ok;
     private String error = null;
 
     TextView message, invalid;
@@ -62,19 +62,7 @@ public class CutTree extends AppCompatActivity {
         lat = (EditText)findViewById(R.id.ltd_cut);
 
         //takes you back to options page
-        back = (Button) findViewById(R.id.back_c);
 
-        back.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(CutTree.this, Options.class);
-                startActivity(intent);
-
-            }
-
-        });
 
         invalid = (TextView)findViewById((R.id.invalid_cut));
 

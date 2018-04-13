@@ -72,7 +72,6 @@
         android:layout_below="@+id/title_cut"
         android:layout_marginStart="21dp"
         android:layout_marginTop="13dp"
-        android:layout_toEndOf="@+id/back2"
         android:visibility="invisible" />
 
     <Button
