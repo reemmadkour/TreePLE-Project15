@@ -522,11 +522,13 @@ return (ts.size()*48);
 			List<String> scientists= new ArrayList<String>();
 			Scientist s= new Scientist();
 			 for(Person p : users) {
+
 				 if (p.getRoles()!=null) {
 				  if (p.getRoles().equals(s.getClass())) { 
 					scientists.add(p.getName());  
 					  
-				  }}
+				  }
+
 			  }
 			
 			return scientists;
