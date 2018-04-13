@@ -31,7 +31,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ScientistOptions extends AppCompatActivity {
 
-    Button plant, cut, maps, diseased, toBeCut;
+    Button plant, cut, maps, diseased, toBeCut, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,15 @@ public class ScientistOptions extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
                 Intent intent = new Intent(ScientistOptions.this, PlantTree.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userType", userType);
                 startActivity(intent);
+
             }
 
         });
@@ -61,7 +68,13 @@ public class ScientistOptions extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
                 Intent i = new Intent(ScientistOptions.this, MapsActivity.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType", userType);
                 startActivity(i);
 
             }
@@ -76,8 +89,15 @@ public class ScientistOptions extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.cut);
+
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
+
                 Intent i = new Intent(ScientistOptions.this, CutTree.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType", userType);
                 startActivity(i);
             }
 
@@ -89,8 +109,13 @@ public class ScientistOptions extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.cut);
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
                 Intent i = new Intent(ScientistOptions.this, DiseasedTree.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType", userType);
                 startActivity(i);
             }
 
@@ -102,8 +127,28 @@ public class ScientistOptions extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
+
+                Intent i = new Intent(ScientistOptions.this, DiseasedTree.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType", userType);
+                startActivity(i);
+            }
+
+        });
+
+        back  = (Button) findViewById(R.id.back_scientist);
+
+        back.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
                 //setContentView(R.layout.cut);
-                Intent i = new Intent(ScientistOptions.this, CutTree.class);
+                Intent i = new Intent(ScientistOptions.this, MainActivity.class);
                 startActivity(i);
             }
 

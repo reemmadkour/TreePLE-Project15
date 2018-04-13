@@ -45,7 +45,7 @@ public class PlantTree extends AppCompatActivity {
 
     private String error ;
     TextView invalid;
-    Button ok;
+    Button ok , back;
     Button mapsv;
     Button mainPlant;
     Button help;
@@ -82,7 +82,7 @@ public class PlantTree extends AppCompatActivity {
 
         mapsv = (Button) findViewById(R.id.viewmaps);
         ok = (Button)findViewById(R.id.plantTree);
-
+        back = (Button)findViewById(R.id.back_test);
         help = (Button)findViewById(R.id.help);
         invalid = (TextView)findViewById(R.id.invalid);
 
@@ -92,8 +92,14 @@ public class PlantTree extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(PlantTree.this, HelpPlant.class);
-                startActivity(intent);
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
+
+                Intent i = new Intent(PlantTree.this, HelpPlant.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
+                startActivity(i);
 
             }
 
@@ -114,6 +120,40 @@ public class PlantTree extends AppCompatActivity {
             }
 
         });
+
+        back.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
+                if(userType.equals("User")){
+
+                    Intent i = new Intent(PlantTree.this, Options.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
+
+                }else if(userType.equals("Scientist")){
+
+                    Intent i = new Intent(PlantTree.this, ScientistOptions.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
+
+                }
+
+
+
+            }
+
+        });
+
+
 
         mainPlant = (Button)findViewById(R.id.PlantTreeTitle);
 
@@ -254,7 +294,7 @@ public class PlantTree extends AppCompatActivity {
         // take username data input from welcomePage
         Intent i = getIntent();
        String userName = i.getStringExtra("userName");
-
+        System.out.println("Username " + userName);
 
 
         //adding to request parameters
@@ -280,14 +320,26 @@ public class PlantTree extends AppCompatActivity {
 
 
 
+
                 diameter.setText("");
                 height.setText("");
                 longitude.setText("");
                 latitude.setText("");
                 //userName.setText("");
 
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
+
                 Intent i = new Intent(PlantTree.this, AfterPlant.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
                 startActivity(i);
+
+                System.out.println("Username "  + userName);
+                System.out.println("UserType " + userType);
+
+
 
 
             }

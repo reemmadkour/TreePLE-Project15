@@ -9,13 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/lat_dis"
-        android:layout_marginEnd="82dp"
-        android:layout_marginTop="54dp"
-        android:background="#30000000"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="52dp"
+        android:layout_toEndOf="@+id/button7"
+        android:background="#20000000"
         android:onClick="MarkDiseased"
-        android:text="@android:string/ok" />
+        android:text="As Diseased" />
 
     <EditText
         android:id="@+id/lat_dis"
@@ -52,7 +52,7 @@
         android:layout_marginTop="30dp"
         android:background="#30000000"
         android:backgroundTint="@android:color/transparent"
-        android:text="Mark as Diseased"
+        android:text="Mark Tree"
         android:textColor="@android:color/black"
         android:textSize="30sp" />
 
@@ -75,4 +75,23 @@
         android:layout_alignStart="@+id/thanks"
         android:text="TextView"
         android:visibility="gone" />
+
+    <Button
+        android:id="@+id/back_diseased"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/lgt_d"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/back_ic" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ok_d"
+        android:layout_alignBottom="@+id/ok_d"
+        android:layout_toStartOf="@+id/thanks"
+        android:background="#20000000"
+        android:onClick="MarkCut"
+        android:text="To be Cut Down" />
 </RelativeLayout>

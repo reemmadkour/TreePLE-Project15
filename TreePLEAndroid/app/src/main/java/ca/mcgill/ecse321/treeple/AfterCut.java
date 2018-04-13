@@ -29,10 +29,19 @@ public class AfterCut extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.options);
 
-                Intent i = new Intent(AfterCut.this, CutTree.class);
-                startActivity(i);
+
+                Intent i = getIntent();
+                String userName = i.getStringExtra("userName");
+                String userType = i.getStringExtra("userType");
+
+                Intent intent = new Intent(AfterCut.this, CutTree.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userType",userType);
+                startActivity(intent);
+
+                System.out.println("Username "  + userName);
+                System.out.println("UserType " + userType);
             }
 
         });

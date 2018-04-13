@@ -28,9 +28,13 @@ public class HelpHeight extends AppCompatActivity {
                 @Override
                 public void onClick(View arg0) {
 
-                    //setContentView(R.layout.options);
+                    Intent intent = getIntent();
+                    String userName = intent.getStringExtra("userName");
+                    String userType = intent.getStringExtra("userType");
 
                     Intent i = new Intent(HelpHeight.this, HelpPlant.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType",userType);
                     startActivity(i);
                 }
 

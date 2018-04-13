@@ -27,7 +27,7 @@ import cz.msebera.android.httpclient.Header;
 public class DiseasedTree extends AppCompatActivity {
 
     EditText lat, lng;
-    TextView title, thanks, message;
+    TextView title, thanks, message, back;
     Button ok;
     String error;
 
@@ -43,6 +43,25 @@ public class DiseasedTree extends AppCompatActivity {
         title = (TextView)findViewById(R.id.title_diseased);
         thanks = (TextView)findViewById(R.id.thanks);
 
+        back = (Button)findViewById(R.id.back_diseased);
+
+        back.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
+                Intent i = new Intent(DiseasedTree.this, ScientistOptions.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType", userType);
+                startActivity(i);
+
+            }
+
+        });
 
 
 
@@ -89,6 +108,59 @@ public class DiseasedTree extends AppCompatActivity {
 
 
     }
+
+
+    //@PostMapping(value = { "/MarktoBeCutDown/{latitude}/{longitude}/{userName}" })
+    public void MarkCut(View v){
+
+        Intent i = getIntent();
+        String userName = i.getStringExtra("userName");
+
+        lng = (EditText)findViewById(R.id.lgt_d);
+        lat = (EditText)findViewById(R.id.lat_dis);
+
+        message = (TextView)findViewById(R.id.error_d);
+
+        HttpUtils.post("MarktoBeCutDown/"  + lat.getText().toString() + "/"+ lng.getText().toString() +"/"+ userName ,  new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                lng.setText("");
+                lat.setText("");
+
+
+                //going to Bob's page
+                Intent i = getIntent();
+                String userName = i.getStringExtra("userName");
+                String userType = i.getStringExtra("userType");
+
+                Intent intent = new Intent(DiseasedTree.this, AfterCut.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userType",userType);
+                startActivity(intent);
+
+                System.out.println("Username "  + userName);
+                System.out.println("UserType " + userType);
+
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                //System.out.println("Fail");
+
+                refreshErrorMessage();
+
+            }
+        });
+
+
+    }
+
+
 
     /**
      * refresh error message, displays error on screen

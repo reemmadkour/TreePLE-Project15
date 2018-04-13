@@ -30,10 +30,15 @@ public class HelpPlant extends AppCompatActivity{
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.options);
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
 
                 Intent i = new Intent(HelpPlant.this, HelpHeight.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
                 startActivity(i);
+
             }
 
         });
@@ -45,9 +50,13 @@ public class HelpPlant extends AppCompatActivity{
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.options);
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
 
                 Intent i = new Intent(HelpPlant.this, HelpDiameter.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
                 startActivity(i);
             }
 
@@ -61,9 +70,13 @@ public class HelpPlant extends AppCompatActivity{
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.options);
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
 
                 Intent i = new Intent(HelpPlant.this, HelpSpecies.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
                 startActivity(i);
             }
 
@@ -77,9 +90,13 @@ public class HelpPlant extends AppCompatActivity{
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.options);
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
 
                 Intent i = new Intent(HelpPlant.this, PlantTree.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
                 startActivity(i);
             }
 

@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -45,7 +46,7 @@ public class MainActivity  extends AppCompatActivity {
 
         private String error;
 
-        Button ok_b, back_first;
+        Button ok_b, back_first, bob;
 
 
         private List<String> userType = new ArrayList<>();
@@ -68,6 +69,20 @@ public class MainActivity  extends AppCompatActivity {
             welcome = (TextView) findViewById(R.id.welcome);
 
             username = (EditText) findViewById(R.id.username_entry);
+
+            bob = (Button) findViewById(R.id.drums);
+            bob.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Toast.makeText(MainActivity.this, "Hi there! I'm Bob!", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+            });
+
+
 
             entername = (TextView) findViewById(R.id.textView2);
             Spinner munSpinner = (Spinner) findViewById(R.id.munspinner);
@@ -106,17 +121,31 @@ public class MainActivity  extends AppCompatActivity {
 
                         else if(userSpinner.getSelectedItem().toString().equals("Local User")){
 
+                           /* Intent i2 = new Intent(MainActivity.this, PlantTree.class);
+                            i2.putExtra("userType", "User");
+                            System.out.println("user" + i2.getStringExtra("userType"));*/
+
+                            Intent i = new Intent(MainActivity.this, BeforeOptions.class);
+                            i.putExtra("userName", username.getText().toString());
+                            i.putExtra("userType", "User");
+                            System.out.println("userType " + i.getStringExtra("userType"));
 
 
-                        Intent i = new Intent(MainActivity.this, BeforeOptions.class);
-                        i.putExtra("userName", username.getText().toString());
-                        startActivity(i);
+
+                            startActivity(i);
                     }
 
                         else if(userSpinner.getSelectedItem().toString().equals("Scientist")){
+
+
                             Intent i = new Intent(MainActivity.this, ScientistOptions.class);
                             i.putExtra("userName", username.getText().toString());
+                            i.putExtra("userType", "Scientist");
+                            System.out.println("userType " + i.getStringExtra("userType"));
                             startActivity(i);
+
+
+
                         }else if(userSpinner.getSelectedItem().toString().equals("Please Select") ){
                             error = "Please Select Your Role!";
 
@@ -151,6 +180,7 @@ public class MainActivity  extends AppCompatActivity {
 
 
         }
+
 
 
     private void refreshErrorMessage() {
@@ -212,6 +242,8 @@ public class MainActivity  extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 

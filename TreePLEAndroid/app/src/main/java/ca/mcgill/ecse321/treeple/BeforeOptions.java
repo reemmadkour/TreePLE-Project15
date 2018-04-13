@@ -30,8 +30,14 @@ public class BeforeOptions extends AppCompatActivity{
 
                 //setContentView(R.layout.options);
 
-                Intent i = new Intent(BeforeOptions.this, Options.class);
-                startActivity(i);
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
+                Intent intent = new Intent(BeforeOptions.this, Options.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userType", userType);
+                startActivity(intent);
             }
 
         });

@@ -54,10 +54,6 @@ import cz.msebera.android.httpclient.Header;
 public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Marker Marker1;
-
-    private List<Marker> planted;
-
 
     private String error = null;
 
@@ -65,6 +61,8 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
     private ArrayAdapter<String> munAdapter;
 
     TextView msg;
+
+    Button back;
 
 
     /**
@@ -95,6 +93,40 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
 
         refresh(munAdapter ,munName, "trees");
+
+        back = (Button)findViewById(R.id.back_maps);
+
+        back.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
+                if(userType.equals("User")){
+
+                    Intent i = new Intent(MapsActivity.this, Options.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
+
+                }else if(userType.equals("Scientist")){
+
+                    Intent i = new Intent(MapsActivity.this, ScientistOptions.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
+
+                }
+
+
+
+            }
+
+        });
 
     }
 
@@ -130,7 +162,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
 
 
-                          Marker m = mMap.addMarker(new MarkerOptions().position(planted_p).title("Planted").snippet(species).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree)));
+                          Marker m = mMap.addMarker(new MarkerOptions().position(planted_p).title("Planted").snippet(species).icon(BitmapDescriptorFactory.fromResource(R.drawable.treemarker)));
 
                       }else if (response.getJSONObject(i).getJSONObject("currentStatus").getString("treeState").matches("ToBeCut")){
                               Double lgt_planted = Double.parseDouble(response.getJSONObject(i).getString("longitude"));
@@ -149,7 +181,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
 
 
-                          Marker m = mMap.addMarker(new MarkerOptions().position(planted_p).title("Diseased").snippet(species).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree_diseased)));
+                          Marker m = mMap.addMarker(new MarkerOptions().position(planted_p).title("Diseased").snippet(species).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_diseased)));
                       }
 
                         //Double.parseDouble(aString)
