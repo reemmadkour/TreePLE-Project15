@@ -187,7 +187,7 @@ public class TreePLETreeRestController {
 
 	
 	
-	@PostMapping(value = { "/Login/{userName}/{userRole}"})
+	@GetMapping(value = { "/Login/{userName}/{userRole}"})
 	public Boolean Login(
 			@PathVariable("userName") String userName,
 			@PathVariable ("userRole") String userRole)
