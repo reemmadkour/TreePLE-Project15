@@ -49,12 +49,12 @@ public class TreePLETreeService {
 		
 		
 		
-		public Boolean login(String userName, String userRole) {
+		public Boolean login(String userName, String userRole) throws InvalidInputException {
 			List<String> scientists= getAllScientistNames();
 			Scientist s= new Scientist();
 			if (userRole==s.getRole()){
 				if(scientists.contains(userName)) { return true;}
-				else { return false;}
+				else { throw new InvalidInputException("this is not a valid Scientist ID.");}
 				
 			}
 			else {
@@ -522,13 +522,11 @@ return (ts.size()*48);
 			List<String> scientists= new ArrayList<String>();
 			Scientist s= new Scientist();
 			 for(Person p : users) {
-
 				 if (p.getRoles()!=null) {
 				  if (p.getRoles().equals(s.getClass())) { 
 					scientists.add(p.getName());  
 					  
-				  }
-
+				  }}
 			  }
 			
 			return scientists;
