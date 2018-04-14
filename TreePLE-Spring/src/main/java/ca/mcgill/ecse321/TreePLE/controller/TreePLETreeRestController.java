@@ -188,18 +188,18 @@ public class TreePLETreeRestController {
 	
 	
 	@PostMapping(value = { "/Login/{userName}/{userRole}"})
-	public Boolean Login(
+	public void Login(
 			@PathVariable("userName") String userName,
 			@PathVariable ("userRole") String userRole)
 	{
-		Boolean ans=true;
+		
 		try {
 			ans = service.login(userName, userRole);
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return ans;
+		
 	
 	}
 	
