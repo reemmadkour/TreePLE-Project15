@@ -526,7 +526,7 @@ return (ts.size()*48);
 				  if (p.getRoles().equals(s.getClass())) { 
 					scientists.add(p.getName());  
 					  
-}
+
 				  }
 				 }
 
