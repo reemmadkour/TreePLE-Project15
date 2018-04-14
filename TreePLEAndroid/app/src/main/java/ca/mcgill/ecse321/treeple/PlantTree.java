@@ -31,7 +31,8 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 /**
- * Created by student on 07/03/18.
+ * This class implements the plant tree layout and methods. User can plant a tree and can be guided throughout the process.
+ * Created by leaakkari on 07/03/18.
  */
 
 
@@ -43,10 +44,10 @@ public class PlantTree extends AppCompatActivity {
 
     private String error ;
     TextView invalid;
-    Button ok;
+    Button ok , back;
     Button mapsv;
     Button mainPlant;
-    Button back, help;
+    Button help;
     EditText diameter, height, longitude, latitude, userName;
     private GoogleMap mMap;
 
@@ -66,7 +67,10 @@ public class PlantTree extends AppCompatActivity {
     Spinner speciesSpinner, landSpinner , munSpinner;
     private double aDouble;
 
-
+    /**
+     * On Create method
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -77,7 +81,7 @@ public class PlantTree extends AppCompatActivity {
 
         mapsv = (Button) findViewById(R.id.viewmaps);
         ok = (Button)findViewById(R.id.plantTree);
-        back = (Button)findViewById(R.id.back);
+        back = (Button)findViewById(R.id.back_test);
         help = (Button)findViewById(R.id.help);
         invalid = (TextView)findViewById(R.id.invalid);
 
@@ -87,8 +91,14 @@ public class PlantTree extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(PlantTree.this, HelpPlant.class);
-                startActivity(intent);
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
+
+                Intent i = new Intent(PlantTree.this, HelpPlant.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
+                startActivity(i);
 
             }
 
@@ -110,50 +120,44 @@ public class PlantTree extends AppCompatActivity {
 
         });
 
-        mainPlant = (Button)findViewById(R.id.PlantTreeTitle);
-
         back.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(PlantTree.this, Options.class);
-                startActivity(intent);
 
-            }
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
 
-        });
+                if(userType.equals("User")){
 
-        ok.setOnClickListener(new View.OnClickListener() {
+                    Intent i = new Intent(PlantTree.this, Options.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
 
-            @Override
-            public void onClick(View arg0) {
+                }else if(userType.equals("Scientist")){
 
-                if(((Spinner) findViewById(R.id.municipality)).getSelectedItem().toString().equals("Please Select" )|| ((Spinner) findViewById(R.id.species)).getSelectedItem().toString().equals("Please Select" )||((Spinner) findViewById(R.id.landtype)).getSelectedItem().toString().equals("Please Select" ) ){
-                    invalid.setText("Invalid Selection. Please pick an option!");
-                    invalid.setVisibility(View.VISIBLE);
-                }else  if(diameter.getText().toString().matches("")
-                        || height.getText().toString().matches("")
-                        || longitude.getText().toString().matches("")
-                        || latitude.getText().toString().matches("")){
+                    Intent i = new Intent(PlantTree.this, ScientistOptions.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
 
-                    invalid.setText("Please fill in everything!");
-                    invalid.setVisibility(View.VISIBLE);
-                }else {
-
-                    Intent intent = new Intent(PlantTree.this, AfterPlant.class);
-                    startActivity(intent);
                 }
 
+
+
             }
 
         });
 
 
 
-        // set species Spinner
-        //public enum TreeSpecies { Willow, RedMaple, LobollyPine, Sweetgum, DouglasFir, QuackingAspen, SugarMaple, Balsamfir, FloweringDogwood, LodgepolePine, WhiteOak }
-       // public enum LandType { Residential, Institutional, Park, Municipal }
+        mainPlant = (Button)findViewById(R.id.PlantTreeTitle);
+
+
+
 
         species.add("Please Select");
         species.add("Willow");
@@ -195,9 +199,7 @@ public class PlantTree extends AppCompatActivity {
         landSpinner.setAdapter(landAdapter);
 
         //set Municipalities Spinner
-        //Montreal, Laval, Anjou, AhuntsicCartierville, LeSudOuest, LIlleBizadSaintGenevieve, MercierHochelagaMaisonneuve, MontrealNord,
-        // PierrefondsRoxboro, RiviereDesPrairiesPointeAuxTrembles, Rosemont, VilleraySaintMichel, CoteDesNeiges,
-        // Lachine, LaSalle, LePlateau, Outremont, Verdun, VilleMarie
+
         municipalities.add("Please Select");
         municipalities.add("Montreal");
         municipalities.add("Laval");
@@ -223,8 +225,6 @@ public class PlantTree extends AppCompatActivity {
         municipalities.add("VilleMarie");
 
 
-
-
         munSpinner = (Spinner) findViewById(R.id.municipality);
 
         munAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, municipalities);
@@ -243,41 +243,9 @@ public class PlantTree extends AppCompatActivity {
     }
 
 
-
-
-    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    try {
-                        names.add(response.getJSONObject(i).getString("name"));
-                    } catch (Exception e) {
-                        error += e.getMessage();
-                    }
-                    refreshErrorMessage();
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-    }
-
-
-
-    //refresh error messge to display error message on screen
+    /**
+     * Refresh error Message: Displays error on screen when user enters invalid input
+     */
     private void refreshErrorMessage() {
         // set the error message
         TextView tvError = (TextView) findViewById(R.id.error);
@@ -292,9 +260,10 @@ public class PlantTree extends AppCompatActivity {
     }
 
 
-
-
-    //addTrees
+    /**
+     * Add tree method.  Allows users to add a tree to database.
+     * @param v
+     */
     public void addTree(View v) {
 
 
@@ -303,7 +272,7 @@ public class PlantTree extends AppCompatActivity {
 
         munSpinner = (Spinner) findViewById(R.id.municipality);
 
-       // munSpinner.setText(i.getStringExtra("municipality"));
+        //munSpinner.setText(i.getStringExtra("municipality"));
         error = "";
         RequestParams rp = new RequestParams();
 
@@ -319,17 +288,12 @@ public class PlantTree extends AppCompatActivity {
         longitude = (EditText)findViewById(R.id.longitude);
         latitude = (EditText)findViewById(R.id.latitude);
 
-        Intent intent = new Intent(PlantTree.this, MapsActivity.class);
-        intent.putExtra("longitude", longitude.getText().toString());
-        intent.putExtra("latitude", latitude.getText().toString());
-
         message = (TextView)findViewById(R.id.textView5) ;
 
         // take username data input from welcomePage
         Intent i = getIntent();
        String userName = i.getStringExtra("userName");
-
-       // double height1 = Double.parseDouble(height.getText().toString());
+        System.out.println("Username " + userName);
 
 
         //adding to request parameters
@@ -340,7 +304,6 @@ public class PlantTree extends AppCompatActivity {
         rp.add("diameter", diameter.getText().toString());
         rp.add("longitude", longitude.getText().toString());
         rp.add("latitude", latitude.getText().toString());
-        //rp.add("userName", userName);
 
 
 
@@ -351,16 +314,8 @@ public class PlantTree extends AppCompatActivity {
                 ((Spinner) findViewById(R.id.municipality)).getSelectedItem();
                 ((Spinner) findViewById(R.id.species)).getSelectedItem();
                 ((Spinner) findViewById(R.id.landtype)).getSelectedItem();
-                message.setVisibility(View.VISIBLE);
 
-                //TODO: Test this pop up dialog!
-                /*ok = (Button) findViewById(R.id.button);
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "Congatulations! you have successfully planted a tree!", Toast.LENGTH_LONG);
-                    }
-                });*/
+                message.setVisibility(View.VISIBLE);
 
 
 
@@ -370,6 +325,22 @@ public class PlantTree extends AppCompatActivity {
                 longitude.setText("");
                 latitude.setText("");
                 //userName.setText("");
+
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
+
+                Intent i = new Intent(PlantTree.this, AfterPlant.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
+                startActivity(i);
+
+                System.out.println("Username "  + userName);
+                System.out.println("UserType " + userType);
+
+
+
+
             }
            @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
@@ -378,7 +349,7 @@ public class PlantTree extends AppCompatActivity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
-
+                error = "Error! Please make sure all your inputs are correct";
                 refreshErrorMessage();
 
             }

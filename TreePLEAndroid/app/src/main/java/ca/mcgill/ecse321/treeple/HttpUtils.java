@@ -5,7 +5,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 /**
- * Created by student on 07/03/18.
+ * This class contains all http methods
+ * Created by leaakkari on 07/03/18.
  */
 
 public class HttpUtils {

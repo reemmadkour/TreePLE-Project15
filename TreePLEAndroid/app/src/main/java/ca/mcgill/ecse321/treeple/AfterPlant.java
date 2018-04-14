@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Button;
 
 /**
+ * This class pops up after a user plants a tree
  * Created by leaakkari on 2018-04-02.
  */
+
 
 public class AfterPlant extends AppCompatActivity {
 
@@ -29,10 +31,20 @@ public class AfterPlant extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.options);
+                //keeping the data
+
+                Intent intent = getIntent();
+                String userName = intent.getStringExtra("userName");
+                String userType = intent.getStringExtra("userType");
+
 
                 Intent i = new Intent(AfterPlant.this, PlantTree.class);
+                i.putExtra("userName",userName);
+                i.putExtra("userType",userType);
+
                 startActivity(i);
+                System.out.println("Username "  + userName);
+                System.out.println("UserType " + userType);
             }
 
         });

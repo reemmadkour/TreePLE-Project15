@@ -81,6 +81,7 @@
         android:layout_marginTop="48dp"
         android:layout_toEndOf="@+id/textView2"
         android:background="#30000000"
+        android:onClick="userLogin"
         android:text="OK"
         android:textColor="#fff" />
     <TextView
@@ -120,6 +121,7 @@
         android:layout_marginTop="11dp"
         android:layout_toEndOf="@+id/drums"
         android:visibility="invisible" />
+
 
 
 </RelativeLayout>
