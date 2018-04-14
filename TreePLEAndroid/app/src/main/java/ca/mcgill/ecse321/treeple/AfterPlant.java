@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Button;
 
 /**
+ * This class pops up after a user plants a tree
  * Created by leaakkari on 2018-04-02.
  */
+
 
 public class AfterPlant extends AppCompatActivity {
 

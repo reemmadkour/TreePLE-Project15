@@ -24,6 +24,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 /**
+ * This class implements the scientist options page
  * Created by leaakkari on 2018-03-19.
  */
 
@@ -33,6 +34,10 @@ public class ScientistOptions extends AppCompatActivity {
 
     Button plant, cut, maps, diseased, toBeCut, back;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

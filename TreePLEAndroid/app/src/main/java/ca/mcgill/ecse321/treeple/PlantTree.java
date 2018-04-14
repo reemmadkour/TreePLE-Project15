@@ -31,16 +31,15 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 /**
- * Created by student on 07/03/18.
+ * This class implements the plant tree layout and methods. User can plant a tree and can be guided throughout the process.
+ * Created by leaakkari on 07/03/18.
  */
 
 
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-/**
- * This class implements the plant tree layout and methods. User can plant a tree and can be guided throughout the process.
- */
+
 public class PlantTree extends AppCompatActivity {
 
     private String error ;

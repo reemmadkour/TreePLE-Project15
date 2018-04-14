@@ -26,6 +26,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 /**
+ * This class implements the Local User Options page
  * Created by leaakkari on 2018-03-19.
  */
 
@@ -35,6 +36,10 @@ public class Options extends AppCompatActivity {
 
     Button plant, cut, maps, back_b, bob;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

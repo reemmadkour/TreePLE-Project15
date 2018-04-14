@@ -7,13 +7,19 @@ import android.view.View;
 import android.widget.Button;
 
 /**
+ * This class shows up when the user is a local user, Bob welcomes the user to TreePLE
  * Created by leaakkari on 2018-04-01.
  */
+
 
 public class BeforeOptions extends AppCompatActivity{
 
     Button b, b1;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

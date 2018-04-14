@@ -122,23 +122,6 @@
         android:layout_toEndOf="@+id/drums"
         android:visibility="invisible" />
 
-    <Spinner
-        android:id="@+id/munspinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/drums"
-        android:layout_alignParentStart="true"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView4"
-        android:onClick="refreshLists"
-        android:text="Button"
-        android:visibility="gone" />
 
 
 </RelativeLayout>

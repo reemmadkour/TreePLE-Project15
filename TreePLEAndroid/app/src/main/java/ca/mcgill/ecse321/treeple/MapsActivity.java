@@ -49,6 +49,8 @@ import cz.msebera.android.httpclient.Header;
  * If Google Play services is not installed on the device, the user will be prompted to install
  * it inside the SupportMapFragment. This method will only be triggered once the user has
  * installed Google Play services and returned to the app.
+ *
+ * created by leaakkari
  */
 
 public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
@@ -229,7 +231,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
     /**
      *
      * @param marker
-     * @return
+     * @return boolean if marker is clicked
      */
     @Override
     public boolean onMarkerClick(final Marker marker) {
@@ -249,7 +251,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
     }
 
     /**
-     *
+     * refreshes error message displayed on user screen
      */
     private void refreshErrorMessage() {
         // set the error message

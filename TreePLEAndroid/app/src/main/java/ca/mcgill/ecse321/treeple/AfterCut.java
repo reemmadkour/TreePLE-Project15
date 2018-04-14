@@ -7,12 +7,18 @@ import android.view.View;
 import android.widget.Button;
 
 /**
+ * This class pops up after a user cuts down a tree
  * Created by leaakkari on 2018-04-02.
  */
 
 public class AfterCut extends AppCompatActivity {
 
     Button back;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

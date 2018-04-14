@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
+ * First page of the app
  * Created by leaakkari on 2018-04-01.
  */
 

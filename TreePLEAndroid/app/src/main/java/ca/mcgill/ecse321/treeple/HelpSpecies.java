@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
+ * This class helps the user identify a tree species
  * Created by leaakkari on 2018-04-06.
  */
 
@@ -14,6 +15,10 @@ public class HelpSpecies extends AppCompatActivity {
 
     Button back;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

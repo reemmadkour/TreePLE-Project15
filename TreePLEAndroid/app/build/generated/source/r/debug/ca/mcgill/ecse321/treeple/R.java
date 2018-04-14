@@ -3319,7 +3319,6 @@ containing a value of this type.
         public static final int blocking=0x7f0f0048;
         public static final int bob_think=0x7f0f00a4;
         public static final int bottom=0x7f0f0035;
-        public static final int button2=0x7f0f0101;
         public static final int button4=0x7f0f00d7;
         public static final int button5=0x7f0f00d6;
         public static final int button6=0x7f0f00dd;
@@ -3404,14 +3403,13 @@ containing a value of this type.
         public static final int ltd_cut=0x7f0f00a0;
         public static final int map=0x7f0f0095;
         public static final int maps_scientist=0x7f0f00dc;
-        public static final int masked=0x7f0f0103;
+        public static final int masked=0x7f0f0101;
         public static final int media_actions=0x7f0f00c9;
         public static final int message=0x7f0f00f6;
         public static final int middle=0x7f0f004c;
         public static final int mini=0x7f0f0046;
         public static final int multiply=0x7f0f002c;
         public static final int municipality=0x7f0f00f0;
-        public static final int munspinner=0x7f0f0100;
         public static final int navigation_header_container=0x7f0f00ad;
         public static final int never=0x7f0f005b;
         public static final int next_b=0x7f0f00bb;
@@ -3519,7 +3517,7 @@ containing a value of this type.
         public static final int view_offset_helper=0x7f0f001c;
         public static final int viewmaps=0x7f0f00ef;
         public static final int viewmaps_b=0x7f0f00da;
-        public static final int visible=0x7f0f0102;
+        public static final int visible=0x7f0f0100;
         public static final int welcome=0x7f0f00f7;
         public static final int wide=0x7f0f005f;
         public static final int withText=0x7f0f005c;

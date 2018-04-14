@@ -15,6 +15,11 @@ public class HelpPlant extends AppCompatActivity{
 
     Button help_diameter, help_height, help_species,back;
 
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
