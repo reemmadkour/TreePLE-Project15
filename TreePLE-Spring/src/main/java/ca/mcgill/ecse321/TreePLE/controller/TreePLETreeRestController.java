@@ -192,7 +192,7 @@ public class TreePLETreeRestController {
 			@PathVariable("userName") String userName,
 			@PathVariable ("userRole") String userRole)
 	{
-		
+		Boolean ans=true;
 		try {
 			ans = service.login(userName, userRole);
 		} catch (InvalidInputException e) {
