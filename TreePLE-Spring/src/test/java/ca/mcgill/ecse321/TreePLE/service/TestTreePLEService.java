@@ -85,39 +85,51 @@ public class TestTreePLEService {
 
 @Test
 public void testMarkTreeToBeCutNewUser(){
-double height = 10;
+/*double height = 10;
 double diameter = 12;
 double longitude = 23;
 double latitude = 24;
 String name = "John";
 TreeSpecies species = TreeSpecies.Willow;
 LandType landtype = LandType.Institutional;
-MunicipalityName mun= MunicipalityName.Montreal;
-Municipality m= new Municipality();
+MunicipalityName mun= MunicipalityName.Montreal; */
+/*Municipality m= new Municipality();
 m.setMunicipalityName(mun);
 Tree t= new Tree(height,diameter,longitude,latitude,m);
 t.setLandType(landtype);
 t.setTreeSpecies(species);
 //Person user= new Person("Jon");
-//tm.addPerson(user);
-
-TreePLETreeService tree = new TreePLETreeService(tm);
-tm.addTree(t);
+//tm.addPerson(user); */
+	double height = 10;
+	double diameter = 12;
+	double longitude = 23;
+	double latitude = 24;
+	String name = "Jon";
+	TreeSpecies species = TreeSpecies.Willow;
+	LandType landtype = LandType.Institutional;
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	MunicipalityName mun = MunicipalityName.Montreal;
+	List<Tree> trees = tree.listAllTrees();
+	try {
+		tree.plantTree(landtype, species, height, diameter, longitude, latitude, mun, name);
+	} catch (InvalidInputException e) {
+		fail();
+	}
+//tm.addTree(t);
 try{
-	tree.MarkTreeToBeCutDown(t, name);}
+	tree.MarkTreeToBeCutDown(tree.getPlantedTrees().get(0), name);
+	}
 catch(InvalidInputException e){
 	e.printStackTrace();
 }
 
 assertEquals(TreeState.ToBeCut, tm.getTree(0).getCurrentStatus().getTreeState());
 
-assertEquals(1, tm.getPerson().size());
-
 }
 
 
 //reem just did
-
+@Test
 public void testMarkTreeToBeCutEmptyUser(){
 	double height = 10;
 	double diameter = 12;
@@ -171,6 +183,8 @@ assertEquals("Please fill in all missing information!", er);
 }
 
 @Test
+
+//
 public void testMarkTreeToBeCutNullUser(){
 double height = 10;
 double diameter = 12;
@@ -311,8 +325,6 @@ catch(InvalidInputException e){
 }
 
 assertEquals(TreeState.Diseased, tm.getTree(0).getCurrentStatus().getTreeState());
-
-assertEquals(1, tm.getPerson().size());
 
 }
 
@@ -508,6 +520,78 @@ assertEquals("Please fill in all missing information!", er);
 	assertEquals(MunicipalityName.Montreal, plantedTrees.get(1).getMunicipality().getMunicipalityName());
 	}
 	
+	@Test
+	public void testGetTreesById() {
+	
+	assertEquals(0, tm.getTrees().size());
+
+	Tree tree1 = null;
+	Tree tree2 = null;
+	
+	double height = 10;
+	double diameter = 12;
+	double longitude = 23;
+	double latitude = 24;
+	String name = "Jon";
+	TreeSpecies species = TreeSpecies.Willow;
+	LandType landtype = LandType.Institutional;
+	MunicipalityName mun = MunicipalityName.Montreal;
+	
+	//second tree
+	
+	double height2 = 11;
+	double diameter2 = 13;
+	double longitude2 = 25;
+	double latitude2 = 28;
+	String name2 = "Sarah";
+	TreeSpecies species2 = TreeSpecies.WhiteOak;
+	LandType landtype2 = LandType.Municipal;
+	MunicipalityName mun2 = MunicipalityName.Montreal;
+	
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	
+	try {
+		tree.plantTree(landtype, species, height, diameter, longitude, latitude, mun, name);
+		tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name2);
+	} catch (InvalidInputException e) {
+		fail();
+	}
+	int id1 = tm.getTree(0).getTreeID();
+	int id2 = tm.getTree(1).getTreeID();
+	List<Tree> plantedTrees = tree.getPlantedTrees();
+	try {
+		tree1 = tree.getTreeByID(id1);
+		tree2 = tree.getTreeByID(id2);
+	} catch (InvalidInputException e) {
+		fail();
+	}
+
+	// check number of registered trees, if two trees were planted this should be true
+	assertEquals(2, plantedTrees.size());
+
+	// check each Tree
+	assertEquals(10, plantedTrees.get(0).getHeight(), 0);
+	assertEquals(12, plantedTrees.get(0).getDiameter(), 0);
+	assertEquals(23, plantedTrees.get(0).getLongitude(), 0);
+	assertEquals(24, plantedTrees.get(0).getLatitude(), 0);
+	assertEquals(LandType.Institutional, plantedTrees.get(0).getLandType());
+	assertEquals(TreeSpecies.Willow, plantedTrees.get(0).getTreeSpecies());
+	assertEquals(MunicipalityName.Montreal, plantedTrees.get(0).getMunicipality().getMunicipalityName());
+	
+	
+	assertEquals(11, plantedTrees.get(1).getHeight(), 0);
+	assertEquals(13, plantedTrees.get(1).getDiameter(), 0);
+	assertEquals(25, plantedTrees.get(1).getLongitude(), 0);
+	assertEquals(28, plantedTrees.get(1).getLatitude(), 0);
+	assertEquals(LandType.Municipal, plantedTrees.get(1).getLandType());
+	assertEquals(TreeSpecies.WhiteOak, plantedTrees.get(1).getTreeSpecies());
+	assertEquals(MunicipalityName.Montreal, plantedTrees.get(1).getMunicipality().getMunicipalityName());
+
+	assertEquals(tree1, tm.getTree(0));
+	assertEquals(tree2, tm.getTree(1));
+	
+	}
+	
 
 	@Test
 	public void testGetPlantedTreesByLocation() {
@@ -631,6 +715,31 @@ assertEquals("Please fill in all missing information!", er);
 
 	}
 	@Test
+	public void testGetMuniciplityForTree() {
+		assertEquals(0, tm.getTrees().size());
+
+		double height1 = 13;
+		double diameter1 = 15;
+		double longitude1 = 65;
+		double latitude1 = 87;
+		String name1 = "Jon";
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		MunicipalityName mun1 = MunicipalityName.Laval;
+		TreePLETreeService tree = new TreePLETreeService(tm);
+		
+		try {
+			tree.plantTree(landtype1, species1, height1, diameter1, longitude1, latitude1, mun1, name1);
+			Municipality mun = tree.getMunicipalityForTree(tm.getTree(0));
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
+	
+	@Test
 	public void testFindAllTrees() {
 		assertEquals(0, tm.getTrees().size());
 
@@ -701,8 +810,10 @@ assertEquals("Please fill in all missing information!", er);
 		String poll1 ="";
 		String scoreString = " No earned titles.Keep planting trees to level up!";
 		String scoreString2 ="Congratulations, you now have the title of Remarkable Citizen! Keep planting to level up!";
-		
-    	//	trees planted by jony
+		String scoreString3 ="Congratulations, you now have the title of Exceptional Citizen! Keep planting to level up!";
+    	String scoreString4 ="Congratulations, you now have the title of Perfect Citizen!";
+    	
+		//	trees planted by jony
 		double height2 = 12;
 		double diameter2 = 19;
 		double longitude2 = 76;
@@ -745,6 +856,14 @@ assertEquals("Please fill in all missing information!", er);
 		LandType landtype6 = LandType.Municipal;
 		MunicipalityName mun6 = MunicipalityName.Montreal;
 		
+		String name8 = "BenJonionDon";
+		String poll3 ="";
+		
+		String name7 = "Jenkins";
+		String poll4 ="";
+		
+		
+		
 		
 		TreePLETreeService tree = new TreePLETreeService(tm);
 		
@@ -758,8 +877,66 @@ assertEquals("Please fill in all missing information!", er);
 			tree.plantTree(landtype4, species4, height4, diameter4, longitude4, latitude4, mun4, name2);
 			tree.plantTree(landtype5, species5, height5, diameter5, longitude5, latitude5, mun5, name2);
 			tree.plantTree(landtype6, species6, height6, diameter6, longitude6, latitude6, mun6, name2);
+			
+			//Jenkins
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name7);
+			//tree for BenJonIonDion
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name8);
+			
+			
 			poll1 = tree.pollUserLevel(name1);
 			poll2 = tree.pollUserLevel(name2);
+			poll3 = tree.pollUserLevel(name8);
+			poll4 = tree.pollUserLevel(name7);
+			
 		} catch (InvalidInputException e) {
 			// Check that no error occured
 			fail();
@@ -767,7 +944,7 @@ assertEquals("Please fill in all missing information!", er);
 		List<Tree> registeredTrees = tree.listAllTrees();
 
 		// check number of registered trees
-		assertEquals(6, registeredTrees.size());
+		assertEquals(56, registeredTrees.size());
 
 		// check each Tree
 		
@@ -789,7 +966,9 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(TreeSpecies.Willow, registeredTrees.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 	
-		
+		assertEquals(scoreString2, poll2);
+		assertEquals(scoreString3, poll3);
+		assertEquals(scoreString4, poll4);
 		
 	}
 	
@@ -931,7 +1110,245 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(TreeSpecies.Willow, registeredTrees.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 }
+	@Test
+	public void testGetTreeByState() {
+
+		assertEquals(0, tm.getTrees().size());
+
+		double height1 = 15;
+		double diameter1 = 19;
+		double longitude1 = 75;
+		double latitude1 = 77;
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		Date  date1 = new Date();
+		Person personPlanting = new Person("John");
+		Municipality mun1 = new Municipality();
+		mun1.setMunicipalityName(MunicipalityName.Laval);
+		Tree tree1 = new Tree(height1, diameter1, longitude1, latitude1, mun1 );
+		Status status1= new Status(date1, tree1, personPlanting);
+		status1.setTreeState(TreeState.Planted);
+		tree1.addStatus(status1);
+		tree1.setCurrentStatus(status1);
+		tree1.setTreeSpecies(species1);
+		tree1.setLandType(landtype1);
+		tm.addPerson(personPlanting);
+		tm.addTree(tree1);
+
+		double height2 = 12;
+		double diameter2 = 19;
+		double longitude2 = 76;
+		double latitude2 = 54;
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Municipal;
+		String name2 = "Jony";
+		Date  date2 = new Date();
+		Person personMarkingDiseased = new Person("Jony");
+		Municipality mun2 = new Municipality();
+		mun2.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree2 = new Tree(height2, diameter2, longitude2, latitude2, mun2);
+		Status status2= new Status(date2, tree2, personMarkingDiseased);
+		status2.setTreeState(TreeState.Diseased);
+		tree2.addStatus(status2);
+		tree2.setCurrentStatus(status2);
+		tree2.setTreeSpecies(species2);
+		tree2.setLandType(landtype2);
+		tm.addPerson(personMarkingDiseased);
+		tm.addTree(tree2);
+		
+		double height3 = 17;
+		double diameter3 = 12;
+		double longitude3 = 70;
+		double latitude3 = 54;
+		TreeSpecies species3 = TreeSpecies.Willow;
+		LandType landtype3 = LandType.Municipal;
+		String name3 = "Jessy";
+		Date  date3 = new Date();
+		Person personMarkingToBeCut = new Person("Jessy");
+		Municipality mun3 = new Municipality();
+		mun3.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree3 = new Tree(height3, diameter3, longitude3, latitude3, mun3);
+		Status status3= new Status(date3, tree3, personMarkingToBeCut);
+		status3.setTreeState(TreeState.ToBeCut);
+		tree2.addStatus(status3);
+		tree2.setCurrentStatus(status3);
+		tree2.setTreeSpecies(species3);
+		tree3.setLandType(landtype3);
+		tm.addPerson(personMarkingToBeCut);
+		tm.addTree(tree3);
+		
+		double height4 = 17;
+		double diameter4 = 12;
+		double longitude4 = 70;
+		double latitude4 = 54;
+		TreeSpecies species4 = TreeSpecies.Willow;
+		LandType landtype4 = LandType.Municipal;
+		String name4 = "Jessica";
+		Date  date4 = new Date();
+		Person personMarkingCut = new Person("Jessica");
+		Municipality mun4 = new Municipality();
+		mun4.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree4 = new Tree(height4, diameter4, longitude4, latitude4, mun4);
+		Status status4= new Status(date4, tree4, personMarkingCut);
+		status4.setTreeState(TreeState.Cut);
+		tree4.addStatus(status4);
+		tree4.setCurrentStatus(status4);
+		tree4.setTreeSpecies(species4);
+		tree4.setLandType(landtype4);
+		tm.addPerson(personMarkingCut);
+		tm.addTree(tree4);
+		List<Tree> listOfPlantedTrees = new ArrayList<Tree>();
+		List<Tree> listOfTreesDiseased =new ArrayList<Tree>();
+		List<Tree> listOfTreestoBeCut = new ArrayList<Tree>();
+		List<Tree> listOfTreesCut = new ArrayList<Tree>();
+		
+		
+
+		TreePLETreeService tree = new TreePLETreeService(tm);
+
+		try {
+			tree.MarkTreeAsDiseased(tree2, name2);
+			tree.MarkTreeToBeCutDown(tree3, name3);
+			tree.cutDownTree(tree4, name4);
+			listOfPlantedTrees = tree.getTreeByState(TreeState.Planted);
+			 listOfTreesDiseased = tree.getTreeByState(TreeState.Diseased);
+			 listOfTreestoBeCut = tree.getTreeByState(TreeState.ToBeCut);
+			 listOfTreesCut = tree.getTreeByState(TreeState.Cut);
+			
+			
+			
+		} catch (InvalidInputException e) {
+			// Check that no error occured
+			fail();
+		}
+
+		List<Tree> allTrees = tree.listAllTrees();
+		// check number of registered participants
+				assertEquals(4, allTrees.size());
+				assertEquals(1, listOfPlantedTrees.size() );
+				assertEquals(1, listOfTreesDiseased.size());
+				assertEquals(1, listOfTreestoBeCut.size() );
+				assertEquals(1, listOfTreesCut.size());
+	}
 	
+	@Test
+	public void testCalculateCurrentBioDiversity() {
+
+		assertEquals(0, tm.getTrees().size());
+
+		double height1 = 15;
+		double diameter1 = 19;
+		double longitude1 = 75;
+		double latitude1 = 77;
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		Date  date1 = new Date();
+		Person personPlanting = new Person("John");
+		Municipality mun1 = new Municipality();
+		mun1.setMunicipalityName(MunicipalityName.Laval);
+		Tree tree1 = new Tree(height1, diameter1, longitude1, latitude1, mun1 );
+		Status status1= new Status(date1, tree1, personPlanting);
+		status1.setTreeState(TreeState.Planted);
+		tree1.addStatus(status1);
+		tree1.setCurrentStatus(status1);
+		tree1.setTreeSpecies(species1);
+		tree1.setLandType(landtype1);
+		tm.addPerson(personPlanting);
+		tm.addTree(tree1);
+
+		double height2 = 12;
+		double diameter2 = 19;
+		double longitude2 = 76;
+		double latitude2 = 54;
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Municipal;
+		String name2 = "Jony";
+		Date  date2 = new Date();
+		Person personMarkingDiseased = new Person("Jony");
+		Municipality mun2 = new Municipality();
+		mun2.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree2 = new Tree(height2, diameter2, longitude2, latitude2, mun2);
+		Status status2= new Status(date2, tree2, personMarkingDiseased);
+		status2.setTreeState(TreeState.Diseased);
+		tree2.addStatus(status2);
+		tree2.setCurrentStatus(status2);
+		tree2.setTreeSpecies(species2);
+		tree2.setLandType(landtype2);
+		tm.addPerson(personMarkingDiseased);
+		tm.addTree(tree2);
+		
+		double height3 = 17;
+		double diameter3 = 12;
+		double longitude3 = 70;
+		double latitude3 = 54;
+		TreeSpecies species3 = TreeSpecies.Willow;
+		LandType landtype3 = LandType.Municipal;
+		String name3 = "Jessy";
+		Date  date3 = new Date();
+		Person personMarkingToBeCut = new Person("Jessy");
+		Municipality mun3 = new Municipality();
+		mun3.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree3 = new Tree(height3, diameter3, longitude3, latitude3, mun3);
+		Status status3= new Status(date3, tree3, personMarkingToBeCut);
+		status3.setTreeState(TreeState.ToBeCut);
+		tree2.addStatus(status3);
+		tree2.setCurrentStatus(status3);
+		tree2.setTreeSpecies(species3);
+		tree3.setLandType(landtype3);
+		tm.addPerson(personMarkingToBeCut);
+		tm.addTree(tree3);
+		
+		double height4 = 17;
+		double diameter4 = 12;
+		double longitude4 = 70;
+		double latitude4 = 54;
+		TreeSpecies species4 = TreeSpecies.Willow;
+		LandType landtype4 = LandType.Municipal;
+		String name4 = "Jessica";
+		Date  date4 = new Date();
+		Person personMarkingCut = new Person("Jessica");
+		Municipality mun4 = new Municipality();
+		mun4.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree4 = new Tree(height4, diameter4, longitude4, latitude4, mun4);
+		Status status4= new Status(date4, tree4, personMarkingCut);
+		status4.setTreeState(TreeState.Cut);
+		tree4.addStatus(status4);
+		tree4.setCurrentStatus(status4);
+		tree4.setTreeSpecies(species4);
+		tree4.setLandType(landtype4);
+		tm.addPerson(personMarkingCut);
+		tm.addTree(tree4);
+		List<Tree> listOfPlantedTrees = new ArrayList<Tree>();
+		List<Tree> listOfTreesDiseased =new ArrayList<Tree>();
+		List<Tree> listOfTreestoBeCut = new ArrayList<Tree>();
+		List<Tree> listOfTreesCut = new ArrayList<Tree>();
+		
+		double b=0;
+
+		TreePLETreeService tree = new TreePLETreeService(tm);
+
+		try {
+			tree.MarkTreeAsDiseased(tree2, name2);
+			tree.MarkTreeToBeCutDown(tree3, name3);
+			tree.cutDownTree(tree4, name4);
+			listOfPlantedTrees = tree.getTreeByState(TreeState.Planted);
+			 listOfTreesDiseased = tree.getTreeByState(TreeState.Diseased);
+			 listOfTreestoBeCut = tree.getTreeByState(TreeState.ToBeCut);
+			 listOfTreesCut = tree.getTreeByState(TreeState.Cut);
+			 b= tree.CalculateCurrentBioDiversityIndex();
+			
+		} catch (InvalidInputException e) {
+			// Check that no error occured
+			fail();
+		}
+		List<Tree> allTrees = tree.listAllTrees();
+		// check number of registered participants
+				assertEquals(4, allTrees.size());
+				assertEquals(1, listOfPlantedTrees.size() );
+				assertEquals(1, listOfTreesDiseased.size());
+				assertEquals(1, listOfTreestoBeCut.size() );
+				assertEquals(1, listOfTreesCut.size());
+	}
 	@Test
 	public void testcutDownTreeForForecast() {
 		assertEquals(0, tm.getTrees().size());
@@ -1087,6 +1504,105 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(TreeSpecies.Willow, registeredTrees.get(1).getTreeSpecies());
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 }
+	
+	//to be fixed
+/*	@Test
+	public void testDescriptionForForecast() {
+		assertEquals(0, tm.getTrees().size());
+
+		//tree 1 for jon
+		double height1 = 13;
+		double diameter1 = 15;
+		double longitude1 = 65;
+		double latitude1 = 87;
+		String name1 = "Jon";
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		MunicipalityName mun1 = MunicipalityName.Montreal;
+		Date  date1 = new Date();
+		
+		//tree2 for jon
+		double heightTwo = 13;
+		double diameterTwo = 15;
+		double longitudeTwo = 65;
+		double latitudeTwo = 85;
+		TreeSpecies species1Two = TreeSpecies.Willow;
+		LandType landtypeTwo = LandType.Institutional;
+		MunicipalityName munTwo = MunicipalityName.Montreal;
+		
+		
+		double height2 = 13;
+		double diameter2 = 15;
+		double longitude2 = 65;
+		double latitude2 = 87;
+		String name2 = "Jason";
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Institutional;
+		MunicipalityName mun2 = MunicipalityName.Montreal;
+		Date  date2 = new Date();
+		
+		
+		
+		TreePLETreeService tree = new TreePLETreeService(tm);
+
+
+		try {
+			tree.plantTree(landtype1, species1, height1, diameter1, longitude1, latitude1, mun1, name1);
+			tree.plantTree(landtypeTwo, species1Two, heightTwo, diameterTwo, longitudeTwo, latitudeTwo, munTwo, name1);
+			tree.plantTree(landtype2, species2, height2, diameter2, longitude2, latitude2, mun2, name2);
+		} catch (InvalidInputException e) {
+			// Check that no error occured
+			fail();
+		}
+		List<Tree> registeredTrees = tree.listAllTrees();
+		Forecast f =  tree.createNewForecast(name1);
+		Forecast fig =  tree.createNewForecast(name2);
+		
+		try {
+			 f = tree.PlantTreeForForecast(f, landtype1, species1, height1, diameter1, longitude1, latitude1, mun1,50);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		f.addCurrentTree(registeredTrees.get(0));
+		f.addCurrentTree(registeredTrees.get(1));
+		
+		try {
+			Report r1 = tree.generateReportForForecast(f);
+			tree.getDescriptionOfForecast(fig);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//tests for the generateReportForForecast
+		assertEquals(52, f.getCurrentTrees().size());
+		assertEquals(name1, f.getPerson().getName());
+		assertEquals(0, f.getTreesToBeCut().size());
+		
+		
+	
+
+
+		// check each of the two Trees planted
+		assertEquals(13, registeredTrees.get(0).getHeight(), 0);
+		assertEquals(15, registeredTrees.get(0).getDiameter(), 0);
+		assertEquals(65, registeredTrees.get(0).getLongitude(), 0);
+		assertEquals(87, registeredTrees.get(0).getLatitude(), 0);
+		assertEquals(LandType.Institutional, registeredTrees.get(0).getLandType());
+		assertEquals(TreeSpecies.Willow, registeredTrees.get(0).getTreeSpecies());
+		assertEquals(MunicipalityName.Montreal, registeredTrees.get(0).getMunicipality().getMunicipalityName());
+		
+		
+		assertEquals(13, registeredTrees.get(1).getHeight(), 0);
+		assertEquals(15, registeredTrees.get(1).getDiameter(), 0);
+		assertEquals(65, registeredTrees.get(1).getLongitude(), 0);
+		assertEquals(85, registeredTrees.get(1).getLatitude(), 0);
+		assertEquals(LandType.Institutional, registeredTrees.get(1).getLandType());
+		assertEquals(TreeSpecies.Willow, registeredTrees.get(1).getTreeSpecies());
+		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
+}	*/
+	
 	
 	@Test
 	public void testPlantTreeForForecast() {
@@ -1373,144 +1889,6 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(MunicipalityName.Montreal, registeredTreesBySpecie.get(2).getMunicipality().getMunicipalityName());
 
 	}
-	
-
-	@Test
-	public void testGetTreeByState() throws InvalidInputException {
-
-		assertEquals(0, tm.getTrees().size());
-
-		double height1 = 15;
-		double diameter1 = 19;
-		double longitude1 = 75;
-		double latitude1 = 77;
-		TreeSpecies species1 = TreeSpecies.Willow;
-		LandType landtype1 = LandType.Institutional;
-		Date  date1 = new Date();
-		Person personPlanting = new Person("John");
-		Municipality mun1 = new Municipality();
-		mun1.setMunicipalityName(MunicipalityName.Laval);
-		Tree tree1 = new Tree(height1, diameter1, longitude1, latitude1, mun1 );
-		Status status1= new Status(date1, tree1, personPlanting);
-		status1.setTreeState(TreeState.Planted);
-		tree1.addStatus(status1);
-		tree1.setCurrentStatus(status1);
-		tree1.setTreeSpecies(species1);
-		tree1.setLandType(landtype1);
-		tm.addPerson(personPlanting);
-		tm.addTree(tree1);
-
-		double height2 = 12;
-		double diameter2 = 19;
-		double longitude2 = 76;
-		double latitude2 = 54;
-		TreeSpecies species2 = TreeSpecies.Willow;
-		LandType landtype2 = LandType.Municipal;
-		String name2 = "Jony";
-		Date  date2 = new Date();
-		Person personMarkingDiseased = new Person("Jony");
-		Municipality mun2 = new Municipality();
-		mun2.setMunicipalityName(MunicipalityName.Montreal);
-		Tree tree2 = new Tree(height2, diameter2, longitude2, latitude2, mun2);
-		Status status2= new Status(date2, tree2, personMarkingDiseased);
-		status2.setTreeState(TreeState.Diseased);
-		tree2.addStatus(status2);
-		tree2.setCurrentStatus(status2);
-		tree2.setTreeSpecies(species2);
-		tree2.setLandType(landtype2);
-		tm.addPerson(personMarkingDiseased);
-		tm.addTree(tree2);
-		
-		double height3 = 17;
-		double diameter3 = 12;
-		double longitude3 = 70;
-		double latitude3 = 54;
-		TreeSpecies species3 = TreeSpecies.Willow;
-		LandType landtype3 = LandType.Municipal;
-		String name3 = "Jessy";
-		Date  date3 = new Date();
-		Person personMarkingToBeCut = new Person("Jessy");
-		Municipality mun3 = new Municipality();
-		mun3.setMunicipalityName(MunicipalityName.Montreal);
-		Tree tree3 = new Tree(height3, diameter3, longitude3, latitude3, mun3);
-		Status status3= new Status(date3, tree3, personMarkingToBeCut);
-		status3.setTreeState(TreeState.ToBeCut);
-		tree2.addStatus(status3);
-		tree2.setCurrentStatus(status3);
-		tree2.setTreeSpecies(species3);
-		tree3.setLandType(landtype3);
-		tm.addPerson(personMarkingToBeCut);
-		tm.addTree(tree3);
-		
-		double height4 = 17;
-		double diameter4 = 12;
-		double longitude4 = 70;
-		double latitude4 = 54;
-		TreeSpecies species4 = TreeSpecies.Willow;
-		LandType landtype4 = LandType.Municipal;
-		String name4 = "Jessica";
-		Date  date4 = new Date();
-		Person personMarkingCut = new Person("Jessica");
-		Municipality mun4 = new Municipality();
-		mun4.setMunicipalityName(MunicipalityName.Montreal);
-		Tree tree4 = new Tree(height4, diameter4, longitude4, latitude4, mun4);
-		Status status4= new Status(date4, tree4, personMarkingCut);
-		status4.setTreeState(TreeState.Cut);
-		tree4.addStatus(status4);
-		tree4.setCurrentStatus(status4);
-		tree4.setTreeSpecies(species4);
-		tree4.setLandType(landtype4);
-		tm.addPerson(personMarkingCut);
-		tm.addTree(tree4);
-		
-		
-
-		TreePLETreeService tree = new TreePLETreeService(tm);
-
-		try {
-			tree.MarkTreeAsDiseased(tree2, name2);
-			tree.MarkTreeToBeCutDown(tree3, name3);
-			tree.cutDownTree(tree4, name4);
-			
-		} catch (InvalidInputException e) {
-			// Check that no error occured
-			fail();
-		}
-
-		List<Tree> allTrees = tree.listAllTrees();
-		// check number of registered participants
-				assertEquals(4, allTrees.size());
-
-		List<Tree> registeredTreesPlanted = new ArrayList<Tree>();  //contains list of all planted trees
-		List<Tree> registeredTreesDiseased = new ArrayList<Tree>(); //contains list of all diseased trees
-		List<Tree> registeredTreesToBeCut = new ArrayList<Tree>();  //contains list of all trees Marked to be cut
-		List<Tree> registeredTreesCut = new ArrayList<Tree>();      //contains list of trees cut
-	
-		
-		for (int i=0; i<tree.listAllTrees().size(); i++) {
-			if (tree.listAllTrees().get(i).getCurrentStatus().getTreeState().equals(TreeState.Planted)) {
-			registeredTreesPlanted.add(tree.listAllTrees().get(i));
-			
-			}if (tree.listAllTrees().get(i).getCurrentStatus().getTreeState().equals(TreeState.Diseased)) {
-			registeredTreesDiseased.add(tree.listAllTrees().get(i));
-			
-			}if(tree.listAllTrees().get(i).getCurrentStatus().getTreeState().equals(TreeState.ToBeCut)) {
-			registeredTreesToBeCut.add(tree.listAllTrees().get(i));
-			
-			}if(tree.listAllTrees().get(i).getCurrentStatus().getTreeState().equals(TreeState.Cut)) {
-			registeredTreesCut.add(tree.listAllTrees().get(i));
-			} }   
-
-		// tree 1
-		assertEquals(TreeState.Planted, registeredTreesPlanted.get(0).getCurrentStatus().getTreeState());
-		// tree 2
-		assertEquals(TreeState.Diseased, registeredTreesDiseased.get(0).getCurrentStatus().getTreeState());
-		// tree 3
-		assertEquals(TreeState.ToBeCut, registeredTreesToBeCut.get(0).getCurrentStatus().getTreeState());
-		//tree 4
-		assertEquals(TreeState.Cut, registeredTreesCut.get(0).getCurrentStatus().getTreeState());
-
-	}
 	@Test
 	public void testListAllUser(){
 	double height = 10;
@@ -1669,6 +2047,36 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(municipality, tm.getTree(0).getMunicipality().getMunicipalityName());
 		assertEquals(userName, tm.getTree(0).getCurrentStatus().getPerson().getName());
 	}
+
+	@Test
+	public void testListAllSpecies(){
+
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	
+	List<String>  stringOfSpecies = tree.listAllSpecies();
+	assertEquals(11, stringOfSpecies.size() );
+	
+	}
+	
+	@Test
+	public void testListAllStates(){
+	
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	
+	List<String>  stringOfStates = tree.listAllStates();
+	assertEquals(4, stringOfStates.size() );
+	
+	}
+	@Test
+	public void testListAllMunicipalities(){
+	
+	TreePLETreeService tree = new TreePLETreeService(tm);
+	
+	List<Municipality>  stringOfMunicipalities = tree.listAllMunicipalities();
+	assertEquals(2, stringOfMunicipalities.size() );
+	
+	}
+	
 	
 
 	
@@ -2257,7 +2665,125 @@ assertEquals(0, tm.getTrees().size());
 		assertEquals(144, service.CalculateCarbonSeqPerYear(listOfTrees) , 0.2);
 
 	}
-	
+	@Test
+	public void testCalculateCurrentCarbonSeqPerYear() {
+		assertEquals(0, tm.getTrees().size());
+
+		double height1 = 15;
+		double diameter1 = 19;
+		double longitude1 = 75;
+		double latitude1 = 77;
+		TreeSpecies species1 = TreeSpecies.Willow;
+		LandType landtype1 = LandType.Institutional;
+		Date  date1 = new Date();
+		Person personPlanting = new Person("John");
+		Municipality mun1 = new Municipality();
+		mun1.setMunicipalityName(MunicipalityName.Laval);
+		Tree tree1 = new Tree(height1, diameter1, longitude1, latitude1, mun1 );
+		Status status1= new Status(date1, tree1, personPlanting);
+		status1.setTreeState(TreeState.Planted);
+		tree1.addStatus(status1);
+		tree1.setCurrentStatus(status1);
+		tree1.setTreeSpecies(species1);
+		tree1.setLandType(landtype1);
+		tm.addPerson(personPlanting);
+		tm.addTree(tree1);
+
+		double height2 = 12;
+		double diameter2 = 19;
+		double longitude2 = 76;
+		double latitude2 = 54;
+		TreeSpecies species2 = TreeSpecies.Willow;
+		LandType landtype2 = LandType.Municipal;
+		String name2 = "Jony";
+		Date  date2 = new Date();
+		Person personMarkingDiseased = new Person("Jony");
+		Municipality mun2 = new Municipality();
+		mun2.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree2 = new Tree(height2, diameter2, longitude2, latitude2, mun2);
+		Status status2= new Status(date2, tree2, personMarkingDiseased);
+		status2.setTreeState(TreeState.Diseased);
+		tree2.addStatus(status2);
+		tree2.setCurrentStatus(status2);
+		tree2.setTreeSpecies(species2);
+		tree2.setLandType(landtype2);
+		tm.addPerson(personMarkingDiseased);
+		tm.addTree(tree2);
+		
+		double height3 = 17;
+		double diameter3 = 12;
+		double longitude3 = 70;
+		double latitude3 = 54;
+		TreeSpecies species3 = TreeSpecies.Willow;
+		LandType landtype3 = LandType.Municipal;
+		String name3 = "Jessy";
+		Date  date3 = new Date();
+		Person personMarkingToBeCut = new Person("Jessy");
+		Municipality mun3 = new Municipality();
+		mun3.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree3 = new Tree(height3, diameter3, longitude3, latitude3, mun3);
+		Status status3= new Status(date3, tree3, personMarkingToBeCut);
+		status3.setTreeState(TreeState.ToBeCut);
+		tree2.addStatus(status3);
+		tree2.setCurrentStatus(status3);
+		tree2.setTreeSpecies(species3);
+		tree3.setLandType(landtype3);
+		tm.addPerson(personMarkingToBeCut);
+		tm.addTree(tree3);
+		
+		double height4 = 17;
+		double diameter4 = 12;
+		double longitude4 = 70;
+		double latitude4 = 54;
+		TreeSpecies species4 = TreeSpecies.Willow;
+		LandType landtype4 = LandType.Municipal;
+		String name4 = "Jessica";
+		Date  date4 = new Date();
+		Person personMarkingCut = new Person("Jessica");
+		Municipality mun4 = new Municipality();
+		mun4.setMunicipalityName(MunicipalityName.Montreal);
+		Tree tree4 = new Tree(height4, diameter4, longitude4, latitude4, mun4);
+		Status status4= new Status(date4, tree4, personMarkingCut);
+		status4.setTreeState(TreeState.Cut);
+		tree4.addStatus(status4);
+		tree4.setCurrentStatus(status4);
+		tree4.setTreeSpecies(species4);
+		tree4.setLandType(landtype4);
+		tm.addPerson(personMarkingCut);
+		tm.addTree(tree4);
+		List<Tree> listOfPlantedTrees = new ArrayList<Tree>();
+		List<Tree> listOfTreesDiseased =new ArrayList<Tree>();
+		List<Tree> listOfTreestoBeCut = new ArrayList<Tree>();
+		List<Tree> listOfTreesCut = new ArrayList<Tree>();
+		
+		
+
+		TreePLETreeService tree = new TreePLETreeService(tm);
+
+		try {
+			tree.MarkTreeAsDiseased(tree2, name2);
+			tree.MarkTreeToBeCutDown(tree3, name3);
+			tree.cutDownTree(tree4, name4);
+			listOfPlantedTrees = tree.getTreeByState(TreeState.Planted);
+			 listOfTreesDiseased = tree.getTreeByState(TreeState.Diseased);
+			 listOfTreestoBeCut = tree.getTreeByState(TreeState.ToBeCut);
+			 listOfTreesCut = tree.getTreeByState(TreeState.Cut);
+			
+			
+		} catch (InvalidInputException e) {
+			// Check that no error occured
+			fail();
+		}
+
+		List<Tree> allTrees = tree.listAllTrees();
+		// check number of registered participants
+				assertEquals(4, allTrees.size());
+				assertEquals(1, listOfPlantedTrees.size() );
+				assertEquals(1, listOfTreesDiseased.size());
+				assertEquals(1, listOfTreestoBeCut.size() );
+				assertEquals(1, listOfTreesCut.size());
+				assertEquals(144, tree.CalculateCurrentCarbonSeqPerYear());
+	}
 
 	/*@Test
 	public void testIntegration() {
