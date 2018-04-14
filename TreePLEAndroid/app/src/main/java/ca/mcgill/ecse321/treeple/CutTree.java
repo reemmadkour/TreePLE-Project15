@@ -191,6 +191,8 @@ public class CutTree extends AppCompatActivity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
+
+                error = "Error! Please make sure your inputs are correct, or that the tree you are trying to cut down exists";
                 //System.out.println("Fail");
 
                 refreshErrorMessage();

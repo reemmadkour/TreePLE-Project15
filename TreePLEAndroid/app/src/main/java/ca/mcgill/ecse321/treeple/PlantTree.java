@@ -349,7 +349,7 @@ public class PlantTree extends AppCompatActivity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
-
+                error = "Error! Please make sure all your inputs are correct";
                 refreshErrorMessage();
 
             }

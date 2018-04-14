@@ -99,6 +99,8 @@ public class DiseasedTree extends AppCompatActivity {
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
+
+                error = "Error!";
                 //System.out.println("Fail");
 
                 refreshErrorMessage();
@@ -151,7 +153,7 @@ public class DiseasedTree extends AppCompatActivity {
                     error += e.getMessage();
                 }
                 //System.out.println("Fail");
-
+                error = "Error!";
                 refreshErrorMessage();
 
             }
