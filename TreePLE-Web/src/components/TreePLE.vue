@@ -16,51 +16,26 @@
   </div>
 
 </div>
- <br><div class="dropdown">
+ 
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown
+  </button>
+  <div class="dropdown-menu" zaria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" type="button">Action</button>
+    <button class="dropdown-item" type="button">Another action</button>
+    <button class="dropdown-item" type="button">Something else here</button>
+
+</div>
+
+</div>
+<br><br><br><br><br><div class="dropdown">
  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Municipality
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Anjou</a>
-    <a class="dropdown-item" href="#">Ahuntsic-Cartierville
-</a>
-    <a class="dropdown-item" href="#">Côte-des-Neiges–Notre-Dame-de-Grâce </a>
-<a class="dropdown-item" href="#">Lachine </a>
-<a class="dropdown-item" href="#">LaSalle </a>
-<a class="dropdown-item" href="#">Le Plateau-Mont-Royal</a>
-<a class="dropdown-item" href="#">Le Sud-Ouest </a>
-<a class="dropdown-item" href="#">L'Île-Bizard–Sainte-Geneviève </a>
-<a class="dropdown-item" href="#">Mercier–Hochelaga-Maisonneuve </a>
-<a class="dropdown-item" href="#">Montréal-Nord</a>
-<a class="dropdown-item" href="#">Outremont</a>
-<a class="dropdown-item" href="#">Pierrefonds-Roxboro</a>
-<a class="dropdown-item" href="#">Rivière-des-Prairies–Pointe-aux-Trembles</a>
-<a class="dropdown-item" href="#">Rosemont–La Petite-Patrie</a>
-<a class="dropdown-item" href="#">Sainte-Anne-de-Bellevue</a>
-<a class="dropdown-item" href="#">Saint-Laurent</a>
-<a class="dropdown-item" href="#">Saint-Léonard</a>
-<a class="dropdown-item" href="#">Verdun</a>
-<a class="dropdown-item" href="#">Ville-Marie</a>
-<a class="dropdown-item" href="#">Villeray–Saint-Michel–Parc-Extension</a>
-
-  </div>
-
-</div>
-<br><div class="dropdown">
- <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Species
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Willow</a>
-    <a class="dropdown-item" href="#">RedMaple</a>
-    <a class="dropdown-item" href="#">LobollyPine</a>
-    <a class="dropdown-item" href="#">Sweetgum</a>
- <a class="dropdown-item" href="#">DouglasFir</a>
- <a class="dropdown-item" href="#">QuackingAspen</a>
- <a class="dropdown-item" href="#">SugarMaple</a>
- <a class="dropdown-item" href="#">Balsamfir</a>
- <a class="dropdown-item" href="#">FloweringDogwood</a>
- <a class="dropdown-item" href="#">WhiteOak</a>
+    <a class="dropdown-item" v-for="mun in municipalities">{{ mun }}</a>
+   
   </div>
 <br><br><div class="dropdown">
  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,7 +51,7 @@
 
 </div>
 
-    <br><table class="table table-hover" style="width:100%">
+    <br><table id="treeList" class="table table-hover" style="width:100%">
 <thead>
  <th> Species </th>
   <th> Height </th>
@@ -97,6 +72,7 @@
            <td>{{ tree.landType }}</td>
             <td>{{tree.municipality.name}}</td>
              <td>{{tree.currentStatus.treeState}}</td>
+            
                 
           
   </tr>

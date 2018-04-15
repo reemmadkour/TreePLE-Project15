@@ -35,34 +35,38 @@ export default {
   data () {
     return {
       Trees: [],
-      selectedTree: [],
       response: [],
+      Species: [],
+      LandTypes: [],
+      errorSpecies: '',
+      errorLandTypes: '',
+      treeData: {
+        treeSpecies: '',
+        height: '',
+        diameter: '',
+        longitude: '',
+        latitude: '',
+        landType: '',
+        municipality: { municipalityName: '' }},
       positions: [],
-      selectedMunicipality: '',
       municipalities: [],
       newTree: {
         treeSpecies: '',
         height: '',
         diameter: '',
         longitude: '',
-        errorMunicipality:'',
-        currentStatus: {
-          treeState: '' },
         latitude: '',
         landType: '',
+        userName: '',
         municipality: { name: '' }},
-      errorMunicipalities: '',
+       errorMunicipalities: '',
       icon: {
         url: 'google.maps.SymbolPath.CIRCLE',
         size: {width: 26, height: 26, f: 'px', b: 'px'},
         scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
       },
       center: {lat: 45.549302, lng: -73.681559},
-      markers: [{
-        position: {lat: 45.549302, lng: -73.681559}
-      }, {
-        position: {lat: 46.549302, lng: -74.681559}
-      }],
+      markers: [],
       errorTree: ''
     }
   },
@@ -102,22 +106,51 @@ export default {
       this.errorMunicipalities = e1
     })
     console.log('Municipalities listed')
-  },
-  
-  methods: {
-    listByMunicipality: function(selectedMunicipality) {
-      AXIOS.get('/trees/' + selectedMunicipality)
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.trees = response.data
-        })
-        .catch(e => {
-          var errorMsg = e.response.data.message
-          console.log(errorMsg)
-          this.errorTree = '';
-          this.errorMunicipality = errorMsg;
-        });
 
+    AXIOS.get(`/species`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.Species = response.data
+    })
+    .catch(e => {
+      this.errorSpecies = e
+    })
+    console.log('Species listed')
+
+    AXIOS.get(`/landtypes`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.LandTypes = response.data
+    })
+    .catch(e => {
+      this.errorLandTypes = e
+    })
+    console.log('LandTypes listed')
+  },
+  methods: {
+     createTree: function (land, speci,  Height, Diameter, long, lat, mun, userName) {
+      AXIOS.post('/PlantTree/'.concat(userName), {}, {
+        params: {landType: land, species: speci, height: Height, diameter: Diameter, longitude: long, latitude: lat, municipality: mun}
+      })
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.Trees.push(response.data)
+        this.newTree = ''
+	this.newTree.landType = ''
+	this.newTree.treeSpecies = ''
+	this.newTree.height = ''
+	this.newTree.diameter = ''
+	this.newTree.longitude = ''
+	this.newTree.latitude = ''
+	this.newTree.municipality.name = ''
+        this.errorTree = ''
+ 
+      })
+      .catch(e => {
+        var errorMsg = e.response.data.message
+        console.log(errorMsg)
+	this.errorTree = errorMsg
+      })
     }
   }
 }
