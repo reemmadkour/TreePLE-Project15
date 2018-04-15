@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.TreePLE.dto.ForecastDto;
 import ca.mcgill.ecse321.TreePLE.dto.MunicipalityDto;
 import ca.mcgill.ecse321.TreePLE.dto.StatusDto;
 import ca.mcgill.ecse321.TreePLE.dto.TreeDto;
+import ca.mcgill.ecse321.TreePLE.model.Forecast;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
@@ -57,6 +59,11 @@ public class TreePLETreeRestController {
 			 
 			 return modelMapper.map(m, MunicipalityDto.class);
 		}
+	
+	private ForecastDto convertToDto(Forecast f)  {
+		 
+		 return modelMapper.map(f, ForecastDto.class);
+	}
 	
 	//conversion status method
 	private StatusDto convertToDto(Status s) {
@@ -106,6 +113,17 @@ public class TreePLETreeRestController {
 			trees.add(convertToDto(tree));
 		}
 		return trees;
+	}
+	
+	
+	@GetMapping(value = { "/forecasts", "/forecasts/" })
+	public List<ForecastDto> findAllForecasts() throws InvalidInputException {
+		List<ForecastDto> forecasts = new ArrayList<ForecastDto>();
+		
+		for (Forecast f : service.listAllForecasts()) {
+			forecasts.add(convertToDto(f));
+		}
+		return forecasts;
 	}
 	
 	@GetMapping(value = { "/states", "/states/" })
@@ -185,10 +203,35 @@ public class TreePLETreeRestController {
 		}
 	 return trees; }
 
+	@PostMapping(value = { "/createForecast/{userName}"})
+	 public ForecastDto createForecast (
+			@PathVariable  ("userName") String userName,
+			@RequestParam(name="plantLandType") LandType plantLandType,
+			@RequestParam (name="plantMunicipality") MunicipalityName plantMunName,
+			@RequestParam(name="plantSpecies") TreeSpecies plantSpecies,
+			@RequestParam (name="plantHeight") double plantHeight,
+			@RequestParam (name="plantDiameter") double plantDiameter,
+			@RequestParam(name="plantLatitude") double plantLatitude,
+			@RequestParam (name="plantLongitude") double plantLongitude,
+			@RequestParam(name="plantQuantity") int plantQuantity,
+			@RequestParam (name="cutMunicipality") MunicipalityName cutMunName,
+			@RequestParam(name="cutLatitude") double cutLatitude,
+			@RequestParam(name="cutLongitude") double cutLongitude,
+			@RequestParam(name="cutOneLatitude") double cutOneLatitude,
+			@RequestParam (name="cutOneLongitude") double cutOneLongitude
+			) throws InvalidInputException {
+		Forecast f= service.createNewForecast(userName);
+		service.PlantTreeForForecast(f, plantLandType, plantSpecies, plantHeight, plantDiameter, plantLongitude, plantLatitude, plantMunName, plantQuantity);
+		service.cutDownTreesinAreaForForecast(cutLatitude, f, cutLatitude, cutMunName);
+		Tree t= service.getPlantedTreeByLocation(cutOneLatitude, cutOneLongitude);
+		service.cutDownTreeForForecast(t, f);
+		return convertToDto(f);
+	}
 	
+
 	
 	@PostMapping(value = { "/Login/{userName}/{userRole}"})
-	public void Login(
+	public Boolean Login(
 			@PathVariable("userName") String userName,
 			@PathVariable ("userRole") String userRole)
 	{
@@ -199,7 +242,7 @@ public class TreePLETreeRestController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return ans;
 	
 	}
 	
@@ -223,6 +266,26 @@ public class TreePLETreeRestController {
 		return convertToDto(tree);
 }
 	
+	@PostMapping(value = { "/editTree/{userName}"})
+	public TreeDto editTree(
+			@PathVariable("userName") String userName,
+			@RequestParam (name="landType") LandType landtype,
+			@RequestParam  (name="species") TreeSpecies species,
+			@RequestParam  (name="height") double height,
+			@RequestParam (name="diameter") double diameter,
+			@RequestParam (name="longitude") double longitude,
+			@RequestParam  (name="latitude") double latitude,
+			@RequestParam (name="municipality") MunicipalityName municipalityName,
+			@RequestParam (name="treeState") TreeState treeState
+			
+			) throws InvalidInputException {
+
+	;
+	
+		Tree tree= service.editTree(landtype, species, height,diameter, longitude, latitude, municipalityName,userName,treeState);
+		
+		return convertToDto(tree);
+}
 	
 	
 	
