@@ -103,7 +103,9 @@ public class TreePLETreeService {
 		}
 		
 		
-		
+		public List<Forecast> listAllForecasts(){
+			return tm.getForecast();
+		}
 		
 		public Forecast createNewForecast(String userName) {
 			List<Person> users= listAllUsers();
@@ -127,7 +129,7 @@ public class TreePLETreeService {
 					String.valueOf(f.getTreesToBeCut().size())+"in"+f.getTreesToBeCut(0).getMunicipality().getMunicipalityName().toString()+f.getTreesToBeCut(0).getTreeSpecies().toString();
 			return Description;}
 		
-		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, int quantity) throws InvalidInputException{
+		public void PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, int quantity) throws InvalidInputException{
 			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null || quantity<=0) {
 				    throw new InvalidInputException("Missing information");
 				  }
@@ -160,9 +162,9 @@ public class TreePLETreeService {
 				 
 				  f.addTreesToBePlanted(t);
 				  k=k+0.00001;}
-				  tm.addForecast(f);
+				 // tm.addForecast(f);
 				  PersistenceXStream.saveToXMLwithXStream(tm);
-				  return f ;
+				
 				  
 				  
 		}
@@ -180,6 +182,21 @@ public class TreePLETreeService {
 		public Tree getPlantedTreeByLocation( double latitude, double longitude) throws InvalidInputException {
 			Tree tn=null;
 			for (Tree t : getPlantedTrees()) {
+				if (t.getLatitude()==latitude&&t.getLongitude()==longitude) {
+					tn=t;
+					//return tn;
+					break;
+				}
+			}
+			
+			 if (tn==null) { throw new InvalidInputException ("no tree exists here");}
+			 else {return tn;}
+		}
+		
+		
+		public Tree getTreeByLocation( double latitude, double longitude) throws InvalidInputException {
+			Tree tn=null;
+			for (Tree t : listAllTrees()) {
 				if (t.getLatitude()==latitude&&t.getLongitude()==longitude) {
 					tn=t;
 					//return tn;
@@ -240,6 +257,7 @@ public class TreePLETreeService {
 		  }
 		  if(user==null) {
 			  user= new Person(userName);
+			  tm.addPerson(user);
 		  }
 		  
 			  
@@ -270,12 +288,74 @@ public class TreePLETreeService {
 		  municipality.addTree(t);
 		  
 		  //add tree to the list
-		  tm.addPerson(user);
+		  
 		  tm.addStatus(s);
 		  tm.addTree(t);
 		  PersistenceXStream.saveToXMLwithXStream(tm);
 		  return t;
 		}
+		
+		
+		public Tree editTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, String userName, TreeState
+				state) throws InvalidInputException
+		{
+		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
+		    throw new InvalidInputException("Missing information");
+		  }
+		  Tree t = getTreeByLocation(latitude,longitude);
+		  Municipality municipality= getMunicipalityByName(munName);
+		  
+		  t.setHeight(height);
+		  t.setDiameter(diameter);
+		  t.setLatitude(longitude);
+		  t.setLatitude(latitude);
+		  t.setMunicipality(municipality);
+		  List<Person> users= listAllUsers();
+		  Person user =null;
+		  for(Person p : users) {
+			  if (p.getName()==userName) { user=p;}
+		  }
+		  if(user==null) {
+			  user= new Person(userName);
+		  }
+		  
+			  
+		
+		  Date date1= new Date();
+		  Status s = new Status(date1,t,user);
+		 
+		  //change tree status to planted
+		  s.setTreeState(state);
+		  t.setCurrentStatus(s);
+		  
+		  t.addStatus(s);
+		  
+		
+		  
+		  //set tree species
+		  t.setTreeSpecies(species);
+		  
+		  //set Landtype
+		  t.setLandType(landtype);
+		  
+		
+		  
+		  //set municipality
+		  t.setMunicipality(municipality);
+		  //MunicipalityName name = municipality.getMunicipalityName();
+		  //municipality.setMunicipalityName(name);
+		  municipality.addTree(t);
+		  
+		  //add tree to the list
+		  
+		  tm.addStatus(s);
+		  
+		  PersistenceXStream.saveToXMLwithXStream(tm);
+		  return t;
+		}
+		
+		
+		
 		
 		//list all trees
 		public List<Tree> listAllTrees()
@@ -525,11 +605,10 @@ return (ts.size()*48);
 				 if (p.getRoles()!=null) {
 				  if (p.getRoles().equals(s.getClass())) { 
 					scientists.add(p.getName());  
-					  
-
+					
+					
+				     }
 				  }
-				 }
-
 			  }
 			
 			return scientists;
