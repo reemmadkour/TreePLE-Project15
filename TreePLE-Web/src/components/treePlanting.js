@@ -58,6 +58,7 @@ export default {
         latitude: '',
         landType: '',
         userName: '',
+        currentStatus: { treeState: ''},
         municipality: { name: '' }},
        errorMunicipalities: '',
       icon: {

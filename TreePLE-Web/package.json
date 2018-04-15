@@ -22,7 +22,7 @@
     "vue": "^2.5.2",
     "vue-google-maps": "^0.1.21",
     "vue-router": "^3.0.1",
-    "vue2-google-maps": "^0.8.11"
+    "vue2-google-maps": "^0.8.12"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

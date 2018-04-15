@@ -5,6 +5,7 @@
 
    <br><br><br><br><br>
     <h2>Montreal Tree Map</h2><br>
+<p> Click on a tree to edit </p>
 <gmap-map id="mymap"
     :center="center"
     :zoom="11"
@@ -32,16 +33,19 @@
      <th> Latitude </th>
       <th> Landtype </th>
         <th> Municipality </th>
+           <th> Status </th>
+         
 </thead>
 <tbody>
        <tr>
-      <td>Willow</td>
-       <td>2</td>
-       <td>1</td>
-        <td>45</td>
-         <td>-73</td>
-           <td>Institutional</td>
-            <td>Montreal</td>
+      <td>{{m.treeData.treeSpecies}}</td>
+       <td>{{m.treeData.height}}</td>
+       <td>{{m.treeData.diameter}}</td>
+        <td>{{m.treeData.longitude}}</td>
+         <td>{{m.treeData.latitude}}</td>
+           <td>{{m.treeData.landType}}</td>
+            <td>{{m.treeData.municipality.name}}</td>
+               <td>{{m.treeData.currentStatus.treeState}}</td>
 </tr>
         </tbody>
 	</table>
@@ -49,103 +53,113 @@
 
   <!-- Modal Component -->
   <b-modal id="modal1" title="Edit Tree">
- <form action="/#/view">
-  <div class="form-group row">
-  <label for="example-text-input" class="col-2 col-form-label">Height</label>
-  <div class="col-3">
-    <input required type="number" min="0" class="form-control" id="example-height-input" placeholder="Height" value="2" required>
+ <div class="container"><br>
+<form action="/#/view">
+<div class="form-group row">
+  <label for="example-text-input" class=" col-5 col-form-label">Name</label>
+  <div class="col-4 ">
+    <input required type="text" v-model="newTree.userName" min="0" class="form-control" id="example-height-input" placeholder="Name" required>
 <div class="invalid-feedback">
         Please provide a valid height.
       </div>
  </div>
 </div>
+  <div class="form-group row">
+  <label for="example-text-input" class="col-5 col-form-label">Height</label>
+  <div class="col-4">
+    <input required type="number" v-model="newTree.height" min="0" class="form-control" id="example-height-input" placeholder="Height" required>
+<div class="invalid-feedback">
+        Please provide a valid height.
+      </div>
+<small class="form-text text-muted">Previous: {{m.treeData.height}}</small>
+ </div>
+</div>
 <div class="form-group row">
-   <label for="example-text-input" class="col-2 col-form-label">Diameter</label>
-  <div class="col-3">
-    <input required type="number" min="0" class="form-control" placeholder="Diameter" value="1"  id="example-text-input">
+   <label for="example-text-input" class="col-5 col-form-label">Diameter</label>
+  <div class="col-4">
+    <input required type="number" v-model="newTree.diameter" min="0" class="form-control" placeholder="Diameter" id="example-text-input">
+<small class="form-text text-muted">Previous: {{m.treeData.diameter}}</small>
   </div>
 <div class="invalid-feedback">
         Please provide a valid Diameter.
       </div>
+
 </div>
 <div class="form-group row">
-   <label for="example-text-input" class="col-2 col-form-label">Longitude</label>
-  <div class="col-3">
-    <input required type="number" class="form-control"   value="45" id="example-text-input" placeholder="longitude">
+   <label for="example-text-input" class="col-5 col-form-label">Longitude</label>
+  <div class="col-4">
+    <input required type="number" step="0.00000001" class="form-control"  v-model="newTree.longitude" id="example-text-input" placeholder="longitude">
+<small class="form-text text-muted">Previous: {{m.treeData.longitude}}</small>
   </div>
 <div class="invalid-feedback">
         Please provide a valid Longitude.
       </div>
 </div>
 <div class="form-group row">
-  <label for="example-text-input" class="col-2 col-form-label">Latitude</label>
-  <div class="col-3">
-    <input type="number" required class="form-control"  value="-73" id="example-text-input" placeholder="latitude">
+  <label for="example-text-input" class="col-5 col-form-label">Latitude</label>
+  <div class="col-4">
+    <input type="number" step="0.00000001" required class="form-control"  v-model="newTree.latitude" id="example-text-input" placeholder="latitude">
+<small class="form-text text-muted">Previous: {{m.treeData.latitude}}</small>
   </div>
 <div class="invalid-feedback">
         Please provide a valid Latitude.
       </div>
 </div>
 <div class="form-group row">
-  <label for="exampleSelect1" class="col-2 col-form-label">Species</label>
-<div class="col-3">
-    <select class="form-control" id="exampleSelect1">
-      <option>Willow</option>
-      <option>RedMaple</option>
-      <option>LobollyPine</option>
-      <option>Sweetgum</option>
-      <option>DouglasFir</option>
-       <option>QuackingAspen</option>
- <option>SugarMaple</option>
- <option>Balsamfir</option>
- <option>FloweringDogwood</option>
-<option>WhiteOak</option>
+  <label for="exampleSelect1" class="col-5 col-form-label">Species</label>
+<div class="col-4">
+    <select class="form-control" v-model="newTree.treeSpecies" id="exampleSelect1">
+      <option v-for="species in Species">{{species}}</option>
+      
     </select>
+<small class="form-text text-muted">Previous: {{m.treeData.treeSpecies}}</small>
+</div>
+
+</div>
+<div class="form-group row">
+  <label for="exampleSelect1" class="col-5 col-form-label">Municipality</label>
+<div class="col-4">
+    <select class="form-control" v-model="newTree.municipality" id="exampleSelect1">
+      <option v-for="mun in municipalities">{{ mun }}</option>
+      
+    </select>
+<small class="form-text text-muted">Previous: {{m.treeData.municipality.name}}</small>
 </div>
 </div>
 <div class="form-group row">
-  <label for="exampleSelect1" class="col-2 col-form-label">Municipality</label>
-<div class="col-3">
-    <select class="form-control" id="exampleSelect1">
-      <option>Anjou</option>
-      <option>Ahuntsic-Cartierville</option>
-      <option>Côte-des-Neiges–Notre-Dame-de-Grâce</option>
-      <option>Lachine</option>
-      <option>LaSalle</option>
-<option>Le Plateau-Mont-Royal</option>
-<option>Le Sud-Ouest</option>
-<option>L'Île-Bizard–Sainte-Geneviève</option>
-<option>Mercier–Hochelaga-Maisonneuve </option>
-<option>Montréal-Nord</option>
-<option>Outremont</option>
-<option>Pierrefonds-Roxboro</option>
-<option>Rivière-des-Prairies–Pointe-aux-Trembles</option>
-<option>Rosemont–La Petite-Patrie</option>
-<option>Sainte-Anne-de-Bellevue</option>
+  <label for="exampleSelect1" class="col-5 col-form-label">LandType</label>
+<div class="col-4">
+    <select class="form-control" v-model="newTree.landType" id="exampleSelect1">
+      <option v-for="type in LandTypes">{{ type }}</option>
+      
     </select>
+<small class="form-text text-muted">Previous: {{m.treeData.landType}}</small>
 </div>
 </div>
 <div class="form-group row">
-  <label for="exampleSelect1" class="col-2 col-form-label">LandType</label>
-<div class="col-3">
-    <select class="form-control" id="exampleSelect1">
-      <option>Institutional</option>
-      <option>Municipal</option>
-      <option>Residential</option>
-      <option>Park</option>
+  <label for="exampleSelect1" class="col-5 col-form-label">Status</label>
+<div class="col-4">
+    <select class="form-control" v-model="newTree.currentStatus" id="exampleSelect1">
+      <option v-for="state in States">{{ state }}</option>
+      
     </select>
+<small class="form-text text-muted">Previous: {{m.treeData.currentStatus.treeState}}</small>
 </div>
 </div>
 <div class="row">
 <div class="container">
-<div class="col-xs-6 col-sm-3 offset-sm-2">
+<div class="col-xs-6 col-sm-4 offset-sm-5">
 
-  <button type="submit" style="font-size:120%" class="btn btn-secondary btn-block">Edit</button>
+  <button type="submit" style="font-size:120%" @click="editTree(newTree.landType, newTree.treeSpecies, newTree.height, newTree.diameter, newTree.longitude, newTree.latitude, newTree.municipality, newTree.userName, newTree.currentStatus)" class="btn btn-secondary btn-block">Edit</button>
+
+
+
 
 </div>
 </div>
 </div>
 </form>
+</div>
   </b-modal>
     </gmap-info-window>
 </gmap-marker>
