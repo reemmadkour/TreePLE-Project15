@@ -5,7 +5,7 @@
 
    <br><br><br><br><br>
     <h2>Montreal Tree Map</h2><br>
-<p> Click on a tree to edit </p>
+<p> (Click on a tree to edit) </p>
 <gmap-map id="mymap"
     :center="center"
     :zoom="11"
