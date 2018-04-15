@@ -3,53 +3,63 @@
 <div id="TreePLE">
 
    <br><br><br><br><br>
-    <h2> List of all trees </h2><br><br>
-
-<div class="dropdown">
- <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    List Trees By
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">All</a>
-    <a class="dropdown-item" href="#">Municipality</a>
-    <a class="dropdown-item" href="#">Species</a>
-  </div>
-
-</div>
- 
-  <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown
-  </button>
-  <div class="dropdown-menu" zaria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Action</button>
-    <button class="dropdown-item" type="button">Another action</button>
-    <button class="dropdown-item" type="button">Something else here</button>
-
+    <h2> Tree List </h2><br><br>
+    <h3> List Trees by </h3><br><br>
+<form>
+<div class="form-group row">
+  <label for="exampleSelect1" class="col-1 offset-sm-4 col-form-label">Species</label>
+<div class="col-2">
+    <select class="form-control" v-model="selectedSp" top id="exampleSelect1">
+      <option v-for="species in Species">{{species}}</option>
+      
+    </select>
 </div>
 
+<div class="row">
+<div class="container">
+<div class=" col-sm-7 offset-sm-5">
+
+  <button type="submit" style="font-size:120%" @click="selectSpecies(selectedSp)" class="btn btn-secondary btn-block">Filter</button>
 </div>
-<br><br><br><br><br><div class="dropdown">
- <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Municipality
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" v-for="mun in municipalities">{{ mun }}</a>
-   
-  </div>
-<br><br><div class="dropdown">
- <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Planted</a>
-    <a class="dropdown-item" href="#">Cut</a>
-    <a class="dropdown-item" href="#">To be cut</a>
-    <a class="dropdown-item" href="#">diseased</a>
- </div>
-  </div>
+</div>
+</div>
+</div><br>
+<div class="form-group row">
+  <label for="exampleSelect1" class="col-1 offset-sm-4 col-form-label">Municipality</label>
+<div class="col-2">
+    <select class="form-control" v-model="newTree.municipality" id="exampleSelect1">
+      <option v-for="mun in municipalities">{{ mun }}</option>
+      
+    </select>
 
 </div>
+<div class="row">
+<div class="container">
+<div class=" col-sm-7 offset-sm-5">
+
+  <button type="submit" style="font-size:120%" @click="createTree(newTree.landType, newTree.treeSpecies, newTree.height, newTree.diameter, newTree.longitude, newTree.latitude, newTree.municipality, newTree.userName)" class="btn btn-secondary btn-block">Filter</button>
+</div>
+</div>
+</div>
+</div><br>
+<div class="form-group row">
+  <label for="exampleSelect1" class="col-1 offset-sm-4 col-form-label">LandType</label>
+<div class="col-2">
+    <select class="form-control" v-model="newTree.landType" id="exampleSelect1">
+      <option v-for="type in LandTypes">{{ type }}</option>
+      
+    </select>
+</div>
+<div class="row">
+<div class="container">
+<div class=" col-sm-7 offset-sm-5">
+
+  <button type="submit" style="font-size:120%" @click="createTree(newTree.landType, newTree.treeSpecies, newTree.height, newTree.diameter, newTree.longitude, newTree.latitude, newTree.municipality, newTree.userName)" class="btn btn-secondary btn-block">Filter</button>
+</div>
+</div>
+</div>
+</div><br><br>
+</form>
 
     <br><table id="treeList" class="table table-hover" style="width:100%">
 <thead>
