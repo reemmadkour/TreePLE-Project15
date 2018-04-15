@@ -7,12 +7,18 @@ import android.view.View;
 import android.widget.Button;
 
 /**
+ * This class pops up after a user cuts down a tree
  * Created by leaakkari on 2018-04-02.
  */
 
 public class AfterCut extends AppCompatActivity {
 
     Button back;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +35,19 @@ public class AfterCut extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                //setContentView(R.layout.options);
 
-                Intent i = new Intent(AfterCut.this, CutTree.class);
-                startActivity(i);
+
+                Intent i = getIntent();
+                String userName = i.getStringExtra("userName");
+                String userType = i.getStringExtra("userType");
+
+                Intent intent = new Intent(AfterCut.this, CutTree.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userType",userType);
+                startActivity(intent);
+
+                System.out.println("Username "  + userName);
+                System.out.println("UserType " + userType);
             }
 
         });

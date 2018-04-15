@@ -45,7 +45,7 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'org.json:json:20160212'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     testImplementation 'junit:junit:4.12'
@@ -53,4 +53,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:design:26.1.0'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    implementation files('libs/dto.jar')
 }

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -41,56 +42,80 @@ import cz.msebera.android.httpclient.Header;
 
 public class CutTree extends AppCompatActivity {
 
-    Button back, ok;
-    String error;
+    Button  ok , back, bob;
+    private String error = null;
 
     TextView message, invalid;
 
     EditText lgt, lat;
 
 
+
+    /**
+     * On Create
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cut);
 
+        //latitude/longitude user input
        lgt = (EditText)findViewById(R.id.lgt_cut);
-        lat = (EditText)findViewById(R.id.ltd_cut);
+       lat = (EditText)findViewById(R.id.ltd_cut);
 
-        //takes you back to options page
-        back = (Button) findViewById(R.id.back_c);
+
+        //error message
+        invalid = (TextView)findViewById((R.id.invalid_cut));
+
+        //click on ok to cut a tree
+        ok = (Button) findViewById(R.id.ok_cut);
+
+        //go back to options page
+        back = (Button)findViewById(R.id.back_c);
 
         back.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(CutTree.this, Options.class);
-                startActivity(intent);
+
+                Intent i2 = getIntent();
+                String userName = i2.getStringExtra("userName");
+                String userType = i2.getStringExtra("userType");
+
+                if(userType.equals("User")){
+
+                    Intent i = new Intent(CutTree.this, Options.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
+
+                }else if(userType.equals("Scientist")){
+
+                    Intent i = new Intent(CutTree.this, ScientistOptions.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType", userType);
+                    startActivity(i);
+
+                }
+
+
 
             }
 
         });
 
-        invalid = (TextView)findViewById((R.id.invalid_cut));
+        //click on bob to find a surprise
+        bob = (Button)findViewById(R.id.bob_think);
 
-        //ok
-        ok = (Button) findViewById(R.id.ok_cut);
-        ok.setOnClickListener(new View.OnClickListener() {
+        bob.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
+                Toast.makeText(CutTree.this, "Please make sure you really need to cut the tree!", Toast.LENGTH_SHORT).show();
 
-                if(lgt.getText().toString().matches("") || lat.getText().toString().matches("")){
-                    invalid.setText("Please input longitude and latitude!");
-                    invalid.setVisibility(View.VISIBLE);
-                }
-                else {
-
-                    Intent intent = new Intent(CutTree.this, AfterCut.class);
-                    startActivity(intent);
-                }
 
             }
 
@@ -100,44 +125,16 @@ public class CutTree extends AppCompatActivity {
 
 
 
-    }
 
-    private void refreshList(final ArrayAdapter<String> adapter,final  List<String> names, String restFunctionName) {
-        HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                names.clear();
-                names.add("Please select...");
-                for( int i = 0; i < response.length(); i++){
-                    try {
-                        names.add(response.getJSONObject(i).getString("name"));
-                    } catch (Exception e) {
-                        error += e.getMessage();
-                    }
-                    refreshErrorMessage();
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
     }
 
 
-
-    //refresh error messge to display error message on screen
+    /**
+     * refresh error message, displays error on screen
+     */
     private void refreshErrorMessage() {
         // set the error message
-        TextView tvError = (TextView) findViewById(R.id.error);
+        TextView tvError = (TextView) findViewById(R.id.success);
         tvError.setText(error);
 
         if (error == null || error.length() == 0) {
@@ -149,32 +146,42 @@ public class CutTree extends AppCompatActivity {
     }
 
 
-
-
-   /* public void cut(View v){
+    /**
+     * Method that lets the user cut down a tree
+     * @param v
+     */
+   public void cut(View v){
 
         Intent i = getIntent();
         String userName = i.getStringExtra("userName");
+       String userType = i.getStringExtra("userType");
 
         lgt = (EditText)findViewById(R.id.lgt_cut);
         lat = (EditText)findViewById(R.id.ltd_cut);
 
         message = (TextView)findViewById(R.id.success);
 
-        RequestParams rp = new RequestParams();
-        rp.add("longitude", lgt.getText().toString());
-        rp.add("latitude",lat.getText().toString());
-
-
-    //@PostMapping(value = { "/cutDownTree/{treeID}/{userName}" })
-
-        HttpUtils.post("/cutDownTree/"  +  userName ,  new RequestParams(), new JsonHttpResponseHandler() {
+        HttpUtils.post("cutDownTree/"  + lat.getText().toString() + "/"+ lgt.getText().toString() +"/"+ userName ,  new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                //refreshErrorMessage();
+                refreshErrorMessage();
                lgt.setText("");
                lat.setText("");
-               message.setVisibility(View.VISIBLE);
+
+                //going to Bob's page
+                Intent i = getIntent();
+                String userName = i.getStringExtra("userName");
+                String userType = i.getStringExtra("userType");
+
+                Intent intent = new Intent(CutTree.this, AfterCut.class);
+                intent.putExtra("userName",userName);
+                intent.putExtra("userType",userType);
+                startActivity(intent);
+
+                System.out.println("Username "  + userName);
+                System.out.println("UserType " + userType);
+
+                //System.out.println("Success");
 
             }
            @Override
@@ -185,13 +192,16 @@ public class CutTree extends AppCompatActivity {
                     error += e.getMessage();
                 }
 
+                error = "Error! Please make sure your inputs are correct, or that the tree you are trying to cut down exists";
+                //System.out.println("Fail");
+
                 refreshErrorMessage();
 
             }
         });
 
 
-    }*/
+    }
 
 
 

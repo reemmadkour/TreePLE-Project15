@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.TreePLE.dto.ForecastDto;
 import ca.mcgill.ecse321.TreePLE.dto.MunicipalityDto;
 import ca.mcgill.ecse321.TreePLE.dto.StatusDto;
 import ca.mcgill.ecse321.TreePLE.dto.TreeDto;
+import ca.mcgill.ecse321.TreePLE.model.Forecast;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
@@ -58,6 +60,11 @@ public class TreePLETreeRestController {
 			 return modelMapper.map(m, MunicipalityDto.class);
 		}
 	
+	private ForecastDto convertToDto(Forecast f)  {
+		 
+		 return modelMapper.map(f, ForecastDto.class);
+	}
+	
 	//conversion status method
 	private StatusDto convertToDto(Status s) {
 			 StatusDto sDto = modelMapper.map(s, StatusDto.class);
@@ -71,31 +78,31 @@ public class TreePLETreeRestController {
 	}
 	
 		
-	/*private Municipality convertToDomainObject(MunicipalityDto mDto) {
-		// Mapping DTO to the domain object without using the mapper
-		List<Municipality> allMunicipalities = service.findAllMunicipalities();
-		for (Municipality m: allMunicipalities) {
-			if (m.getMunicipalityName().equals(mDto.getName())) {
-				return m;
-			}
+	
+	
+	
+ 		@GetMapping(value = { "/municipalities/", "/municipalities"})
+ 	
+ 			public List<String> findMunicipalities() {
+ 				List<String> names = new ArrayList<String>();
+ 		 		for (MunicipalityName mun: MunicipalityName.values()) {
+ 		
+ 					names.add(mun.toString());
+ 		 		}
+ 		 			return names;
+ 		 	}
+ 		
+ 		
+	
+	@GetMapping(value = { "/landtypes/", "/landtypes" })
+	public List<String> findLandTypes() {
+			List<String> type = new ArrayList<String>();
+			for (LandType mun: LandType.values()) {
+			type.add(mun.toString());
 		}
-			return null;
-		}*/
+			return type;
+	}
 	
-/*	private List<TreeDto> createTreesDtosForMunicipality(Municipality m){
-		
-		List<Tree> treesForMunicipality = service.getTreeByMunicipality(m);
-		List<TreeDto> trees = new ArrayList<TreeDto>();
-		for (Tree tree : treesForMunicipality) {
-			trees.add(convertToDto(tree));
-		}
-		return trees;
-	} */
-	
-	// get all trees
-	
-	
-
 	
 	
 	@GetMapping(value = { "/trees", "/trees/" })
@@ -108,7 +115,18 @@ public class TreePLETreeRestController {
 		return trees;
 	}
 	
-	/*@GetMapping(value = { "/states", "/states/" })
+	
+	@GetMapping(value = { "/forecasts", "/forecasts/" })
+	public List<ForecastDto> findAllForecasts() throws InvalidInputException {
+		List<ForecastDto> forecasts = new ArrayList<ForecastDto>();
+		
+		for (Forecast f : service.listAllForecasts()) {
+			forecasts.add(convertToDto(f));
+		}
+		return forecasts;
+	}
+	
+	@GetMapping(value = { "/states", "/states/" })
 	public List<String> findAllStates() throws InvalidInputException {
 		List<String> states = new ArrayList<String>();
 		
@@ -116,21 +134,9 @@ public class TreePLETreeRestController {
 			states.add(s);
 		}
 		return states;
-	}*/
-	
-	//find all states fixed
-	@GetMapping(value = { "/states", "/states/" })
-	public List<String> findStates() {
-		List<String> state = new ArrayList<String>();
-		for (TreeState mun: TreeState.values()) {
-			state.add(mun.toString());
-		}
-			return state;
 	}
 	
-	
-	
-	/*@GetMapping(value = { "/species", "/species/" })
+	@GetMapping(value = { "/species", "/species/" })
 	public List<String> findAllSpecies() throws InvalidInputException {
 		List<String> species = new ArrayList<String>();
 		
@@ -138,16 +144,6 @@ public class TreePLETreeRestController {
 			species.add(s);
 		}
 		return species;
-	}*/
-	
-	//find all species
-	@GetMapping(value = { "/species", "/species/" })
-	public List<String> findSpecies() {
-		List<String> species = new ArrayList<String>();
-		for (TreeSpecies mun: TreeSpecies.values()) {
-			species.add(mun.toString());
-		}
-			return species;
 	}
 	
 	@GetMapping(value = { "/CalculateCurrentBI/"})
@@ -187,8 +183,6 @@ public class TreePLETreeRestController {
 	
 	
 	
-	
-	
 	@GetMapping(value= {"/trees/{status}"})
 	public List<TreeDto> getTreesBySpecies 
 	(@PathVariable  (name="status") TreeState state) throws InvalidInputException {
@@ -208,15 +202,49 @@ public class TreePLETreeRestController {
 			trees.add(convertToDto(tree));
 		}
 	 return trees; }
-	//create municipality
-/*	@PostMapping(value = {"/Municipality/{name}", "/Municipality/{name}/"})
-	public MunicipalityDto NewMunicipality(@PathVariable("name") MunicipalityName munName) throws InvalidInputException {
-		Municipality m = service.createMunicipality(munName);
-		
-		return convertToDto(m);
+
+	@PostMapping(value = { "/createForecast/{userName}"})
+	 public ForecastDto createForecast (
+			@PathVariable  ("userName") String userName,
+			@RequestParam(name="plantLandType") LandType plantLandType,
+			@RequestParam (name="plantMunicipality") MunicipalityName plantMunName,
+			@RequestParam(name="plantSpecies") TreeSpecies plantSpecies,
+			@RequestParam (name="plantHeight") double plantHeight,
+			@RequestParam (name="plantDiameter") double plantDiameter,
+			@RequestParam(name="plantLatitude") double plantLatitude,
+			@RequestParam (name="plantLongitude") double plantLongitude,
+			@RequestParam(name="plantQuantity") int plantQuantity,
+			@RequestParam (name="cutMunicipality") MunicipalityName cutMunName,
+			@RequestParam(name="cutLatitude") double cutLatitude,
+			@RequestParam(name="cutLongitude") double cutLongitude,
+			@RequestParam(name="cutOneLatitude") double cutOneLatitude,
+			@RequestParam (name="cutOneLongitude") double cutOneLongitude
+			) throws InvalidInputException {
+		Forecast f= service.createNewForecast(userName);
+		service.PlantTreeForForecast(f, plantLandType, plantSpecies, plantHeight, plantDiameter, plantLongitude, plantLatitude, plantMunName, plantQuantity);
+		service.cutDownTreesinAreaForForecast(cutLatitude, f, cutLatitude, cutMunName);
+		Tree t= service.getPlantedTreeByLocation(cutOneLatitude, cutOneLongitude);
+		service.cutDownTreeForForecast(t, f);
+		return convertToDto(f);
 	}
-	*/
-	// Create a new tree
+	
+
+	
+	@PostMapping(value = { "/Login/{userName}/{userRole}"})
+	public Boolean Login(
+			@PathVariable("userName") String userName,
+			@PathVariable ("userRole") String userRole)
+	{
+		Boolean ans=true;
+		try {
+			ans = service.login(userName, userRole);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ans;
+	
+	}
 	
 	@PostMapping(value = { "/PlantTree/{userName}"})
 	public TreeDto plantTree(
@@ -238,58 +266,40 @@ public class TreePLETreeRestController {
 		return convertToDto(tree);
 }
 	
+	@PostMapping(value = { "/editTree/{userName}"})
+	public TreeDto editTree(
+			@PathVariable("userName") String userName,
+			@RequestParam (name="landType") LandType landtype,
+			@RequestParam  (name="species") TreeSpecies species,
+			@RequestParam  (name="height") double height,
+			@RequestParam (name="diameter") double diameter,
+			@RequestParam (name="longitude") double longitude,
+			@RequestParam  (name="latitude") double latitude,
+			@RequestParam (name="municipality") MunicipalityName municipalityName,
+			@RequestParam (name="treeState") TreeState treeState
+			
+			) throws InvalidInputException {
+
+	;
+	
+		Tree tree= service.editTree(landtype, species, height,diameter, longitude, latitude, municipalityName,userName,treeState);
+		
+		return convertToDto(tree);
+}
 	
 	
 	
-	/*@GetMapping(value = { "/municipalities/", "/municipalities" })
-	public List<MunicipalityDto> findAllMunicipalities() {
-		List<MunicipalityDto> municipalities = new ArrayList<MunicipalityDto>();
-		for(Municipality m: service.findAllMunicipalities()) {
-			municipalities.add(convertToDto(m));
-		}
-		return municipalities;
-	}*/
 	
-	@GetMapping(value = { "/municipalities/", "/municipalities" })
-	public List<String> findMunicipalities() {
-		List<String> names = new ArrayList<String>();
-		for (MunicipalityName mun: MunicipalityName.values()) {
-			names.add(mun.toString());
-		}
-			return names;
-	}
 	
 	@GetMapping(value = { "/mun", "/mun/" })
-	public List<MunicipalityDto> findAllMun() {
+ 	public List<MunicipalityDto> findAllMun() {
+
 		List<MunicipalityDto> mun = new ArrayList<MunicipalityDto>();
-		for (Municipality municip : service.listAllMunicipalities()) {
-			mun.add(convertToDto(municip));
-		}
-		return mun;
+ 		for (Municipality municip : service.listAllMunicipalities()) {
+ 			mun.add(convertToDto(municip));
+ 		} return mun;
+
 	}
-	
-	
-	
-	/*@GetMapping(value = { "/municipalitiesforandroid/", "/municipalitiesforandroid" })
-	public List<String> findMunicipalities() {
-		List<String> names = new ArrayList<String>();
-		for (MunicipalityName mun: MunicipalityName.values()) {
-			names.add(mun.toString());
-		}
-			return names;
-	}*/
-	
-	//get all landtypes
-	@GetMapping(value = { "/landtypes/", "/landtypes" })
-	public List<String> findLandTypes() {
-		List<String> type = new ArrayList<String>();
-		for (LandType mun: LandType.values()) {
-			type.add(mun.toString());
-		}
-			return type;
-	}
-	
-	
 	
 	@GetMapping(value = { "/scientists/", "/scientists" })
 	public List<String> findAllScientists() {

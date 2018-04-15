@@ -6,16 +6,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import ca.mcgill.ecse321.TreePLE.model.Forecast;
 //import ca.mcgill.ecse321.TreePLE.controller.RequestParam;
+import ca.mcgill.ecse321.TreePLE.model.Forecast;
 import ca.mcgill.ecse321.TreePLE.model.Municipality;
 import ca.mcgill.ecse321.TreePLE.model.Municipality.MunicipalityName;
 import ca.mcgill.ecse321.TreePLE.model.Person;
 import ca.mcgill.ecse321.TreePLE.model.Person.Level;
 import ca.mcgill.ecse321.TreePLE.model.Report;
+import ca.mcgill.ecse321.TreePLE.model.Scientist;
 import ca.mcgill.ecse321.TreePLE.model.Status;
 import ca.mcgill.ecse321.TreePLE.model.Status.TreeState;
-import ca.mcgill.ecse321.TreePLE.model.*;
+import ca.mcgill.ecse321.TreePLE.model.Tree;
 import ca.mcgill.ecse321.TreePLE.model.Tree.LandType;
 import ca.mcgill.ecse321.TreePLE.model.Tree.TreeSpecies;
 import ca.mcgill.ecse321.TreePLE.model.TreeManager;
@@ -31,19 +32,45 @@ public class TreePLETreeService {
 		  this.tm = tm;
 		  Person scientist1= new Person( "John");
 		  Person scientist2= new Person("Daniel");
-		 Scientist s= new Scientist();
+		  Scientist s= new Scientist();
 		  scientist1.setRoles(s);
-		 Scientist s2= new Scientist();
-		 scientist2.setRoles(s2);
-		 Municipality m1= new Municipality();
-		 m1.setMunicipalityName(MunicipalityName.Montreal);
-		 Municipality m2= new Municipality();
+		  Scientist s2= new Scientist();
+		  scientist2.setRoles(s2);
+		  Municipality m1= new Municipality();
+		  m1.setMunicipalityName(MunicipalityName.Montreal);
+		  Municipality m2= new Municipality();
 		  m2.setMunicipalityName(MunicipalityName.Laval);
 		  tm.addMunicipality(m1);
 		  tm.addMunicipality(m2);
-		tm.addPerson(scientist1);
-		 tm.addPerson(scientist2);
+		  tm.addPerson(scientist1);
+		  tm.addPerson(scientist2);
 		  
+		}
+		
+		
+		
+		public Boolean login(String userName, String userRole) throws InvalidInputException {
+			List<String> scientists= getAllScientistNames();
+			Scientist s= new Scientist();
+			if (userRole==s.getRole()){
+				if(scientists.contains(userName)) { return true;}
+				else { throw new InvalidInputException("this is not a valid Scientist ID.");}
+				
+			}
+			else {
+				List<Person> users= listAllUsers();
+				  Person user =null;
+				  for(Person p : users) {
+					  if (p.getName()==userName) { user=p;}
+				  }
+				  if(user==null) {
+					  user= new Person(userName);
+				  }
+				  
+				  return true;
+				
+			}
+			
 		}
 		
 		
@@ -76,7 +103,9 @@ public class TreePLETreeService {
 		}
 		
 		
-		
+		public List<Forecast> listAllForecasts(){
+			return tm.getForecast();
+		}
 		
 		public Forecast createNewForecast(String userName) {
 			List<Person> users= listAllUsers();
@@ -89,6 +118,7 @@ public class TreePLETreeService {
 			  }
 			
 			Forecast f= new Forecast(user);
+			tm.addPerson(user);
 			tm.addForecast(f);
 			 PersistenceXStream.saveToXMLwithXStream(tm);
 			return f;
@@ -99,7 +129,7 @@ public class TreePLETreeService {
 					String.valueOf(f.getTreesToBeCut().size())+"in"+f.getTreesToBeCut(0).getMunicipality().getMunicipalityName().toString()+f.getTreesToBeCut(0).getTreeSpecies().toString();
 			return Description;}
 		
-		public Forecast PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, int quantity) throws InvalidInputException{
+		public void PlantTreeForForecast(Forecast f,LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, int quantity) throws InvalidInputException{
 			 if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null || quantity<=0) {
 				    throw new InvalidInputException("Missing information");
 				  }
@@ -132,9 +162,9 @@ public class TreePLETreeService {
 				 
 				  f.addTreesToBePlanted(t);
 				  k=k+0.00001;}
-				  tm.addForecast(f);
+				 // tm.addForecast(f);
 				  PersistenceXStream.saveToXMLwithXStream(tm);
-				  return f ;
+				
 				  
 				  
 		}
@@ -152,6 +182,21 @@ public class TreePLETreeService {
 		public Tree getPlantedTreeByLocation( double latitude, double longitude) throws InvalidInputException {
 			Tree tn=null;
 			for (Tree t : getPlantedTrees()) {
+				if (t.getLatitude()==latitude&&t.getLongitude()==longitude) {
+					tn=t;
+					//return tn;
+					break;
+				}
+			}
+			
+			 if (tn==null) { throw new InvalidInputException ("no tree exists here");}
+			 else {return tn;}
+		}
+		
+		
+		public Tree getTreeByLocation( double latitude, double longitude) throws InvalidInputException {
+			Tree tn=null;
+			for (Tree t : listAllTrees()) {
 				if (t.getLatitude()==latitude&&t.getLongitude()==longitude) {
 					tn=t;
 					//return tn;
@@ -212,6 +257,7 @@ public class TreePLETreeService {
 		  }
 		  if(user==null) {
 			  user= new Person(userName);
+			  tm.addPerson(user);
 		  }
 		  
 			  
@@ -242,12 +288,74 @@ public class TreePLETreeService {
 		  municipality.addTree(t);
 		  
 		  //add tree to the list
-		tm.addPerson(user);
+		  
 		  tm.addStatus(s);
 		  tm.addTree(t);
 		  PersistenceXStream.saveToXMLwithXStream(tm);
 		  return t;
 		}
+		
+		
+		public Tree editTree(LandType landtype, TreeSpecies species, double height, double diameter, double longitude, double latitude, MunicipalityName munName, String userName, TreeState
+				state) throws InvalidInputException
+		{
+		  if (species == null  || height ==0 || diameter ==0 || longitude ==0 || latitude ==0 || landtype == null  || munName == null) {
+		    throw new InvalidInputException("Missing information");
+		  }
+		  Tree t = getTreeByLocation(latitude,longitude);
+		  Municipality municipality= getMunicipalityByName(munName);
+		  
+		  t.setHeight(height);
+		  t.setDiameter(diameter);
+		  t.setLatitude(longitude);
+		  t.setLatitude(latitude);
+		  t.setMunicipality(municipality);
+		  List<Person> users= listAllUsers();
+		  Person user =null;
+		  for(Person p : users) {
+			  if (p.getName()==userName) { user=p;}
+		  }
+		  if(user==null) {
+			  user= new Person(userName);
+		  }
+		  
+			  
+		
+		  Date date1= new Date();
+		  Status s = new Status(date1,t,user);
+		 
+		  //change tree status to planted
+		  s.setTreeState(state);
+		  t.setCurrentStatus(s);
+		  
+		  t.addStatus(s);
+		  
+		
+		  
+		  //set tree species
+		  t.setTreeSpecies(species);
+		  
+		  //set Landtype
+		  t.setLandType(landtype);
+		  
+		
+		  
+		  //set municipality
+		  t.setMunicipality(municipality);
+		  //MunicipalityName name = municipality.getMunicipalityName();
+		  //municipality.setMunicipalityName(name);
+		  municipality.addTree(t);
+		  
+		  //add tree to the list
+		  
+		  tm.addStatus(s);
+		  
+		  PersistenceXStream.saveToXMLwithXStream(tm);
+		  return t;
+		}
+		
+		
+		
 		
 		//list all trees
 		public List<Tree> listAllTrees()
@@ -264,7 +372,7 @@ public class TreePLETreeService {
 		
 		public List<String>  listAllSpecies()
 		{
-			List<String>species=null;
+			List<String>species=new ArrayList<String>();
 		
 		 for(int i=0;i<Tree.TreeSpecies.values().length;i++) {
 			species.add( Tree.TreeSpecies.values()[i].toString());}
@@ -273,7 +381,7 @@ public class TreePLETreeService {
 		
 		public List<String>  listAllStates()
 		{
-			List<String>states=null;
+			List<String>states=new ArrayList<String>();
 		
 		 for(int i=0;i<Status.TreeState.values().length;i++) {
 			states.add( Status.TreeState.values()[i].toString());}
@@ -488,6 +596,23 @@ return (ts.size()*48);
 			else { return (" No earned titles.Keep planting trees to level up!");}
 		}
 		
+		
+		public List<String> getAllScientistNames(){
+			List<Person> users= listAllUsers();
+			List<String> scientists= new ArrayList<String>();
+			Scientist s= new Scientist();
+			 for(Person p : users) {
+				 if (p.getRoles()!=null) {
+				  if (p.getRoles().equals(s.getClass())) { 
+					scientists.add(p.getName());  
+					
+					
+				     }
+				  }
+			  }
+			
+			return scientists;
+		}
 		
 		public Person getUserByName(String userName) throws InvalidInputException {
 			List<Person> users= listAllUsers();

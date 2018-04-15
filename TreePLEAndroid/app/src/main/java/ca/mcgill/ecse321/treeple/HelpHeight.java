@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
+ * This class helps the user measure the tree height
  * Created by leaakkari on 2018-04-06.
  */
 
@@ -15,8 +16,13 @@ public class HelpHeight extends AppCompatActivity {
 
         Button back;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
+
+    /**
+     *
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.help_height);
@@ -28,9 +34,13 @@ public class HelpHeight extends AppCompatActivity {
                 @Override
                 public void onClick(View arg0) {
 
-                    //setContentView(R.layout.options);
+                    Intent intent = getIntent();
+                    String userName = intent.getStringExtra("userName");
+                    String userType = intent.getStringExtra("userType");
 
                     Intent i = new Intent(HelpHeight.this, HelpPlant.class);
+                    i.putExtra("userName",userName);
+                    i.putExtra("userType",userType);
                     startActivity(i);
                 }
 
