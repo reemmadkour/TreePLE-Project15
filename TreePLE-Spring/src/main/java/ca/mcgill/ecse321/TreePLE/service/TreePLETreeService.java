@@ -181,14 +181,19 @@ public class TreePLETreeService {
 
 	}
 
-	public String getDescriptionOfForecast(int fID) throws InvalidInputException {
+		public String getDescriptionOfForecast(int fID) throws InvalidInputException {
 		Forecast f = getForecastByID(fID);
-		String Description = "Planted " + String.valueOf(f.getTreesToBePlanted().size()) + "in"
+		String Description="";
+		if (f.getTreesToBeCut().size()>0&&f.getTreesToBePlanted().size()>0) {
+		 Description = "Planted " + String.valueOf(f.getTreesToBePlanted().size()) + "in"
 				+ f.getTreesToBePlanted(0).getMunicipality().getMunicipalityName().toString()
 				+ f.getTreesToBePlanted(0).getTreeSpecies().toString() + "  and Cut: "
 				+ String.valueOf(f.getTreesToBeCut().size()) + "in"
 				+ f.getTreesToBeCut(0).getMunicipality().getMunicipalityName().toString()
-				+ f.getTreesToBeCut(0).getTreeSpecies().toString();
+				+ f.getTreesToBeCut(0).getTreeSpecies().toString();}
+		else { 
+			 Description="A description is not avilable for this type of forecast, try filling all fields!";
+			}
 		return Description;
 	}
 
