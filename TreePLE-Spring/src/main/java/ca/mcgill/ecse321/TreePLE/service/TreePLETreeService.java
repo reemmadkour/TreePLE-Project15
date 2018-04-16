@@ -34,6 +34,12 @@ public class TreePLETreeService {
 		scientist1.setRoles(s);
 		Scientist s2 = new Scientist();
 		scientist2.setRoles(s2);
+		Municipality m20 = new Municipality();
+		m20.setMunicipalityName(MunicipalityName.Montreal);
+		Municipality m21 = new Municipality();
+		m21.setMunicipalityName(MunicipalityName.Laval);
+		tm.addMunicipality(m20);
+		tm.addMunicipality(m21);
 		Municipality m1 = new Municipality();
 		m1.setMunicipalityName(MunicipalityName.Anjou);
 		Municipality m2 = new Municipality();
@@ -490,14 +496,15 @@ public class TreePLETreeService {
 
 	}
 
-	public List<Tree> getNonCutTrees() {
+public List<Tree> getNonCutTrees() {
 		List<Tree> ts = tm.getTrees();
+		List<Tree> trees = new ArrayList<Tree>();
 		for (Tree tree : ts) {
 			if (!tree.getCurrentStatus().getTreeState().equals(TreeState.Cut)) {
-				ts.add(tree);
+				trees.add(tree);
 			}
 		}
-		return ts;
+		return trees;
 
 	}
 
