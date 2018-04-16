@@ -490,14 +490,15 @@ public class TreePLETreeService {
 
 	}
 
-	public List<Tree> getNonCutTrees() {
+public List<Tree> getNonCutTrees() {
 		List<Tree> ts = tm.getTrees();
+		List<Tree> trees = new ArrayList<Tree>();
 		for (Tree tree : ts) {
 			if (!tree.getCurrentStatus().getTreeState().equals(TreeState.Cut)) {
-				ts.add(tree);
+				trees.add(tree);
 			}
 		}
-		return ts;
+		return trees;
 
 	}
 
