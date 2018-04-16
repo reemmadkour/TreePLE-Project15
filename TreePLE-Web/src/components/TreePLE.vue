@@ -27,7 +27,7 @@
 <div class="form-group row">
   <label for="exampleSelect1" class="col-1 offset-sm-4 col-form-label">Municipality</label>
 <div class="col-2">
-    <select class="form-control" v-model="newTree.municipality" id="exampleSelect1">
+    <select class="form-control" v-model="selectedMun" id="exampleSelect1">
       <option v-for="mun in municipalities">{{ mun }}</option>
       
     </select>
@@ -37,16 +37,16 @@
 <div class="container">
 <div class=" col-sm-7 offset-sm-5">
 
-  <button type="submit" style="font-size:120%" @click="createTree(newTree.landType, newTree.treeSpecies, newTree.height, newTree.diameter, newTree.longitude, newTree.latitude, newTree.municipality, newTree.userName)" class="btn btn-secondary btn-block">Filter</button>
+  <button type="submit" style="font-size:120%" @click="selectMunicipality(selectedMun)" class="btn btn-secondary btn-block">Filter</button>
 </div>
 </div>
 </div>
 </div><br>
 <div class="form-group row">
-  <label for="exampleSelect1" class="col-1 offset-sm-4 col-form-label">LandType</label>
+  <label for="exampleSelect1" class="col-1 offset-sm-4 col-form-label">Status</label>
 <div class="col-2">
-    <select class="form-control" v-model="newTree.landType" id="exampleSelect1">
-      <option v-for="type in LandTypes">{{ type }}</option>
+    <select class="form-control" v-model="selectedState" id="exampleSelect1">
+      <option v-for="state in States">{{ state }}</option>
       
     </select>
 </div>
@@ -54,13 +54,23 @@
 <div class="container">
 <div class=" col-sm-7 offset-sm-5">
 
-  <button type="submit" style="font-size:120%" @click="createTree(newTree.landType, newTree.treeSpecies, newTree.height, newTree.diameter, newTree.longitude, newTree.latitude, newTree.municipality, newTree.userName)" class="btn btn-secondary btn-block">Filter</button>
+  <button type="submit" style="font-size:120%" @click="selectStatus(selectedState)" class="btn btn-secondary btn-block">Filter</button>
 </div>
 </div>
 </div>
-</div><br><br>
-</form>
 
+
+</div><br><br>
+
+</form>
+<div class="row">
+<div class="container">
+<div class=" col-sm-4 offset-sm-4">
+
+  <button type="submit" style="font-size:120%" @click="selectAll()" class="btn btn-secondary btn-block">See all</button>
+</div>
+</div>
+</div>
     <br><table id="treeList" class="table table-hover" style="width:100%">
 <thead>
  <th> Species </th>

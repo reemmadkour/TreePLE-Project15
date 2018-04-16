@@ -151,7 +151,7 @@
 <div class="col-xs-6 col-sm-4 offset-sm-5">
 
   <button type="submit" style="font-size:120%" @click="editTree(newTree.landType, newTree.treeSpecies, newTree.height, newTree.diameter, newTree.longitude, newTree.latitude, newTree.municipality, newTree.userName, newTree.currentStatus)" class="btn btn-secondary btn-block">Edit</button>
-
+<small class="form-text text-muted">Refresh map to see the changes</small>
 
 
 
@@ -166,23 +166,31 @@
   </gmap-map>
 
 
- <br> <br><div class="row">
+ <br><br><h2> Sustainability Attributes</h2><br>
+<table class="table table-hover" style="width:60%" align="center">
+	<thead>
+ <th> Biodiversity Index </th>
+  <th>Carbon sequestration</th>
+   <th> Canopy </th>
+         
+</thead>
+<tbody>
+       <tr>
+      <td>{{Bi}}</td>
+      <td>{{CarbonSeq}}</td>
+      <td>{{Canopy}}</td>
+     
+</tr>
+        </tbody>
+	</table>
 
-<div class="col-xs-4 col-sm-4 offset-sm-4"> 
-<button onclick="myFunction()"class="btn btn-secondary btn-block">Refresh</button>
+<div class="row">
+
+
 </div>
-
-</div><br>
-<div id="myDIV" style="font-size:120%; font-weight:bold;">
-  Canopy: 300;  
-  Carbon Seq: 400; 
-  BioDiversity index: 0.5
-</div>
-
-<p> </p>
 
     <p>
-      <span v-if="errorTree" style="color:red">Error: {{errorTree}} </span>
+      <span v-if="errorMunicipalities" style="color:red">Error: {{errorTree}} </span>
 
     </p>
   </div>

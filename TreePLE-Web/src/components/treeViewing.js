@@ -37,6 +37,9 @@ export default {
       Trees: [],
       response: [],
       Species: [],
+      Bi: '',
+      CarbonSeq: '',
+      Canopy: '',
       LandTypes: [],
       States: [],
       errorSpecies: '',
@@ -62,11 +65,6 @@ export default {
         currentStatus: { treeState: '' },
         municipality: { municipalityName: '' }},
       errorMunicipalities: '',
-      icon: {
-        url: 'google.maps.SymbolPath.CIRCLE',
-        size: {width: 26, height: 26, f: 'px', b: 'px'},
-        scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
-      },
       center: {lat: 45.549302, lng: -73.681559},
       markers: [],
       errorTree: ''
@@ -87,9 +85,9 @@ export default {
               lat: this.Trees[i].latitude
             },
             icon: {
-              url: 'http://maps.google.com/mapfiles/kml/shapes/parks.png',
+              url: 'https://png.icons8.com/cotton/1600/tree.png',
               size: {width: 26, height: 26, f: 'px', b: 'px'},
-              scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
+              scaledSize: {width: 29, height: 29, f: 'px', b: 'px'}
             }, 
             treeData: this.Trees[i] })
       }
@@ -99,6 +97,16 @@ export default {
     })
     this.$forceUpdate()
     console.log('Trees listed')
+    
+    AXIOS.get('/CalculateCurrentBI/')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.Bi= response.data
+    })
+    .catch(e => {
+      this.errorMunicipalities = e
+    })
+    console.log('BI calculated') 
 
     AXIOS.get('/municipalities')
     .then(response => {
@@ -110,6 +118,16 @@ export default {
     })
     console.log('Municipalities listed')
     
+    AXIOS.get('/CalculateCurrentCarbonSEQ/')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.CarbonSeq= response.data
+    })
+    .catch(e1 => {
+      this.errorMunicipalities = e1
+    })
+    console.log('Carbon calculated')
+
     AXIOS.get(`/species`)
     .then(response => {
       // JSON responses are automatically parsed.
@@ -129,6 +147,17 @@ export default {
       this.errorLandTypes = e
     })
     console.log('LandTypes listed')
+   
+    AXIOS.get('/CurrentTotalCanopy/')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.Canopy= response.data
+    })
+    .catch(e1 => {
+      this.errorMunicipalities = e1
+    })
+    
+    console.log('Canopy calculated')
 
      AXIOS.get(`/states`)
     .then(response => {
@@ -141,7 +170,7 @@ export default {
     console.log('States listed')
   },
   methods: {
-     editTree: function (land, speci,  Height, Diameter, long, lat, mun, userName, state) {
+    editTree: function (land, speci,  Height, Diameter, long, lat, mun, userName, state) {
       AXIOS.post('/editTree/'.concat(userName), {}, {
         params: {landType: land, species: speci, height: Height, diameter: Diameter, longitude: long, latitude: lat, municipality: mun, treeState: state}
       })
