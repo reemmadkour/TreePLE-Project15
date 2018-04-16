@@ -1525,7 +1525,8 @@ assertEquals("Please fill in all missing information!", er);
 		f.addCurrentTree(registeredTrees.get(1));
 		
 		try {
-			 r1 = tree.generateReportForForecast(f);
+			int fid =f.getFID();
+			 r1 = tree.generateReportForForecast(fid);
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1537,7 +1538,7 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(0, f.getTreesToBeCut().size());
 		
 		
-	
+	//trying to commit
 
 
 		// check each of the two Trees planted
@@ -1727,7 +1728,7 @@ assertEquals("Please fill in all missing information!", er);
 		assertEquals(MunicipalityName.Montreal, registeredTrees.get(1).getMunicipality().getMunicipalityName());
 	}
 	
-	/*
+	
 	@Test
 	public void testgetTreeById() {
 		
@@ -1759,14 +1760,14 @@ assertEquals("Please fill in all missing information!", er);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
-
+		int id = tree5.getTreeID();
 
 		// check number of registered trees
 		assertEquals(1, tm.getTrees().size());
 
 		assertEquals(t, tree5);
-		assertEquals(39, tm.getTree(0).getTreeID());
-	} */ 
+		assertEquals(id, tm.getTree(0).getTreeID());
+	}  
 	
 
 	@Test
@@ -2114,7 +2115,7 @@ assertEquals("Please fill in all missing information!", er);
 	TreePLETreeService tree = new TreePLETreeService(tm);
 	
 	List<Municipality>  stringOfMunicipalities = tree.listAllMunicipalities();
-	assertEquals(2, stringOfMunicipalities.size() );
+	assertEquals(19, stringOfMunicipalities.size() );
 	
 	}
 	
