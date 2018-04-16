@@ -1,13 +1,13 @@
-<script src="./forecasting.js"></script> 
+
 <template>
 <div id="forecast">
-<card>
+
 <form>
 
 
-<div class="form-group">
-    <h2  style="font-size:200%; font-weight:bold;"> New Forecast</h2>
-    <h3 id="plant" style="font-size:140%; text-align:left; font-weight:bold;"> Plant Trees For Forecast:</h3>
+<div class="form-group"><br><br><br><br><br>
+    <h2> New Forecast</h2><br><br><br>
+    <h3 id="plant"> Plant Trees For Forecast:</h3><br><br>
        <div class="form-group row">
          <form class="form-inline">
       <label for="landType" class="col-sm-1.5 col-form-label"> &nbsp;    &nbsp;   &nbsp;  LandType </label>
@@ -50,12 +50,12 @@
 </div>
 
  <div class="row offset-sm-5 text-center">
-      <button > Plant for forecast</button><br>
+      
 </div>
 
 <br>
 
- <br><h4 id="cut"  style="font-size:140%;font-weight:bold;  text-align:left;"> Cut Trees In Area For Forecast:</h4>
+ <br><h3> Cut Trees In Area For Forecast:</h3><br><br>
 
 
 <div class="form-group row">
@@ -77,11 +77,11 @@
 </form>
 </div>
       <div class="row offset-sm-5 text-center">
-      <button > Cut for forecast</button><br>
+      
 </div>
 
 
- <br><h4 id="cut"  style="font-size:140%;font-weight:bold;  text-align:left;"> Cut Specific Tree In For Forecast:</h4>
+ <br><br><h3> Cut Specific Tree In For Forecast:</h3><br><br>
 
 
 <div class="form-group row">
@@ -97,26 +97,30 @@
 </form>
 </div>
       <div class="row offset-sm-5 text-center">
-      <button > Cut for forecast</button><br>
+      
 </div> 
 <br>
 <br>
- <div class="row offset-sm-5 text-center">
-     <button  @click=" createForecast( newForecast.plantLandType, newForecast.plantSpecies, newForecast.plantHeight, newForecast.plantDiameter, newForecast.plantMunicipality, newForecast.plantLatitude, newForecast.plantLongitude , newForecast.plantQuantity, newForecast.cutMunicipality, newForecast.cutLatitude, newForecast.cutLongitude, newForecast.cutOneLatitude, newForecast.cutOneLongitude)" style="font: bold 25px Arial">  Create Forecast</button><br>
+ <div class="row">
+<div class="container">
+<div class=" col-sm-4 offset-sm-4">
+     <button  type="submit" @click=" createForecast( newForecast.plantLandType, newForecast.plantSpecies, newForecast.plantHeight, newForecast.plantDiameter, newForecast.plantMunicipality, newForecast.plantLatitude, newForecast.plantLongitude , newForecast.plantQuantity, newForecast.cutMunicipality, newForecast.cutLatitude, newForecast.cutLongitude, newForecast.cutOneLatitude, newForecast.cutOneLongitude)" class="btn btn-secondary btn-block">  Create Forecast</button><br>
       <span v-if="errorForecast" style="color:red">Error: {{errorForecast}} </span>
-
 </div>
+</div>
+</div>
+
 
    
 
 </div>
 
 </form>
-</card>
+
 
 
 <div>
- <h2  style="font-size:200%; font-weight:bold;" >List Of Forecasts</h2>
+ <br><br><h3>List Of Forecasts</h3><br>
 <table class="table table-hover" style="width:100%">
 <thead>
  <th> User Name (click to reveal description below) </th>
@@ -128,7 +132,15 @@
 <tr v-for="forecast in forecasts">
 
      
-       <td>{{ forecast.person.name }}<button  value="button text" style="font: bold 25px Arial" @click="  getDescriptionOfForecast(forecast.fID)">  show description</button></td>
+       <td>{{ forecast.person.name }}
+<div class="row">
+<div class="container">
+<div class=" col-sm-4 offset-sm-4">
+<button  type="submit" class="btn btn-secondary btn-block" @click="  getDescriptionOfForecast(forecast.fID)">  show description</button>
+</div>
+</div>
+</div>
+</td>
        
        <td><b-text v-b-popover.hover={description} title="details">{{ forecast.fID }}</b-text></td>
        <td>
@@ -144,8 +156,8 @@
          
         </ul>
       </td>
-      <td> <button  value="button text" style="font: bold 25px Arial" @click=" generateReportforecast(forecast.fID) ">  generate report</button></td>
-  <tr style="font: bold 25px Arial">selected Forecast descritption:</tr>
+      <br><td> <button  type="submit"  class="btn btn-secondary btn-block" @click=" generateReportforecast(forecast.fID) ">  generate report</button></td>
+  <br><tr style="font: bold 25px Arial">selected Forecast descritption:</tr>
   <tr>{{description}}</tr>  
   <tr style="font: bold 25px Arial">selected report attributes:</tr>        
   </tr>
@@ -160,16 +172,19 @@
  
 </template>
 
-
+<script src="./forecasting.js"></script> 
 
 
 
 <style>
 #forecast {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    color: #7323d;
-    background: #9fc6c8;
-},
+    background-image: url("../assets/Greenery.jpg");
+    height: 7em; 
+    background-repeat: repeat;
+    background-size: 18em;
+
+    
+  }
 li { padding-left: 10px;
   },
 #plant {

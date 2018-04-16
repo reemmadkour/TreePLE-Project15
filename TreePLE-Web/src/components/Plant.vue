@@ -1,5 +1,8 @@
 <template>
-<div id="newTree"><br><br><br><br>
+<div id="plant">
+
+
+<br><br><br><br>
 <br><h2> Plant Tree </h2><br>
 <div class="container"><br>
 <form action="/#/view">
@@ -88,10 +91,10 @@
 </div>
 </div>
 </template>
-<script src="./treePlanting.js"></script
+<script src="./treePlanting.js"></script>
 <style>
 
- #newTree { 
+#plant { 
    background-image: url("../assets/Greenery.jpg");
     height: 7em; 
     background-repeat: repeat;
