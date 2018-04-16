@@ -144,8 +144,19 @@ export default {
     console.log('States listed')
   },
   methods: {
-     selectMun: function (selectedMun) {
-    AXIOS.get('/trees/'.concat(selectedMun))
+     selectAll: function () {
+    AXIOS.get('/trees')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.Trees= response.data
+    })
+    .catch(e1 => {
+      this.errorMunicipalities = e1
+    })
+    console.log('trees listed') },
+
+     selectMunicipality: function (selectedMun) {
+    AXIOS.get('/treesMunicipality/'+ selectedMun)
     .then(response => {
       // JSON responses are automatically parsed.
       this.Trees= response.data
@@ -156,7 +167,7 @@ export default {
     console.log('trees by Municipality listed') },
 
   selectSpecies: function (selectedSp) {
-    AXIOS.get('/trees/'+ selectedSp)
+    AXIOS.get('/treesSpecies/'+ selectedSp)
     .then(response => {
       // JSON responses are automatically parsed.
       this.Trees= response.data
@@ -168,7 +179,7 @@ export default {
     console.log('trees by species listed') },
  
   selectStatus: function (selectedStatus) {
-    AXIOS.get('/trees/'.concat(selectedStatus))
+    AXIOS.get('/treesStatus/'.concat(selectedStatus))
     .then(response => {
       // JSON responses are automatically parsed.
       this.Trees= response.data
