@@ -7,20 +7,18 @@
 
 <div class="form-group"><br><br><br><br><br>
     <h2> New Forecast</h2><br><br><br>
-    <h3 id="plant"> Plant Trees For Forecast:</h3><br><br>
+    <h3> Plant Trees For Forecast:</h3><br><br>
        <div class="form-group row">
          <form class="form-inline">
       <label for="landType" class="col-sm-1.5 col-form-label"> &nbsp;    &nbsp;   &nbsp;  LandType </label>
 
       <select v-model="newForecast.plantLandType" class="form-control" id="landType">
-        <option> Municipal</option>
-       <option> Residential</option>
+      <option v-for="type in LandTypes">{{ type }}</option>
       </select>
 
       <label for="species" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp;Species </label>
       <select v-model="newForecast.plantSpecies" class="form-control" id="species">
-        <option> Willow</option>
-        <option> Red Maple</option>
+        <option v-for="species in Species">{{species}}</option>
       </select>
 
       <label for="diameter" class="col-sm-1.5 col-form-label"> Diameter </label>
@@ -34,8 +32,7 @@
   <form class="form-inline">
       <label for="municipality" class="col-sm-1.5 col-form-label">  &nbsp;   &nbsp;  &nbsp;Municipality </label>
       <select v-model="newForecast.plantMunicipality"class="form-control" id="municipality">
-        <option>Montreal</option>
-        <option> Laval</option>
+        <option v-for="mun in municipalities">{{ mun }}</option>
       </select>
 
       <label  for="latitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Latitude </label>
@@ -62,8 +59,7 @@
  <form class="form-inline">
        <label for="municipality" class="col-sm-1.5 col-form-label">  &nbsp;   &nbsp;  &nbsp;Municipality </label>
       <select  v-model="newForecast.cutMunicipality" class="form-control" id="municipality">
-        <option>Montreal</option>
-        <option> Laval</option>
+        <option v-for="mun in municipalities">{{ mun }}</option>
       </select>
      
       <label  for="latitude" class="col-sm-1.5 col-form-label"> &nbsp; &nbsp; Latitude </label>

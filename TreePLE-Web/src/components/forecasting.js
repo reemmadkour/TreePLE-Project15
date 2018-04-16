@@ -30,6 +30,9 @@ export default {
       thiscs: '',
       thisbdi: '',
       forecasts: [],
+      Species: [],
+      LandTypes: [],
+      municipalities: [],
       description: '',
       FID: '',
       items: [],
@@ -54,6 +57,36 @@ export default {
     }
   },
   created: function () {
+    AXIOS.get('/municipalities')
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.municipalities = response.data
+    })
+    .catch(e1 => {
+      this.errorMunicipalities = e1
+    })
+    console.log('Municipalities listed')
+
+    AXIOS.get(`/species`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.Species = response.data
+    })
+    .catch(e => {
+      this.errorSpecies = e
+    })
+    console.log('Species listed')
+
+    AXIOS.get(`/landtypes`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.LandTypes = response.data
+    })
+    .catch(e => {
+      this.errorLandTypes = e
+    })
+    console.log('LandTypes listed')
+
     AXIOS.get(`/forecasts`)
     .then(response => {
       this.forecasts = response.data
